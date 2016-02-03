@@ -101,43 +101,48 @@ void Map1::takeTurn(int dir){
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
+		float tempPosX = 0, tempPosY = 0;
 		/*move according to the int*/
 		switch (meepMove.at(i)){
 		case 8:
 			tempY--;
-			mPlayer->updPos(0, -52);
+			tempPosY+=-52;
 			break;
 		case 9:
 			tempY--;
 			tempX++;
-			mPlayer->updPos(64, -52);
+			tempPosY += -52;
+			tempPosX += 64;
 			break;
 		case 6:
 			tempX++;
-			mPlayer->updPos(64, 0);
+			tempPosX += 64;
 			break;
 		case 3:
 			tempX++;
 			tempY++;
-			mPlayer->updPos(64, 52);
+			tempPosY += 52;
+			tempPosX += 64;
 			break;
 		case 2:
 			tempY++;
-			mPlayer->updPos(64, 0);
+			tempPosY += 52;
 			break;
 		case 1:
 			tempY++;
 			tempX--;
-			mPlayer->updPos(-64, 52);
+			tempPosY += 52;
+			tempPosX += -64;
 			break;
 		case 4:
 			tempX--;
-			mPlayer->updPos(-64, 0);
+			tempPosX += -64;
 			break;
 		case 7:
 			tempX--;
 			tempY--;
-			mPlayer->updPos(-64, -52);
+			tempPosY += -52;
+			tempPosX += -64;
 			break;
 		}
 
@@ -165,6 +170,7 @@ void Map1::takeTurn(int dir){
 			mPlayer->setLast(mGrid[tempY][tempX]);
 			//mPlayField.at(tempY).at(tempX) = mEep->getType();
 			mGrid[tempY][tempX] = mPlayer->getType();
+			mPlayer->updPos(tempPosX, tempPosY);
 
 			mPlayer->setX(tempX);
 			mPlayer->setY(tempY);
