@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp> 
 //asdasdderp
 //wat
+//sssssss
 #include <vector>
 #include "Map1.h"
 #include <iostream>
@@ -30,7 +31,7 @@ int main()
 	mObjects = level.getObjects();
 	mPlayer = level.getPlayer();
 	// Skriver ut position för alla object
-	for (unsigned int i = 0; i < mObjects.size(); i++){
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		cout << mObjects[i]->getX() << " " << mObjects[i]->getY() << endl;
 	}
 	
@@ -49,11 +50,12 @@ int main()
 		window.clear();
 
 		//Ritar ut objekten
-		for (unsigned int i = 0; i < mObjects.size(); i++){
+		for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 			window.draw(mObjects[i]->getSprite());
-			window.draw(mPlayer->getSprite());
 			//mObjects[i]->render();
 		}
+		window.draw(mPlayer->getSprite());
+
 
 		level.render();
 
