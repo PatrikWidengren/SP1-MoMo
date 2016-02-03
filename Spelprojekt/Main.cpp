@@ -1,6 +1,4 @@
 #include <SFML/Graphics.hpp> 
-//asdasdderp
-//wat
 #include <vector>
 #include "Map1.h"
 #include <iostream>
