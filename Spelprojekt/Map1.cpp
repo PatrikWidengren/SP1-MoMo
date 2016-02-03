@@ -157,6 +157,7 @@ void Map1::takeTurn(int dir){
 
 		/*move meep to new place in the array and return the original value
 		to the last position*/
+		cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
 			//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
@@ -169,9 +170,11 @@ void Map1::takeTurn(int dir){
 			mPlayer->setY(tempY);
 			//mEepX = tempX;
 			//mEepY = tempY;
+			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		}
 		else {
 			mPlayer->collide(meepMove, i);
+			cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 			break;
 		}
 	}

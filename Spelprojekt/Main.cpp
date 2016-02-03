@@ -32,11 +32,13 @@ int main()
 		cout << mObjects[i]->getX() << " " << mObjects[i]->getY() << endl;
 	}
 	
-	bool keepMoving = true;
 	int moveMeep = 0;
+	bool keyPressed = true;
+	bool space = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
+		window.setKeyRepeatEnabled(false);
 		window.setFramerateLimit(60);
 		while (window.pollEvent(event))
 		{
@@ -58,13 +60,59 @@ int main()
 		//while (keepMoving){
 		//	std::cin >> i;
 		
-		if (moveMeep <= 0 || moveMeep == 5 || moveMeep > 9){
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1)){
+			moveMeep = 1;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)){
+			moveMeep = 2;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3)){
+			moveMeep = 3;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)){
+			moveMeep = 4;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5)){
+			moveMeep = 5;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6)){
+			moveMeep = 6;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7)){
+			moveMeep = 7;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)){
+			moveMeep = 8;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9)){
+			moveMeep = 9;
+			keyPressed = true;
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+			space = true;
+		}
+
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space && keyPressed){
+			space = false;
+			level.takeTurn(moveMeep);
+		}
+
+/*		if (moveMeep <= 0 || moveMeep == 5 || moveMeep > 9){
 				keepMoving = false;
 		}
 		else {
 			level.takeTurn(moveMeep);
 			//level1.printMap();
-		}
+		}*/
 		//}
 
 		
