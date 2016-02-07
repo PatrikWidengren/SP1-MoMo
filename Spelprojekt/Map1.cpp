@@ -14,19 +14,25 @@ Map1::Map1(string savefile){
 	Grass::initialize();
 	Fence::initialize();
 	Player::initialize();
+	CharRand::initialize();
 }
 Map1::~Map1(){
 	Stone::finalize();
 	Grass::finalize();
 	Fence::finalize();
 	Player::finalize();
+	CharRand::finalize();
 }
 void Map1::render(){
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		//mObjects[i]->getSprite();
 		mObjects[i]->render();
-		mPlayer->render();
 	}
+	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		mNpcs[i]->render();
+	}
+	mPlayer->render();
+
 }
 //Skapar array
 float** Map1::createGrid(int width, int heigth){
@@ -77,18 +83,22 @@ void Map1::spawnObjects(){
 	mGrid = createGrid(mWidth, mHeigth);
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
-			if (mGrid[j][i] == 2){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
-			}
 			if (mGrid[j][i] == 1){
 				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
 
 				mObjects.push_back(new Fence((i * widthOnTile), (j * heigthOnTile), 1));
 			}
+			if (mGrid[j][i] == 2){
+				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+			}
 			if (mGrid[j][i] == 5){
 				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
 				mPlayer = new Player(i, j, new LawnMower(), (i * widthOnTile), (j * heigthOnTile));
 				//mObjects.push_back(new Player((i * widthOnTile), (j * heigthOnTile), 1));
+			}
+			if (mGrid[j][i] == 6){
+				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
 			}
 		}
 	}
@@ -199,4 +209,7 @@ vector<StaticObjects*> Map1::getObjects(){
 }
 Player* Map1::getPlayer(){
 	return mPlayer;
+}
+vector<Character*> Map1::getNpcs(){
+	return mNpcs;
 }

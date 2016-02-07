@@ -9,6 +9,7 @@
 #include "GoLawnMower.h"
 #include "RoyceMower.h"
 #include "LawnMower.h"
+#include "CharRand.h"
 #include <fstream>
 #include <iomanip>
 #include <vector>
@@ -23,6 +24,7 @@ public:
 	void virtual spawnObjects();
 	virtual std::vector<StaticObjects*> getObjects();
 	virtual Player* getPlayer();
+	virtual std::vector<Character*> getNpcs();
 	void virtual getArraySize();
 	void takeTurn(int dir);
 	float** createGrid(int width, int heigth);
@@ -32,6 +34,8 @@ private:
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
+	typedef std::vector<Character*> NpcVector;
+	NpcVector mNpcs;
 	Player* mPlayer;
 	//Mower* lawnMower;
 

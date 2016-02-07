@@ -19,7 +19,7 @@ CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, b
 	/*Speaking of which, I am as of now unsure how to handle values like 
 	4.1, 4.2, etc for other random NPCs. Will update code as it becomes 
 	relevant*/
-	mType = 4.0f;
+	mType = 6.0f;
 }
 
 CharRand::~CharRand(){

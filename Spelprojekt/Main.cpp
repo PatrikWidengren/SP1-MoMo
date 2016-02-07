@@ -13,6 +13,8 @@ int main()
 {
 	typedef vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
+	typedef vector<Character*> NpcVector;
+	NpcVector mNpcs;
 	Player* mPlayer;
 
 	//Skapar instans av "Map1"
@@ -27,11 +29,11 @@ int main()
 	//Kopierar objekten
 	mObjects = level.getObjects();
 	mPlayer = level.getPlayer();
+	mNpcs = level.getNpcs();
 	// Skriver ut position för alla object
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		cout << mObjects[i]->getX() << " " << mObjects[i]->getY() << endl;
 	}
-	
 	int moveMeep = 0;
 	bool keyPressed = false;
 	bool space = false;
@@ -52,8 +54,10 @@ int main()
 			window.draw(mObjects[i]->getSprite());
 			//mObjects[i]->render();
 		}
+		for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+			window.draw(mNpcs[i]->getSprite());
+		}
 		window.draw(mPlayer->getSprite());
-
 
 		level.render();
 		
