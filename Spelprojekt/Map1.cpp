@@ -183,6 +183,7 @@ void Map1::takeTurn(int dir){
 			cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 			break;
 		}
+
 	}
 }
 void Map1::getArraySize(){
