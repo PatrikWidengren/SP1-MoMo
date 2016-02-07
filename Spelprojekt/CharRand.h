@@ -21,6 +21,7 @@ public:
 	virtual void setX(int x);
 	virtual void setY(int Y);
 	virtual void setLast(float l);
+	virtual float getLast();
 	virtual float getType();
 	/*Update coordinates for the sprite. x and y is value the position has
 	changed by*/

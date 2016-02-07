@@ -29,6 +29,9 @@ public:
 	void takeTurn(int dir);
 	float** createGrid(int width, int heigth);
 private:
+	/*Added helper functions for moving player and NPC to make code look better*/
+	bool movePlayer(int dir);
+	bool moveNpc(int dir, int atPos);
 	int mWidth, mHeigth;
 	std::string mSavefile;
 	float** mGrid;
