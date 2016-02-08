@@ -7,20 +7,26 @@ sf::Image imageGuard;
 static const string filename = "deputy.png";
 
 CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10]): 
-	//initialize retryPath with all zeroes.
-	retryPath{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	
 	mArrayX(arrX),
 	mArrayY(arrY),
 	mPosX(posX),
 	mPosY(posY)
 	{
+	//initialize retryPath with all zeroes.
+	for (int i = 0; i < 10; i++){
+		retryPath[i] = 0;
+	}
 	mCharSprite.setPosition(posX, posY);
 	mTurnNo = -1;
+	//fill up path with the move array
 	for (int i = 0; i < 50; i++){
 		for (int j = 0; j < 10; j++){
 			path[i][j] = moves[i][j];
 		}
 	}
+	//I assume guard is 7
+	mType = 7.0f;
 }
 
 CharPatrol::~CharPatrol(){
