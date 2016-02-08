@@ -124,7 +124,9 @@ void Map1::takeTurn(int dir){
 		bool breakMove = false;
 		/*For every int in the vector, do the following*/
 		for (intVector::size_type j = 0; j < npcMove.size(); j++){
-			/*0 means end of movement. Futureproofing for patrols*/
+			/*0 means end of movement. Futureproofing for patrols. 
+			Breakmove means that the entire movement for this character
+			is over for the turn*/
 			if (npcMove.at(j) == 0 || breakMove){
 				breakMove = false;
 				break;
@@ -139,7 +141,9 @@ void Map1::takeTurn(int dir){
 				tryMove = mNpcs.at(i)->collide(npcMove, j);
 				/*try out the new list of steps*/
 				for (intVector::size_type k = 0; k < tryMove.size(); k++){
-					/*again, break if 0, futureproof for patrols*/
+					/*again, break if 0, breakMove is made true so that
+					the entire turn will end for the current character
+					if there is no movement after collision*/
 					if (tryMove.at(k) == 0){
 						breakMove = true;
 						break;

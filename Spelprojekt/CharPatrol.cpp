@@ -7,6 +7,7 @@ sf::Image imageGuard;
 static const string filename = "deputy.png";
 
 CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10]): 
+	//initialize retryPath with all zeroes.
 	retryPath{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	mArrayX(arrX),
 	mArrayY(arrY),
@@ -36,9 +37,16 @@ float CharPatrol::getPosY(){
 
 intVector CharPatrol::move(){
 	intVector curMove;
+	//Step 1: Make sure no retries are waiting
 	if (retryPath[0] <= 0){
+		//If no retry waiting, take the next turn's movement
 		mTurnNo++;
+		//If the first move this turn is 0, end of patrol is reached. Restart patrol from 0
+		if (*path[mTurnNo][0]==0){
+			mTurnNo = 0;
+		}
 		for (int i = 0; i < 10; i++){
+			//add all the steps. Cancel if a move has val 0
 			if (*path[mTurnNo][i] <= 0){
 				break;
 			}
@@ -47,8 +55,11 @@ intVector CharPatrol::move(){
 			}
 		}
 	}
+	//if a retry is wating...
 	else {
 		for (int i = 0; i < 10; i++){
+			//add the entire retryPath to the current turn's move
+			//end prematurely if the movement of a turn is 0;
 			if (retryPath[i] <= 0){
 				break;
 			}
@@ -56,20 +67,24 @@ intVector CharPatrol::move(){
 				curMove.push_back(retryPath[i]);
 			}
 		}
+		//clear the whole retryPath
 		for (int i = 0; i < 10; i++){
 			retryPath[i] = 0;
 		}
 	}
+	//return the intVector of steps
 	return curMove;
 }
 
 intVector CharPatrol::collide(intVector moves, int atPos){
 	int j = 0;
 	for (intVector::size_type i = atPos; i < moves.size(); i++){
+		//Fill up the retryPath array with all the remaining moves
 		retryPath[j] = moves.at(i);
 	}
 	intVector col;
 	col.push_back(0);
+	//return a 0 to break the movement for the turn
 	return col;
 }
 
