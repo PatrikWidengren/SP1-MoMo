@@ -3,30 +3,52 @@
 using namespace std;
 
 static const string filename = "grass.png";
+static const string filename2 = "cutgrass.png";
 sf::Texture textureGrass;
+sf::Texture textureCutGrass;
 
-Grass::Grass(float x, float y){
-	mX = x;
-	mY = y;
-	mSprite.setPosition(mX, mY);
+Grass::Grass(int arrayX, int arrayY, float posX, float posY){
+	mArrayX = arrayX;
+	mArrayY = arrayY;
+	mPosX = posX;
+	mPosY = posY;
+	mSprite.setPosition(mPosX, mPosY);
 }
 Grass::~Grass(){
 
 }
 void Grass::render(){
-	mSprite.setTexture(textureGrass);
+	if (!isCut){
+		mSprite.setTexture(textureGrass);
+	}
+	else{
+		mSprite.setTexture(textureCutGrass);
+	}
 }
-float Grass::getX(){
-	return mX;
+float Grass::getPosX(){
+	return mPosX;
 }
-float Grass::getY(){
-	return mY;
+float Grass::getPosY(){
+	return mPosY;
+}
+int Grass::getArrayX(){
+	return mArrayX;
+}
+int Grass::getArrayY(){
+	return mArrayY;
 }
 sf::Sprite Grass::getSprite(){
 	return mSprite;
 }
+void Grass::setCut(){
+	isCut = true;
+}
+bool Grass::getCut(){
+	return isCut;
+}
 void Grass::initialize(){
 	textureGrass.loadFromFile(filename);
+	textureCutGrass.loadFromFile(filename2);
 }
 void Grass::finalize(){
 	textureGrass.~Texture();

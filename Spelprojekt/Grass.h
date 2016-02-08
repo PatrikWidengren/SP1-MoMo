@@ -6,16 +6,23 @@
 //Underklass till "StaticObjects"
 class Grass : public StaticObjects{
 public:
-	Grass(float x, float y);
+	Grass(int arrayX, int arrayY, float posX, float posY);
 	virtual ~Grass();
 	virtual void render();
-	virtual float getX();
-	virtual float getY();
+	virtual float getPosX();
+	virtual float getPosY();
+	virtual int getArrayX();
+	virtual int getArrayY();
 	virtual sf::Sprite getSprite();
+	virtual void setCut();
+	virtual bool getCut();
+
 	static void initialize();
 	static void finalize();
 private:
-	float mX, mY;
+	bool isCut = false;
+	float mPosX, mPosY;
+	int mArrayX, mArrayY;
 	sf::Sprite mSprite;
 };
 

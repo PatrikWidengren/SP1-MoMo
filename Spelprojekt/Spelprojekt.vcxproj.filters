@@ -36,9 +36,6 @@
     <ClCompile Include="LawnMower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LongspriteTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Map1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
     <ClCompile Include="CharRand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMower.h">
@@ -81,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LawnMower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LongspriteTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map1.h">
@@ -108,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharRand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,6 +10,7 @@ static int heigthTile = 52;
 
 Map1::Map1(string savefile){
 	mSavefile = savefile;
+	getArraySize();
 	Stone::initialize();
 	Grass::initialize();
 	Fence::initialize();
@@ -79,25 +80,28 @@ float** Map1::createGrid(int width, int heigth){
 	return array2d;
 }
 //Loopar igenom array och spawnar alla objekt
+//Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
 void Map1::spawnObjects(){
 	mGrid = createGrid(mWidth, mHeigth);
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
 			if (mGrid[j][i] == 1){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 
-				mObjects.push_back(new Fence((i * widthOnTile), (j * heigthOnTile), 1));
+				mObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile), 1));
 			}
 			if (mGrid[j][i] == 2){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				totalAmountOfGrass++;
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 			if (mGrid[j][i] == 5){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mPlayer = new Player(i, j, new LawnMower(), (i * widthOnTile), (j * heigthOnTile));
 				//mObjects.push_back(new Player((i * widthOnTile), (j * heigthOnTile), 1));
 			}
 			if (mGrid[j][i] == 6){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				totalAmountOfGrass++;
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
 			}
 		}
@@ -186,6 +190,20 @@ void Map1::takeTurn(int dir){
 			mPlayer->setY(tempY);
 			//mEepX = tempX;
 			//mEepY = tempY;
+
+
+			//Loopar igenom alla objekt och kollar funktionen "getCut" på det objektet som spelaren befinner sig på, den blir true när gräset är klippt.
+			//Variabeln cutGrass plussas på varje gång ett gräs klipps
+			for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+				if (mObjects[i]->getArrayX() == tempX && mObjects[i]->getArrayY() == tempY){
+					if (!mObjects[i]->getCut()){
+						mObjects[i]->setCut();
+						cutGrass++;
+					}
+				}
+			}
+			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
+
 			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		}
 		else {
