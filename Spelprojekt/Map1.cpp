@@ -121,10 +121,12 @@ void Map1::takeTurn(int dir){
 	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
 		/*get their movement vector*/
 		intVector npcMove = mNpcs.at(i)->move();
+		bool breakMove = false;
 		/*For every int in the vector, do the following*/
 		for (intVector::size_type j = 0; j < npcMove.size(); j++){
 			/*0 means end of movement. Futureproofing for patrols*/
-			if (npcMove.at(j) == 0){
+			if (npcMove.at(j) == 0 || breakMove){
+				breakMove = false;
 				break;
 			}
 			/*the movemen functions returns a bool. True if they moved, 
@@ -139,6 +141,7 @@ void Map1::takeTurn(int dir){
 				for (intVector::size_type k = 0; k < tryMove.size(); k++){
 					/*again, break if 0, futureproof for patrols*/
 					if (tryMove.at(k) == 0){
+						breakMove = true;
 						break;
 					}
 					/*check every move. If one of them works, return to standard
@@ -310,6 +313,7 @@ bool Map1::moveNpc(int dir, int atPos){
 	}
 
 }
+
 void Map1::getArraySize(){
 	//ofstream file(mSavefile);
 	ifstream file(mSavefile);
@@ -317,6 +321,7 @@ void Map1::getArraySize(){
 		file >> mWidth >> mHeigth;
 	//}
 }
+
 //Funktion för att returnera objekten
 vector<StaticObjects*> Map1::getObjects(){
 	return mObjects;

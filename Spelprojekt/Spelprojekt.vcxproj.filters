@@ -63,6 +63,9 @@
     <ClCompile Include="CharRand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CharPatrol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMower.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharRand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CharPatrol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

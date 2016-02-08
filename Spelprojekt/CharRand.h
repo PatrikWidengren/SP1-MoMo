@@ -34,7 +34,7 @@ private:
 	int mArrayX, mArrayY, mSpeed;
 	float mType, mLast, mPosX, mPosY;
 	bool mDirLock;
-	sf::Sprite mPlayerSprite;
+	sf::Sprite mCharSprite;
 };
 
 #endif
