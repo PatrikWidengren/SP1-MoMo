@@ -14,9 +14,8 @@ CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, b
 	mPosY(posY),
 	mSpeed(moveLength),
 	mDirLock(lockDir){
-	mPlayerSprite.setPosition(posX, posY);
-	//I've got no clue what the number for Cat is. Change this asap!
-	/*Speaking of which, I am as of now unsure how to handle values like 
+	mCharSprite.setPosition(posX, posY);
+	/*I am as of now unsure how to handle values like 
 	4.1, 4.2, etc for other random NPCs. Will update code as it becomes 
 	relevant*/
 	mType = 6.0f;
@@ -59,9 +58,15 @@ for the turn for that NPC.*/
 intVector CharRand::collide(intVector moves, int atPos){
 	intVector movement;
 	int m = moves.at(atPos);
-	for (int i = 0; i < 8; i++){
+	for (int i = 0; i < 7; i++){
 		m++;
-		m % 9 + 1;
+		if (m == 5){
+			m++;
+		}
+		if (m>9
+			){
+			m = (m % 9);
+		}
 		movement.push_back(m);
 	}
 	return movement;
@@ -87,6 +92,10 @@ void CharRand::setLast(float l){
 	mLast = l;
 }
 
+float CharRand::getLast(){
+	return mLast;
+}
+
 float CharRand::getType(){
 	return mType;
 }
@@ -94,15 +103,15 @@ float CharRand::getType(){
 void CharRand::updPos(float x, float y){
 	mPosX += x;
 	mPosY += y;
-	mPlayerSprite.setPosition(mPosX, mPosY);
+	mCharSprite.setPosition(mPosX, mPosY);
 }
 
 void CharRand::render(){
-	mPlayerSprite.setTexture(textureCat);
+	mCharSprite.setTexture(textureCat);
 }
 
 sf::Sprite CharRand::getSprite(){
-	return mPlayerSprite;
+	return mCharSprite;
 }
 
 void CharRand::initialize(){

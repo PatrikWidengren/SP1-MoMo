@@ -1,15 +1,12 @@
-#ifndef INCLUDED_NPCRANDOM
-#define INCLUDED_NPCRANDOM
+#ifndef INCLUDED_NPCPATROL
+#define INCLUDED_NPCPATROL
 #include "Character.h"
 
-class CharRand : public Character{
+class CharPatrol : public Character{
 public:
-	/*Most of this is identical to the Player class. However, random movement
-	character also needs to know how many steps it will take and if the
-	direction should be locked between moves or not*/
-	CharRand(int arrX, int arrY, float posX, float posY, int moveLength, bool lockDir);
-	virtual ~CharRand();
-	//This is the X and Y position for the sprite
+	//If the maximum amount of moves per turn changes, rewrite it in move() and constructor
+	CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10]);
+	virtual ~CharPatrol();//This is the X and Y position for the sprite
 	virtual float getPosX();
 	virtual float getPosY();
 	virtual intVector move();
@@ -31,9 +28,13 @@ public:
 	static void finalize();
 	virtual sf::Sprite getSprite();
 private:
-	int mArrayX, mArrayY, mSpeed;
+	int mArrayX, mArrayY;
 	float mType, mLast, mPosX, mPosY;
-	bool mDirLock;
+	//Path is a pointer because we don't want to copy 500 ints per character.
+	int *path[50][10];
+	//Single turn's worth of movement to retry in case of collision
+	int retryPath[10];
+	int mTurnNo;
 	sf::Sprite mCharSprite;
 };
 

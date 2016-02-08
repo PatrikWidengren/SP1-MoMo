@@ -107,20 +107,75 @@ void Map1::spawnObjects(){
 		}
 	}
 }
+
+/*This code looks a ton better with helper functions movePlayer(int dir)
+and moveNpc(int dir, int atPos) for each individual step.*/
 void Map1::takeTurn(int dir){
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
 	for (intVector::size_type i = 0; i < meepMove.size(); i++){
+		bool moved=movePlayer(meepMove.at(i));
+		if (!moved){
+			mPlayer->collide(meepMove, i);
+			break;
+		}
+	}
+	/*Do this for every NPC in the vector*/
+	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		/*get their movement vector*/
+		intVector npcMove = mNpcs.at(i)->move();
+		bool breakMove = false;
+		/*For every int in the vector, do the following*/
+		for (intVector::size_type j = 0; j < npcMove.size(); j++){
+			/*0 means end of movement. Futureproofing for patrols. 
+			Breakmove means that the entire movement for this character
+			is over for the turn*/
+			if (npcMove.at(j) == 0 || breakMove){
+				breakMove = false;
+				break;
+			}
+			/*the movemen functions returns a bool. True if they moved, 
+			false in case of collision*/
+			bool moved = moveNpc(npcMove.at(j), i);
+			/*if the NPC collided: do the following*/
+			if (!moved){
+				/*get a new series of moves to attempt*/
+				intVector tryMove;
+				tryMove = mNpcs.at(i)->collide(npcMove, j);
+				/*try out the new list of steps*/
+				for (intVector::size_type k = 0; k < tryMove.size(); k++){
+					/*again, break if 0, breakMove is made true so that
+					the entire turn will end for the current character
+					if there is no movement after collision*/
+					if (tryMove.at(k) == 0){
+						breakMove = true;
+						break;
+					}
+					/*check every move. If one of them works, return to standard
+					movement pattern*/
+					bool retryMoved = moveNpc(tryMove.at(k), i);
+					if (retryMoved){
+						break;
+					}
+				}
+
+				break;
+			}
+		}
+	}
+}
+
+bool Map1::movePlayer(int dir){
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
 		float tempPosX = 0, tempPosY = 0;
 		/*move according to the int*/
-		switch (meepMove.at(i)){
+	switch (dir){
 		case 8:
 			tempY--;
-			tempPosY+=-52;
+		tempPosY += -52;
 			break;
 		case 9:
 			tempY--;
@@ -205,15 +260,82 @@ void Map1::takeTurn(int dir){
 			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
 
 			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+		return true;
 		}
 		else {
-			mPlayer->collide(meepMove, i);
 			cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+
+		return false;
+	}
+}
+
+bool Map1::moveNpc(int dir, int atPos){
+	int tempX = mNpcs.at(atPos)->getX();
+	int tempY = mNpcs.at(atPos)->getY();
+	float tempPosX = 0;
+	float tempPosY = 0;
+	switch (dir){
+	case 8:
+		tempY--;
+		tempPosY += -52;
+		break;
+	case 9:
+		tempY--;
+		tempX++;
+		tempPosY += -52;
+		tempPosX += 64;
+		break;
+	case 6:
+		tempX++;
+		tempPosX += 64;
+		break;
+	case 3:
+		tempX++;
+		tempY++;
+		tempPosY += 52;
+		tempPosX += 64;
+		break;
+	case 2:
+		tempY++;
+		tempPosY += 52;
+		break;
+	case 1:
+		tempY++;
+		tempX--;
+		tempPosY += 52;
+		tempPosX += -64;
+		break;
+	case 4:
+		tempX--;
+		tempPosX += -64;
+		break;
+	case 7:
+		tempX--;
+		tempY--;
+		tempPosY += -52;
+		tempPosX += -64;
 			break;
 		}
 
+	cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
+		mGrid[mNpcs.at(atPos)->getY()][mNpcs.at(atPos)->getX()] = mNpcs.at(atPos)->getLast();
+		mNpcs.at(atPos)->setLast(mGrid[tempY][tempX]);
+		mGrid[tempY][tempX] = mNpcs.at(atPos)->getType();
+		mNpcs.at(atPos)->updPos(tempPosX, tempPosY);
+
+		mNpcs.at(atPos)->setX(tempX);
+		mNpcs.at(atPos)->setY(tempY);
+		cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+		return true;
 	}
+	else {
+		cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		return false;
+	}
+
 }
+
 void Map1::getArraySize(){
 	//ofstream file(mSavefile);
 	ifstream file(mSavefile);
@@ -221,6 +343,7 @@ void Map1::getArraySize(){
 		file >> mWidth >> mHeigth;
 	//}
 }
+
 //Funktion för att returnera objekten
 vector<StaticObjects*> Map1::getObjects(){
 	return mObjects;
