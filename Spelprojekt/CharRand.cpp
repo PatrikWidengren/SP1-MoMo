@@ -19,6 +19,8 @@ CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, b
 	4.1, 4.2, etc for other random NPCs. Will update code as it becomes 
 	relevant*/
 	mType = 6.0f;
+	//dåligt tilfällig lösning. Fixa snart.
+	mLast = 2;
 }
 
 CharRand::~CharRand(){
