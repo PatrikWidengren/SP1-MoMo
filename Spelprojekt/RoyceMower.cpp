@@ -6,6 +6,7 @@ RoyceMower::RoyceMower(Mower *mow) {
 	mStats.mMinMom=mow->getMinMom();
 	mStats.mRise=mow->getRiseVal() * 10;
 	mStats.mFall=mow->getFallVal();
+	mStats.mDurability = mow->getDurability();
 	mLastDir=mow->getLastDir();
 	mCurMom=mow->getCurMom();
 	base = mow;
@@ -16,23 +17,29 @@ RoyceMower::~RoyceMower(){
 }
 
 intVector RoyceMower::getMove(int dir){
-	/*for this decorator, we require the old momentum to know how much
-	meep will drift*/
-	int mLastMom = mCurMom;
-	/*determine the new momentum*/
-	determineMom(dir, mStats);
-	/*write the standard movement into an intVector*/
-	intVector stdMove = writeMove(dir);
-	intVector newMove;
-	/*add the standard movement after half the previous turns movement*/
-	for (int i = 0; i < mLastMom; i+=2){
-		newMove.push_back(mLastDir);
+	if (mStats.mFunctioning){
+		/*for this decorator, we require the old momentum to know how much
+		meep will drift*/
+		int mLastMom = mCurMom;
+		/*determine the new momentum*/
+		determineMom(dir, mStats);
+		/*write the standard movement into an intVector*/
+		intVector stdMove = writeMove(dir);
+		intVector newMove;
+		/*add the standard movement after half the previous turns movement*/
+		for (int i = 0; i < mLastMom; i += 2){
+			newMove.push_back(mLastDir);
+		}
+		for (intVector::size_type i = 0; i < stdMove.size(); i++){
+			newMove.push_back(stdMove.at(i));
+		}
+		mLastDir = dir;
+		return newMove;
 	}
-	for (intVector::size_type i = 0; i < stdMove.size(); i++){
-		newMove.push_back(stdMove.at(i));
+	else{
+		intVector curMove;
+		return curMove;
 	}
-	mLastDir = dir;
-	return newMove;
 }
 
 /*refer to base writeMove() and return that vector*/
@@ -73,6 +80,14 @@ int RoyceMower::getFallVal() const{
 	return mStats.mFall;
 }
 
+int RoyceMower::getDurability() const{
+	return mStats.mDurability;
+}
+
+bool RoyceMower::getFunctioning() const{
+	return mStats.mFunctioning;
+}
+
 int RoyceMower::getLastDir() const{
 	return mLastDir;
 }
@@ -88,4 +103,8 @@ void RoyceMower::resetValues(){
 
 void RoyceMower::setToMin(int dmg){
 	mCurMom = mStats.mMinMom;
+	mStats.mDurability -= dmg;
+	if (mStats.mDurability <= 0){
+		mStats.mFunctioning = false;
+	}
 }

@@ -16,6 +16,8 @@ public:
 	virtual int getMinMom() const = 0;
 	virtual int getRiseVal() const = 0;
 	virtual int getFallVal() const = 0;
+	virtual int getDurability() const = 0;
+	virtual bool getFunctioning() const = 0;
 	virtual int getLastDir() const = 0;
 	virtual int getCurMom() const = 0;
 	/*setToMin() reduces mower to minimum speed in case of collision*/

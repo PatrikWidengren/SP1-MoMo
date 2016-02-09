@@ -1,11 +1,12 @@
 #include "LawnMower.h"
 
 /*Initialize the lawnmower with the selected statblock*/
-LawnMower::LawnMower(int max, int min, int rise, int fall) {
-	mStats.mMaxMom=max;
-	mStats.mMinMom=min;
-	mStats.mRise=rise;
-	mStats.mFall=fall;
+LawnMower::LawnMower(int max, int min, int rise, int fall, int durability) {
+	mStats.mMaxMom = max;
+	mStats.mMinMom = min;
+	mStats.mRise = rise;
+	mStats.mFall = fall;
+	mStats.mDurability = durability;
 	/*mLastDir is initiated to ensure we don't get an error.
 	0 will never be read as a valid direction elsewhere, ensuring
 	no strange behaviours*/
@@ -21,6 +22,7 @@ LawnMower::LawnMower() {
 	mStats.mMinMom=1;
 	mStats.mRise=1;
 	mStats.mFall=1;
+	mStats.mDurability = 20;
 	/*mLastDir is initiated to ensure we don't get an error.
 	0 will never be read as a valid direction elsewhere, ensuring
 	no strange behaviours*/
@@ -58,11 +60,17 @@ void LawnMower::momFall(mowStats stats){
 to get the movement, and so that decorator can make the move without
 determining momentum twice*/
 intVector LawnMower::getMove(int dir){
-	/*increase or decrease momentum*/
-	determineMom(dir, mStats);
-	/*create a list of steps to attempt*/
-	intVector curMove=writeMove(dir);
-	return curMove;
+	if (mStats.mFunctioning){
+		/*increase or decrease momentum*/
+		determineMom(dir, mStats);
+		/*create a list of steps to attempt*/
+		intVector curMove = writeMove(dir);
+		return curMove;
+	}
+	else {
+		intVector curMove;
+		return curMove;
+	}
 }
 
 intVector LawnMower::writeMove(int dir){
@@ -103,6 +111,14 @@ int LawnMower::getFallVal() const{
 	return mStats.mFall;
 }
 
+int LawnMower::getDurability() const{
+	return mStats.mDurability;
+}
+
+bool LawnMower::getFunctioning() const{
+	return mStats.mFunctioning;
+}
+
 int LawnMower::getLastDir() const{
 	return mLastDir;
 }
@@ -118,4 +134,8 @@ void LawnMower::resetValues(){
 
 void LawnMower::setToMin(int dmg){
 	mCurMom = mStats.mMinMom;
+	mStats.mDurability -= dmg;
+	if (mStats.mDurability <= 0){
+		mStats.mFunctioning = false;
+	}
 }

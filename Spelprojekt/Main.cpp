@@ -36,8 +36,17 @@ int main()
 		cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << endl;
 	}
 	int moveMeep = 0;
+	//A lot of flags for key inputs
 	bool keyPressed = false;
 	bool space = false;
+	bool dir1 = false;
+	bool dir2 = false;
+	bool dir3 = false;
+	bool dir4 = false;
+	bool dir6 = false;
+	bool dir7 = false;
+	bool dir8 = false;
+	bool dir9 = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -65,105 +74,68 @@ int main()
 		}
 		level.render();
 		
-		//While shift is held, WASD moves diagonally, shifted left 45 degrees
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-			switch (event.key.code){
-			case sf::Keyboard::W:
-				moveMeep = 7;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::D:
-				moveMeep = 9;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::S:
-				moveMeep = 3;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::A:
-				moveMeep = 1;
-				keyPressed = true;
-				break;
-			}
+		//Movement reacts to numpad, and WASD/Shift+WASD
+		//Currently both methods work, but later, this should be something that can be changed in the options menu
+
+		if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
+			moveMeep = 1;
+			keyPressed = true;
 		}
-		else {
-			switch (event.key.code){
-			//Move up
-			case sf::Keyboard::Numpad8:
-				moveMeep = 8;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::W:
-				moveMeep = 8;
-				keyPressed = true;
-				break;
-			//Move Right
-			case sf::Keyboard::Numpad6:
-				moveMeep = 6;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::D:
-				moveMeep = 6;
-				keyPressed = true;
-				break;
-			//Move Down
-			case sf::Keyboard::Numpad2:
-				moveMeep = 2;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::S:
-				moveMeep = 2;
-				keyPressed = true;
-				break;
-			//Move left
-			case sf::Keyboard::Numpad4:
-				moveMeep = 4;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::A:
-				moveMeep = 4;
-				keyPressed = true;
-				break;
-			//Move diagonally (only on numpad. Hold shift for diagonal WASD movement)
-			case sf::Keyboard::Numpad7:
-				moveMeep = 7;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::Numpad9:
-				moveMeep = 9;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::Numpad3:
-				moveMeep = 3;
-				keyPressed = true;
-				break;
-			case sf::Keyboard::Numpad1:
-				moveMeep = 1;
-				keyPressed = true;
-				break;
-			}
+		if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
+			moveMeep = 3;
+			keyPressed = true;
+		}
+		if (moveMeep!=7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
+			moveMeep = 7;
+			keyPressed = true;
+		}
+		if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
+			moveMeep = 9;
+			keyPressed = true;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+		if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
+			moveMeep = 2;
+			keyPressed = true;
+		}
+		if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
+			moveMeep = 4;
+			keyPressed = true;
+		}
+		if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
+			moveMeep = 6;
+			keyPressed = true;
+		}
+		if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+			sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
+			moveMeep = 8;
+			keyPressed = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
 			space = true;
-		}
-
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space && keyPressed){
-			space = false;
 			level.takeTurn(moveMeep);
 			moveMeep = 0;
 			keyPressed = false;
 		}
 
-/*		if (moveMeep <= 0 || moveMeep == 5 || moveMeep > 9){
-				keepMoving = false;
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
+			space = false;
 		}
-		else {
-			level.takeTurn(moveMeep);
-			//level1.printMap();
-		}*/
-		//}
-
 		
 		window.display();
 	}

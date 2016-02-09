@@ -8,7 +8,7 @@ public:
 	/*int values needed in construction of new lawnmowers.
 	Unless feature creep adds crafting, there's no need to change these
 	values later.*/
-	LawnMower(int max, int min, int rise, int fall);
+	LawnMower(int max, int min, int rise, int fall, int durability);
 	LawnMower();
 	virtual ~LawnMower();
 	/*getMove returns a list of steps taken,based on the direction travelled.
@@ -20,6 +20,8 @@ public:
 	virtual int getMinMom() const;
 	virtual int getRiseVal() const;
 	virtual int getFallVal() const;
+	virtual int getDurability() const;
+	virtual bool getFunctioning() const;
 	virtual int getLastDir() const;
 	virtual int getCurMom() const;
 	/*setToMin() reduces mower to minimum speed in case of collision*/

@@ -128,7 +128,7 @@ void Map1::takeTurn(int dir){
 	for (intVector::size_type i = 0; i < meepMove.size(); i++){
 		bool moved=movePlayer(meepMove.at(i));
 		if (!moved){
-			mPlayer->collide(meepMove, meepMove.size()-i);
+			mPlayer->collide(meepMove, i);
 			break;
 		}
 	}

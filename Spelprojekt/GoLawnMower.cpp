@@ -1,11 +1,12 @@
 #include "GoLawnMower.h"
 
 /*GoLawnMower with specified statblock*/
-GoLawnMower::GoLawnMower(int max, int min, int rise, int fall) {
+GoLawnMower::GoLawnMower(int max, int min, int rise, int fall, int durability) {
 	mStats.mMaxMom=max;
 	mStats.mMinMom=min;
 	mStats.mRise=rise;
 	mStats.mFall=fall;
+	mStats.mDurability = durability;
 	/*mLastDir is initiated to ensure we don't get an error.
 	0 will never be read as a valid direction elsewhere, ensuring
 	no strange behaviours*/
@@ -21,6 +22,7 @@ GoLawnMower::GoLawnMower() {
 	mStats.mMinMom = 1;
 	mStats.mRise = 2;
 	mStats.mFall = 4;
+	mStats.mDurability = 20;
 	/*mLastDir is initiated to ensure we don't get an error.
 	0 will never be read as a valid direction elsewhere, ensuring
 	no strange behaviours*/
@@ -58,14 +60,20 @@ void GoLawnMower::momFall(mowStats stats){
 to get the movement, and so that decorator can make the move without
 determining momentum twice*/
 intVector GoLawnMower::getMove(int dir){
-	/*increase or decrease momentum*/
-	determineMom(dir, mStats);
-	/*create a list of steps to attempt*/
-	intVector curMove = writeMove(dir);
-	/*mLastDir updated last to ensure other getMove() functions
-	can maintain the same structure while utilising both dir and mLastDir*/
-	mLastDir = dir;
-	return curMove;
+	if (mStats.mFunctioning){
+		/*increase or decrease momentum*/
+		determineMom(dir, mStats);
+		/*create a list of steps to attempt*/
+		intVector curMove = writeMove(dir);
+		/*mLastDir updated last to ensure other getMove() functions
+		can maintain the same structure while utilising both dir and mLastDir*/
+		mLastDir = dir;
+		return curMove;
+	}
+	else {
+		intVector curMove;
+		return curMove;
+	}
 }
 
 intVector GoLawnMower::writeMove(int dir){
@@ -175,6 +183,14 @@ int GoLawnMower::getFallVal() const{
 	return mStats.mFall;
 }
 
+int GoLawnMower::getDurability() const{
+	return mStats.mDurability;
+}
+
+bool GoLawnMower::getFunctioning() const{
+	return mStats.mFunctioning;
+}
+
 int GoLawnMower::getLastDir() const{
 	return mLastDir;
 }
@@ -190,4 +206,8 @@ void GoLawnMower::resetValues(){
 
 void GoLawnMower::setToMin(int dmg){
 	mCurMom = mStats.mMinMom;
+	mStats.mDurability -= dmg;
+	if (mStats.mDurability <= 0){
+		mStats.mFunctioning = false;
+	}
 }
