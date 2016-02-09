@@ -14,6 +14,8 @@ Player::Player(int arrX, int arrY, Mower *m, float posX, float posY):
 	mPosY = posY;
 	mPlayerSprite.setPosition(posX, posY);
 	mType = 5.0f;
+	//Temporär lösning. Bör fixas snarast
+	mLast = 2;
 }
 
 void Player::updPos(float x, float y){

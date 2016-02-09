@@ -27,6 +27,8 @@ CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50
 	}
 	//I assume guard is 7
 	mType = 7.0f;
+	//temporary fix. update asap.
+	mLast = 2;
 }
 
 CharPatrol::~CharPatrol(){
