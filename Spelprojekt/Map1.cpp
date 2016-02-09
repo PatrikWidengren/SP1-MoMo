@@ -14,6 +14,7 @@ Map1::Map1(string savefile){
 	Stone::initialize();
 	Grass::initialize();
 	Fence::initialize();
+	Tree::initialize();
 	Player::initialize();
 	CharRand::initialize();
 }
@@ -21,6 +22,7 @@ Map1::~Map1(){
 	Stone::finalize();
 	Grass::finalize();
 	Fence::finalize();
+	Tree::finalize();
 	Player::finalize();
 	CharRand::finalize();
 }
@@ -33,7 +35,9 @@ void Map1::render(){
 		mNpcs[i]->render();
 	}
 	mPlayer->render();
-
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+		mLongObjects[i]->render();
+	}
 }
 //Skapar array
 float** Map1::createGrid(int width, int heigth){
@@ -93,6 +97,13 @@ void Map1::spawnObjects(){
 			if (mGrid[j][i] == 2){
 				totalAmountOfGrass++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+			}
+			if (mGrid[j][i] == 3){
+				mObjects.push_back(new Stone(i, j, (i * widthOnTile), (j * heigthOnTile)));
+			}
+			if (mGrid[j][i] == 4){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mLongObjects.push_back(new Tree(i, j, (i * widthOnTile) - 31, (j * heigthOnTile) - 200));
 			}
 			if (mGrid[j][i] == 5){
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
@@ -353,4 +364,7 @@ Player* Map1::getPlayer(){
 }
 vector<Character*> Map1::getNpcs(){
 	return mNpcs;
+}
+vector<StaticObjects*> Map1::getLongObjects(){
+	return mLongObjects;
 }

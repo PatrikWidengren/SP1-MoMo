@@ -6,6 +6,7 @@
 #include "Stone.h"
 #include "Fence.h"
 #include "Player.h"
+#include "Tree.h"
 #include "GoLawnMower.h"
 #include "RoyceMower.h"
 #include "LawnMower.h"
@@ -30,6 +31,8 @@ public:
 	virtual Player* getPlayer();
 	//Returnerar npcs, detta behövs till main
 	virtual std::vector<Character*> getNpcs();
+	//Returnerar långa objekt, detta behövs till main
+	virtual std::vector<StaticObjects*> getLongObjects();
 	//Funktion för att få storleken på arrayen, denna funktion anropas i konstruktorn till Map
 	void virtual getArraySize();
 	void takeTurn(int dir);
@@ -46,6 +49,7 @@ private:
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
+	ObjectsVector mLongObjects;
 	typedef std::vector<Character*> NpcVector;
 	NpcVector mNpcs;
 	Player* mPlayer;

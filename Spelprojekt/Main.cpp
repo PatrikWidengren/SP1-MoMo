@@ -16,6 +16,7 @@ int main()
 	typedef vector<Character*> NpcVector;
 	NpcVector mNpcs;
 	Player* mPlayer;
+	ObjectsVector mLongObjects;
 
 	//Skapar instans av "Map1"
 	Map1 level("map1.txt");
@@ -29,6 +30,7 @@ int main()
 	mObjects = level.getObjects();
 	mPlayer = level.getPlayer();
 	mNpcs = level.getNpcs();
+	mLongObjects = level.getLongObjects();
 	// Skriver ut position för alla object
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << endl;
@@ -57,7 +59,10 @@ int main()
 			window.draw(mNpcs[i]->getSprite());
 		}
 		window.draw(mPlayer->getSprite());
-
+		for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+			window.draw(mLongObjects[i]->getSprite());
+			//mObjects[i]->render();
+		}
 		level.render();
 		
 		//While shift is held, WASD moves diagonally, shifted left 45 degrees

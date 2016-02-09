@@ -16,6 +16,7 @@ public:
 	virtual std::vector<StaticObjects*> getObjects() = 0;
 	virtual Player* getPlayer() = 0;
 	virtual std::vector<Character*> getNpcs() = 0;
+	virtual std::vector<StaticObjects*> getLongObjects() = 0;
 
 };
 
