@@ -6,11 +6,13 @@ static const string filename = "stone.png";
 
 sf::Texture textureStone;
 
-Stone::Stone(float x, float y){
-	mX = x;
-	mY = y;
+Stone::Stone(int arrayX, int arrayY, float posX, float posY){
+	mArrayX = arrayX;
+	mArrayY = arrayY;
+	mPosX = posX;
+	mPosY = posY;
 
-	mSprite.setPosition(mX, mY);	
+	mSprite.setPosition(mPosX, mPosY);
 }
 Stone::~Stone(){
 
@@ -18,11 +20,22 @@ Stone::~Stone(){
 void Stone::render(){
 	mSprite.setTexture(textureStone);
 }
-float Stone::getX(){
-	return mX;
+float Stone::getPosX(){
+	return mPosX;
 }
-float Stone::getY(){
-	return mY;
+float Stone::getPosY(){
+	return mPosY;
+}
+int Stone::getArrayX(){
+	return mArrayX;
+}
+int Stone::getArrayY(){
+	return mArrayY;
+}
+void Stone::setCut(){
+}
+bool Stone::getCut(){
+	return false;
 }
 sf::Sprite Stone::getSprite(){
 	return mSprite;

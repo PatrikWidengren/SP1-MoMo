@@ -81,7 +81,7 @@
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="HedgeCutter.cpp" />
     <ClCompile Include="LawnMower.cpp" />
-    <ClCompile Include="LongspriteTest.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map1.cpp" />
     <ClCompile Include="Maps.cpp" />
@@ -102,7 +102,7 @@
     <ClInclude Include="Grass.h" />
     <ClInclude Include="HedgeCutter.h" />
     <ClInclude Include="LawnMower.h" />
-    <ClInclude Include="LongspriteTest.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Map1.h" />
     <ClInclude Include="Maps.h" />
     <ClInclude Include="Player.h" />

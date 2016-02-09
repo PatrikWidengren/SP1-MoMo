@@ -10,6 +10,7 @@ static int heigthTile = 52;
 
 Map1::Map1(string savefile){
 	mSavefile = savefile;
+	getArraySize();
 	Stone::initialize();
 	Grass::initialize();
 	Fence::initialize();
@@ -79,25 +80,28 @@ float** Map1::createGrid(int width, int heigth){
 	return array2d;
 }
 //Loopar igenom array och spawnar alla objekt
+//Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
 void Map1::spawnObjects(){
 	mGrid = createGrid(mWidth, mHeigth);
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
 			if (mGrid[j][i] == 1){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 
-				mObjects.push_back(new Fence((i * widthOnTile), (j * heigthOnTile), 1));
+				mObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile), 1));
 			}
 			if (mGrid[j][i] == 2){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				totalAmountOfGrass++;
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 			if (mGrid[j][i] == 5){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mPlayer = new Player(i, j, new LawnMower(), (i * widthOnTile), (j * heigthOnTile));
 				//mObjects.push_back(new Player((i * widthOnTile), (j * heigthOnTile), 1));
 			}
 			if (mGrid[j][i] == 6){
-				mObjects.push_back(new Grass((i * widthOnTile), (j * heigthOnTile)));
+				totalAmountOfGrass++;
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
 			}
 		}
@@ -163,89 +167,103 @@ void Map1::takeTurn(int dir){
 }
 
 bool Map1::movePlayer(int dir){
-	/*need temporary values to alter to avoid certain issues*/
-	int tempX = mPlayer->getX();
-	int tempY = mPlayer->getY();
-	float tempPosX = 0, tempPosY = 0;
-	/*move according to the int*/
+		/*need temporary values to alter to avoid certain issues*/
+		int tempX = mPlayer->getX();
+		int tempY = mPlayer->getY();
+		float tempPosX = 0, tempPosY = 0;
+		/*move according to the int*/
 	switch (dir){
-	case 8:
-		tempY--;
+		case 8:
+			tempY--;
 		tempPosY += -52;
-		break;
-	case 9:
-		tempY--;
-		tempX++;
-		tempPosY += -52;
-		tempPosX += 64;
-		break;
-	case 6:
-		tempX++;
-		tempPosX += 64;
-		break;
-	case 3:
-		tempX++;
-		tempY++;
-		tempPosY += 52;
-		tempPosX += 64;
-		break;
-	case 2:
-		tempY++;
-		tempPosY += 52;
-		break;
-	case 1:
-		tempY++;
-		tempX--;
-		tempPosY += 52;
-		tempPosX += -64;
-		break;
-	case 4:
-		tempX--;
-		tempPosX += -64;
-		break;
-	case 7:
-		tempX--;
-		tempY--;
-		tempPosY += -52;
-		tempPosX += -64;
-		break;
-	}
+			break;
+		case 9:
+			tempY--;
+			tempX++;
+			tempPosY += -52;
+			tempPosX += 64;
+			break;
+		case 6:
+			tempX++;
+			tempPosX += 64;
+			break;
+		case 3:
+			tempX++;
+			tempY++;
+			tempPosY += 52;
+			tempPosX += 64;
+			break;
+		case 2:
+			tempY++;
+			tempPosY += 52;
+			break;
+		case 1:
+			tempY++;
+			tempX--;
+			tempPosY += 52;
+			tempPosX += -64;
+			break;
+		case 4:
+			tempX--;
+			tempPosX += -64;
+			break;
+		case 7:
+			tempX--;
+			tempY--;
+			tempPosY += -52;
+			tempPosX += -64;
+			break;
+		}
 
-	/*Make sure we don't give meep a faulty position*/
-	/*if (tempX >= mPlayer->getPosX()){
-	tempX = mPlayer->getPosX - 1;
-	}
-	else if (tempX < 0){
-	tempX = 0;
-	}
-	if (tempY >= mPlayer->getPosY()){
-	tempY = mPlayer->getPosY() - 1;
-	}
-	else if (tempY < 0){
-	tempY = 0;
-	}*/
+		/*Make sure we don't give meep a faulty position*/
+		/*if (tempX >= mPlayer->getPosX()){
+			tempX = mPlayer->getPosX - 1;
+		}
+		else if (tempX < 0){
+			tempX = 0;
+		}
+		if (tempY >= mPlayer->getPosY()){
+			tempY = mPlayer->getPosY() - 1;
+		}
+		else if (tempY < 0){
+			tempY = 0;
+		}*/
 
-	/*move meep to new place in the array and return the original value
-	to the last position*/
-	cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
-	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
-		//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
-		mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
-		//mEep->setLast(mPlayField.at(tempY).at(tempX));
-		mPlayer->setLast(mGrid[tempY][tempX]);
-		//mPlayField.at(tempY).at(tempX) = mEep->getType();
-		mGrid[tempY][tempX] = mPlayer->getType();
-		mPlayer->updPos(tempPosX, tempPosY);
+		/*move meep to new place in the array and return the original value
+		to the last position*/
+		cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
+			//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
+			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
+			//mEep->setLast(mPlayField.at(tempY).at(tempX));
+			mPlayer->setLast(mGrid[tempY][tempX]);
+			//mPlayField.at(tempY).at(tempX) = mEep->getType();
+			mGrid[tempY][tempX] = mPlayer->getType();
+			mPlayer->updPos(tempPosX, tempPosY);
 
-		mPlayer->setX(tempX);
-		mPlayer->setY(tempY);
-		//mEepX = tempX;
-		//mEepY = tempY;
-		cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+			mPlayer->setX(tempX);
+			mPlayer->setY(tempY);
+			//mEepX = tempX;
+			//mEepY = tempY;
+
+
+			//Loopar igenom alla objekt och kollar funktionen "getCut" på det objektet som spelaren befinner sig på, den blir true när gräset är klippt.
+			//Variabeln cutGrass plussas på varje gång ett gräs klipps
+			for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+				if (mObjects[i]->getArrayX() == tempX && mObjects[i]->getArrayY() == tempY){
+					if (!mObjects[i]->getCut()){
+						mObjects[i]->setCut();
+						cutGrass++;
+					}
+				}
+			}
+			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
+
+			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
-	}
-	else {
-		cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		}
+		else {
+			cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 
 		return false;
 	}
@@ -296,8 +314,8 @@ bool Map1::moveNpc(int dir, int atPos){
 		tempY--;
 		tempPosY += -52;
 		tempPosX += -64;
-		break;
-	}
+			break;
+		}
 
 	cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){

@@ -19,8 +19,7 @@ int main()
 
 	//Skapar instans av "Map1"
 	Map1 level("map1.txt");
-	//Funktion för att level ska få storleken på arrayen
-	level.getArraySize();
+
 	//Anropar funktion för att spawna alla objekt
 	level.spawnObjects();
 
@@ -32,7 +31,7 @@ int main()
 	mNpcs = level.getNpcs();
 	// Skriver ut position för alla object
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		cout << mObjects[i]->getX() << " " << mObjects[i]->getY() << endl;
+		cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << endl;
 	}
 	int moveMeep = 0;
 	bool keyPressed = false;

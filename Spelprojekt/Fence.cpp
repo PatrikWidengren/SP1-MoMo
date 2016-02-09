@@ -6,11 +6,13 @@ static const string filename = "fence_01.png";
 sf::Texture textureFence;
 sf::Image imageFence;
 
-Fence::Fence(float x, float y, int whatFence){
+Fence::Fence(int arrayX, int arrayY, float posX, float posY, int whatFence){
 	mWhatFence = whatFence;
-	mX = x;
-	mY = y;
-	mSprite.setPosition(mX, mY);
+	mArrayX = arrayX;
+	mArrayY = arrayY;
+	mPosX = posX;
+	mPosY = posY;
+	mSprite.setPosition(mPosX, mPosY);
 }
 Fence::~Fence(){
 
@@ -18,11 +20,22 @@ Fence::~Fence(){
 void Fence::render(){
 	mSprite.setTexture(textureFence);
 }
-float Fence::getX(){
-	return mX;
+float Fence::getPosX(){
+	return mPosX;
 }
-float Fence::getY(){
-	return mY;
+float Fence::getPosY(){
+	return mPosY;
+}
+int Fence::getArrayX(){
+	return mArrayX;
+}
+int Fence::getArrayY(){
+	return mArrayY;
+}
+void Fence::setCut(){
+}
+bool Fence::getCut(){
+	return false;
 }
 sf::Sprite Fence::getSprite(){
 	return mSprite;

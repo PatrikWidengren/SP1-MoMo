@@ -18,13 +18,19 @@
 //Level 1
 class Map1 : public Maps{
 public:
+	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile);
 	virtual ~Map1();
 	void virtual render();
+	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
+	//Returnerar objekten, detta behövs till main
 	virtual std::vector<StaticObjects*> getObjects();
+	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
+	//Returnerar npcs, detta behövs till main
 	virtual std::vector<Character*> getNpcs();
+	//Funktion för att få storleken på arrayen, denna funktion anropas i konstruktorn till Map
 	void virtual getArraySize();
 	void takeTurn(int dir);
 	float** createGrid(int width, int heigth);
@@ -33,6 +39,9 @@ private:
 	bool movePlayer(int dir);
 	bool moveNpc(int dir, int atPos);
 	int mWidth, mHeigth;
+	int totalAmountOfGrass = 0;
+	int turnsLeft = 50;
+	int cutGrass = 0;
 	std::string mSavefile;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
