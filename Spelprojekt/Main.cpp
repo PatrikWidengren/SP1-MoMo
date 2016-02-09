@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp> 
 #include <vector>
 #include "Map1.h"
+#include "MusicManager.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -17,7 +18,10 @@ int main()
 	NpcVector mNpcs;
 	Player* mPlayer;
 	ObjectsVector mLongObjects;
+	MusicManager mMusicManager(0);
 
+	mMusicManager.getMusic()->play();
+	
 	//Skapar instans av "Map1"
 	Map1 level("map1.txt");
 
