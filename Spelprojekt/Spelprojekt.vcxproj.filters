@@ -164,4 +164,9 @@
   <ItemGroup>
     <Text Include="map1.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="test1.flac">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
