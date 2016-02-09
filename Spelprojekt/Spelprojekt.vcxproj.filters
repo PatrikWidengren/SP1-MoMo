@@ -66,6 +66,12 @@
     <ClCompile Include="CharPatrol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseShears.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HedgeCutter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMower.h">
@@ -114,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharPatrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShears.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HedgeCutter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

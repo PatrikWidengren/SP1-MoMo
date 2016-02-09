@@ -71,6 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseMower.cpp" />
+    <ClCompile Include="BaseShears.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharPatrol.cpp" />
     <ClCompile Include="CharRand.cpp" />
@@ -78,6 +79,7 @@
     <ClCompile Include="Fence.cpp" />
     <ClCompile Include="GoLawnMower.cpp" />
     <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="HedgeCutter.cpp" />
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="LongspriteTest.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -90,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseMower.h" />
+    <ClInclude Include="BaseShears.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharPatrol.h" />
     <ClInclude Include="CharRand.h" />
@@ -97,6 +100,7 @@
     <ClInclude Include="Fence.h" />
     <ClInclude Include="GoLawnMower.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="HedgeCutter.h" />
     <ClInclude Include="LawnMower.h" />
     <ClInclude Include="LongspriteTest.h" />
     <ClInclude Include="Map1.h" />
