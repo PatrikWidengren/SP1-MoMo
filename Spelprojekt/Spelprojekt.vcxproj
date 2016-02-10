@@ -77,11 +77,16 @@
     <ClCompile Include="CharRand.cpp" />
     <ClCompile Include="DecMower.cpp" />
     <ClCompile Include="Fence.cpp" />
+    <ClCompile Include="gameState.cpp" />
     <ClCompile Include="GoLawnMower.cpp" />
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="HedgeCutter.cpp" />
+    <ClCompile Include="inGameMenu.cpp" />
     <ClCompile Include="LawnMower.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="MusicManager.cpp" />
+    <ClCompile Include="optionMenu.cpp" />
+    <ClCompile Include="startMenu.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map1.cpp" />
@@ -100,11 +105,16 @@
     <ClInclude Include="CharRand.h" />
     <ClInclude Include="DecMower.h" />
     <ClInclude Include="Fence.h" />
+    <ClInclude Include="gameState.h" />
     <ClInclude Include="GoLawnMower.h" />
     <ClInclude Include="Grass.h" />
     <ClInclude Include="HedgeCutter.h" />
+    <ClInclude Include="inGameMenu.h" />
     <ClInclude Include="LawnMower.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="MusicManager.h" />
+    <ClInclude Include="optionMenu.h" />
+    <ClInclude Include="startMenu.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Map1.h" />
     <ClInclude Include="Maps.h" />
@@ -143,6 +153,9 @@
     <None Include="..\Release\Spelprojekt.exe" />
     <None Include="..\Release\Spelprojekt.pdb" />
     <None Include="test1.flac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
