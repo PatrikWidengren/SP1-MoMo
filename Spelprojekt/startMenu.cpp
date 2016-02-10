@@ -19,7 +19,7 @@ startMenu::startMenu(float width, float height)
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Exit");
+	menu[2].setString("Exit to Desktop");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 3));
 
 	selectedIndex = 0;
