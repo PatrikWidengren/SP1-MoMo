@@ -49,12 +49,6 @@
     <Filter Include="Header Files\Tools\Hedge Cutter">
       <UniqueIdentifier>{3c585e28-bb7f-4850-b79f-e719afa6a725}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Menu">
-      <UniqueIdentifier>{e68d6056-21f6-4a66-acb1-fcda3f62eb11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Menu">
-      <UniqueIdentifier>{d271962a-b3b5-45f5-890f-d78dcc8b3208}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -111,26 +105,26 @@
     <ClCompile Include="RoyceMower.cpp">
       <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="startMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="gameState.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="optionMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="inGameMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="BaseShears.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
     <ClCompile Include="HedgeCutter.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
+    </ClCompile>
+    <ClCompile Include="gameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inGameMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="optionMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="startMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MusicManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -195,19 +186,19 @@
       <Filter>Header Files\Tools\Hedge Cutter</Filter>
     </ClInclude>
     <ClInclude Include="gameState.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files\Menu</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inGameMenu.h">
-      <Filter>Header Files\Menu</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="startMenu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="optionMenu.h">
-      <Filter>Header Files\Menu</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="startMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,8 +283,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
+    <Font Include="arial.ttf" />
   </ItemGroup>
 </Project>
