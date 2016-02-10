@@ -13,21 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Lawnmowers">
+    <Filter Include="Debug/Release">
+      <UniqueIdentifier>{734200a6-759f-4d74-83bb-04d14bce0151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters %28PC/NPC%29">
+      <UniqueIdentifier>{32007768-7e68-4c5a-845a-426c828bb256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters %28PC/NPC%29">
+      <UniqueIdentifier>{d76b7703-7187-4022-9ef4-b0d95a6fc28b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maps">
+      <UniqueIdentifier>{9a7aa834-aca9-44e2-90c6-8321fd43249f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Static Objects">
+      <UniqueIdentifier>{834d9a3b-093b-43c9-8cb6-9b590bb607eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Static Objects">
+      <UniqueIdentifier>{fb7cd6b6-c1bd-4e2b-8e17-87722390d3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools">
+      <UniqueIdentifier>{cc2cf5e7-7921-4aae-8c11-a817195fc8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools\Lawnmower">
+      <UniqueIdentifier>{fe0f2ad4-8096-4f23-aa78-25a33476458d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools\Hedge Cutter">
+      <UniqueIdentifier>{f2851081-0bc0-4aeb-8d41-c643d7677c5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tools">
       <UniqueIdentifier>{ae59b311-4b19-44dc-9e3a-53efd02facfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Lawnmowers">
-      <UniqueIdentifier>{cc2cf5e7-7921-4aae-8c11-a817195fc8b9}</UniqueIdentifier>
+    <Filter Include="Header Files\Tools\Lawnmower">
+      <UniqueIdentifier>{b59f6a63-8916-47c8-afc8-3fa8f7add9c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tools\Hedge Cutter">
+      <UniqueIdentifier>{3c585e28-bb7f-4850-b79f-e719afa6a725}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map1.cpp">
@@ -36,90 +60,63 @@
     <ClCompile Include="Maps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticObjects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CharRand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CharPatrol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseShears.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HedgeCutter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MusicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CharPatrol.cpp">
+      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+    </ClCompile>
+    <ClCompile Include="CharRand.cpp">
+      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Fence.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObjects.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
     <ClCompile Include="BaseMower.cpp">
-      <Filter>Source Files\Lawnmowers</Filter>
+      <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
     <ClCompile Include="DecMower.cpp">
-      <Filter>Source Files\Lawnmowers</Filter>
+      <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
     <ClCompile Include="GoLawnMower.cpp">
-      <Filter>Source Files\Lawnmowers</Filter>
+      <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
     <ClCompile Include="LawnMower.cpp">
-      <Filter>Source Files\Lawnmowers</Filter>
+      <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
     <ClCompile Include="RoyceMower.cpp">
-      <Filter>Source Files\Lawnmowers</Filter>
+      <Filter>Source Files\Tools\Lawnmower</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseShears.cpp">
+      <Filter>Source Files\Tools\Hedge Cutter</Filter>
+    </ClCompile>
+    <ClCompile Include="HedgeCutter.cpp">
+      <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Fence.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Map1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Maps.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticObjects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CharRand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CharPatrol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseShears.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HedgeCutter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MusicManager.h">
@@ -128,20 +125,53 @@
     <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CharPatrol.h">
+      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+    </ClInclude>
+    <ClInclude Include="CharRand.h">
+      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObjects.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Fence.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
     <ClInclude Include="BaseMower.h">
-      <Filter>Header Files\Lawnmowers</Filter>
+      <Filter>Header Files\Tools\Lawnmower</Filter>
     </ClInclude>
     <ClInclude Include="DecMower.h">
-      <Filter>Header Files\Lawnmowers</Filter>
-    </ClInclude>
-    <ClInclude Include="LawnMower.h">
-      <Filter>Header Files\Lawnmowers</Filter>
+      <Filter>Header Files\Tools\Lawnmower</Filter>
     </ClInclude>
     <ClInclude Include="GoLawnMower.h">
-      <Filter>Header Files\Lawnmowers</Filter>
+      <Filter>Header Files\Tools\Lawnmower</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnMower.h">
+      <Filter>Header Files\Tools\Lawnmower</Filter>
     </ClInclude>
     <ClInclude Include="RoyceMower.h">
-      <Filter>Header Files\Lawnmowers</Filter>
+      <Filter>Header Files\Tools\Lawnmower</Filter>
+    </ClInclude>
+    <ClInclude Include="HedgeCutter.h">
+      <Filter>Header Files\Tools\Hedge Cutter</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShears.h">
+      <Filter>Header Files\Tools\Hedge Cutter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,26 +201,58 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="map1.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="test1.flac">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\Release\openal32.dll" />
-    <None Include="..\Release\sfml-audio-2.dll" />
-    <None Include="..\Release\sfml-graphics-2.dll" />
-    <None Include="..\Release\sfml-system-2.dll" />
-    <None Include="..\Release\sfml-window-2.dll" />
-    <None Include="..\Debug\openal32.dll" />
-    <None Include="..\Debug\sfml-audio-d-2.dll" />
-    <None Include="..\Debug\sfml-graphics-d-2.dll" />
-    <None Include="..\Debug\sfml-system-d-2.dll" />
-    <None Include="..\Debug\sfml-window-d-2.dll" />
-    <None Include="..\Debug\Spelprojekt.exe" />
-    <None Include="..\Debug\Spelprojekt.ilk" />
-    <None Include="..\Debug\Spelprojekt.pdb" />
-    <None Include="..\Release\Spelprojekt.exe" />
-    <None Include="..\Release\Spelprojekt.pdb" />
+    <None Include="..\Release\Spelprojekt.pdb">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\openal32.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\openal32.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\sfml-audio-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\sfml-audio-d-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\sfml-graphics-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\sfml-graphics-d-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\sfml-system-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\sfml-system-d-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\sfml-window-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\sfml-window-d-2.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\Spelprojekt.exe">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\Spelprojekt.exe">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\Spelprojekt.ilk">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Debug\Spelprojekt.pdb">
+      <Filter>Debug/Release</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="map1.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

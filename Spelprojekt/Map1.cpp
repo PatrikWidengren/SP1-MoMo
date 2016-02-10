@@ -139,7 +139,7 @@ void Map1::takeTurn(int dir){
 		bool breakMove = false;
 		/*For every int in the vector, do the following*/
 		for (intVector::size_type j = 0; j < npcMove.size(); j++){
-			/*0 means end of movement. Futureproofing for patrols. 
+			/*0 means end of movement. Needed for patrols. 
 			Breakmove means that the entire movement for this character
 			is over for the turn*/
 			if (npcMove.at(j) == 0 || breakMove){
