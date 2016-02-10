@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp> 
 #include <vector>
-#include "Map1.h"
+#include "gameState.h"
+//#include "Map1.h"
 #include "MusicManager.h"
 #include <iostream>
 #include <fstream>
@@ -12,25 +13,28 @@ static int const windowHeigth = 720;
 
 int main()
 {
-	typedef vector<StaticObjects*> ObjectsVector;
+	/*typedef vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
 	typedef vector<Character*> NpcVector;
 	NpcVector mNpcs;
 	Player* mPlayer;
-	ObjectsVector mLongObjects;
+	ObjectsVector mLongObjects;*/
+	
 	MusicManager mMusicManager(0);
 
 	mMusicManager.getMusic()->play();
 	
 	//Skapar instans av "Map1"
-	Map1 level("map1.txt");
+	//Map1 level("map1.txt");
 
 	//Anropar funktion för att spawna alla objekt
-	level.spawnObjects();
+	//level.spawnObjects();
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeigth), "garden");
+	sf::Vector2i mouse;
 
-	//Kopierar objekten
+	gameState theGame(window);
+	/*//Kopierar objekten
 	mObjects = level.getObjects();
 	mPlayer = level.getPlayer();
 	mNpcs = level.getNpcs();
@@ -38,8 +42,8 @@ int main()
 	// Skriver ut position för alla object
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << endl;
-	}
-	int moveMeep = 0;
+	}*/
+	/*int moveMeep = 0;
 	//A lot of flags for key inputs
 	bool keyPressed = false;
 	bool space = false;
@@ -47,15 +51,18 @@ int main()
 	{
 		sf::Event event;
 		window.setFramerateLimit(60);
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
+		while (window.pollEvent(event)){
+			if (event.type == sf::Event::Closed){
+			//delete &theGame;
+			//delete &mMusicManager;
 				window.close();
 		}
+	}
 
 		window.clear();
 
-		//Ritar ut objekten
+	theGame.gameStatesHandler(window, mouse);
+		/*//Ritar ut objekten
 		for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 			window.draw(mObjects[i]->getSprite());
 			//mObjects[i]->render();
@@ -68,12 +75,12 @@ int main()
 			window.draw(mLongObjects[i]->getSprite());
 			//mObjects[i]->render();
 		}
-		level.render();
+		level.render();*/
 		
 		//Movement reacts to numpad, and WASD/Shift+WASD
 		//Currently both methods work, but later, this should be something that can be changed in the options menu
 
-		if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		/*if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 			sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
 			moveMeep = 1;
@@ -131,7 +138,7 @@ int main()
 
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 			space = false;
-		}
+		}*/
 		
 		window.display();
 	}

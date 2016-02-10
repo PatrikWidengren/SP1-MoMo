@@ -1,10 +1,32 @@
 #include "gameState.h"
+#include <iostream>
+#include <vector>
+
+typedef std::vector<StaticObjects*> ObjectsVector;
+ObjectsVector mObjects;
+typedef std::vector<Character*> NpcVector;
+NpcVector mNpcs;
+Player* mPlayer;
+ObjectsVector mLongObjects;
+
 gameState::gameState(sf::RenderWindow &window)
 {
 	mState = 1;
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
+
+	mMap01 = new Map1("map1.txt");
+	
+	mMap01->spawnObjects();
+	mObjects = mMap01->getObjects();
+	mPlayer = mMap01->getPlayer();
+	mNpcs = mMap01->getNpcs();
+	mLongObjects = mMap01->getLongObjects();
+	// Skriver ut position för alla object
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
+	}
 }
 
 gameState::~gameState()
@@ -28,7 +50,80 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i mouse)
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
 {
+	//Ritar ut objekten
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		window.draw(mObjects[i]->getSprite());
+		//mObjects[i]->render();
+	}
+	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		window.draw(mNpcs[i]->getSprite());
+	}
+	window.draw(mPlayer->getSprite());
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+		window.draw(mLongObjects[i]->getSprite());
+		//mObjects[i]->render();
+	}
+	mMap01->render();
 
+	if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
+		moveMeep = 1;
+		keyPressed = true;
+	}
+	if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
+		moveMeep = 3;
+		keyPressed = true;
+	}
+	if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
+		moveMeep = 7;
+		keyPressed = true;
+	}
+	if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
+		moveMeep = 9;
+		keyPressed = true;
+	}
+
+	if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
+		moveMeep = 2;
+		keyPressed = true;
+	}
+	if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
+		moveMeep = 4;
+		keyPressed = true;
+	}
+	if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
+		moveMeep = 6;
+		keyPressed = true;
+	}
+	if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
+		moveMeep = 8;
+		keyPressed = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
+		space = true;
+		mMap01->takeTurn(moveMeep);
+		moveMeep = 0;
+		keyPressed = false;
+	}
+
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
+		space = false;
+	}
 }
 
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)

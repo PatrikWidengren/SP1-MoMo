@@ -3,6 +3,7 @@
 #include "inGameMenu.h"
 #include "startMenu.h"
 #include "optionMenu.h"
+#include "Map1.h"
 #include <iostream>
 
 class gameState
@@ -24,6 +25,10 @@ private:
 	inGameMenu *mInGameMenu01;
 	startMenu *mStartMenu01;
 	optionMenu *mOptionMenu01;
+	Map1 *mMap01;
+	int moveMeep = 0;
+	bool keyPressed = false;
+	bool space = false;
 };
 
 #endif
