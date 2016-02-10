@@ -130,5 +130,5 @@ void optionMenu::moveDown()
 
 int optionMenu::checkState()
 {
-	return 
+	return mState;
 }

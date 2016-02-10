@@ -4,7 +4,7 @@ startMenu::startMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 0;
+	mState = 3;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
@@ -129,5 +129,5 @@ void startMenu::moveDown()
 
 int startMenu::checkState()
 {
-	return;
+	return mState;
 }

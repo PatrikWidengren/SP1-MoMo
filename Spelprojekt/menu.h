@@ -20,7 +20,7 @@ public:
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 	
-	virtual int checkState();
+	virtual int checkState() = 0;
 	virtual void displayMenu01(sf::RenderWindow &window) = 0;
 	virtual void moveUp() = 0;
 	virtual void moveDown() = 0;
