@@ -187,5 +187,10 @@
     <None Include="..\Debug\sfml-graphics-d-2.dll" />
     <None Include="..\Debug\sfml-system-d-2.dll" />
     <None Include="..\Debug\sfml-window-d-2.dll" />
+    <None Include="..\Debug\Spelprojekt.exe" />
+    <None Include="..\Debug\Spelprojekt.ilk" />
+    <None Include="..\Debug\Spelprojekt.pdb" />
+    <None Include="..\Release\Spelprojekt.exe" />
+    <None Include="..\Release\Spelprojekt.pdb" />
   </ItemGroup>
 </Project>

@@ -132,11 +132,16 @@
     <None Include="..\Debug\sfml-graphics-d-2.dll" />
     <None Include="..\Debug\sfml-system-d-2.dll" />
     <None Include="..\Debug\sfml-window-d-2.dll" />
+    <None Include="..\Debug\Spelprojekt.exe" />
+    <None Include="..\Debug\Spelprojekt.ilk" />
+    <None Include="..\Debug\Spelprojekt.pdb" />
     <None Include="..\Release\openal32.dll" />
     <None Include="..\Release\sfml-audio-2.dll" />
     <None Include="..\Release\sfml-graphics-2.dll" />
     <None Include="..\Release\sfml-system-2.dll" />
     <None Include="..\Release\sfml-window-2.dll" />
+    <None Include="..\Release\Spelprojekt.exe" />
+    <None Include="..\Release\Spelprojekt.pdb" />
     <None Include="test1.flac" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
