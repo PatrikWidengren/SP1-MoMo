@@ -6,7 +6,7 @@ sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "deputy.png";
 
-CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10]): 
+CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves): 
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
@@ -20,11 +20,13 @@ CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50
 	mCharSprite.setPosition(posX, posY);
 	mTurnNo = -1;
 	//fill up path with the move array
-	for (int i = 0; i < 50; i++){
+	
+	/*for (int i = 0; i < 50; i++){
 		for (int j = 0; j < 10; j++){
 			path[i][j] = moves[i][j];
 		}
-	}
+	}*/
+	path = moves;
 	//I assume guard is 7
 	mType = 7.0f;
 	//temporary fix. update asap.
@@ -50,16 +52,16 @@ intVector CharPatrol::move(){
 		//If no retry waiting, take the next turn's movement
 		mTurnNo++;
 		//If the first move this turn is 0, end of patrol is reached. Restart patrol from 0
-		if (*path[mTurnNo][0]==0){
+		if (path[mTurnNo][0]==0){
 			mTurnNo = 0;
 		}
 		for (int i = 0; i < 10; i++){
 			//add all the steps. Cancel if a move has val 0
-			if (*path[mTurnNo][i] <= 0){
+			if (path[mTurnNo][i] <= 0){
 				break;
 			}
 			else {
-				curMove.push_back(*path[mTurnNo][i]);
+				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
 	}
