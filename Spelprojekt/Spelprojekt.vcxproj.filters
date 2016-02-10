@@ -13,33 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Menu">
-      <UniqueIdentifier>{300bda2b-2604-4552-9dd9-612e0254041d}</UniqueIdentifier>
+    <Filter Include="Header Files\Lawnmowers">
+      <UniqueIdentifier>{ae59b311-4b19-44dc-9e3a-53efd02facfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Menu">
-      <UniqueIdentifier>{c2251473-2612-46d4-9d33-5d5585293ea9}</UniqueIdentifier>
+    <Filter Include="Source Files\Lawnmowers">
+      <UniqueIdentifier>{cc2cf5e7-7921-4aae-8c11-a817195fc8b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BaseMower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DecMower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Fence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GoLawnMower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Grass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LawnMower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map1.cpp">
@@ -49,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoyceMower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StaticObjects.cpp">
@@ -81,39 +66,27 @@
     <ClCompile Include="MusicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="BaseMower.cpp">
+      <Filter>Source Files\Lawnmowers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\inGameMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="DecMower.cpp">
+      <Filter>Source Files\Lawnmowers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\menu.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="GoLawnMower.cpp">
+      <Filter>Source Files\Lawnmowers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\optionMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="LawnMower.cpp">
+      <Filter>Source Files\Lawnmowers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\startMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="RoyceMower.cpp">
+      <Filter>Source Files\Lawnmowers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseMower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DecMower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Fence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GoLawnMower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Grass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LawnMower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map1.h">
@@ -123,9 +96,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoyceMower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StaticObjects.h">
@@ -158,17 +128,20 @@
     <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\startMenu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="BaseMower.h">
+      <Filter>Header Files\Lawnmowers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\optionMenu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="DecMower.h">
+      <Filter>Header Files\Lawnmowers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\menu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="LawnMower.h">
+      <Filter>Header Files\Lawnmowers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\inGameMenu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="GoLawnMower.h">
+      <Filter>Header Files\Lawnmowers</Filter>
+    </ClInclude>
+    <ClInclude Include="RoyceMower.h">
+      <Filter>Header Files\Lawnmowers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,10 +187,5 @@
     <None Include="..\Debug\sfml-graphics-d-2.dll" />
     <None Include="..\Debug\sfml-system-d-2.dll" />
     <None Include="..\Debug\sfml-window-d-2.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\arial.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
   </ItemGroup>
 </Project>

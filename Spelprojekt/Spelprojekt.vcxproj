@@ -70,11 +70,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.cpp" />
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\inGameMenu.cpp" />
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\menu.cpp" />
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\optionMenu.cpp" />
-    <ClCompile Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\startMenu.cpp" />
     <ClCompile Include="BaseMower.cpp" />
     <ClCompile Include="BaseShears.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -98,10 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h" />
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\inGameMenu.h" />
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\menu.h" />
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\optionMenu.h" />
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\startMenu.h" />
     <ClInclude Include="BaseMower.h" />
     <ClInclude Include="BaseShears.h" />
     <ClInclude Include="Character.h" />
@@ -147,9 +138,6 @@
     <None Include="..\Release\sfml-system-2.dll" />
     <None Include="..\Release\sfml-window-2.dll" />
     <None Include="test1.flac" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
