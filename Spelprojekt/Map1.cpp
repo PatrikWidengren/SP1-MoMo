@@ -175,6 +175,11 @@ void Map1::takeTurn(int dir){
 			}
 		}
 	}
+	mTurnCount++;
+	cout << "That was turn " << mTurnCount << "." << endl;
+	if (mTurnCount >= 50){
+		cout << "GAME OVER" << endl;
+	}
 }
 
 bool Map1::movePlayer(int dir){
