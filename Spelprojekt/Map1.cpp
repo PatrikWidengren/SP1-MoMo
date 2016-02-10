@@ -83,6 +83,39 @@ float** Map1::createGrid(int width, int heigth){
 	}*/
 	return array2d;
 }
+
+
+/**************************************[EXAMPLE CODE FOR INSTANTIATING A PATROLLING ENEMY]***************************************************/
+/*********************************************************************************************************************************************
+//50x10 array med varje värde 0
+int patrolPath[50][10] = {};
+//skapar temporärt en array med bara de steg och turer som inte är noll.
+int tempPath[4][4]{
+	{ 6, 6, 6, 0 },
+	{ 2, 2, 2, 2 },
+	{ 4, 4, 4, 0 },
+	{ 8, 8, 8, 8 }
+};
+
+//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
+for (int i = 0; i < sizeof(tempPath); i++){
+	for (int j = 0; j < sizeof(tempPath[i]); j++){
+		int k = tempPath[i][j];
+		patrolPath[i][j] = k;
+	}
+}
+
+//CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10])
+int arraySpotX = 0;
+int arraySpotY = 0;
+float coordinateX = 0.0f;
+float coordinateY = 0.0f;
+//Kom ihåg att skicka adresssen till patrolPath då det sparas som en arraypekare
+CharPatrol *example = new CharPatrol(arraySpotX, arraySpotY, coordinateX, coordinateY, &patrolPath);
+
+
+**********************************************************************************************************************************************/
+
 //Loopar igenom array och spawnar alla objekt
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
 void Map1::spawnObjects(){

@@ -11,6 +11,7 @@
 #include "RoyceMower.h"
 #include "LawnMower.h"
 #include "CharRand.h"
+#include "CharPatrol.h"
 #include <fstream>
 #include <iomanip>
 #include <vector>

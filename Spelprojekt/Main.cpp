@@ -43,14 +43,6 @@ int main()
 	//A lot of flags for key inputs
 	bool keyPressed = false;
 	bool space = false;
-	bool dir1 = false;
-	bool dir2 = false;
-	bool dir3 = false;
-	bool dir4 = false;
-	bool dir6 = false;
-	bool dir7 = false;
-	bool dir8 = false;
-	bool dir9 = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
