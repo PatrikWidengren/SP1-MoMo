@@ -17,6 +17,7 @@ Map1::Map1(string savefile){
 	Tree::initialize();
 	Player::initialize();
 	CharRand::initialize();
+	CharPatrol::initialize();
 }
 Map1::~Map1(){
 	Stone::finalize();
@@ -25,6 +26,7 @@ Map1::~Map1(){
 	Tree::finalize();
 	Player::finalize();
 	CharRand::finalize();
+	CharPatrol::finalize();
 }
 void Map1::render(){
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
@@ -81,6 +83,7 @@ float** Map1::createGrid(int width, int heigth){
 			array2d[i][j] = grid[i][j];
 		}
 	}*/
+
 	return array2d;
 }
 
@@ -119,6 +122,38 @@ CharPatrol *example = new CharPatrol(arraySpotX, arraySpotY, coordinateX, coordi
 //Loopar igenom array och spawnar alla objekt
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
 void Map1::spawnObjects(){
+
+	/*
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+
+	//50x10 array med varje värde 0
+	int patrolPath[50][10] = {};
+	//skapar temporärt en array med bara de steg och turer som inte är noll.
+	int tempPath[4][4]{
+			{ 6, 6, 6, 0 },
+			{ 2, 2, 2, 2 },
+			{ 4, 4, 4, 0 },
+			{ 8, 8, 8, 8 }
+	};
+
+	//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
+	for (int i = 0; i < sizeof(tempPath); i++){
+		for (int j = 0; j < sizeof(tempPath[i]); j++){
+			int k = tempPath[i][j];
+			patrolPath[i][j] = k;
+		}
+	}
+
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+	//*************************************************************************************************************************************************
+
+	*/
+
 	mGrid = createGrid(mWidth, mHeigth);
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
@@ -141,12 +176,16 @@ void Map1::spawnObjects(){
 			if (mGrid[j][i] == 5){
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mPlayer = new Player(i, j, new LawnMower(), (i * widthOnTile), (j * heigthOnTile));
-				//mObjects.push_back(new Player((i * widthOnTile), (j * heigthOnTile), 1));
 			}
 			if (mGrid[j][i] == 6){
 				totalAmountOfGrass++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
+			}	
+			if (mGrid[j][i] == 7){
+				totalAmountOfGrass++;
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				//mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), &patrolPath));
 			}
 		}
 	}
