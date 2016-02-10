@@ -13,6 +13,7 @@
 #include "CharRand.h"
 #include "CharPatrol.h"
 #include <fstream>
+#include <array>
 #include <iomanip>
 #include <vector>
 
@@ -44,6 +45,7 @@ private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir);
 	bool moveNpc(int dir, int atPos);
+	//int patrolPath[50][10] = {};
 	int mWidth, mHeigth;
 	int totalAmountOfGrass = 0;
 	int turnsLeft = 50;
