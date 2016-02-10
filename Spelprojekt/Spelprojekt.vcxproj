@@ -97,7 +97,6 @@
     <ClCompile Include="Stone.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h" />
     <ClInclude Include="BaseMower.h" />
     <ClInclude Include="BaseShears.h" />
     <ClInclude Include="Character.h" />
