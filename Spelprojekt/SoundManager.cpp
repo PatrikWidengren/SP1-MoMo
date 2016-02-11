@@ -6,7 +6,6 @@ using namespace std;
 static const string nameArray[3] = { "test1.flac", "test2.flac", "test3.flac" };
 
 SoundManager::SoundManager() {
-	
 }
 
 SoundManager::~SoundManager(){

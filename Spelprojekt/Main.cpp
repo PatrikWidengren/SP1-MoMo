@@ -14,7 +14,7 @@ static int const windowHeigth = 720;
 int main(){
 	
 	MusicManager mMusicManager(0);
-	SoundManager mSoundManager();
+	SoundManager mSoundManager;
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeigth), "garden");
 	sf::Vector2i mouse;
