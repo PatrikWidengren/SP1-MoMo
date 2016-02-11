@@ -130,5 +130,8 @@ void inGameMenu::moveDown()
 
 int inGameMenu::checkState()
 {
-	return mState;
+	std::cout << mState << std::endl;
+	int i = mState;
+	mState = 2;
+	return i;
 }

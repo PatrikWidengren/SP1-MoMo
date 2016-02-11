@@ -50,8 +50,17 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i mouse)
 	
 }
 
+void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)
+{
+	mOptionMenu01->updateoptionMenu(window);
+	mOptionMenu01->displayMenu01(window);
+	mState = mOptionMenu01->checkState();
+}
+
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
 {
+	
+
 	//Ritar ut objekten
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		window.draw(mObjects[i]->getSprite());
@@ -126,13 +135,6 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 		space = false;
 	}
-}
-
-void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)
-{
-	mOptionMenu01->updateoptionMenu(window);
-	mOptionMenu01->displayMenu01(window);
-	mState = mOptionMenu01->checkState();
 }
 
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i mouse)

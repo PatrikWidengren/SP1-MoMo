@@ -130,5 +130,8 @@ void optionMenu::moveDown()
 
 int optionMenu::checkState()
 {
-	return mState;
+	std::cout << mState << std::endl;
+	int i = mState;
+	mState = 4;
+	return i;
 }

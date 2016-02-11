@@ -48,11 +48,11 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 0)
 	{
-		
+		mState = 1;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 1)
 	{
-
+		mState = 4;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2)
 	{
@@ -129,5 +129,8 @@ void startMenu::moveDown()
 
 int startMenu::checkState()
 {
-	return mState;
+	std::cout << mState << std::endl;
+	int i = mState;
+	mState = 3;
+	return i;
 }
