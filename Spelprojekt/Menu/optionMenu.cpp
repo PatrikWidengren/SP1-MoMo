@@ -100,7 +100,7 @@ void optionMenu::setTextures()
 void optionMenu::setFonts()
 
 {
-	if (!font.loadFromFile("../Resource Files/Fonts/arial.ttf"))
+	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
 	{
 		//handle error
 	}

@@ -101,7 +101,7 @@ void inGameMenu::setTextures()
 void inGameMenu::setFonts()
 
 {
-	if (!font.loadFromFile("../Resource Files/Fonts/arial.ttf"))
+	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
 	{
 		//handle error
 	}
