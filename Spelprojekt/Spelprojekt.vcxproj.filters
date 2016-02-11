@@ -320,4 +320,12 @@
       <Filter>Maps</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource Files\Sound\Kollision+Häck.wav">
+      <Filter>Resource Files\Sounds</Filter>
+    </Media>
+    <Media Include="Resource Files\Sound\YouLost.wav">
+      <Filter>Resource Files\Sounds</Filter>
+    </Media>
+  </ItemGroup>
 </Project>
