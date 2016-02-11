@@ -58,10 +58,10 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 		if (selectedIndex == 2){ 
 			mState = 1; 
 		}
-		else if (selectedIndex == 1){
+		if (selectedIndex == 1){
 			mState = 4;
 		}
-		else if (selectedIndex == 0){
+		if (selectedIndex == 0){
 			mState = 4;
 		}
 		mReturn = true;

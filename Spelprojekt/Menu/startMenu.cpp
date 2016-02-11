@@ -55,18 +55,18 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
+		if (selectedIndex == 0){
+			mState = 1;
+		}
+		if (selectedIndex == 1){
+			mState = 4;
+		}
 		if (selectedIndex == 2){
 			window.close();
 		}
-		else if (selectedIndex == 1){
-			mState = 4;
-		}
-		else if (selectedIndex == 0){
-			mState = 1;
-		}
 		mReturn = true;
 	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
 	}
