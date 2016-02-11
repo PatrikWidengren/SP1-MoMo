@@ -50,7 +50,7 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	
 }
 
-void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
+void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	
 
@@ -130,7 +130,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
 	}
 }
 
-void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)
+void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	mOptionMenu01->updateoptionMenu(window);
 	mOptionMenu01->displayMenu01(window);
@@ -154,7 +154,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 4: //state 4. option.
-		drawOptionMenu(window, mouse);
+		drawOptionMenu(window, mouse, music, sound);
 		break;
 
 	default:
