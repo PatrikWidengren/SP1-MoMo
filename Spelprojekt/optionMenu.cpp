@@ -19,7 +19,7 @@ optionMenu::optionMenu(float width, float height)
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Back");
+	menu[2].setString("Resume");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 3));
 
 	selectedIndex = 0;
@@ -48,11 +48,11 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 0)
 	{
-		mState = 1;
+		mState = 4;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 1)
 	{
-		mState = 1;
+		mState = 4;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2)
 	{
