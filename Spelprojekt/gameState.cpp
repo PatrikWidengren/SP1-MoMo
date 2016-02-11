@@ -11,7 +11,7 @@ ObjectsVector mLongObjects;
 
 gameState::gameState(sf::RenderWindow &window)
 {
-	mState = 1;
+	mState = 3;
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
