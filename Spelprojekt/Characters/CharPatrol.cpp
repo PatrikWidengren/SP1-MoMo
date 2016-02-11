@@ -1,12 +1,13 @@
 #include "CharPatrol.h"
+#include <iostream>
 
 using namespace std;
 
 sf::Texture textureGuard;
 sf::Image imageGuard;
-static const string filename = "deputy.png";
+static const string filename = "Resource Files/Sprites/deputy.png";
 
-CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50][10]): 
+CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves): 
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
@@ -20,11 +21,13 @@ CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int *moves[50
 	mCharSprite.setPosition(posX, posY);
 	mTurnNo = -1;
 	//fill up path with the move array
-	for (int i = 0; i < 50; i++){
+	
+	/*for (int i = 0; i < 50; i++){
 		for (int j = 0; j < 10; j++){
 			path[i][j] = moves[i][j];
 		}
-	}
+	}*/
+	path = moves;
 	//I assume guard is 7
 	mType = 7.0f;
 	//temporary fix. update asap.
@@ -46,22 +49,26 @@ float CharPatrol::getPosY(){
 intVector CharPatrol::move(){
 	intVector curMove;
 	//Step 1: Make sure no retries are waiting
+	//int test = 0;
 	if (retryPath[0] <= 0){
 		//If no retry waiting, take the next turn's movement
 		mTurnNo++;
 		//If the first move this turn is 0, end of patrol is reached. Restart patrol from 0
-		if (*path[mTurnNo][0]==0){
+		if (path[mTurnNo][0]==0){
 			mTurnNo = 0;
 		}
 		for (int i = 0; i < 10; i++){
 			//add all the steps. Cancel if a move has val 0
-			if (*path[mTurnNo][i] <= 0){
+			if (path[mTurnNo][i] <= 0){
 				break;
 			}
 			else {
-				curMove.push_back(*path[mTurnNo][i]);
+				//test += path[mTurnNo][i];
+				//test *= 10;
+				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
+		//cout << "Trying path: " << test << endl;
 	}
 	//if a retry is wating...
 	else {
@@ -72,6 +79,8 @@ intVector CharPatrol::move(){
 				break;
 			}
 			else{ 
+				//test += retryPath[i];
+				//test *= 10;
 				curMove.push_back(retryPath[i]);
 			}
 		}
@@ -79,6 +88,7 @@ intVector CharPatrol::move(){
 		for (int i = 0; i < 10; i++){
 			retryPath[i] = 0;
 		}
+		//cout << "Retrying path: " << test << endl;
 	}
 	//return the intVector of steps
 	return curMove;
@@ -86,10 +96,15 @@ intVector CharPatrol::move(){
 
 intVector CharPatrol::collide(intVector moves, int atPos){
 	int j = 0;
+	//int test = 0;
 	for (intVector::size_type i = atPos; i < moves.size(); i++){
 		//Fill up the retryPath array with all the remaining moves
 		retryPath[j] = moves.at(i);
+		//test += moves.at(i);
+		//test *= 10;
+		j++;
 	}
+	//cout << "Saving " << test << "for next turn" << endl;
 	intVector col;
 	col.push_back(0);
 	//return a 0 to break the movement for the turn

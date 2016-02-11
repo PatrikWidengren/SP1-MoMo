@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static const string filename = "Tree.png";
+static const string filename = "Resource Files/Sprites/Tree.png";
 sf::Texture textureTree;
 sf::Image image;
 

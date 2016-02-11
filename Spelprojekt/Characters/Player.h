@@ -1,6 +1,6 @@
 #ifndef INCLUDED_PLAYER
 #define INCLUDED_PLAYER
-#include "BaseMower.h"
+#include "..\Tools\Lawnmower\BaseMower.h"
 #include "SFML\Graphics.hpp"
 
 class Player{

@@ -16,7 +16,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("map1.txt");
+	mMap01 = new Map1("Maps/map1.txt");
 	
 	mMap01->spawnObjects();
 	mObjects = mMap01->getObjects();
@@ -38,6 +38,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	
 	mInGameMenu01->updateInGameMenu(window);
 	mInGameMenu01->displayMenu01(window);
+	mState = mInGameMenu01->checkState();
 	
 }
 
@@ -45,6 +46,7 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 {
 	mStartMenu01->updateStartMenu(window);
 	mStartMenu01->displayMenu01(window);
+	mState = mStartMenu01->checkState();
 	
 }
 
@@ -130,6 +132,7 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 {
 	mOptionMenu01->updateoptionMenu(window);
 	mOptionMenu01->displayMenu01(window);
+	mState = mOptionMenu01->checkState();
 }
 
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
@@ -149,7 +152,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 4: //state 4. option.
-
+		drawOptionMenu(window, mouse);
 		break;
 
 	default:

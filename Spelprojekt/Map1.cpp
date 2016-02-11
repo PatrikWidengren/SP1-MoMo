@@ -64,6 +64,7 @@ float** Map1::createGrid(int width, int heigth){
 	float tempValue;
 	ifstream file(mSavefile);
 	file >> tempValue >> tempValue;
+
 	float** array2d = 0;
 	array2d = new float*[heigth];
 	for (int i = 0; i < heigth; i++){
@@ -123,27 +124,34 @@ CharPatrol *example = new CharPatrol(arraySpotX, arraySpotY, coordinateX, coordi
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
 void Map1::spawnObjects(){
 
-	/*
+	
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 
 	//50x10 array med varje värde 0
-	int patrolPath[50][10] = {};
+	int **patrolPath = 0;
+	patrolPath = new int*[50];
+	for (int i = 0; i < 50; i++){
+		patrolPath[i] = new int[10];
+		for (int j = 0; j < 10; j++){
+			patrolPath[i][j] = 0;
+		}
+	}
 	//skapar temporärt en array med bara de steg och turer som inte är noll.
-	int tempPath[4][4]{
-			{ 6, 6, 6, 0 },
-			{ 2, 2, 2, 2 },
-			{ 4, 4, 4, 0 },
-			{ 8, 8, 8, 8 }
+	int tempPath[5][4]{
+			{ 4, 0, 0, 0 },
+			{ 2, 2, 0, 0 },
+			{ 6, 6, 6, 6 },
+			{ 8, 8, 0, 0 },
+			{ 4, 4, 4, 0 }
 	};
 
 	//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
-	for (int i = 0; i < sizeof(tempPath); i++){
-		for (int j = 0; j < sizeof(tempPath[i]); j++){
-			int k = tempPath[i][j];
-			patrolPath[i][j] = k;
+	for (int i = 0; i < 5; i++){
+		for (int j = 0; j < 4; j++){
+			patrolPath[i][j] = tempPath[i][j];
 		}
 	}
 
@@ -152,7 +160,7 @@ void Map1::spawnObjects(){
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 
-	*/
+	
 
 	mGrid = createGrid(mWidth, mHeigth);
 	for (int i = 0; i < mWidth; i++){
@@ -185,7 +193,7 @@ void Map1::spawnObjects(){
 			if (mGrid[j][i] == 7){
 				totalAmountOfGrass++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
-				//mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), &patrolPath));
+				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), patrolPath));
 			}
 		}
 	}
@@ -219,11 +227,12 @@ void Map1::takeTurn(int dir){
 				breakMove = false;
 				break;
 			}
-			/*the movemen functions returns a bool. True if they moved, 
+			/*the movement functions returns a bool. True if they moved, 
 			false in case of collision*/
 			bool moved = moveNpc(npcMove.at(j), i);
 			/*if the NPC collided: do the following*/
 			if (!moved){
+				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
 				/*get a new series of moves to attempt*/
 				intVector tryMove;
 				tryMove = mNpcs.at(i)->collide(npcMove, j);
@@ -246,6 +255,9 @@ void Map1::takeTurn(int dir){
 
 				break;
 			}
+			/*else {
+				cout << "Moved " << npcMove.at(j) << endl;
+			}*/
 		}
 	}
 	mTurnCount++;
@@ -320,7 +332,7 @@ bool Map1::movePlayer(int dir){
 
 		/*move meep to new place in the array and return the original value
 		to the last position*/
-		cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		//cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
 			//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
@@ -348,11 +360,11 @@ bool Map1::movePlayer(int dir){
 			}
 			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
 
-			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+			//cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
 		else {
-			cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+			//cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 
 		return false;
 	}
@@ -406,7 +418,7 @@ bool Map1::moveNpc(int dir, int atPos){
 			break;
 		}
 
-	cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
 		mGrid[mNpcs.at(atPos)->getY()][mNpcs.at(atPos)->getX()] = mNpcs.at(atPos)->getLast();
 		mNpcs.at(atPos)->setLast(mGrid[tempY][tempX]);
@@ -415,11 +427,11 @@ bool Map1::moveNpc(int dir, int atPos){
 
 		mNpcs.at(atPos)->setX(tempX);
 		mNpcs.at(atPos)->setY(tempY);
-		cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+		//cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 	}
 	else {
-		cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
 	}
 

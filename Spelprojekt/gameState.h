@@ -1,8 +1,9 @@
 #ifndef GAMESTATE
 #define GAMESTATE
-#include "inGameMenu.h"
-#include "startMenu.h"
-#include "optionMenu.h"
+#include "Menu/inGameMenu.h"
+#include "Menu/startMenu.h"
+#include "Menu/optionMenu.h"
+
 #include "MusicManager.h"
 #include "SoundManager.h"
 #include "Map1.h"
