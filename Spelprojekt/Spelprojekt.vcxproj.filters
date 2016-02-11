@@ -55,9 +55,6 @@
     <Filter Include="Resource Files\Music">
       <UniqueIdentifier>{0a2173f2-2317-408c-8225-c1cdb1cf70a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Sounds">
-      <UniqueIdentifier>{0c6b55a8-68bf-4810-8933-88363e81203d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{f04e99ee-3054-49b1-a229-f892edf8730d}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,9 @@
     </Filter>
     <Filter Include="Source Files\Characters">
       <UniqueIdentifier>{32007768-7e68-4c5a-845a-426c828bb256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sound">
+      <UniqueIdentifier>{0c6b55a8-68bf-4810-8933-88363e81203d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -321,11 +321,11 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resource Files\Sound\Kollision+Häck.wav">
-      <Filter>Resource Files\Sounds</Filter>
-    </Media>
     <Media Include="Resource Files\Sound\YouLost.wav">
-      <Filter>Resource Files\Sounds</Filter>
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="Resource Files\Sound\Kollision+Haack.wav">
+      <Filter>Resource Files\Sound</Filter>
     </Media>
   </ItemGroup>
 </Project>
