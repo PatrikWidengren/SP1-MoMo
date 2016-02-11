@@ -4,7 +4,7 @@ using namespace std;
 
 sf::Texture texturePlayer;
 sf::Image imagePlayer;
-static const string filename = "meep.png";
+static const string filename = "Resource Files/Sprites/meep.png";
 
 Player::Player(int arrX, int arrY, Mower *m, float posX, float posY):
 	mArrayX(arrX),
@@ -34,7 +34,7 @@ intVector Player::move(int dir){
 
 void Player::collide(intVector moves, int atPos){
 	int dmg = 0;
-	for (int i = atPos; i < moves.size(); i++){
+	for (intVector::size_type i = atPos; i < moves.size(); i++){
 		dmg++;
 	}
 	lawnMower->setToMin(dmg);

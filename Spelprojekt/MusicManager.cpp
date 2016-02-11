@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace std;
-static const string nameArray[3] = {"test1.flac", "test2.flac", "test3.flac"};
+static const string nameArray[3] = {"Resource Files/Music/test1.flac", "Resource Files/Music/test2.flac", "Resource Files/Music/test3.flac"};
 
 MusicManager::MusicManager(int id) {
 	mMusic.openFromFile(nameArray[id]);

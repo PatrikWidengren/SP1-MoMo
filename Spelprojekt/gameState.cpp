@@ -16,7 +16,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("map1.txt");
+	mMap01 = new Map1("Maps/map1.txt");
 	
 	mMap01->spawnObjects();
 	mObjects = mMap01->getObjects();

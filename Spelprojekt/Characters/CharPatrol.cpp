@@ -5,7 +5,7 @@ using namespace std;
 
 sf::Texture textureGuard;
 sf::Image imageGuard;
-static const string filename = "deputy.png";
+static const string filename = "Resource Files/Sprites/deputy.png";
 
 CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves): 
 	
