@@ -65,7 +65,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window)
 		}
 		mReturn = true;
 	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
 	}
