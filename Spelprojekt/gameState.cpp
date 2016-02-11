@@ -16,7 +16,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("map1.txt");
+	mMap01 = new Map1("Maps/map1.txt");
 	
 	mMap01->spawnObjects();
 	mObjects = mMap01->getObjects();
@@ -33,7 +33,7 @@ gameState::~gameState()
 {
 }
 
-void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i mouse)
+void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	
 	mInGameMenu01->updateInGameMenu(window);
@@ -42,19 +42,12 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i mouse)
 	
 }
 
-void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i mouse)
+void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	mStartMenu01->updateStartMenu(window);
 	mStartMenu01->displayMenu01(window);
 	mState = mStartMenu01->checkState();
 	
-}
-
-void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)
-{
-	mOptionMenu01->updateoptionMenu(window);
-	mOptionMenu01->displayMenu01(window);
-	mState = mOptionMenu01->checkState();
 }
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
@@ -137,20 +130,27 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i mouse)
 	}
 }
 
-void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i mouse)
+void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse)
+{
+	mOptionMenu01->updateoptionMenu(window);
+	mOptionMenu01->displayMenu01(window);
+	mState = mOptionMenu01->checkState();
+}
+
+void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	switch (mState) //switch that hold the states of the game
 	{
 	case 1: //Game state 1. in game. 
-		drawInGame(window, mouse);
+		drawInGame(window, mouse, music, sound);
 		break;
 
 	case 2: //Case 2, Draw ingame menu
-		drawInGameMenu(window, mouse);
+		drawInGameMenu(window, mouse, music, sound);
 		break;
 
 	case 3: //State 3. Start menu.
-		drawStartMenu(window, mouse);
+		drawStartMenu(window, mouse, music, sound);
 		break;
 
 	case 4: //state 4. option.

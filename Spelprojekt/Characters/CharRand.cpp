@@ -5,7 +5,7 @@ using namespace std;
 
 sf::Texture textureCat;
 sf::Image imageCat;
-static const string filename = "cat.png";
+static const string filename = "Resource Files/Sprites/cat.png";
 
 CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, bool lockDir) :
 	mArrayX(arrX),

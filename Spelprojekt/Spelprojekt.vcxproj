@@ -70,70 +70,59 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BaseMower.cpp" />
-    <ClCompile Include="BaseShears.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="CharPatrol.cpp" />
-    <ClCompile Include="CharRand.cpp" />
-    <ClCompile Include="DecMower.cpp" />
-    <ClCompile Include="Fence.cpp" />
+    <ClCompile Include="Characters\Character.cpp" />
+    <ClCompile Include="Characters\CharPatrol.cpp" />
+    <ClCompile Include="Characters\CharRand.cpp" />
+    <ClCompile Include="Characters\Player.cpp" />
     <ClCompile Include="gameState.cpp" />
-    <ClCompile Include="GoLawnMower.cpp" />
-    <ClCompile Include="Grass.cpp" />
-    <ClCompile Include="HedgeCutter.cpp" />
-    <ClCompile Include="inGameMenu.cpp" />
-    <ClCompile Include="LawnMower.cpp" />
-    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Menu\inGameMenu.cpp" />
+    <ClCompile Include="Menu\menu.cpp" />
+    <ClCompile Include="Menu\optionMenu.cpp" />
+    <ClCompile Include="Menu\startMenu.cpp" />
     <ClCompile Include="MusicManager.cpp" />
-    <ClCompile Include="optionMenu.cpp" />
-    <ClCompile Include="startMenu.cpp" />
-    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map1.cpp" />
     <ClCompile Include="Maps.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RoyceMower.cpp" />
-    <ClCompile Include="StaticObjects.cpp" />
-    <ClCompile Include="Stone.cpp" />
+    <ClCompile Include="Static Objects\Fence.cpp" />
+    <ClCompile Include="Static Objects\Grass.cpp" />
+    <ClCompile Include="Static Objects\StaticObjects.cpp" />
+    <ClCompile Include="Static Objects\Stone.cpp" />
+    <ClCompile Include="Static Objects\Tree.cpp" />
+    <ClCompile Include="Tools\Hedge Cutter\BaseShears.cpp" />
+    <ClCompile Include="Tools\Hedge Cutter\HedgeCutter.cpp" />
+    <ClCompile Include="Tools\Lawnmower\BaseMower.cpp" />
+    <ClCompile Include="Tools\Lawnmower\DecMower.cpp" />
+    <ClCompile Include="Tools\Lawnmower\GoLawnMower.cpp" />
+    <ClCompile Include="Tools\Lawnmower\LawnMower.cpp" />
+    <ClCompile Include="Tools\Lawnmower\RoyceMower.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseMower.h" />
-    <ClInclude Include="BaseShears.h" />
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="CharPatrol.h" />
-    <ClInclude Include="CharRand.h" />
-    <ClInclude Include="DecMower.h" />
-    <ClInclude Include="Fence.h" />
+    <ClInclude Include="Characters\Character.h" />
+    <ClInclude Include="Characters\CharPatrol.h" />
+    <ClInclude Include="Characters\CharRand.h" />
+    <ClInclude Include="Characters\Player.h" />
     <ClInclude Include="gameState.h" />
-    <ClInclude Include="GoLawnMower.h" />
-    <ClInclude Include="Grass.h" />
-    <ClInclude Include="HedgeCutter.h" />
-    <ClInclude Include="inGameMenu.h" />
-    <ClInclude Include="LawnMower.h" />
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="Menu\inGameMenu.h" />
+    <ClInclude Include="Menu\menu.h" />
+    <ClInclude Include="Menu\optionMenu.h" />
+    <ClInclude Include="Menu\startMenu.h" />
     <ClInclude Include="MusicManager.h" />
-    <ClInclude Include="optionMenu.h" />
-    <ClInclude Include="startMenu.h" />
-    <ClInclude Include="Tree.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Map1.h" />
     <ClInclude Include="Maps.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="RoyceMower.h" />
-    <ClInclude Include="StaticObjects.h" />
-    <ClInclude Include="Stone.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="cat.png" />
-    <Image Include="deputy.png" />
-    <Image Include="dog.png" />
-    <Image Include="fence_01.png" />
-    <Image Include="grass.png" />
-    <Image Include="meep.png" />
-    <Image Include="stone.png" />
-    <Image Include="test.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="map1.txt" />
+    <ClInclude Include="Static Objects\Fence.h" />
+    <ClInclude Include="Static Objects\Grass.h" />
+    <ClInclude Include="Static Objects\StaticObjects.h" />
+    <ClInclude Include="Static Objects\Stone.h" />
+    <ClInclude Include="Static Objects\Tree.h" />
+    <ClInclude Include="Tools\Hedge Cutter\BaseShears.h" />
+    <ClInclude Include="Tools\Hedge Cutter\HedgeCutter.h" />
+    <ClInclude Include="Tools\Lawnmower\BaseMower.h" />
+    <ClInclude Include="Tools\Lawnmower\DecMower.h" />
+    <ClInclude Include="Tools\Lawnmower\GoLawnMower.h" />
+    <ClInclude Include="Tools\Lawnmower\LawnMower.h" />
+    <ClInclude Include="Tools\Lawnmower\RoyceMower.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\openal32.dll" />
@@ -151,10 +140,25 @@
     <None Include="..\Release\sfml-window-2.dll" />
     <None Include="..\Release\Spelprojekt.exe" />
     <None Include="..\Release\Spelprojekt.pdb" />
-    <None Include="test1.flac" />
+    <None Include="Resource Files\Music\test1.flac" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf" />
+    <Image Include="Resource Files\Sprites\3D_0000_tree.png" />
+    <Image Include="Resource Files\Sprites\cat.png" />
+    <Image Include="Resource Files\Sprites\cutgrass.png" />
+    <Image Include="Resource Files\Sprites\deputy.png" />
+    <Image Include="Resource Files\Sprites\dog.png" />
+    <Image Include="Resource Files\Sprites\fence_01.png" />
+    <Image Include="Resource Files\Sprites\grass.png" />
+    <Image Include="Resource Files\Sprites\meep.png" />
+    <Image Include="Resource Files\Sprites\stone.png" />
+    <Image Include="Resource Files\Sprites\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resource Files\Fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Maps\map1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

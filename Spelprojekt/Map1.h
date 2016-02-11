@@ -2,16 +2,16 @@
 #define INCLUDED_MAP1
 #include "Maps.h"
 #include <SFML\Graphics.hpp>
-#include "Grass.h"
-#include "Stone.h"
-#include "Fence.h"
-#include "Player.h"
-#include "Tree.h"
-#include "GoLawnMower.h"
-#include "RoyceMower.h"
-#include "LawnMower.h"
-#include "CharRand.h"
-#include "CharPatrol.h"
+#include "Static Objects/Grass.h"
+#include "Static Objects/Stone.h"
+#include "Static Objects/Fence.h"
+#include "Static Objects/Tree.h"
+#include "Characters/Player.h"
+#include "Tools/Lawnmower/GoLawnMower.h"
+#include "Tools/Lawnmower/RoyceMower.h"
+#include "Tools/Lawnmower/LawnMower.h"
+#include "Characters/CharRand.h"
+#include "Characters/CharPatrol.h"
 #include <fstream>
 #include <array>
 #include <iomanip>
