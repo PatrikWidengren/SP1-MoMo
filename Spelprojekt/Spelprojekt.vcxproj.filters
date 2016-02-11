@@ -16,12 +16,6 @@
     <Filter Include="Debug/Release">
       <UniqueIdentifier>{734200a6-759f-4d74-83bb-04d14bce0151}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Characters %28PC/NPC%29">
-      <UniqueIdentifier>{32007768-7e68-4c5a-845a-426c828bb256}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Characters %28PC/NPC%29">
-      <UniqueIdentifier>{d76b7703-7187-4022-9ef4-b0d95a6fc28b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maps">
       <UniqueIdentifier>{9a7aa834-aca9-44e2-90c6-8321fd43249f}</UniqueIdentifier>
     </Filter>
@@ -67,6 +61,12 @@
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{f04e99ee-3054-49b1-a229-f892edf8730d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Characters">
+      <UniqueIdentifier>{d76b7703-7187-4022-9ef4-b0d95a6fc28b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters">
+      <UniqueIdentifier>{32007768-7e68-4c5a-845a-426c828bb256}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -85,16 +85,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Characters\Character.cpp">
-      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Characters\CharPatrol.cpp">
-      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Characters\CharRand.cpp">
-      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Characters\Player.cpp">
-      <Filter>Source Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Menu\inGameMenu.cpp">
       <Filter>Source Files\Menu</Filter>
@@ -162,13 +162,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Characters\CharPatrol.h">
-      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Characters\CharRand.h">
-      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Characters\Player.h">
-      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Menu\inGameMenu.h">
       <Filter>Header Files\Menu</Filter>
@@ -218,13 +218,13 @@
     <ClInclude Include="Tools\Hedge Cutter\HedgeCutter.h">
       <Filter>Header Files\Tools\Hedge Cutter</Filter>
     </ClInclude>
-    <ClInclude Include="gameState.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Characters\Character.h">
+    <ClInclude Include="SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
+    <ClInclude Include="Characters\Character.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="gameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
