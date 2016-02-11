@@ -32,31 +32,43 @@ optionMenu::~optionMenu()
 
 void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 {
-	mTimer++;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mTimer > 20)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
-		mTimer = 0;
-
+		mDown = true;
 		optionMenu::moveDown();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mTimer > 20)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
-		mTimer = 0;
+		mDown = false;
+	}
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+	{
+		mUp = true;
 		optionMenu::moveUp();
 	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
+	{
+		mUp = false;
+	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 0)
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
-		mState = 4;
+		if (selectedIndex == 2){ 
+			mState = 1; 
+		}
+		else if (selectedIndex == 1){
+			mState = 4;
+		}
+		else if (selectedIndex == 0){
+			mState = 4;
+		}
+		mReturn = true;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 1)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
 	{
-		mState = 4;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2)
-	{
-		mState = 1;
+		mReturn = false;
 	}
 }
 

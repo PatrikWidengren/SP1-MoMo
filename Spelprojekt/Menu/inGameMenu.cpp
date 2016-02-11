@@ -31,33 +31,43 @@ inGameMenu::~inGameMenu()
 
 void inGameMenu::updateInGameMenu(sf::RenderWindow &window)
 {
-	mTimer++;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
-		mState = 1;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 1)
-	{
-		mState = 4;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2)
-	{
-		mState = 3;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mTimer > 20)
-	{
-		mTimer = 0;
-
+		mDown = true;
 		inGameMenu::moveDown();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mTimer > 20)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
-		mTimer = 0;
+		mDown = false;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+	{
+		mUp = true;
 		inGameMenu::moveUp();
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
+	{
+		mUp = false;
+	}
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
+	{
+		if (selectedIndex == 2){
+			mState = 3;
+		}
+		else if (selectedIndex == 1){
+			mState = 4;
+		}
+		else if (selectedIndex == 0){
+			mState = 1;
+		}
+		mReturn = true;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
+	{
+		mReturn = false;
 	}
 }
 

@@ -32,32 +32,45 @@ startMenu::~startMenu()
 
 void startMenu::updateStartMenu(sf::RenderWindow &window)
 {
-	mTimer++;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mTimer > 20)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
-		mTimer = 0;
-
+		mDown = true;
 		startMenu::moveDown();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mTimer > 20)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
-		mTimer = 0;
-		startMenu::moveUp();
+		mDown = false;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
-		mState = 1;
+		mUp = true;
+		startMenu::moveUp();
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 1)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
-		mState = 4;
+		mUp = false;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2)
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
-		window.close();
+		if (selectedIndex == 2){
+			window.close();
+		}
+		else if (selectedIndex == 1){
+			mState = 4;
+		}
+		else if (selectedIndex == 0){
+			mState = 1;
+		}
+		mReturn = true;
 	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
+	{
+		mReturn = false;
+	}
+
 }
 
 void startMenu::displayMenu01(sf::RenderWindow &window)

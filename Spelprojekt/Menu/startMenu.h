@@ -31,7 +31,10 @@ private:
 	sf::Text menu[MAX_NUMBER_OF_SELECTIONS];
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
-
+	//flaggor för keypress
+	bool mReturn = false;
+	bool mDown = false;
+	bool mUp = false;
 };
 
 
