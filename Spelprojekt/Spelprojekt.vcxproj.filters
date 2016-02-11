@@ -138,25 +138,16 @@
     <ClCompile Include="Tools\Lawnmower\RoyceMower.cpp">
       <Filter>Source Files\Tools\Lawnmower</Filter>
     </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="startMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="optionMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inGameMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseShears.cpp">
+    <ClCompile Include="Tools\Hedge Cutter\BaseShears.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
-    <ClCompile Include="HedgeCutter.cpp">
+    <ClCompile Include="Tools\Hedge Cutter\HedgeCutter.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
   </ItemGroup>
@@ -169,12 +160,6 @@
     </ClInclude>
     <ClInclude Include="MusicManager.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Documents\sfml1\ConsoleApplication3\gameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Characters %28PC/NPC%29</Filter>
     </ClInclude>
     <ClInclude Include="Characters\CharPatrol.h">
       <Filter>Header Files\Characters %28PC/NPC%29</Filter>
@@ -236,17 +221,11 @@
     <ClInclude Include="gameState.h">
       <Filter>Header Files\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="Characters\Character.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inGameMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="startMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="optionMenu.h">
-      <Filter>Header Files\Menu</Filter>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
