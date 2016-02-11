@@ -55,6 +55,11 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
+		mReturn = true;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
+	{
+		mReturn = false;
 		if (selectedIndex == 0){
 			mState = 1;
 		}
@@ -64,11 +69,6 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 		if (selectedIndex == 2){
 			window.close();
 		}
-		mReturn = true;
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
-	{
-		mReturn = false;
 	}
 
 }

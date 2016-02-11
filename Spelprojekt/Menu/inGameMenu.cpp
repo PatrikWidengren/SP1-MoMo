@@ -54,20 +54,20 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
-		if (selectedIndex == 2){
-			mState = 3;
-		}
-		else if (selectedIndex == 1){
-			mState = 4;
-		}
-		else if (selectedIndex == 0){
-			mState = 1;
-		}
 		mReturn = true;
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
+		if (selectedIndex == 0){
+			mState = 1;
+		}
+		if (selectedIndex == 1){
+			mState = 4;
+		}
+		if (selectedIndex == 2){
+			mState = 3;
+		}
 	}
 }
 
