@@ -201,6 +201,7 @@ void Map1::takeTurn(int dir){
 		bool moved=movePlayer(meepMove.at(i));
 		if (!moved){
 			mPlayer->collide(meepMove, i);
+
 			break;
 		}
 	}

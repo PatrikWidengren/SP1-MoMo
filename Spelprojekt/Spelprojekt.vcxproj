@@ -86,6 +86,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="optionMenu.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="startMenu.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="MusicManager.h" />
     <ClInclude Include="optionMenu.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="startMenu.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Map1.h" />

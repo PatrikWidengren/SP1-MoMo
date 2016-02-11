@@ -3,6 +3,8 @@
 #include "inGameMenu.h"
 #include "startMenu.h"
 #include "optionMenu.h"
+#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Map1.h"
 #include <iostream>
 
@@ -11,11 +13,11 @@ class gameState
 public:
 	gameState(sf::RenderWindow &window);
 
-	void drawInGame(sf::RenderWindow &window, sf::Vector2i mouse);
-	void drawStartMenu(sf::RenderWindow &window, sf::Vector2i mouse);
-	void drawOptionMenu(sf::RenderWindow &window, sf::Vector2i mouse);
-	void drawInGameMenu(sf::RenderWindow &window, sf::Vector2i mouse);
-	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i mouse);
+	void drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	~gameState();
 

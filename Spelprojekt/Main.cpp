@@ -2,6 +2,7 @@
 #include <vector>
 #include "gameState.h"
 #include "MusicManager.h"
+#include "SoundManager.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -13,6 +14,7 @@ static int const windowHeigth = 720;
 int main(){
 	
 	MusicManager mMusicManager(0);
+	SoundManager mSoundManager();
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeigth), "garden");
 	sf::Vector2i mouse;
@@ -33,7 +35,7 @@ int main(){
 
 		window.clear();
 
-		theGame.gameStatesHandler(window, mouse);
+		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager);
 		
 		window.display();
 	}
