@@ -161,7 +161,7 @@
     <Text Include="Maps\map1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resource Files\Sound\Kollision+Häck.wav" />
+    <Media Include="Resource Files\Sound\Kollision+Haack.wav" />
     <Media Include="Resource Files\Sound\YouLost.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

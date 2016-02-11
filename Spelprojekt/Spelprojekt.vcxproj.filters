@@ -321,10 +321,10 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resource Files\Sound\Kollision+Häck.wav">
+    <Media Include="Resource Files\Sound\YouLost.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
-    <Media Include="Resource Files\Sound\YouLost.wav">
+    <Media Include="Resource Files\Sound\Kollision+Haack.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
   </ItemGroup>
