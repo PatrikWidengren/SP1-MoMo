@@ -12,6 +12,7 @@
 #include "Tools/Lawnmower/LawnMower.h"
 #include "Characters/CharRand.h"
 #include "Characters/CharPatrol.h"
+#include "SoundManager.h"
 #include <fstream>
 #include <array>
 #include <iomanip>
@@ -37,7 +38,7 @@ public:
 	virtual std::vector<StaticObjects*> getLongObjects();
 	//Funktion för att få storleken på arrayen, denna funktion anropas i konstruktorn till Map
 	void virtual getArraySize();
-	void takeTurn(int dir);
+	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
 private:
 	//Added turn count

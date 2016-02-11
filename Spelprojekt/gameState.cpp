@@ -120,7 +120,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
 		space = true;
-		mMap01->takeTurn(moveMeep);
+		mMap01->takeTurn(moveMeep, sound);
 		moveMeep = 0;
 		keyPressed = false;
 	}
