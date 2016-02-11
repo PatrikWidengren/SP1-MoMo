@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <iostream>
 
 using namespace std;
 
@@ -39,7 +38,6 @@ void Player::collide(intVector moves, int atPos){
 		dmg++;
 	}
 	lawnMower->setToMin(dmg);
-	cout << dmg << " damage" << endl;
 }
 
 float Player::getPosX(){
