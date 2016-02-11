@@ -20,7 +20,7 @@ int main(){
 	sf::Vector2i mouse;
 
 	gameState theGame(window);
-	mMusicManager.getMusic()->play();
+	//mMusicManager.getMusic()->play();
 
 	while (window.isOpen()){
 		sf::Event event;

@@ -201,7 +201,7 @@ void Map1::spawnObjects(){
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
-void Map1::takeTurn(int dir){
+void Map1::takeTurn(int dir, SoundManager &sound){
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
@@ -209,7 +209,8 @@ void Map1::takeTurn(int dir){
 		bool moved=movePlayer(meepMove.at(i));
 		if (!moved){
 			mPlayer->collide(meepMove, i);
-
+			sound.setSound(0);
+			sound.playSound();
 			break;
 		}
 	}
