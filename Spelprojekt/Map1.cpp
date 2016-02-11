@@ -140,17 +140,16 @@ void Map1::spawnObjects(){
 		}
 	}
 	//skapar temporärt en array med bara de steg och turer som inte är noll.
-	int tempPath[6][4]{
+	int tempPath[5][4]{
 			{ 4, 0, 0, 0 },
 			{ 2, 2, 0, 0 },
-			{ 6, 6, 6, 0 },
-			{ 8, 8, 8, 0 },
-			{ 4, 4, 4, 0 },
-			{ 2, 0, 0, 0 }
+			{ 6, 6, 6, 6 },
+			{ 8, 8, 0, 0 },
+			{ 4, 4, 4, 0 }
 	};
 
 	//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
-	for (int i = 0; i < 4; i++){
+	for (int i = 0; i < 5; i++){
 		for (int j = 0; j < 4; j++){
 			patrolPath[i][j] = tempPath[i][j];
 		}
