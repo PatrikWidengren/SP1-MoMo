@@ -226,7 +226,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 4;
 	}
 
-	if (mMap01->mTurnCount >= 3)
+	if (mMap01->mTurnCount >= 50
+		)
 		mState = 5;
 
 }
