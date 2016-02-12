@@ -19,6 +19,7 @@ protected:
 	cutVector curCuts;
 	int mReach;
 	int mMaxDistance;
+	coords mBaseTile;
 };
 
 #endif

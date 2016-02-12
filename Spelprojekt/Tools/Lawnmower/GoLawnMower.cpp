@@ -60,20 +60,14 @@ void GoLawnMower::momFall(mowStats stats){
 to get the movement, and so that decorator can make the move without
 determining momentum twice*/
 intVector GoLawnMower::getMove(int dir){
-	if (mStats.mFunctioning){
-		/*increase or decrease momentum*/
-		determineMom(dir, mStats);
-		/*create a list of steps to attempt*/
-		intVector curMove = writeMove(dir);
-		/*mLastDir updated last to ensure other getMove() functions
-		can maintain the same structure while utilising both dir and mLastDir*/
-		mLastDir = dir;
-		return curMove;
-	}
-	else {
-		intVector curMove;
-		return curMove;
-	}
+	/*increase or decrease momentum*/
+	determineMom(dir, mStats);
+	/*create a list of steps to attempt*/
+	intVector curMove = writeMove(dir);
+	/*mLastDir updated last to ensure other getMove() functions
+	can maintain the same structure while utilising both dir and mLastDir*/
+	mLastDir = dir;
+	return curMove;
 }
 
 intVector GoLawnMower::writeMove(int dir){

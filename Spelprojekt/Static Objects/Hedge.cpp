@@ -59,4 +59,7 @@ void Hedge::initialize(){
 }
 void Hedge::finalize(){
 	textureHedge.~Texture();
+	textureCutHedge.~Texture();
+	imageHedge.~Image();
+	imageCutHedge.~Image();
 }

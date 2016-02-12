@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 
+
 typedef std::vector<StaticObjects*> ObjectsVector;
 ObjectsVector mObjects;
 typedef std::vector<Character*> NpcVector;
@@ -69,28 +70,52 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	mMap01->render();
 
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){
+		swap5 = true;
+		std::cout << "swapping" << std::endl;
+		/*std::cout << "Swapped to ";
+		if (mMap01->getPlayer()->getMowerEquipped()){
+			std::cout << "lawnmower" << std::endl;
+		}
+		else {
+			std::cout << "hedge cutter" << std::endl;
+		}*/
+		mMap01->getPlayer()->swapEquipped();
+	}
+
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5){
+		swap5 = false;
+	}
+
+
+
 	if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
 		moveMeep = 1;
+		std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
 		moveMeep = 3;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
 		moveMeep = 7;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
 		moveMeep = 9;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 
@@ -98,28 +123,33 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
 		moveMeep = 2;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
 		moveMeep = 4;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
 		moveMeep = 6;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
 		moveMeep = 8;
+		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
 		space = true;
+		//std::cout << "confirm dir " << moveMeep << std::endl;
 		mMap01->takeTurn(moveMeep, sound);
 		moveMeep = 0;
 		keyPressed = false;
@@ -128,6 +158,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 		space = false;
 	}
+
 }
 
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)

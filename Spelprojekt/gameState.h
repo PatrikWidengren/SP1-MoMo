@@ -32,6 +32,7 @@ private:
 	int moveMeep = 0;
 	bool keyPressed = false;
 	bool space = false;
+	bool swap5 = false;
 };
 
 #endif

@@ -2,11 +2,12 @@
 #define INCLUDED_PLAYER
 #include "..\Tools\Lawnmower\BaseMower.h"
 #include "SFML\Graphics.hpp"
+#include "..\Tools\Hedge Cutter\BaseShears.h"
 
 class Player{
 public:
 	/*X and Y position for the array, a lawnmower, and the X and Y coordinates*/
-	Player(int arrX, int arrY, Mower *m, float posX, float posY);
+	Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY);
 	~Player();
 	/*Return movement as intvector*/
 	intVector move(int dir);
@@ -30,6 +31,11 @@ public:
 	float getLast();
 	/*Get the Player's type (the int that represents it in the array)*/
 	float getType();
+	//true if equipped lawnmower, false if hedge cutter
+	bool getMowerEquipped();
+	//Swap which tool is equipped;
+	void swapEquipped();
+	cutVector getCuts();
 	/*update the position of the sprite by +x, +y*/
 	void updPos(float x, float y);
 	//void update();
@@ -39,7 +45,10 @@ public:
 	sf::Sprite getSprite();
 private:
 	/*equipped lawnmower*/
-	Mower *lawnMower;
+	Mower *mLawnMower;
+	Shears *mHedgeTool;
+	//When hedge cutter is equipped, this value is false
+	bool mMowerEquipped = true;
 	/*x and y in the array*/
 	int mArrayX, mArrayY;
 	/*important values for the array*/
