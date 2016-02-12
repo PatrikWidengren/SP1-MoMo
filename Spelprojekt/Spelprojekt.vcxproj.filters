@@ -150,6 +150,9 @@
     <ClCompile Include="Tools\Hedge Cutter\HedgeCutter.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
+    <ClCompile Include="Static Objects\Hedge.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map1.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="gameState.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Static Objects\Hedge.h">
+      <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@ Map1::Map1(string savefile){
 	Grass::initialize();
 	Fence::initialize();
 	Tree::initialize();
+	Hedge::initialize();
 	Player::initialize();
 	CharRand::initialize();
 	CharPatrol::initialize();
@@ -24,6 +25,7 @@ Map1::~Map1(){
 	Grass::finalize();
 	Fence::finalize();
 	Tree::finalize();
+	Hedge::finalize();
 	Player::finalize();
 	CharRand::finalize();
 	CharPatrol::finalize();
@@ -194,6 +196,10 @@ void Map1::spawnObjects(){
 				totalAmountOfGrass++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), patrolPath));
+			}
+			if (mGrid[j][i] == 9){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 		}
 	}

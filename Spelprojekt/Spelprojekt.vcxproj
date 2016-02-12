@@ -86,6 +86,7 @@
     <ClCompile Include="Maps.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
     <ClCompile Include="Static Objects\Grass.cpp" />
+    <ClCompile Include="Static Objects\Hedge.cpp" />
     <ClCompile Include="Static Objects\StaticObjects.cpp" />
     <ClCompile Include="Static Objects\Stone.cpp" />
     <ClCompile Include="Static Objects\Tree.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="Maps.h" />
     <ClInclude Include="Static Objects\Fence.h" />
     <ClInclude Include="Static Objects\Grass.h" />
+    <ClInclude Include="Static Objects\Hedge.h" />
     <ClInclude Include="Static Objects\StaticObjects.h" />
     <ClInclude Include="Static Objects\Stone.h" />
     <ClInclude Include="Static Objects\Tree.h" />

@@ -6,6 +6,7 @@
 #include "Static Objects/Stone.h"
 #include "Static Objects/Fence.h"
 #include "Static Objects/Tree.h"
+#include "Static Objects/Hedge.h"
 #include "Characters/Player.h"
 #include "Tools/Lawnmower/GoLawnMower.h"
 #include "Tools/Lawnmower/RoyceMower.h"
