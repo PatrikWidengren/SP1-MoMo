@@ -226,8 +226,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 4;
 	}
 
-	if (mMap01->mTurnCount >= 50
-		)
+	//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
+	//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+	if (mMap01->mTurnCount >= 50)
 		mState = 5;
 
 }
