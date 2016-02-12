@@ -283,6 +283,12 @@
     <None Include="Resource Files\Music\test1.flac">
       <Filter>Resource Files\Music</Filter>
     </None>
+    <None Include="Resource Files\Sound\kollision_sten.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\kollision_vas.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png">
@@ -325,13 +331,5 @@
     <Text Include="Maps\map1.txt">
       <Filter>Maps</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Resource Files\Sound\YouLost.wav">
-      <Filter>Resource Files\Sound</Filter>
-    </Media>
-    <Media Include="Resource Files\Sound\Kollision+Haack.wav">
-      <Filter>Resource Files\Sound</Filter>
-    </Media>
   </ItemGroup>
 </Project>

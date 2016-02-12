@@ -143,6 +143,8 @@
     <None Include="..\Release\Spelprojekt.exe" />
     <None Include="..\Release\Spelprojekt.pdb" />
     <None Include="Resource Files\Music\test1.flac" />
+    <None Include="Resource Files\Sound\kollision_sten.flac" />
+    <None Include="Resource Files\Sound\kollision_vas.flac" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />
@@ -161,10 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Maps\map1.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Resource Files\Sound\Kollision+Haack.wav" />
-    <Media Include="Resource Files\Sound\YouLost.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

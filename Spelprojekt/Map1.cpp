@@ -402,8 +402,36 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		return true;
 		}
 		else {
-			//cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
-
+			if (mGrid[tempY][tempX] == 6){
+				//Krock med Katt
+				sound.setSound(1);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 7){
+				//Krock med Vakt
+				sound.setSound(1);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 1){
+				//Krock med Staket
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 3){
+				//Krock med Sten
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 4){
+				//Krock med Träd
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 9){
+				//Krock med Häck
+				sound.setSound(0);
+				sound.playSound();
+			}
 		return false;
 	}
 }
@@ -471,11 +499,43 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 	else {
 		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Meep
 			sound.setSound(1);
 			sound.playSound();
 			int dmg = 1;
 			mPlayer->collideWith(dmg);
 		}
+		else if (mGrid[tempY][tempX] == 6 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Katt
+			sound.setSound(1);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 7 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Vakt
+			sound.setSound(1);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 1 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Staket
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 3 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Sten
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 4 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Träd
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 9 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Häck
+			sound.setSound(0);
+			sound.playSound();
+		}
+
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
 	}
