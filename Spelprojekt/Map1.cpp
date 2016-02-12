@@ -185,7 +185,7 @@ void Map1::spawnObjects(){
 			}
 			if (mGrid[j][i] == 5){
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
-				mPlayer = new Player(i, j, new LawnMower(), (i * widthOnTile), (j * heigthOnTile));
+				mPlayer = new Player(i, j, new LawnMower(), new HedgeCutter(2, 1), (i * widthOnTile), (j * heigthOnTile));
 			}
 			if (mGrid[j][i] == 6){
 				totalAmountOfGrass++;
@@ -198,6 +198,7 @@ void Map1::spawnObjects(){
 				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), patrolPath));
 			}
 			if (mGrid[j][i] == 9){
+				totalAmountOfHedges++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
@@ -275,6 +276,7 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 	if (mTurnCount >= 50){
 		cout << "GAME OVER" << endl;
 	}
+	cout << endl;
 }
 
 bool Map1::movePlayer(int dir, SoundManager &sound){
@@ -342,7 +344,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 
 		/*move meep to new place in the array and return the original value
 		to the last position*/
-		//cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
 			//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
@@ -357,25 +359,79 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			//mEepX = tempX;
 			//mEepY = tempY;
 
-
-			//Loopar igenom alla objekt och kollar funktionen "getCut" på det objektet som spelaren befinner sig på, den blir true när gräset är klippt.
-			//Variabeln cutGrass plussas på varje gång ett gräs klipps
-			for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-				if (mObjects[i]->getArrayX() == tempX && mObjects[i]->getArrayY() == tempY){
-					if (!mObjects[i]->getCut()){
-						mObjects[i]->setCut();
-						cutGrass++;
+			//Kan inte stänga av gräsklippning på trasig klippare förrän vi har ordentlig Render
+			if (mPlayer->getMowerEquipped()){
+				//Loopar igenom alla objekt och kollar funktionen "getCut" på det objektet som spelaren befinner sig på, den blir true när gräset är klippt.
+				//Variabeln cutGrass plussas på varje gång ett gräs klipps
+				for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+					if (mObjects[i]->getArrayX() == tempX && mObjects[i]->getArrayY() == tempY){
+						if (!mObjects[i]->getCut()){
+							mObjects[i]->setCut();
+							cutGrass++;
+						}
+					}
+				}
+			}
+			else {
+				cutVector cut = mPlayer->getCuts();
+				cutVector toCut;
+				//Beautiful, I know.
+				for (cutVector::size_type i = 0; i < cut.size(); i++){
+					if (mGrid[cut.at(i)[1]][cut.at(i)[0]] == 9.0f){
+						//If we had updated render, this mess could end right here
+						//with a single line of code:
+						//mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f
+						toCut.push_back(cut.at(i));
+						for (ObjectsVector::size_type j = 0; j < mLongObjects.size(); j++){
+							for (cutVector::size_type k = 0; k < toCut.size(); k++){
+								if (mLongObjects[j]->getArrayX() == toCut.at(k)[0] && mLongObjects[j]->getArrayY() == toCut.at(k)[1]){
+									if (!mLongObjects[j]->getCut()){
+										mLongObjects[j]->setCut();
+										cutHedges++;
+									}
+								}
+							}
+						}
 					}
 				}
 			}
 			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
+			cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 
-			//cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
 		else {
-			//cout << "Meep tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
-
+			if (mGrid[tempY][tempX] == 6){
+				//Krock med Katt
+				sound.setSound(1);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 7){
+				//Krock med Vakt
+				sound.setSound(1);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 1){
+				//Krock med Staket
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 3){
+				//Krock med Sten
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 4){
+				//Krock med Träd
+				sound.setSound(0);
+				sound.playSound();
+			}
+			else if (mGrid[tempY][tempX] == 9){
+				//Krock med Häck
+				sound.setSound(0);
+				sound.playSound();
+			}
 		return false;
 	}
 }
@@ -442,12 +498,44 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 	}
 	else {
 		//Recognizes what it collides with. Sorta.
-		if (mGrid[tempY][tempX] == 5){
+		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Meep
 			sound.setSound(1);
 			sound.playSound();
 			int dmg = 1;
 			mPlayer->collideWith(dmg);
 		}
+		else if (mGrid[tempY][tempX] == 6 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Katt
+			sound.setSound(1);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 7 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Vakt
+			sound.setSound(1);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 1 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Staket
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 3 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Sten
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 4 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Träd
+			sound.setSound(0);
+			sound.playSound();
+		}
+		else if (mGrid[tempY][tempX] == 9 && mNpcs.at(atPos)->getCollide()){
+			//Krock med Häck
+			sound.setSound(0);
+			sound.playSound();
+		}
+
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
 	}

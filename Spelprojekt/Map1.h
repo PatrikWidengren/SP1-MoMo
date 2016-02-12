@@ -11,6 +11,7 @@
 #include "Tools/Lawnmower/GoLawnMower.h"
 #include "Tools/Lawnmower/RoyceMower.h"
 #include "Tools/Lawnmower/LawnMower.h"
+#include "Tools/Hedge Cutter/HedgeCutter.h"
 #include "Characters/CharRand.h"
 #include "Characters/CharPatrol.h"
 #include "SoundManager.h"
@@ -50,8 +51,10 @@ private:
 	//int patrolPath[50][10] = {};
 	int mWidth, mHeigth;
 	int totalAmountOfGrass = 0;
+	int totalAmountOfHedges = 0;
 	int turnsLeft = 50;
 	int cutGrass = 0;
+	int cutHedges = 0;
 	std::string mSavefile;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;

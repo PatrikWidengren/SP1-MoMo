@@ -18,7 +18,7 @@ Hedge::Hedge(int arrayX, int arrayY, float posX, float posY){
 	mSprite.setPosition(mPosX, mPosY);
 }
 Hedge::~Hedge(){
-	
+
 }
 void Hedge::render(){
 	if (!isCut){
@@ -62,5 +62,4 @@ void Hedge::finalize(){
 	textureCutHedge.~Texture();
 	imageHedge.~Image();
 	imageCutHedge.~Image();
-
 }

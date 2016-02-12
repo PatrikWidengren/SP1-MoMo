@@ -1,4 +1,5 @@
 #include "HedgeCutter.h"
+#include <iostream>
 
 HedgeCutter::HedgeCutter(int reach, int max){
 	mReach = reach;
@@ -18,13 +19,14 @@ int HedgeCutter::getReach(){
 }
 
 cutVector HedgeCutter::getCuts(int arrX, int arrY){
-	for (cutVector::size_type i = 0; i<curCuts.size(); i++){
+	while (!curCuts.empty()){
 		curCuts.pop_back();
 	}
 	int tempReach = mReach;
-	coords base = { arrX, arrY };
+	mBaseTile[0] = { arrX};
+	mBaseTile[1] = { arrY };
 	if (tempReach > 0){
-		calcCuts(base, tempReach);
+		calcCuts(mBaseTile, tempReach);
 	}
 	
 	for (cutVector::size_type i = 0; i < curCuts.size(); i++){
@@ -49,10 +51,10 @@ void HedgeCutter::calcCuts(coords base, int temp){
 			}
 			else {
 				//Make sure it doesn't reach too far out in any direction
-				if (baseBackup[0] - base[0] < -mMaxDistance ||
-					baseBackup[0] - base[0] > mMaxDistance ||
-					baseBackup[1] - base[1] < -mMaxDistance ||
-					baseBackup[1] - base[1] > mMaxDistance){
+				if (mBaseTile[0] - base[0] < -mMaxDistance ||
+					mBaseTile[0] - base[0] > mMaxDistance ||
+					mBaseTile[1] - base[1] < -mMaxDistance ||
+					mBaseTile[1] - base[1] > mMaxDistance){
 				}
 				else {
 					//if it checks out, add it to the cutVector
@@ -66,16 +68,16 @@ void HedgeCutter::calcCuts(coords base, int temp){
 			break;
 		case 1:
 			//Set the coordinates to be cut
-			base[0]--;
+			base[1]--;
 			//Make sure the coordinate isn't cut already
 			if (std::find(curCuts.begin(), curCuts.end(), base) != curCuts.end()) {
 			}
 			else {
 				//Make sure it doesn't reach too far out in any direction
-				if (baseBackup[0] - base[0] < -mMaxDistance ||
-					baseBackup[0] - base[0] > mMaxDistance ||
-					baseBackup[1] - base[1] < -mMaxDistance ||
-					baseBackup[1] - base[1] > mMaxDistance){
+				if (mBaseTile[0] - base[0] < -mMaxDistance ||
+					mBaseTile[0] - base[0] > mMaxDistance ||
+					mBaseTile[1] - base[1] < -mMaxDistance ||
+					mBaseTile[1] - base[1] > mMaxDistance){
 				}
 				else {
 					//if it checks out, add it to the cutVector
@@ -89,16 +91,16 @@ void HedgeCutter::calcCuts(coords base, int temp){
 			break;
 		case 2:
 			//Set the coordinates to be cut
-			base[0]--;
+			base[0]++;
 			//Make sure the coordinate isn't cut already
 			if (std::find(curCuts.begin(), curCuts.end(), base) != curCuts.end()) {
 			}
 			else {
 				//Make sure it doesn't reach too far out in any direction
-				if (baseBackup[0] - base[0] < -mMaxDistance ||
-					baseBackup[0] - base[0] > mMaxDistance ||
-					baseBackup[1] - base[1] < -mMaxDistance ||
-					baseBackup[1] - base[1] > mMaxDistance){
+				if (mBaseTile[0] - base[0] < -mMaxDistance ||
+					mBaseTile[0] - base[0] > mMaxDistance ||
+					mBaseTile[1] - base[1] < -mMaxDistance ||
+					mBaseTile[1] - base[1] > mMaxDistance){
 				}
 				else {
 					//if it checks out, add it to the cutVector
@@ -112,16 +114,16 @@ void HedgeCutter::calcCuts(coords base, int temp){
 			break;
 		case 3:
 			//Set the coordinates to be cut
-			base[0]--;
+			base[1]++;
 			//Make sure the coordinate isn't cut already
 			if (std::find(curCuts.begin(), curCuts.end(), base) != curCuts.end()) {
 			}
 			else {
 				//Make sure it doesn't reach too far out in any direction
-				if (baseBackup[0] - base[0] < -mMaxDistance ||
-					baseBackup[0] - base[0] > mMaxDistance ||
-					baseBackup[1] - base[1] < -mMaxDistance ||
-					baseBackup[1] - base[1] > mMaxDistance){
+				if (mBaseTile[0] - base[0] < -mMaxDistance ||
+					mBaseTile[0] - base[0] > mMaxDistance ||
+					mBaseTile[1] - base[1] < -mMaxDistance ||
+					mBaseTile[1] - base[1] > mMaxDistance){
 				}
 				else {
 					//if it checks out, add it to the cutVector

@@ -17,29 +17,23 @@ RoyceMower::~RoyceMower(){
 }
 
 intVector RoyceMower::getMove(int dir){
-	if (mStats.mFunctioning){
-		/*for this decorator, we require the old momentum to know how much
-		meep will drift*/
-		int mLastMom = mCurMom;
-		/*determine the new momentum*/
-		determineMom(dir, mStats);
-		/*write the standard movement into an intVector*/
-		intVector stdMove = writeMove(dir);
-		intVector newMove;
-		/*add the standard movement after half the previous turns movement*/
-		for (int i = 0; i < mLastMom; i += 2){
-			newMove.push_back(mLastDir);
-		}
-		for (intVector::size_type i = 0; i < stdMove.size(); i++){
-			newMove.push_back(stdMove.at(i));
-		}
-		mLastDir = dir;
-		return newMove;
+	/*for this decorator, we require the old momentum to know how much
+	meep will drift*/
+	int mLastMom = mCurMom;
+	/*determine the new momentum*/
+	determineMom(dir, mStats);
+	/*write the standard movement into an intVector*/
+	intVector stdMove = writeMove(dir);
+	intVector newMove;
+	/*add the standard movement after half the previous turns movement*/
+	for (int i = 0; i < mLastMom; i += 2){
+		newMove.push_back(mLastDir);
 	}
-	else{
-		intVector curMove;
-		return curMove;
+	for (intVector::size_type i = 0; i < stdMove.size(); i++){
+		newMove.push_back(stdMove.at(i));
 	}
+	mLastDir = dir;
+	return newMove;
 }
 
 /*refer to base writeMove() and return that vector*/

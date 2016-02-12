@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 using namespace std;
 
@@ -6,10 +7,11 @@ sf::Texture texturePlayer;
 sf::Image imagePlayer;
 static const string filename = "Resource Files/Sprites/meep.png";
 
-Player::Player(int arrX, int arrY, Mower *m, float posX, float posY):
+Player::Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY):
 	mArrayX(arrX),
 	mArrayY(arrY),
-	lawnMower(m){	
+	mLawnMower(m),
+	mHedgeTool(c){	
 	mPosX = posX;
 	mPosY = posY;
 	mPlayerSprite.setPosition(posX, posY);
@@ -25,10 +27,11 @@ void Player::updPos(float x, float y){
 }
 
 Player::~Player(){
-	delete lawnMower;
+	delete mLawnMower;
+	delete mHedgeTool;
 }
 intVector Player::move(int dir){
-	intVector movement = lawnMower->getMove(dir);
+	intVector movement = mLawnMower->getMove(dir);
 	return movement;
 }
 
@@ -37,11 +40,11 @@ void Player::collide(intVector moves, int atPos){
 	for (intVector::size_type i = atPos; i < moves.size(); i++){
 		dmg++;
 	}
-	lawnMower->setToMin(dmg);
+	mLawnMower->setToMin(dmg);
 }
 
 void Player::collideWith(int dmg){
-	lawnMower->setToMin(dmg);
+	mLawnMower->setToMin(dmg);
 }
 
 float Player::getPosX(){
@@ -79,6 +82,32 @@ float Player::getType(){
 
 float Player::getLast(){
 	return mLast;
+}
+
+bool Player::getMowerEquipped(){
+	return mMowerEquipped;
+}
+
+void Player::swapEquipped(){
+	cout << "Equipment changed from ";
+	if (mMowerEquipped){
+		cout << "Lawnmower" << endl;
+	}
+	else {
+		cout << "Hedge cutter" << endl;
+	}
+	mMowerEquipped = !mMowerEquipped;
+	cout << "Equipment changed to ";
+	if (mMowerEquipped){
+		cout << "Lawnmower" << endl;
+	}
+	else {
+		cout << "Hedge cutter" << endl;
+	}
+}
+
+cutVector Player::getCuts(){
+	return mHedgeTool->getCuts(mArrayX, mArrayY);
 }
 
 void Player::setLast(float l){
