@@ -52,4 +52,5 @@ void Grass::initialize(){
 }
 void Grass::finalize(){
 	textureGrass.~Texture();
+	textureCutGrass.~Texture();
 }

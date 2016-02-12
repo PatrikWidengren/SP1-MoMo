@@ -47,4 +47,5 @@ void Fence::initialize(){
 }
 void Fence::finalize(){
 	textureFence.~Texture();
+	imageFence.~Image();
 }

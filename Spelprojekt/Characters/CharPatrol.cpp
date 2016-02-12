@@ -167,4 +167,5 @@ void CharPatrol::initialize(){
 
 void CharPatrol::finalize(){
 	textureGuard.~Texture();
+	imageGuard.~Image();
 }
