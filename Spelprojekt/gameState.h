@@ -3,7 +3,7 @@
 #include "Menu/inGameMenu.h"
 #include "Menu/startMenu.h"
 #include "Menu/optionMenu.h"
-#include "GameOverMenu.h"
+#include "Menu/GameOverMenu.h"
 
 #include "MusicManager.h"
 #include "SoundManager.h"
