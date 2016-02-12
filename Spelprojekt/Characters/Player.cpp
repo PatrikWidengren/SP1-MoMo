@@ -120,6 +120,7 @@ void Player::initialize(){
 }
 void Player::finalize(){
 	texturePlayer.~Texture();
+	imagePlayer.~Image();
 }
 /*void Player::update(){
 

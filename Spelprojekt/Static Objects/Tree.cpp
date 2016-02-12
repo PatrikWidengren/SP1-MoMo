@@ -4,7 +4,7 @@ using namespace std;
 
 static const string filename = "Resource Files/Sprites/Tree.png";
 sf::Texture textureTree;
-sf::Image image;
+sf::Image imageTree;
 
 Tree::Tree(int arrayX, int arrayY, float posX, float posY){
 	mArrayX = arrayX;
@@ -51,10 +51,11 @@ void Tree::changeWalkable(){
 	}
 }
 void Tree::initialize(){
-	image.loadFromFile(filename);
-	image.createMaskFromColor(sf::Color::White);
-	textureTree.loadFromImage(image);
+	imageTree.loadFromFile(filename);
+	imageTree.createMaskFromColor(sf::Color::White);
+	textureTree.loadFromImage(imageTree);
 }
 void Tree::finalize(){
 	textureTree.~Texture();
+	imageTree.~Image();
 }

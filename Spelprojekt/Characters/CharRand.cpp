@@ -128,4 +128,5 @@ void CharRand::initialize(){
 
 void CharRand::finalize(){
 	textureCat.~Texture();
+	imageCat.~Image();
 }
