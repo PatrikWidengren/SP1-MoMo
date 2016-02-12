@@ -15,6 +15,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
+	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 
 	mMap01 = new Map1("Maps/map1.txt");
 	
@@ -137,6 +138,13 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	mState = mOptionMenu01->checkState();
 }
 
+void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+{
+	mGameOverMenu01->updateGameOverMenu(window);
+	mGameOverMenu01->displayMenu01(window);
+	mState = mGameOverMenu01->checkState();
+}
+
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	switch (mState) //switch that hold the states of the game
@@ -155,6 +163,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 4: //state 4. option.
 		drawOptionMenu(window, mouse, music, sound);
+		break;
+
+	case 5: //state 4. GameOver.
+		drawGameOverMenu(window, mouse, music, sound);
 		break;
 
 	default:
@@ -182,5 +194,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 		mState = 4;
 	}
+
+	if (mMap01->mTurnCount >= 3)
+		mState = 5;
 
 }

@@ -153,6 +153,9 @@
     <ClCompile Include="Static Objects\Hedge.cpp">
       <Filter>Source Files\Static Objects</Filter>
     </ClCompile>
+    <ClCompile Include="GameOverMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map1.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Static Objects\Hedge.h">
       <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

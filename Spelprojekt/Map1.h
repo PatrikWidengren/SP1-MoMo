@@ -41,9 +41,9 @@ public:
 	void virtual getArraySize();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
-private:
 	//Added turn count
 	int mTurnCount = 0;
+private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
