@@ -206,11 +206,12 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
 	for (intVector::size_type i = 0; i < meepMove.size(); i++){
-		bool moved=movePlayer(meepMove.at(i));
+		bool moved = movePlayer(meepMove.at(i), sound);
 		if (!moved){
 			mPlayer->collide(meepMove, i);
-			sound.setSound(0);
-			sound.playSound();
+			//sound.setSound(0);
+			//sound.setSound(1);
+			//sound.playSound();
 			break;
 		}
 	}
@@ -230,9 +231,11 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 			}
 			/*the movement functions returns a bool. True if they moved, 
 			false in case of collision*/
-			bool moved = moveNpc(npcMove.at(j), i);
+			bool moved = moveNpc(npcMove.at(j), i, sound);
 			/*if the NPC collided: do the following*/
 			if (!moved){
+				//sound.setSound(1);
+				//sound.playSound();
 				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
 				/*get a new series of moves to attempt*/
 				intVector tryMove;
@@ -248,7 +251,7 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 					}
 					/*check every move. If one of them works, return to standard
 					movement pattern*/
-					bool retryMoved = moveNpc(tryMove.at(k), i);
+					bool retryMoved = moveNpc(tryMove.at(k), i, sound);
 					if (retryMoved){
 						break;
 					}
@@ -268,7 +271,7 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 	}
 }
 
-bool Map1::movePlayer(int dir){
+bool Map1::movePlayer(int dir, SoundManager &sound){
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
@@ -371,7 +374,7 @@ bool Map1::movePlayer(int dir){
 	}
 }
 
-bool Map1::moveNpc(int dir, int atPos){
+bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 	int tempX = mNpcs.at(atPos)->getX();
 	int tempY = mNpcs.at(atPos)->getY();
 	float tempPosX = 0;
@@ -432,6 +435,13 @@ bool Map1::moveNpc(int dir, int atPos){
 		return true;
 	}
 	else {
+		//Recognizes what it collides with. Sorta.
+		if (mGrid[tempY][tempX] == 5){
+			sound.setSound(1);
+			sound.playSound();
+			int dmg = 1;
+			mPlayer->collideWith(dmg);
+		}
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
 	}

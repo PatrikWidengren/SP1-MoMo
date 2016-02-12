@@ -102,6 +102,10 @@ float CharRand::getType(){
 	return mType;
 }
 
+bool CharRand::getCollide(){
+	return false;
+}
+
 void CharRand::updPos(float x, float y){
 	mPosX += x;
 	mPosY += y;

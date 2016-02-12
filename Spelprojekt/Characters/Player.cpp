@@ -40,6 +40,10 @@ void Player::collide(intVector moves, int atPos){
 	lawnMower->setToMin(dmg);
 }
 
+void Player::collideWith(int dmg){
+	lawnMower->setToMin(dmg);
+}
+
 float Player::getPosX(){
 	return mPosX;
 }

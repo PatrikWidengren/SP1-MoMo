@@ -27,6 +27,8 @@ public:
 	static void initialize();
 	static void finalize();
 	virtual sf::Sprite getSprite();
+	//Treat this as running into and colliding with things?
+	virtual bool getCollide();
 private:
 	int mArrayX, mArrayY;
 	float mType, mLast, mPosX, mPosY;

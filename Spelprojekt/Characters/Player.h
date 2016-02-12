@@ -14,6 +14,7 @@ public:
 	float getPosY();
 	/*collision during movement "moves" at position "atPos"*/
 	void collide(intVector moves, int atPos);
+	void collideWith(int dmg);
 	/*Get Player's X value from the array*/
 	int getX();
 	/*Get Player's Y value from the array*/

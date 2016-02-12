@@ -141,6 +141,10 @@ float CharPatrol::getType(){
 	return mType;
 }
 
+bool CharPatrol::getCollide(){
+	return true;
+}
+
 void CharPatrol::updPos(float x, float y){
 	mPosX += x;
 	mPosY += y;

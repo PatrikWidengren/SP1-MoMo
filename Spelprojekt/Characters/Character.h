@@ -22,6 +22,8 @@ public:
 	virtual void updPos(float x, float y) = 0;
 	virtual void render() = 0;
 	virtual sf::Sprite getSprite() = 0;
+	//Treat this as running into and colliding with things?
+	virtual bool getCollide() = 0;
 };
 
 #endif
