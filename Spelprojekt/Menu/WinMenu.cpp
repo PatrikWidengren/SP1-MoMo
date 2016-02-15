@@ -4,23 +4,23 @@ WinMenu::WinMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 2;
+	mState = 6;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("New Game");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 1));
+	menu[0].setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 2));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
 	menu[1].setString("Exit");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 2));
+	menu[1].setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 3));
 
-	completeText.setFont(font);
-	completeText.setColor(sf::Color::White);
-	completeText.setString("Stage Complete!");
-	completeText.setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 3));
+	mCompleteText.setFont(font);
+	mCompleteText.setColor(sf::Color::Cyan);
+	mCompleteText.setString("Stage Complete!");
+	mCompleteText.setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 1));
 
 	selectedIndex = 0;
 }
@@ -63,10 +63,7 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window)
 			mState = 1;
 		}
 		if (selectedIndex == 1){
-			mState = 4;
-		}
-		if (selectedIndex == 2){
-			mState = 3;
+			window.close();
 		}
 	}
 }
@@ -78,7 +75,7 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 	{
 		window.draw(menu[i]);
 	}
-
+	window.draw(mCompleteText);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
@@ -142,6 +139,6 @@ int WinMenu::checkState()
 {
 	std::cout << mState << std::endl;
 	int i = mState;
-	mState = 2;
+	mState = 6;
 	return i;
 }

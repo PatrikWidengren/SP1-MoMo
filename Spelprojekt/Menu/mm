@@ -32,7 +32,7 @@ private:
 	int selectedIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_SELECTIONS];
-	sf::Text mCompleteText;
+	sf::Text completeText;
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
 	//flaggor för keypress

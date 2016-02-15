@@ -81,6 +81,7 @@
     <ClCompile Include="Menu\optionMenu.cpp" />
     <ClCompile Include="Menu\startMenu.cpp" />
     <ClCompile Include="Menu\ToolSelectMenu.cpp" />
+    <ClCompile Include="Menu\WinMenu.cpp" />
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -99,7 +100,6 @@
     <ClCompile Include="Tools\Lawnmower\GoLawnMower.cpp" />
     <ClCompile Include="Tools\Lawnmower\LawnMower.cpp" />
     <ClCompile Include="Tools\Lawnmower\RoyceMower.cpp" />
-    <ClCompile Include="WinMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\Character.h" />
@@ -113,6 +113,7 @@
     <ClInclude Include="Menu\optionMenu.h" />
     <ClInclude Include="Menu\startMenu.h" />
     <ClInclude Include="Menu\ToolSelectMenu.h" />
+    <ClInclude Include="Menu\WinMenu.h" />
     <ClInclude Include="MusicManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Map1.h" />
@@ -130,7 +131,6 @@
     <ClInclude Include="Tools\Lawnmower\GoLawnMower.h" />
     <ClInclude Include="Tools\Lawnmower\LawnMower.h" />
     <ClInclude Include="Tools\Lawnmower\RoyceMower.h" />
-    <ClInclude Include="WinMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\openal32.dll" />

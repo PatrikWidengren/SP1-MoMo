@@ -1,7 +1,7 @@
 #ifndef WINMENU
 #define WINMENU
 
-#include "Menu\menu.h"
+#include "menu.h"
 #define MAX_NUMBER_OF_SELECTIONS 2
 
 class WinMenu :
@@ -32,7 +32,7 @@ private:
 	int selectedIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_SELECTIONS];
-	sf::Text completeText;
+	sf::Text mCompleteText;
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
 	//flaggor för keypress

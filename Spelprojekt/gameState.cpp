@@ -41,6 +41,12 @@ gameState::gameState(sf::RenderWindow &window)
 
 gameState::~gameState()
 {
+	while (!mLawnMowers.empty()){
+		mLawnMowers.pop_back();
+	}
+	while (!mHedgeTools.empty()){
+		mHedgeTools.pop_back();
+	}
 }
 
 void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
@@ -224,13 +230,17 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
+		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
 		mCurMower++;
+		mCurMower = mCurMower%mLawnMowers.size();
 		mState = 0;
 		break;
 
 	case 9:
 		mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+		std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
 		mCurHedgeTool++;
+		mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
 		mState = 0;
 		break;
 

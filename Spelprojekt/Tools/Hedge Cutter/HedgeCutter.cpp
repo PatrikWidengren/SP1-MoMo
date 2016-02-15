@@ -1,6 +1,7 @@
 #include "HedgeCutter.h"
 #include <iostream>
 
+
 HedgeCutter::HedgeCutter(int reach, int max){
 	mReach = reach;
 	mMaxDistance = max;
@@ -12,6 +13,13 @@ HedgeCutter::~HedgeCutter(){
 
 bool HedgeCutter::stopMove(){
 	return false;
+}
+
+std::string HedgeCutter::getStats(){
+	std::string s = "Reaches a maximum of "+mMaxDistance;
+	s += " tiles out, a total of " + mReach;
+	s += " steps.";
+	return s;
 }
 
 int HedgeCutter::getReach(){

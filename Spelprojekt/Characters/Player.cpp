@@ -7,11 +7,13 @@ sf::Texture texturePlayer;
 sf::Image imagePlayer;
 static const string filename = "Resource Files/Sprites/meep.png";
 
-Player::Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY):
+Player::Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY) :
 	mArrayX(arrX),
 	mArrayY(arrY),
 	mLawnMower(m),
-	mHedgeTool(c){	
+	mAntiLeakMower(m),
+	mHedgeTool(c),
+	mAntiLeakHedgeTool(c){
 	mPosX = posX;
 	mPosY = posY;
 	mPlayerSprite.setPosition(posX, posY);
@@ -27,8 +29,10 @@ void Player::updPos(float x, float y){
 }
 
 Player::~Player(){
-	delete mLawnMower;
-	delete mHedgeTool;
+	//delete mLawnMower;
+	//delete mHedgeTool;
+	delete mAntiLeakHedgeTool;
+	delete mAntiLeakMower;
 }
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
@@ -106,8 +110,15 @@ void Player::swapEquipped(){
 	}
 }
 
+string Player::getMower(){
+	return mLawnMower->getStats();
+}
+
+string Player::getShears(){
+	return mHedgeTool->getStats();
+}
+
 void Player::setMower(Mower *m){
-	delete mLawnMower;
 	mLawnMower = m;
 }
 

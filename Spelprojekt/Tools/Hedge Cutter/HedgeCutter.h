@@ -8,6 +8,7 @@ public:
 	virtual ~HedgeCutter();
 	/*checks if meep does or doesn't move while holding this*/
 	virtual bool stopMove();
+	virtual std::string getStats();
 	virtual int getReach();
 	/*sends back a vector of the coordinates that must be cut*/
 	virtual cutVector getCuts(int arrX, int arrY);
