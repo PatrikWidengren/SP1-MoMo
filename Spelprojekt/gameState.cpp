@@ -18,6 +18,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
 	mToolSelectMenu01 = new ToolSelectMenu(window.getSize().x, window.getSize().y);
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
+	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
 	mMap01 = new Map1("Maps/map1.txt");
 	
@@ -190,6 +191,13 @@ void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 	mState = mGameOverMenu01->checkState();
 }
 
+void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+{
+	mWinMenu01->updateWinMenu(window);
+	mWinMenu01->displayMenu01(window);
+	mState = mWinMenu01->checkState();
+}
+
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	switch (mState) //switch that hold the states of the game
@@ -210,7 +218,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawOptionMenu(window, mouse, music, sound);
 		break;
 
-	case 5: //state 4. GameOver.
+	case 5: //state 5. GameOver.
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
 
@@ -228,6 +236,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 0: //The illustrious state 0. Swap out equipment
 		drawToolSelectMenu(window, mouse, music, sound);
+		break;
+
+	case 6: //state 6. WinMenu.
+		drawWinMenu(window, mouse, music, sound);
 		break;
 
 	default:
@@ -263,6 +275,13 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	if (mMap01->mTurnCount >= 50
 		)
+	//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
+	//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+	if (mMap01->mTurnCount >= 50)
 		mState = 5;
+
+	//For now, just testing phase of Winning screen. Need Winning condition for the map.
+	if (mMap01->mTurnCount >= 5)
+		mState = 6;
 
 }
