@@ -12,7 +12,7 @@ public:
 	virtual ~Maps();
 	void virtual render() = 0;
 	void virtual spawnObjects() = 0;
-	void virtual getArraySize() = 0;
+	void virtual getMapInfo() = 0;
 	virtual std::vector<StaticObjects*> getObjects() = 0;
 	virtual Player* getPlayer() = 0;
 	virtual std::vector<Character*> getNpcs() = 0;

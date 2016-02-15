@@ -38,8 +38,8 @@ public:
 	virtual std::vector<Character*> getNpcs();
 	//Returnerar långa objekt, detta behövs till main
 	virtual std::vector<StaticObjects*> getLongObjects();
-	//Funktion för att få storleken på arrayen, denna funktion anropas i konstruktorn till Map
-	void virtual getArraySize();
+	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
+	void virtual getMapInfo();
 	void resetMap();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
@@ -53,6 +53,9 @@ private:
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
 	//int patrolPath[50][10] = {};
 	int mWidth, mHeigth;
+	int mBronzeGrass, mBronzeHedge;
+	int mSilverGrass, mSilverHedge;
+	int mGoldGrass, mGoldHedge;
 	int totalAmountOfGrass = 0;
 	int totalAmountOfHedges = 0;
 	int turnsLeft = 50;

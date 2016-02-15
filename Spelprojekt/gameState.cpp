@@ -20,7 +20,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("Maps/map1.txt");
+	mMap01 = new Map1("Maps/map2.txt");
 	
 	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);

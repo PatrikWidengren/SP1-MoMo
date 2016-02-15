@@ -10,7 +10,7 @@ static int heigthTile = 52;
 
 Map1::Map1(string savefile){
 	mSavefile = savefile;
-	getArraySize();
+	getMapInfo();
 	Stone::initialize();
 	Grass::initialize();
 	Fence::initialize();
@@ -65,7 +65,7 @@ float** Map1::createGrid(int width, int heigth){
 
 	float tempValue;
 	ifstream file(mSavefile);
-	file >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d = 0;
 	array2d = new float*[heigth];
@@ -170,7 +170,47 @@ void Map1::spawnObjects(){
 			if (mGrid[j][i] == 1){
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
 
-				mObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile), 1));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 1));
+			}
+			if (mGrid[j][i] == 1.1f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 1));
+			}
+			if (mGrid[j][i] == 1.2f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 2));
+			}
+			if (mGrid[j][i] == 1.3f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 3));
+			}
+			if (mGrid[j][i] == 1.4f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 4));
+			}
+			if (mGrid[j][i] == 1.5f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 5));
+			}
+			if (mGrid[j][i] == 1.6f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 6));
+			}
+			if (mGrid[j][i] == 1.7f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 7));
+			}
+			if (mGrid[j][i] == 1.8f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 8));
 			}
 			if (mGrid[j][i] == 2){
 				totalAmountOfGrass++;
@@ -542,12 +582,9 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 
 }
 
-void Map1::getArraySize(){
-	//ofstream file(mSavefile);
+void Map1::getMapInfo(){
 	ifstream file(mSavefile);
-	//for (int i = 0; i < 2; i++){
-		file >> mWidth >> mHeigth;
-	//}
+	file >> mWidth >> mHeigth >> mBronzeGrass >> mBronzeHedge >> mSilverGrass >> mSilverHedge >> mGoldGrass >> mGoldHedge;
 }
 
 void Map1::resetMap()
