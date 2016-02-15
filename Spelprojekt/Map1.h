@@ -40,6 +40,7 @@ public:
 	virtual std::vector<StaticObjects*> getLongObjects();
 	//Funktion för att få storleken på arrayen, denna funktion anropas i konstruktorn till Map
 	void virtual getArraySize();
+	void resetMap();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
 	//Added turn count

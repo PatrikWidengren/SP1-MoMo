@@ -550,6 +550,12 @@ void Map1::getArraySize(){
 	//}
 }
 
+void Map1::resetMap()
+{
+	Map1::~Map1();
+
+}
+
 //Funktion för att returnera objekten
 vector<StaticObjects*> Map1::getObjects(){
 	return mObjects;
