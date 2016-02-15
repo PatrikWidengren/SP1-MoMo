@@ -156,6 +156,9 @@
     <ClCompile Include="Menu\GameOverMenu.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Menu\ToolSelectMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map1.h">
@@ -237,6 +240,9 @@
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Menu\GameOverMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\ToolSelectMenu.h">
       <Filter>Header Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>

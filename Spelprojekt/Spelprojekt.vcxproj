@@ -80,6 +80,7 @@
     <ClCompile Include="Menu\menu.cpp" />
     <ClCompile Include="Menu\optionMenu.cpp" />
     <ClCompile Include="Menu\startMenu.cpp" />
+    <ClCompile Include="Menu\ToolSelectMenu.cpp" />
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Menu\menu.h" />
     <ClInclude Include="Menu\optionMenu.h" />
     <ClInclude Include="Menu\startMenu.h" />
+    <ClInclude Include="Menu\ToolSelectMenu.h" />
     <ClInclude Include="MusicManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Map1.h" />

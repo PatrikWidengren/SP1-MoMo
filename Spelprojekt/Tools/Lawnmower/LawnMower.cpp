@@ -121,6 +121,24 @@ int LawnMower::getCurMom() const{
 	return mCurMom;
 }
 
+/*int mMaxMom;
+int mMinMom;
+int mRise;
+int mFall;
+int mDurability;
+bool mFunctioning=true;*/
+std::string LawnMower::getStats(){
+	std::string s, nextLine;
+	s = "Minimum momentum: " + mStats.mMinMom;
+	nextLine = "\nMaximum momentum" + mStats.mMaxMom;
+	s += nextLine;
+	nextLine = "\nRise: " + mStats.mRise;
+	s += nextLine;
+	nextLine = "\nFall: " + mStats.mFall;
+	s += nextLine;
+	return nextLine;
+}
+
 void LawnMower::resetValues(){
 	mCurMom = mStats.mMinMom;
 	mLastDir = 0;

@@ -35,6 +35,8 @@ public:
 	bool getMowerEquipped();
 	//Swap which tool is equipped;
 	void swapEquipped();
+	void setMower(Mower *m);
+	void setHedgeTool(Shears *s);
 	cutVector getCuts();
 	/*update the position of the sprite by +x, +y*/
 	void updPos(float x, float y);

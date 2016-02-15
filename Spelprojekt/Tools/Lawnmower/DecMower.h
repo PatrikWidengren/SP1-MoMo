@@ -10,7 +10,7 @@ public:
 	/*getMove returns a list of steps taken,based on the direction travelled.
 	These values are then used by the player to move each step in the list*/
 	virtual intVector getMove(int dir) = 0;
-	/*Following six functions exist purely to return the encapsulated values of the members of this class
+	/*Following functions exist purely to return the encapsulated values of the members of this class
 	(including struct members)*/
 	virtual int getMaxMom() const = 0;
 	virtual int getMinMom() const = 0;
@@ -20,6 +20,10 @@ public:
 	virtual bool getFunctioning() const = 0;
 	virtual int getLastDir() const = 0;
 	virtual int getCurMom() const = 0;
+
+	/*all important info into a nice readable string*/
+	virtual std::string getStats() = 0;
+
 	/*setToMin() reduces mower to minimum speed in case of collision*/
 	virtual void setToMin(int dmg) = 0;
 	/*resetValues() is used to change the mLastDir and mCurMom so that they

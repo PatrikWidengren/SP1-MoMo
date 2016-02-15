@@ -1,41 +1,41 @@
-#include "startMenu.h"
+#include "ToolSelectMenu.h"
 
-startMenu::startMenu(float width, float height)
+ToolSelectMenu::ToolSelectMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 3;
+	mState = 0;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("New Game");
+	menu[0].setString("Next Lawnmower");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Options");
+	menu[1].setString("Next Hedge cutter");
 	menu[1].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 2));
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Exit to Desktop");
+	menu[2].setString("Resume");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 3));
 
 	selectedIndex = 0;
 }
 
-startMenu::~startMenu()
+ToolSelectMenu::~ToolSelectMenu()
 {
 
 }
 
-void startMenu::updateStartMenu(sf::RenderWindow &window)
+void ToolSelectMenu::updateToolSelectMenu(sf::RenderWindow &window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		startMenu::moveDown();
+		moveDown();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
@@ -45,7 +45,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
-		startMenu::moveUp();
+		moveUp();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
@@ -61,18 +61,18 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
-			mState = 1;
+			mState = 8;
 		}
 		if (selectedIndex == 1){
-			mState = 4;
+			mState = 9;
 		}
 		if (selectedIndex == 2){
-			window.close();
+			mState = 1;
 		}
 	}
 }
 
-void startMenu::displayMenu01(sf::RenderWindow &window)
+void ToolSelectMenu::displayMenu01(sf::RenderWindow &window)
 {
 
 	for (int i = 0; i < MAX_NUMBER_OF_SELECTIONS; i++)
@@ -82,7 +82,7 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
+	std::cout << highlightSprite01.getPosition().x << ": ToolSelectMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
@@ -95,7 +95,7 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 	}
 }
 
-void startMenu::setTextures()
+void ToolSelectMenu::setTextures()
 {
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
@@ -107,7 +107,7 @@ void startMenu::setTextures()
 	highlightSprite01.setTexture(highlightTexture01);
 }
 
-void startMenu::setFonts()
+void ToolSelectMenu::setFonts()
 
 {
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
@@ -116,7 +116,7 @@ void startMenu::setFonts()
 	}
 }
 
-void startMenu::moveUp()
+void ToolSelectMenu::moveUp()
 {
 	if (selectedIndex - 1 >= 0)
 	{
@@ -126,7 +126,7 @@ void startMenu::moveUp()
 	}
 }
 
-void startMenu::moveDown()
+void ToolSelectMenu::moveDown()
 {
 	if (selectedIndex + 1 < MAX_NUMBER_OF_SELECTIONS)
 	{
@@ -137,10 +137,10 @@ void startMenu::moveDown()
 
 }
 
-int startMenu::checkState()
+int ToolSelectMenu::checkState()
 {
 	std::cout << mState << std::endl;
 	int i = mState;
-	mState = 3;
+	mState = 0;
 	return i;
 }

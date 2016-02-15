@@ -16,10 +16,17 @@ gameState::gameState(sf::RenderWindow &window)
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
+	mToolSelectMenu01 = new ToolSelectMenu(window.getSize().x, window.getSize().y);
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 
 	mMap01 = new Map1("Maps/map1.txt");
 	
+	mLawnMowers.push_back(new GoLawnMower);
+	mLawnMowers.push_back(new LawnMower);
+	mHedgeTools.push_back(new HedgeCutter(1, 1));
+	mHedgeTools.push_back(new HedgeCutter(2, 1));
+	mHedgeTools.push_back(new HedgeCutter(4, 2));
+
 	mMap01->spawnObjects();
 	mObjects = mMap01->getObjects();
 	mPlayer = mMap01->getPlayer();
@@ -169,6 +176,13 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	mState = mOptionMenu01->checkState();
 }
 
+void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+{
+	mToolSelectMenu01->updateToolSelectMenu(window);
+	mToolSelectMenu01->displayMenu01(window);
+	mState = mToolSelectMenu01->checkState();
+}
+
 void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	mGameOverMenu01->updateGameOverMenu(window);
@@ -200,6 +214,22 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
 
+	case 8:
+		mPlayer->setMower(mLawnMowers.at(mCurMower));
+		mCurMower++;
+		mState = 0;
+		break;
+
+	case 9:
+		mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+		mCurHedgeTool++;
+		mState = 0;
+		break;
+
+	case 0: //The illustrious state 0. Swap out equipment
+		drawToolSelectMenu(window, mouse, music, sound);
+		break;
+
 	default:
 		std::cout << "default gamestate";
 		break;
@@ -224,6 +254,11 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		mState = 4;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+	{
+		mState = 0;
 	}
 
 	if (mMap01->mTurnCount >= 50

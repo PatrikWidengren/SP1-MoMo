@@ -57,7 +57,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 	{
 		mReturn = true;
 	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && selectedIndex == 2 && mReturn)
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
@@ -93,8 +93,6 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 		highlightSprite01.setPosition(10, 235);
 		window.draw(highlightSprite01);
 	}
-
-
 }
 
 void optionMenu::setTextures()

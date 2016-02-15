@@ -24,6 +24,10 @@ public:
 	virtual bool getFunctioning() const;
 	virtual int getLastDir() const;
 	virtual int getCurMom() const;
+
+	/*all important info into a nice readable string*/
+	virtual std::string getStats();
+
 	/*setToMin() reduces mower to minimum speed in case of collision*/
 	virtual void setToMin(int dmg);
 	/*resetValues() is used to change the mLastDir and mCurMom so that they

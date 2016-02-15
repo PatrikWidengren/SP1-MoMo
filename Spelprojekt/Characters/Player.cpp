@@ -106,6 +106,16 @@ void Player::swapEquipped(){
 	}
 }
 
+void Player::setMower(Mower *m){
+	delete mLawnMower;
+	mLawnMower = m;
+}
+
+void Player::setHedgeTool(Shears *s){
+	delete mHedgeTool;
+	mHedgeTool = s;
+}
+
 cutVector Player::getCuts(){
 	return mHedgeTool->getCuts(mArrayX, mArrayY);
 }
