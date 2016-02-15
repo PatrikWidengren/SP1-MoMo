@@ -44,6 +44,8 @@ public:
 	float** createGrid(int width, int heigth);
 	//Added turn count
 	int mTurnCount = 0;
+	int mLoseRounds = 50;
+	int mWinRounds = 30;
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
