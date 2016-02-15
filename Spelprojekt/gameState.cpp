@@ -281,7 +281,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 5;
 
 	//For now, just testing phase of Winning screen. Need Winning condition for the map.
-	if (mMap01->mTurnCount >= 5)
+	if (mMap01->mTurnCount >= 30)
 		mState = 6;
 
 }
