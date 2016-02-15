@@ -2,6 +2,7 @@
 #define INCLUDED_ABS_SHEARS
 #include <vector>
 #include <array>
+#include <string>
 #include <algorithm>
 
 typedef std::array<int, 2> coords;
@@ -44,6 +45,7 @@ public:
 	virtual ~Shears() = 0;
 	virtual bool stopMove() = 0;
 	virtual int getReach() = 0;
+	virtual std::string getStats() = 0;
 	virtual cutVector getCuts(int arrX, int arrY) = 0;
 protected:
 	virtual void calcCuts(coords base, int temp) = 0;

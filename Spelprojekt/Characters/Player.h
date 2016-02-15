@@ -35,6 +35,10 @@ public:
 	bool getMowerEquipped();
 	//Swap which tool is equipped;
 	void swapEquipped();
+	//get the string for the currently equipped tool
+	std::string getMower();
+	std::string getShears();
+	//Set which lawnmower or hedge cutter is being used
 	void setMower(Mower *m);
 	void setHedgeTool(Shears *s);
 	cutVector getCuts();
@@ -47,8 +51,8 @@ public:
 	sf::Sprite getSprite();
 private:
 	/*equipped lawnmower*/
-	Mower *mLawnMower;
-	Shears *mHedgeTool;
+	Mower *mLawnMower, *mAntiLeakMower;
+	Shears *mHedgeTool, *mAntiLeakHedgeTool;
 	//When hedge cutter is equipped, this value is false
 	bool mMowerEquipped = true;
 	/*x and y in the array*/

@@ -1,7 +1,7 @@
 #ifndef WINMENU
 #define WINMENU
 
-#include "Menu\menu.h"
+#include "menu.h"
 #define MAX_NUMBER_OF_SELECTIONS 2
 
 class WinMenu :
