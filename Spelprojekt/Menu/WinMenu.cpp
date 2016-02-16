@@ -79,7 +79,7 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 	window.draw(mCompleteText);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
+	//std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{

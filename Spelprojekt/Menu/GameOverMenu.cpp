@@ -77,7 +77,7 @@ void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 	}
 	window.draw(gameOver);
 	// draw background window.draw(bg01);
-	std::cout << highlightSprite01.getPosition().x << ": GameOverMenu :" << highlightSprite01.getPosition().y << std::endl;
+//	std::cout << highlightSprite01.getPosition().x << ": GameOverMenu :" << highlightSprite01.getPosition().y << std::endl;
 	/*
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
