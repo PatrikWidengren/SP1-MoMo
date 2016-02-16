@@ -12,7 +12,7 @@ ObjectsVector mLongObjects;
 
 gameState::gameState(sf::RenderWindow &window)
 {
-	mState = 3;
+	mState = 4;
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
@@ -68,8 +68,7 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
-	
-
+	/*
 	//Ritar ut objekten
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		window.draw(mObjects[i]->getSprite());
@@ -82,8 +81,8 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		window.draw(mLongObjects[i]->getSprite());
 		//mObjects[i]->render();
-	}
-	mMap01->render();
+	}*/
+	mMap01->render(window);
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){

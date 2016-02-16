@@ -2,17 +2,19 @@
 #define INCLUDED_SOUNDMANAGER
 
 #include <SFML\Audio.hpp>
+#include <vector>
+#include <string>
 
 class SoundManager{
 public:
 	SoundManager();
 	virtual ~SoundManager();
-	virtual void setSound(int id);
-	virtual sf::Sound* getSound();
-	virtual void playSound();
+	virtual void playSound(float id);
 private:
+	static const std::string mNameArray[2];
 	sf::SoundBuffer mSoundBuffer;
-	sf::Sound mSound;
+	typedef std::vector<sf::Sound*> SoundList;
+	SoundList mSoundList;
 };
 
 #endif

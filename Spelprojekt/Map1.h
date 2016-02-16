@@ -27,13 +27,15 @@ public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile);
 	virtual ~Map1();
-	void virtual render();
+	void virtual render(sf::RenderWindow &window);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
 	//Returnerar objekten, detta behövs till main
 	virtual std::vector<StaticObjects*> getObjects();
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
+
+	float** Map1::getGrid();
 	//Returnerar npcs, detta behövs till main
 	virtual std::vector<Character*> getNpcs();
 	//Returnerar långa objekt, detta behövs till main

@@ -1,26 +1,22 @@
 #include "SoundManager.h"
 #include <iostream>
-#include <string>
 
-using namespace std;
-static const string nameArray[3] = { "Resource Files/Sound/kollision_sten.flac", "Resource Files/Sound/kollision_vas.flac", "Resource Files/Music/test1.flac" };
+static const std::string nameArray[2] = { "Resource Files/Sound/kollision_sten.flac", "Resource Files/Sound/kollision_vas.flac" };
+int asd;
 
-SoundManager::SoundManager() {
+SoundManager::SoundManager(){
+	for (int i = 0; i < 2; i++){
+		mSoundBuffer.loadFromFile(nameArray[i]); //mNameArry har igent i sig än, ****************** ladda från txt?
+		mSoundList.push_back(new sf::Sound);
+		mSoundList[i]->setBuffer(mSoundBuffer);
+	}
 }
 
 SoundManager::~SoundManager(){
 }
 
-void SoundManager::setSound(int id){
-	mSoundBuffer.loadFromFile(nameArray[id]);
-	mSound.setBuffer(mSoundBuffer);
-}
 
-sf::Sound* SoundManager::getSound(){
-	return &mSound;
+void SoundManager::playSound(float id){
+	asd = (int)id * 10;
+	mSoundList[asd]->play();
 }
-
-void SoundManager::playSound(){
-	mSound.play();
-}
-

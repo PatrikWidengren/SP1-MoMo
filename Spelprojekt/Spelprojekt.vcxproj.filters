@@ -349,5 +349,8 @@
     <Text Include="Maps\map1.txt">
       <Filter>Maps</Filter>
     </Text>
+    <Text Include="Maps\map2.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

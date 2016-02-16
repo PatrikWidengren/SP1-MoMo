@@ -30,19 +30,7 @@ Map1::~Map1(){
 	CharRand::finalize();
 	CharPatrol::finalize();
 }
-void Map1::render(){
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		//mObjects[i]->getSprite();
-		mObjects[i]->render();
-	}
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
-		mNpcs[i]->render();
-	}
-	mPlayer->render();
-	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
-		mLongObjects[i]->render();
-	}
-}
+
 //Skapar array
 float** Map1::createGrid(int width, int heigth){
 	/*float grid[15][20] =
@@ -161,10 +149,43 @@ void Map1::spawnObjects(){
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
-
-	
+	mPlayer = new Player(0, 0, new LawnMower(), new HedgeCutter(2, 1), (widthOnTile), (heigthOnTile));
+	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
+	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
+	mObjects[1]->setCut();
+	mObjects.push_back(new Stone(0, 0, (widthOnTile), (heigthOnTile)));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 1));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 2));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 3));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 4));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 5));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 6));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 7));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)-72, 8));
+	mLongObjects.push_back(new Tree(0, 0, (widthOnTile) - 31, (heigthOnTile) - 200));
+	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
+	mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heigthOnTile), 1, true));
+	mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heigthOnTile), patrolPath));
 
 	mGrid = createGrid(mWidth, mHeigth);
+	
+	for (int i = 0; i < mWidth; i++){
+		for (int j = 0; j < mHeigth; j++){
+			if (mGrid[j][i] == 2.0f){
+				totalAmountOfGrass++;
+			}
+			if (mGrid[j][i] == 3.2f){
+				totalAmountOfGrass++;
+			}
+			if (mGrid[j][i] == 3.4f){
+				totalAmountOfGrass++;
+			}
+			if (mGrid[j][i] == 2.4f){
+				totalAmountOfHedges++;
+			}
+		}
+	}
+	/*
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
 			if (mGrid[j][i] == 1){
@@ -243,6 +264,153 @@ void Map1::spawnObjects(){
 				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 		}
+	}*/
+}
+
+void Map1::render(sf::RenderWindow &window){
+
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		mObjects[i]->render();
+	}
+
+	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		mNpcs[i]->render();
+	}
+	
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+		mLongObjects[i]->render();
+	}
+	mPlayer->render();
+
+	for (int i = 0; i < mWidth; i++){
+		for (int j = 0; j < mHeigth; j++){
+			if (mGrid[j][i] == 1.0f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[0]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.1f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[1]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.2f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[2]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[2]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.3f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[3]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[3]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.4f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[4]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[4]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.5f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[5]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[5]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.6f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[6]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[6]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 1.7f){
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[7]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[7]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 2.0f){ //Gräs
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 2.1f){ //Klippt gräs
+				mObjects[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 2.2f){ //Sten
+				mObjects[2]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[2]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 2.3f){ //Träd
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[9]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[9]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 2.4f){ //Häck
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mLongObjects[10]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mLongObjects[10]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.0f){ //Spelare Gräs, temp innan animation
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mPlayer->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile));
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mPlayer->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.1f){ //Spelare Klippt Gräs, temp innan animation
+				mObjects[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mPlayer->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile));
+				window.draw(mObjects[1]->getSprite());
+				window.draw(mPlayer->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.2f){ //Npc 1 Gräs, temp innan animation
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mNpcs[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mNpcs[0]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.3f){ //Npc 1 Klippt Gräs, temp innan animation
+				mObjects[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mNpcs[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getSprite());
+				window.draw(mNpcs[0]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.4f){ //Npc 2 Gräs, temp innan animation
+				mObjects[0]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mNpcs[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getSprite());
+				window.draw(mNpcs[1]->getSprite());
+				}
+				else
+				if (mGrid[j][i] == 3.5f){ //Npc 2 Klippt Gräs, temp innan animation
+				mObjects[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				mNpcs[1]->getSprite().setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getSprite());
+				window.draw(mNpcs[1]->getSprite());
+				}
+		}
 	}
 }
 
@@ -256,9 +424,6 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 		bool moved = movePlayer(meepMove.at(i), sound);
 		if (!moved){
 			mPlayer->collide(meepMove, i);
-			//sound.setSound(0);
-			//sound.setSound(1);
-			//sound.playSound();
 			break;
 		}
 	}
@@ -281,8 +446,6 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 			bool moved = moveNpc(npcMove.at(j), i, sound);
 			/*if the NPC collided: do the following*/
 			if (!moved){
-				//sound.setSound(1);
-				//sound.playSound();
 				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
 				/*get a new series of moves to attempt*/
 				intVector tryMove;
@@ -444,33 +607,27 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		else {
 			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
-				sound.setSound(1);
-				sound.playSound();
+				sound.playSound(0.1f);
 			}
 			else if (mGrid[tempY][tempX] == 7){
 				//Krock med Vakt
-				sound.setSound(1);
-				sound.playSound();
+				sound.playSound(0.1f);
 			}
 			else if (mGrid[tempY][tempX] == 1){
 				//Krock med Staket
-				sound.setSound(0);
-				sound.playSound();
+				sound.playSound(0);
 			}
 			else if (mGrid[tempY][tempX] == 3){
 				//Krock med Sten
-				sound.setSound(0);
-				sound.playSound();
+				sound.playSound(0);
 			}
 			else if (mGrid[tempY][tempX] == 4){
 				//Krock med Träd
-				sound.setSound(0);
-				sound.playSound();
+				sound.playSound(0);
 			}
 			else if (mGrid[tempY][tempX] == 9){
 				//Krock med Häck
-				sound.setSound(0);
-				sound.playSound();
+				sound.playSound(0);
 			}
 		return false;
 	}
@@ -540,40 +697,33 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
-			sound.setSound(1);
-			sound.playSound();
+			sound.playSound(0.1f);
 			int dmg = 1;
 			mPlayer->collideWith(dmg);
 		}
 		else if (mGrid[tempY][tempX] == 6 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Katt
-			sound.setSound(1);
-			sound.playSound();
+			sound.playSound(0.1f);
 		}
 		else if (mGrid[tempY][tempX] == 7 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Vakt
-			sound.setSound(1);
-			sound.playSound();
+			sound.playSound(0.1f);
 		}
 		else if (mGrid[tempY][tempX] == 1 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Staket
-			sound.setSound(0);
-			sound.playSound();
+			sound.playSound(0.0);
 		}
 		else if (mGrid[tempY][tempX] == 3 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Sten
-			sound.setSound(0);
-			sound.playSound();
+			sound.playSound(0.0);
 		}
 		else if (mGrid[tempY][tempX] == 4 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Träd
-			sound.setSound(0);
-			sound.playSound();
+			sound.playSound(0.0);
 		}
 		else if (mGrid[tempY][tempX] == 9 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Häck
-			sound.setSound(0);
-			sound.playSound();
+			sound.playSound(0.0);
 		}
 
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
@@ -600,6 +750,11 @@ vector<StaticObjects*> Map1::getObjects(){
 Player* Map1::getPlayer(){
 	return mPlayer;
 }
+
+float** Map1::getGrid(){
+	return mGrid;
+}
+
 vector<Character*> Map1::getNpcs(){
 	return mNpcs;
 }
