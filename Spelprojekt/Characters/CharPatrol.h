@@ -4,8 +4,8 @@
 
 class CharPatrol : public Character{
 public:
-	//If the maximum amount of moves per turn changes, rewrite it in move() and constructor
-	CharPatrol(int arrX, int arrY, float posX, float posY, int **moves);
+	//Write in turncount and movecount when ready in Map1
+	CharPatrol(int arrX, int arrY, float posX, float posY, int **moves/*, int turnCount, int moveCount*/);
 	virtual ~CharPatrol();//This is the X and Y position for the sprite
 	virtual float getPosX();
 	virtual float getPosY();
@@ -32,10 +32,11 @@ public:
 private:
 	int mArrayX, mArrayY;
 	float mType, mLast, mPosX, mPosY;
-	//Path is a pointer because we don't want to copy 500 ints per character.
+	//Path is a pointer because we don't want to copy mTurnCount0 ints per character.
 	int **path;
+	int mMoveCount, mTurnCount;
 	//Single turn's worth of movement to retry in case of collision
-	int retryPath[10];
+	int *retryPath;
 	int mTurnNo;
 	sf::Sprite mCharSprite;
 };
