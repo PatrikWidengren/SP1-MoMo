@@ -481,6 +481,30 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 	}
 }
 
+void Map1::deleteContent()
+{
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		delete mObjects[i];
+		mObjects.erase(mObjects.begin() + i);
+		
+	}
+	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		delete mNpcs[i];
+		mNpcs.erase(mNpcs.begin() + i);
+	}
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+		delete mLongObjects[i];
+		mLongObjects.erase(mLongObjects.begin() + i);
+	}
+	delete mPlayer;
+	totalAmountOfGrass = 0;
+	totalAmountOfHedges = 0;
+	turnsLeft = 50;
+	cutGrass = 0;
+	cutHedges = 0;
+	mTurnCount = 0;
+}
+
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 	int tempX = mNpcs.at(atPos)->getX();
 	int tempY = mNpcs.at(atPos)->getY();
@@ -594,12 +618,6 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 void Map1::getMapInfo(){
 	ifstream file(mSavefile);
 	file >> mWidth >> mHeigth >> mBronzeGrass >> mBronzeHedge >> mSilverGrass >> mSilverHedge >> mGoldGrass >> mGoldHedge;
-}
-
-void Map1::resetMap()
-{
-	Map1::~Map1();
-
 }
 
 //Funktion för att returnera objekten

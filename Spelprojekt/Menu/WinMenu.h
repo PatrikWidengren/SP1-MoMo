@@ -10,7 +10,7 @@ public:
 	WinMenu(float width, float height);
 	WinMenu();
 	~WinMenu();
-
+	bool reset = false;
 	// Load a backgrounds to show for the menu
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
