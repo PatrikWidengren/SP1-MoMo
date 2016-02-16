@@ -83,6 +83,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		window.draw(mLongObjects[i]->getSprite());
 		//mObjects[i]->render();
 	}
+	
 	mMap01->render();
 
 

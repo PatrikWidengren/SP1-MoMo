@@ -7,6 +7,9 @@ static float widthOnTile = 64.0f;
 static float heigthOnTile = 52.0f;
 static int widthTile = 64;
 static int heigthTile = 52;
+static int pushGrassX = -32;
+static int pushGrassY = -76;
+static int pushFenceY = -76;
 
 Map1::Map1(string savefile){
 	mSavefile = savefile;
@@ -168,78 +171,78 @@ void Map1::spawnObjects(){
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
 			if (mGrid[j][i] == 1){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 1));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 1));
 			}
 			if (mGrid[j][i] == 1.1f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 1));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 1));
 			}
 			if (mGrid[j][i] == 1.2f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 2));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 2));
 			}
 			if (mGrid[j][i] == 1.3f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 3));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 3));
 			}
 			if (mGrid[j][i] == 1.4f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 4));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 4));
 			}
 			if (mGrid[j][i] == 1.5f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 5));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 5));
 			}
 			if (mGrid[j][i] == 1.6f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 6));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 6));
 			}
 			if (mGrid[j][i] == 1.7f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 7));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 7));
 			}
 			if (mGrid[j][i] == 1.8f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) - 72, 8));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 8));
 			}
 			if (mGrid[j][i] == 2){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 			}
 			if (mGrid[j][i] == 3){
 				mObjects.push_back(new Stone(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 			if (mGrid[j][i] == 4){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 				mLongObjects.push_back(new Tree(i, j, (i * widthOnTile) - 31, (j * heigthOnTile) - 200));
 			}
 			if (mGrid[j][i] == 5){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 				mPlayer = new Player(i, j, new LawnMower(), new HedgeCutter(2, 1), (i * widthOnTile), (j * heigthOnTile));
 			}
 			if (mGrid[j][i] == 6){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
 			}	
 			if (mGrid[j][i] == 7){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), patrolPath));
 			}
 			if (mGrid[j][i] == 9){
 				totalAmountOfHedges++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heigthOnTile)));
 			}
 		}
