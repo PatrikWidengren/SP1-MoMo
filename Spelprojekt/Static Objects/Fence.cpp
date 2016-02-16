@@ -10,6 +10,7 @@ static const string filename_fence_TopLeft = "Resource Files/Sprites/Fence01Corn
 static const string filename_fence_TopRight = "Resource Files/Sprites/Fence01Corner_02.png";
 static const string filename_fence_BottomRight = "Resource Files/Sprites/Fence01Corner_03.png";
 static const string filename_fence_BottomLeft = "Resource Files/Sprites/Fence01Corner_04.png";
+static const string filename_fence_Diagonal_TopRight = "Resource Files/Sprites/Fence01Diagonal_02.png";
 
 sf::Texture textureFenceTop;
 sf::Texture textureFenceBottom;
@@ -19,6 +20,7 @@ sf::Texture textureFenceBottomLeft;
 sf::Texture textureFenceBottomRight;
 sf::Texture textureFenceTopRight;
 sf::Texture textureFenceTopLeft;
+sf::Texture textureFenceDiagonalTopRight;
 
 sf::Image imageFence;
 
@@ -58,7 +60,9 @@ void Fence::render(){
 	if (mWhatFence == 8){
 		mSprite.setTexture(textureFenceTopLeft);
 	}
-
+	if (mWhatFence == 9){
+		mSprite.setTexture(textureFenceDiagonalTopRight);
+	}
 }
 float Fence::getPosX(){
 	return mPosX;
@@ -92,6 +96,7 @@ void Fence::initialize(){
 	textureFenceBottomRight.loadFromFile(filename_fence_BottomRight);
 	textureFenceTopRight.loadFromFile(filename_fence_TopRight);
 	textureFenceTopLeft.loadFromFile(filename_fence_TopLeft);
+	textureFenceDiagonalTopRight.loadFromFile(filename_fence_Diagonal_TopRight);
 
 }
 void Fence::finalize(){
@@ -103,6 +108,7 @@ void Fence::finalize(){
 	textureFenceBottomRight.~Texture();
 	textureFenceTopRight.~Texture();
 	textureFenceTopLeft.~Texture();
+	textureFenceDiagonalTopRight.~Texture();
 
 	//imageFence.~Image();
 }

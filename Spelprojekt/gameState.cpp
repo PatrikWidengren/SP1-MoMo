@@ -20,7 +20,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("Maps/map2.txt");
+	mMap01 = new Map1("Maps/maptest3.txt");
 	
 	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);
@@ -227,6 +227,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
 
+	case 6: //state 6. WinMenu.
+		drawWinMenu(window, mouse, music, sound);
+		break;
+
 	case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
 		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
@@ -247,10 +251,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawToolSelectMenu(window, mouse, music, sound);
 		break;
 
-	case 6: //state 6. WinMenu.
-		drawWinMenu(window, mouse, music, sound);
-		break;
-
 	default:
 		std::cout << "default gamestate";
 		break;
@@ -262,7 +262,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 1;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		mState = 2;
 	}
@@ -276,6 +276,15 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 		mState = 4;
 	}
+
+
+	if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+	{
+		mWinMenu01->reset = false;
+		mStartMenu01->reset = false;
+		resetMap();
+	}
+
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 	{
@@ -293,4 +302,18 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	if (mMap01->mTurnCount >= mMap01->mWinRounds)
 		mState = 6;
 
+}
+
+void gameState::resetMap()
+{
+	mMap01->deleteContent();
+	mMap01->spawnObjects();
+	mObjects = mMap01->getObjects();
+	mPlayer = mMap01->getPlayer();
+	mNpcs = mMap01->getNpcs();
+	mLongObjects = mMap01->getLongObjects();
+	// Skriver ut position för alla object
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
+	}
 }

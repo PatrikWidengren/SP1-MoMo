@@ -40,9 +40,9 @@ public:
 	virtual std::vector<Character*> getNpcs();
 	//Returnerar långa objekt, detta behövs till main
 	virtual std::vector<StaticObjects*> getLongObjects();
+	void deleteContent();
 	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
 	void virtual getMapInfo();
-	void resetMap();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
 	//Added turn count

@@ -27,6 +27,7 @@ public:
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
+	void resetMap();
 
 	~gameState();
 

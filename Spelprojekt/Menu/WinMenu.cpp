@@ -60,6 +60,7 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
+			reset = true;
 			mState = 1;
 		}
 		if (selectedIndex == 1){
@@ -71,14 +72,14 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window)
 void WinMenu::displayMenu01(sf::RenderWindow &window)
 {
 
-	for (int i = 0; i < MAX_NUMBER_OF_SELECTIONS; i++)
+	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
 	window.draw(mCompleteText);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
+	//std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
@@ -126,7 +127,7 @@ void WinMenu::moveUp()
 
 void WinMenu::moveDown()
 {
-	if (selectedIndex + 1 < MAX_NUMBER_OF_SELECTIONS)
+	if (selectedIndex + 1 < mNumberOfSelections)
 	{
 		menu[selectedIndex].setColor(sf::Color::White);
 		selectedIndex++;
@@ -137,7 +138,7 @@ void WinMenu::moveDown()
 
 int WinMenu::checkState()
 {
-	std::cout << mState << std::endl;
+	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 6;
 	return i;

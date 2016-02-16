@@ -10,17 +10,17 @@ inGameMenu::inGameMenu(float width, float height)
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("Resume");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 1));
+	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
 	menu[1].setString("Options");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 2));
+	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
 	menu[2].setString("Exit to main menu");
-	menu[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_SELECTIONS + 1) * 3));
+	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
 }
@@ -74,14 +74,14 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window)
 void inGameMenu::displayMenu01(sf::RenderWindow &window)
 {
 
-	for (int i = 0; i < MAX_NUMBER_OF_SELECTIONS; i++)
+	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
 
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	std::cout << highlightSprite01.getPosition().x << ": IngameMenu :" << highlightSprite01.getPosition().y << std::endl;
+//	std::cout << highlightSprite01.getPosition().x << ": IngameMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
@@ -129,7 +129,7 @@ void inGameMenu::moveUp()
 
 void inGameMenu::moveDown()
 {
-	if (selectedIndex + 1 < MAX_NUMBER_OF_SELECTIONS)
+	if (selectedIndex + 1 < mNumberOfSelections)
 	{
 		menu[selectedIndex].setColor(sf::Color::White);
 		selectedIndex++;
@@ -140,7 +140,7 @@ void inGameMenu::moveDown()
 
 int inGameMenu::checkState()
 {
-	std::cout << mState << std::endl;
+	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 2;
 	return i;

@@ -7,15 +7,23 @@ sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "Resource Files/Sprites/deputy.png";
 
-CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves): 
+CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves/*, int turnCount, int moveCount*/): 
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
 	mPosX(posX),
 	mPosY(posY)
 	{
+
+	//Remove these when moveCount and turnCount is in constructor
+	int moveCount = 10;
+	int turnCount = 50;
+
+	int mMoveCount = moveCount;
+	int mTurnCount = turnCount;
+
 	//initialize retryPath with all zeroes.
-	for (int i = 0; i < 10; i++){
+	for (int i = 0; i < moveCount; i++){
 		retryPath[i] = 0;
 	}
 	mCharSprite.setPosition(posX, posY);
@@ -23,7 +31,7 @@ CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves):
 	//fill up path with the move array
 	
 	/*for (int i = 0; i < 50; i++){
-		for (int j = 0; j < 10; j++){
+		for (int j = 0; j < moveCount; j++){
 			path[i][j] = moves[i][j];
 		}
 	}*/
@@ -57,14 +65,14 @@ intVector CharPatrol::move(){
 		if (path[mTurnNo][0]==0){
 			mTurnNo = 0;
 		}
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < mMoveCount; i++){
 			//add all the steps. Cancel if a move has val 0
 			if (path[mTurnNo][i] <= 0){
 				break;
 			}
 			else {
 				//test += path[mTurnNo][i];
-				//test *= 10;
+				//test *= mMoveCount;
 				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
@@ -72,7 +80,7 @@ intVector CharPatrol::move(){
 	}
 	//if a retry is wating...
 	else {
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < mMoveCount; i++){
 			//add the entire retryPath to the current turn's move
 			//end prematurely if the movement of a turn is 0;
 			if (retryPath[i] <= 0){
@@ -80,12 +88,12 @@ intVector CharPatrol::move(){
 			}
 			else{ 
 				//test += retryPath[i];
-				//test *= 10;
+				//test *= mMoveCount;
 				curMove.push_back(retryPath[i]);
 			}
 		}
 		//clear the whole retryPath
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < mMoveCount; i++){
 			retryPath[i] = 0;
 		}
 		//cout << "Retrying path: " << test << endl;
@@ -101,7 +109,7 @@ intVector CharPatrol::collide(intVector moves, int atPos){
 		//Fill up the retryPath array with all the remaining moves
 		retryPath[j] = moves.at(i);
 		//test += moves.at(i);
-		//test *= 10;
+		//test *= mMoveCount;
 		j++;
 	}
 	//cout << "Saving " << test << "for next turn" << endl;
