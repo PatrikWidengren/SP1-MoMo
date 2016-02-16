@@ -9,7 +9,7 @@ static const string nameArray[9] = { "Resource Files/Sound/collision_fence.flac"
 	"Resource Files/Sound/collision_tree.flac",
 	"Resource Files/Sound/MeepTest_Hello.flac",
 	"Resource Files/Sound/katt.flac", 
-	"Resource Files/Sound/Slottsvakt+1.flac",
+	"Resource Files/Sound/Slottsvakt+3.flac",
 	"Resource Files/Sound/collision_vase.flac",
 	"Resource Files/Sound/collision_hedge.flac"
 };

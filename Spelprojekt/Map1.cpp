@@ -260,9 +260,6 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 		bool moved = movePlayer(meepMove.at(i), sound);
 		if (!moved){
 			mPlayer->collide(meepMove, i);
-			//sound.setSound(0);
-			//sound.setSound(1);
-			//sound.playSound();
 			break;
 		}
 	}
