@@ -2,7 +2,6 @@
 #define WINMENU
 
 #include "menu.h"
-#define MAX_NUMBER_OF_SELECTIONS 2
 
 class WinMenu :
 	public Menu
@@ -26,12 +25,15 @@ public:
 	virtual void moveDown();
 	sf::Vector2i mMouse;
 
+protected:
+	static int const mNumberOfSelections = 2;
+
 private:
 	int mState;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
-	sf::Text menu[MAX_NUMBER_OF_SELECTIONS];
+	sf::Text menu[mNumberOfSelections];
 	sf::Text mCompleteText;
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
