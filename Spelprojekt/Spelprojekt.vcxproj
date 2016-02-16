@@ -149,8 +149,25 @@
     <None Include="..\Release\Spelprojekt.exe" />
     <None Include="..\Release\Spelprojekt.pdb" />
     <None Include="Resource Files\Music\test1.flac" />
-    <None Include="Resource Files\Sound\kollision_sten.flac" />
-    <None Include="Resource Files\Sound\kollision_vas.flac" />
+    <None Include="Resource Files\Sound\collision_fence.flac" />
+    <None Include="Resource Files\Sound\collision_hedge.flac" />
+    <None Include="Resource Files\Sound\collision_stone.flac" />
+    <None Include="Resource Files\Sound\collision_tree.flac" />
+    <None Include="Resource Files\Sound\collision_vase.flac" />
+    <None Include="Resource Files\Sound\doorbell.flac" />
+    <None Include="Resource Files\Sound\hedgecutter.flac" />
+    <None Include="Resource Files\Sound\Katt.flac" />
+    <None Include="Resource Files\Sound\lawmower_break.flac" />
+    <None Include="Resource Files\Sound\MeepTest_Hello.flac" />
+    <None Include="Resource Files\Sound\Meny_Close.flac" />
+    <None Include="Resource Files\Sound\Meny_GoBack.flac" />
+    <None Include="Resource Files\Sound\Meny_Open.flac" />
+    <None Include="Resource Files\Sound\Meny_Selection.flac" />
+    <None Include="Resource Files\Sound\Slottsvakt+1.flac" />
+    <None Include="Resource Files\Sound\Slottsvakt+2.flac" />
+    <None Include="Resource Files\Sound\Slottsvakt+3.flac" />
+    <None Include="Resource Files\Sound\Slottsvakt+4.flac" />
+    <None Include="Resource Files\Sound\YouLose.flac" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />

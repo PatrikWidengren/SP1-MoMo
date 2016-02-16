@@ -1,5 +1,6 @@
 #include "Map1.h"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -442,7 +443,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		return true;
 		}
 		else {
-			if (mGrid[tempY][tempX] == 6){
+			sound.setSound((int)floor(mGrid[tempY][tempX])-1);
+			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
+			//sound.setSound(7);
+			sound.playSound();
+/*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
 				sound.setSound(1);
 				sound.playSound();
@@ -471,7 +476,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 				//Krock med Häck
 				sound.setSound(0);
 				sound.playSound();
-			}
+			}*/
 		return false;
 	}
 }
@@ -537,7 +542,11 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		return true;
 	}
 	else {
-		//Recognizes what it collides with. Sorta.
+		if (mNpcs.at(atPos)->getCollide()){
+			sound.setSound((int)floor(mGrid[tempY][tempX]) - 1);
+			sound.playSound();
+		}
+/*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
 			sound.setSound(1);
@@ -574,7 +583,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 			//Krock med Häck
 			sound.setSound(0);
 			sound.playSound();
-		}
+		}*/
 
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;

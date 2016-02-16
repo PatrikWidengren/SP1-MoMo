@@ -3,7 +3,16 @@
 #include <string>
 
 using namespace std;
-static const string nameArray[3] = { "Resource Files/Sound/kollision_sten.flac", "Resource Files/Sound/kollision_vas.flac", "Resource Files/Music/test1.flac" };
+static const string nameArray[9] = { "Resource Files/Sound/collision_fence.flac", 
+	"Resource Files/Sound/collision_vase.flac",
+	"Resource Files/Sound/collision_stone.flac",
+	"Resource Files/Sound/collision_tree.flac",
+	"Resource Files/Sound/MeepTest_Hello.flac",
+	"Resource Files/Sound/katt.flac", 
+	"Resource Files/Sound/Slottsvakt+1.flac",
+	"Resource Files/Sound/collision_vase.flac",
+	"Resource Files/Sound/collision_hedge.flac"
+};
 
 SoundManager::SoundManager() {
 }

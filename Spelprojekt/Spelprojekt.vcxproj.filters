@@ -301,10 +301,61 @@
     <None Include="Resource Files\Music\test1.flac">
       <Filter>Resource Files\Music</Filter>
     </None>
-    <None Include="Resource Files\Sound\kollision_sten.flac">
+    <None Include="Resource Files\Sound\collision_fence.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
-    <None Include="Resource Files\Sound\kollision_vas.flac">
+    <None Include="Resource Files\Sound\collision_hedge.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\collision_stone.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\collision_tree.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\collision_vase.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\doorbell.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\hedgecutter.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Katt.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\lawmower_break.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Meny_Close.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Meny_GoBack.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Meny_Open.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Meny_Selection.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Slottsvakt+1.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Slottsvakt+2.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Slottsvakt+3.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Slottsvakt+4.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\YouLose.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\MeepTest_Hello.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
   </ItemGroup>
