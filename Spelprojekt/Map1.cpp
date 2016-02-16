@@ -216,6 +216,10 @@ void Map1::spawnObjects(){
 
 				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 8));
 			}
+			if (mGrid[j][i] == 1.9f){
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 9));
+			}
 			if (mGrid[j][i] == 2){
 				totalAmountOfGrass++;
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
