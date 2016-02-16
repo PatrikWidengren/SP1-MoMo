@@ -69,7 +69,6 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
 {
 	
-
 	//Ritar ut objekten
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		window.draw(mObjects[i]->getSprite());
@@ -229,6 +228,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
 
+	case 6: //state 6. WinMenu.
+		drawWinMenu(window, mouse, music, sound);
+		break;
+
 	case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
 		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
@@ -247,10 +250,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 0: //The illustrious state 0. Swap out equipment
 		drawToolSelectMenu(window, mouse, music, sound);
-		break;
-
-	case 6: //state 6. WinMenu.
-		drawWinMenu(window, mouse, music, sound);
 		break;
 
 	default:
@@ -279,6 +278,15 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 4;
 	}
 
+
+	if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+	{
+		mWinMenu01->reset = false;
+		mStartMenu01->reset = false;
+		resetMap();
+	}
+
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 	{
 		mState = 0;
@@ -295,4 +303,18 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	if (mMap01->mTurnCount >= mMap01->mWinRounds)
 		mState = 6;
 
+}
+
+void gameState::resetMap()
+{
+	mMap01->deleteContent();
+	mMap01->spawnObjects();
+	mObjects = mMap01->getObjects();
+	mPlayer = mMap01->getPlayer();
+	mNpcs = mMap01->getNpcs();
+	mLongObjects = mMap01->getLongObjects();
+	// Skriver ut position för alla object
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
+	}
 }

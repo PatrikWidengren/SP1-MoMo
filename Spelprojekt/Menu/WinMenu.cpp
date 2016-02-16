@@ -60,6 +60,7 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
+			reset = true;
 			mState = 1;
 		}
 		if (selectedIndex == 1){
