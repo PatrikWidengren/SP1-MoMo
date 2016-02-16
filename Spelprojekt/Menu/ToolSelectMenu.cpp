@@ -139,7 +139,7 @@ void ToolSelectMenu::moveDown()
 
 int ToolSelectMenu::checkState()
 {
-	std::cout << mState << std::endl;
+//	std::cout << mState << std::endl;
 	int i = mState;
 	mState = 0;
 	return i;

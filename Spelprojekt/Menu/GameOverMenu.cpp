@@ -136,7 +136,7 @@ void GameOverMenu::moveDown()
 
 int GameOverMenu::checkState()
 {
-	std::cout << mState << std::endl;
+	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 2;
 	return i;

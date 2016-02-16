@@ -140,7 +140,7 @@ void startMenu::moveDown()
 
 int startMenu::checkState()
 {
-	std::cout << mState << std::endl;
+	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 3;
 	return i;

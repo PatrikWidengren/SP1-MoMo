@@ -138,7 +138,7 @@ void WinMenu::moveDown()
 
 int WinMenu::checkState()
 {
-	std::cout << mState << std::endl;
+	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 6;
 	return i;
