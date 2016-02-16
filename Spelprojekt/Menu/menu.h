@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-#define MAX_NUMBER_OF_SELECTIONS 3
-
 class Menu
 {
 public:
@@ -25,13 +23,16 @@ public:
 	virtual void moveUp() = 0;
 	virtual void moveDown() = 0;
 	sf::Vector2i mMouse;
+protected:
+	static int const mNumberOfSelections = 3;
+
 
 private:
 	int mState;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
-	sf::Text menu[MAX_NUMBER_OF_SELECTIONS];
+	sf::Text menu[mNumberOfSelections];
 	virtual void setTextures() = 0; //Set a texture to a sprite
 	virtual void setFonts() = 0;
 

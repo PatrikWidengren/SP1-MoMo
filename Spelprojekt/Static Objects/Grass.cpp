@@ -2,8 +2,8 @@
 
 using namespace std;
 
-static const string filename = "Resource Files/Sprites/grass.png";
-static const string filename2 = "Resource Files/Sprites/cutgrass.png";
+static const string filename_Grass_Uncut = "Resource Files/Sprites/Grass01_Uncut.png";
+static const string filename_Grass_Cut = "Resource Files/Sprites/Grass01_Cut.png";
 sf::Texture textureGrass;
 sf::Texture textureCutGrass;
 
@@ -47,8 +47,8 @@ bool Grass::getCut(){
 	return isCut;
 }
 void Grass::initialize(){
-	textureGrass.loadFromFile(filename);
-	textureCutGrass.loadFromFile(filename2);
+	textureGrass.loadFromFile(filename_Grass_Uncut);
+	textureCutGrass.loadFromFile(filename_Grass_Cut);
 }
 void Grass::finalize(){
 	textureGrass.~Texture();
