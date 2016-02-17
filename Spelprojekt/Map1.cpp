@@ -391,6 +391,7 @@ void Map1::render(sf::RenderWindow &window){
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}
+
 		}
 	}
 	for (int i = 0; i < mWidth; i++){
@@ -628,33 +629,16 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			mPlayer->setY(tempY);
 
 			//Kan inte stänga av gräsklippning på trasig klippare förrän vi har ordentlig Render
-			/*if (!mPlayer->getMowerEquipped()) {
+			if (!mPlayer->getMowerEquipped()) {
 				cutVector cut = mPlayer->getCuts();
 				cutVector toCut;
 				//Beautiful, I know.
 				for (cutVector::size_type i = 0; i < cut.size(); i++){
-					if (mGrid[cut.at(i)[0]][cut.at(i)[1]] == 9.0f){
-						//If we had updated render, this mess could end right here
-						//with a single line of code:
-						mGrid[cut.at(i)[0]][cut.at(i)[1]] = 9.1f;
-
-
-						/*toCut.push_back(cut.at(i));
-						for (ObjectsVector::size_type j = 0; j < mLongObjects.size(); j++){
-							for (cutVector::size_type k = 0; k < toCut.size(); k++){
-								if (mLongObjects[j]->getArrayX() == toCut.at(k)[0] && mLongObjects[j]->getArrayY() == toCut.at(k)[1]){
-									if (!mLongObjects[j]->getCut()){
-										mLongObjects[j]->setCut();
-										cutHedges++;
-									}
-								}
-							}
-						}
-
-
+					if (mGrid[cut.at(i)[1]][cut.at(i)[0]] == 9.0f){
+						mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f;
 					}
 				}
-			}*/
+			}
 			std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
 			std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 

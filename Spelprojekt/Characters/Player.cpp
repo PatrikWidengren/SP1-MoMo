@@ -130,8 +130,8 @@ void Player::setHedgeTool(Shears *s){
 }
 
 cutVector Player::getCuts(){
-	//return mHedgeTool->getCuts(mArrayX, mArrayY);
-	return mHedgeTool->getCuts(0, 0);
+	return mHedgeTool->getCuts(mArrayX, mArrayY);
+	//return mHedgeTool->getCuts(0, 0);
 }
 
 void Player::setLast(float l){
