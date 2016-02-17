@@ -352,11 +352,6 @@ void Map1::render(sf::RenderWindow &window){
 				}
 				else
 				if (mGrid[j][i] == 3.0f){ //Spelare Gräs, temp innan animation
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}
-				else
-				if (mGrid[j][i] == 3.1f){ //Spelare Klippt Gräs, temp innan animation
 					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[1]->getDrawSprite());
 				}
@@ -451,11 +446,11 @@ void Map1::render(sf::RenderWindow &window){
 					window.draw(mLongObjects[8]->getDrawSprite());
 				}else
 				if (mGrid[j][i] == 2.3f){ //Träd
-					mLongObjects[9]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+					mLongObjects[9]->getSprite()->setPosition((i * widthOnTile) -31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
 					window.draw(mLongObjects[9]->getDrawSprite());
 				}else
 				if (mGrid[j][i] == 2.4f){ //Häck
-					mLongObjects[10]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 72); //Sätter positionen enligt grid
+					mLongObjects[10]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					window.draw(mLongObjects[10]->getDrawSprite());
 				}
 		}
@@ -596,7 +591,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		/*move meep to new place in the array and return the original value
 		to the last position*/
 		std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
-		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
+		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 2.2f){
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
 			if (mGrid[tempY][tempX] == 2.0f){
 				std::cout << "y grass no cut" << endl;
@@ -648,7 +643,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		else {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
-			sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
+			//sound.playSound((mGrid[tempY][tempX]));
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
 				sound.playSound(0.1f);
@@ -680,19 +675,19 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 
 void Map1::deleteContent()
 {
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		delete mObjects[i];
-		mObjects.erase(mObjects.begin() + i);
-		
+	while (!mObjects.empty()){
+		delete mObjects[0];
+		mObjects.erase(mObjects.begin());
 	}
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
-		delete mNpcs[i];
-		mNpcs.erase(mNpcs.begin() + i);
-			}
-	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
-		delete mLongObjects[i];
-		mLongObjects.erase(mLongObjects.begin() + i);
+	while (!mNpcs.empty()){
+		delete mNpcs[0];
+		mNpcs.erase(mNpcs.begin());
 	}
+	while (!mLongObjects.empty()){
+		delete mLongObjects[0];
+		mLongObjects.erase(mLongObjects.begin());
+	}
+
 	delete mPlayer;
 	totalAmountOfGrass = 0;
 	totalAmountOfHedges = 0;

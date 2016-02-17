@@ -17,7 +17,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	//mPlayerSprite.setPosition(posX, posY);
 	mType = 3.0f;
 	//Temporär lösning. Bör fixas snarast
-	mLast = 2;
+	mLast = 2.1;
 	mPlayerSprite.setTexture(texturePlayer);
 }
 
@@ -136,12 +136,6 @@ cutVector Player::getCuts(){
 
 void Player::setLast(float l){
 	mLast = l;
-	if (l == 2.1){
-		mType = 3.1;
-	}
-	else {
-		mType = 3.0;
-	}
 }
 void Player::initialize(){
 	imagePlayer.loadFromFile(filename);

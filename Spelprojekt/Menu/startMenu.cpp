@@ -61,7 +61,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
-			reset = true;
+			//reset = true;
 			mState = 1;
 		}
 		if (selectedIndex == 1){
