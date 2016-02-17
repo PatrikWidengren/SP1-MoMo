@@ -97,6 +97,7 @@ void ToolSelectMenu::displayMenu01(sf::RenderWindow &window)
 
 void ToolSelectMenu::setTextures()
 {
+	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
@@ -105,6 +106,7 @@ void ToolSelectMenu::setTextures()
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);
+	*/
 }
 
 void ToolSelectMenu::setFonts()

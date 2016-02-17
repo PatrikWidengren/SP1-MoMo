@@ -94,6 +94,7 @@ void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 
 void GameOverMenu::setTextures()
 {
+	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
@@ -102,6 +103,7 @@ void GameOverMenu::setTextures()
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);
+	*/
 }
 
 void GameOverMenu::setFonts()
