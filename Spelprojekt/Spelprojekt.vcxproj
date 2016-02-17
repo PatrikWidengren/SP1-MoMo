@@ -87,6 +87,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map1.cpp" />
     <ClCompile Include="Maps.cpp" />
+    <ClCompile Include="SoundMenu.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
     <ClCompile Include="Static Objects\Grass.cpp" />
     <ClCompile Include="Static Objects\Hedge.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Map1.h" />
     <ClInclude Include="Maps.h" />
+    <ClInclude Include="SoundMenu.h" />
     <ClInclude Include="Static Objects\Fence.h" />
     <ClInclude Include="Static Objects\Grass.h" />
     <ClInclude Include="Static Objects\Hedge.h" />
