@@ -7,12 +7,12 @@
 class Player{
 public:
 	/*X and Y position for the array, a lawnmower, and the X and Y coordinates*/
-	Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY);
+	Player(Mower *m, Shears *c/*, float posX, float posY*/);
 	~Player();
 	/*Return movement as intvector*/
 	intVector move(int dir);
-	float getPosX();
-	float getPosY();
+	//float getPosX();
+	//float getPosY();
 	/*collision during movement "moves" at position "atPos"*/
 	void collide(intVector moves, int atPos);
 	void collideWith(int dmg);
@@ -43,9 +43,9 @@ public:
 	void setHedgeTool(Shears *s);
 	cutVector getCuts();
 	/*update the position of the sprite by +x, +y*/
-	void updPos(float x, float y);
+	//void updPos(float x, float y);
 	//void update();
-	void render();
+	//void render();
 	static void initialize();
 	static void finalize();
 	sf::Sprite* getSprite();
@@ -57,11 +57,11 @@ private:
 	//When hedge cutter is equipped, this value is false
 	bool mMowerEquipped = true;
 	/*x and y in the array*/
-	int mArrayX, mArrayY;
+	int mArrayX = 0, mArrayY = 0;
 	/*important values for the array*/
 	float mType, mLast;
 	/*x and y coordinates for sprite*/
-	float mPosX, mPosY;
+	//float mPosX, mPosY;
 	/*sprite*/
 	sf::Sprite mPlayerSprite;
 };
