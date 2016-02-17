@@ -48,7 +48,7 @@ public:
 	//Added turn count
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
-	int mWinRounds = 30;
+	int mWinRounds = 5;
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);

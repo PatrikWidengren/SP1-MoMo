@@ -7,26 +7,25 @@ sf::Texture texturePlayer;
 sf::Image imagePlayer;
 static const string filename = "Resource Files/Sprites/meep.png";
 
-Player::Player(int arrX, int arrY, Mower *m, Shears *c, float posX, float posY) :
-	mArrayX(arrX),
-	mArrayY(arrY),
+Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mLawnMower(m),
 	mAntiLeakMower(m),
 	mHedgeTool(c),
 	mAntiLeakHedgeTool(c){
-	mPosX = posX;
-	mPosY = posY;
-	mPlayerSprite.setPosition(posX, posY);
-	mType = 5.0f;
+	//mPosX = posX;
+	//mPosY = posY;
+	//mPlayerSprite.setPosition(posX, posY);
+	mType = 3.0f;
 	//Temporär lösning. Bör fixas snarast
 	mLast = 2;
+	mPlayerSprite.setTexture(texturePlayer);
 }
 
-void Player::updPos(float x, float y){
+/*void Player::updPos(float x, float y){
 	mPosX += x;
 	mPosY += y;
 	mPlayerSprite.setPosition(mPosX, mPosY);
-}
+}*/
 
 Player::~Player(){
 	//delete mLawnMower;
@@ -51,7 +50,7 @@ void Player::collideWith(int dmg){
 	mLawnMower->setToMin(dmg);
 }
 
-float Player::getPosX(){
+/*float Player::getPosX(){
 	return mPosX;
 }
 float Player::getPosY(){
@@ -59,7 +58,7 @@ float Player::getPosY(){
 }
 void Player::render(){
 	mPlayerSprite.setTexture(texturePlayer);
-}
+}*/
 int Player::getX(){
 	return mArrayX;
 }
@@ -131,11 +130,18 @@ void Player::setHedgeTool(Shears *s){
 }
 
 cutVector Player::getCuts(){
-	return mHedgeTool->getCuts(mArrayX, mArrayY);
+	//return mHedgeTool->getCuts(mArrayX, mArrayY);
+	return mHedgeTool->getCuts(0, 0);
 }
 
 void Player::setLast(float l){
 	mLast = l;
+	if (l == 2.1){
+		mType = 3.1;
+	}
+	else {
+		mType = 3.0;
+	}
 }
 void Player::initialize(){
 	imagePlayer.loadFromFile(filename);

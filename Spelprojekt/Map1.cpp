@@ -153,10 +153,10 @@ void Map1::spawnObjects(){
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
-	mPlayer = new Player(0, 0, new LawnMower(), new HedgeCutter(2, 1), (widthOnTile), (heigthOnTile));
+	mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
-	//mObjects[1]->setCut();
+	mObjects[1]->setCut();
 	mObjects.push_back(new Stone(0, 0, (widthOnTile), (heigthOnTile)));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 1));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 2));
@@ -183,7 +183,7 @@ void Map1::spawnObjects(){
 	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		mLongObjects[i]->render();
 	}
-	mPlayer->render();
+	//mPlayer->render();
 
 	mGrid = createGrid(mWidth, mHeigth);
 	
@@ -387,6 +387,8 @@ void Map1::render(sf::RenderWindow &window){
 				if (mGrid[j][i] == 3.0f){ //Spelare Gräs, temp innan animation
 					mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile));
 					window.draw(mPlayer->getDrawSprite());
+					mPlayer->setX(i);
+					mPlayer->setY(j);
 				}else
 				if (mGrid[j][i] == 3.1f){ //Spelare Klippt Gräs, temp innan animation
 					mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile));
@@ -474,39 +476,39 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 		}
 	}
 	/*Do this for every NPC in the vector*/
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
-		/*get their movement vector*/
+	/*for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+		//get their movement vector
 		intVector npcMove = mNpcs.at(i)->move();
 		bool breakMove = false;
-		/*For every int in the vector, do the following*/
+		//For every int in the vector, do the following
 		for (intVector::size_type j = 0; j < npcMove.size(); j++){
-			/*0 means end of movement. Needed for patrols. 
-			Breakmove means that the entire movement for this character
-			is over for the turn*/
+			//0 means end of movement. Needed for patrols. 
+			//Breakmove means that the entire movement for this character
+			//is over for the turn
 			if (npcMove.at(j) == 0 || breakMove){
 				breakMove = false;
 				break;
 			}
-			/*the movement functions returns a bool. True if they moved, 
-			false in case of collision*/
+			//the movement functions returns a bool. True if they moved, 
+			//false in case of collision
 			bool moved = moveNpc(npcMove.at(j), i, sound);
-			/*if the NPC collided: do the following*/
+			//if the NPC collided: do the following
 			if (!moved){
 				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
-				/*get a new series of moves to attempt*/
+				//get a new series of moves to attempt
 				intVector tryMove;
 				tryMove = mNpcs.at(i)->collide(npcMove, j);
-				/*try out the new list of steps*/
+				//try out the new list of steps
 				for (intVector::size_type k = 0; k < tryMove.size(); k++){
-					/*again, break if 0, breakMove is made true so that
-					the entire turn will end for the current character
-					if there is no movement after collision*/
+					//again, break if 0, breakMove is made true so that
+					//the entire turn will end for the current character
+					//if there is no movement after collision
 					if (tryMove.at(k) == 0){
 						breakMove = true;
 						break;
 					}
-					/*check every move. If one of them works, return to standard
-					movement pattern*/
+					//check every move. If one of them works, return to standard
+					movement pattern
 					bool retryMoved = moveNpc(tryMove.at(k), i, sound);
 					if (retryMoved){
 						break;
@@ -514,66 +516,66 @@ void Map1::takeTurn(int dir, SoundManager &sound){
 				}
 
 				break;
-			}
+			}*/
 			/*else {
 				cout << "Moved " << npcMove.at(j) << endl;
 			}*/
-		}
-	}
+		//}
+	//}
 	mTurnCount++;
-	cout << "That was turn " << mTurnCount << "." << endl;
+	std::cout << "That was turn " << mTurnCount << "." << endl;
 	if (mTurnCount >= 50){
-		cout << "GAME OVER" << endl;
+		std::cout << "GAME OVER" << endl;
 	}
-	cout << endl;
+	std::cout << endl;
 }
 
 bool Map1::movePlayer(int dir, SoundManager &sound){
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
-		float tempPosX = 0, tempPosY = 0;
+		//float tempPosX = 0, tempPosY = 0;
 		/*move according to the int*/
 	switch (dir){
 		case 8:
 			tempY--;
-		tempPosY += -52;
+			//tempPosY += -52;
 			break;
 		case 9:
 			tempY--;
 			tempX++;
-			tempPosY += -52;
-			tempPosX += 64;
+			//tempPosY += -52;
+			//tempPosX += 64;
 			break;
 		case 6:
 			tempX++;
-			tempPosX += 64;
+			//tempPosX += 64;
 			break;
 		case 3:
 			tempX++;
 			tempY++;
-			tempPosY += 52;
-			tempPosX += 64;
+			//tempPosY += 52;
+			//tempPosX += 64;
 			break;
 		case 2:
 			tempY++;
-			tempPosY += 52;
+			//tempPosY += 52;
 			break;
 		case 1:
 			tempY++;
 			tempX--;
-			tempPosY += 52;
-			tempPosX += -64;
+			//tempPosY += 52;
+			//tempPosX += -64;
 			break;
 		case 4:
 			tempX--;
-			tempPosX += -64;
+			//tempPosX += -64;
 			break;
 		case 7:
 			tempX--;
 			tempY--;
-			tempPosY += -52;
-			tempPosX += -64;
+			//tempPosY += -52;
+			//tempPosX += -64;
 			break;
 		}
 
@@ -593,44 +595,35 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 
 		/*move meep to new place in the array and return the original value
 		to the last position*/
-		cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
-			//mPlayField.at(mEepY).at(mEepX) = mEep->getLast();
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
-			//mEep->setLast(mPlayField.at(tempY).at(tempX));
-			mPlayer->setLast(mGrid[tempY][tempX]);
-			//mPlayField.at(tempY).at(tempX) = mEep->getType();
+			if (mGrid[tempY][tempX] == 2.0f){
+				std::cout << "y grass no cut" << endl;
+				mPlayer->setLast(2.1);
+			}
+			else{
+				mPlayer->setLast(mGrid[tempY][tempX]);
+			}
 			mGrid[tempY][tempX] = mPlayer->getType();
-			mPlayer->updPos(tempPosX, tempPosY);
+			//mPlayer->updPos(tempPosX, tempPosY);
 
 			mPlayer->setX(tempX);
 			mPlayer->setY(tempY);
-			//mEepX = tempX;
-			//mEepY = tempY;
 
 			//Kan inte stänga av gräsklippning på trasig klippare förrän vi har ordentlig Render
-			if (mPlayer->getMowerEquipped()){
-				//Loopar igenom alla objekt och kollar funktionen "getCut" på det objektet som spelaren befinner sig på, den blir true när gräset är klippt.
-				//Variabeln cutGrass plussas på varje gång ett gräs klipps
-				for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-					if (mObjects[i]->getArrayX() == tempX && mObjects[i]->getArrayY() == tempY){
-						if (!mObjects[i]->getCut()){
-							mObjects[i]->setCut();
-							cutGrass++;
-						}
-					}
-				}
-			}
-			else {
-				cutVector cut = mPlayer->getCuts();
-				cutVector toCut;
+			/*if (!mPlayer->getMowerEquipped()) {
+				//cutVector cut = mPlayer->getCuts();
+				//cutVector toCut;
 				//Beautiful, I know.
 				for (cutVector::size_type i = 0; i < cut.size(); i++){
 					if (mGrid[cut.at(i)[1]][cut.at(i)[0]] == 9.0f){
 						//If we had updated render, this mess could end right here
 						//with a single line of code:
 						//mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f
-						toCut.push_back(cut.at(i));
+
+
+						/*toCut.push_back(cut.at(i));
 						for (ObjectsVector::size_type j = 0; j < mLongObjects.size(); j++){
 							for (cutVector::size_type k = 0; k < toCut.size(); k++){
 								if (mLongObjects[j]->getArrayX() == toCut.at(k)[0] && mLongObjects[j]->getArrayY() == toCut.at(k)[1]){
@@ -641,13 +634,15 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 								}
 							}
 						}
+
+
 					}
 				}
-			}
-			cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
-			cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
+			}*/
+			std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
+			std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 
-			cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+			std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
 		else {
@@ -715,43 +710,43 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 	switch (dir){
 	case 8:
 		tempY--;
-		tempPosY += -52;
+		//tempPosY += -52;
 		break;
 	case 9:
 		tempY--;
 		tempX++;
-		tempPosY += -52;
-		tempPosX += 64;
+		//tempPosY += -52;
+		//tempPosX += 64;
 		break;
 	case 6:
 		tempX++;
-		tempPosX += 64;
+		//tempPosX += 64;
 		break;
 	case 3:
 		tempX++;
 		tempY++;
-		tempPosY += 52;
-		tempPosX += 64;
+		//tempPosY += 52;
+		//tempPosX += 64;
 		break;
 	case 2:
 		tempY++;
-		tempPosY += 52;
+		//tempPosY += 52;
 		break;
 	case 1:
 		tempY++;
 		tempX--;
-		tempPosY += 52;
-		tempPosX += -64;
+		//tempPosY += 52;
+		//tempPosX += -64;
 		break;
 	case 4:
 		tempX--;
-		tempPosX += -64;
+		//tempPosX += -64;
 		break;
 	case 7:
 		tempX--;
 		tempY--;
-		tempPosY += -52;
-		tempPosX += -64;
+		//tempPosY += -52;
+		//tempPosX += -64;
 			break;
 		}
 
