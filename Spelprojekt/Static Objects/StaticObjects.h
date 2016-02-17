@@ -18,7 +18,8 @@ public:
 	virtual void setCut() = 0;
 	//Returnerar true/false beroende på om gräset är klippt eller inte
 	virtual bool getCut() = 0;
-	virtual sf::Sprite getSprite() = 0;
+	virtual sf::Sprite* getSprite() = 0;
+	virtual sf::Sprite getDrawSprite() = 0;
 
 
 };

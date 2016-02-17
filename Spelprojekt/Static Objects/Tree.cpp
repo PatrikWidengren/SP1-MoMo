@@ -36,7 +36,10 @@ void Tree::setCut(){
 bool Tree::getCut(){
 	return false;
 }
-sf::Sprite Tree::getSprite(){
+sf::Sprite* Tree::getSprite(){
+	return &spr;
+}
+sf::Sprite Tree::getDrawSprite(){
 	return spr;
 }
 bool Tree::getWalkable(){

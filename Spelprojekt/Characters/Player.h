@@ -48,7 +48,8 @@ public:
 	void render();
 	static void initialize();
 	static void finalize();
-	sf::Sprite getSprite();
+	sf::Sprite* getSprite();
+	sf::Sprite getDrawSprite();
 private:
 	/*equipped lawnmower*/
 	Mower *mLawnMower, *mAntiLeakMower;

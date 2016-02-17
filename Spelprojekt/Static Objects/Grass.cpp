@@ -37,7 +37,10 @@ int Grass::getArrayX(){
 int Grass::getArrayY(){
 	return mArrayY;
 }
-sf::Sprite Grass::getSprite(){
+sf::Sprite* Grass::getSprite(){
+	return &mSprite;
+}
+sf::Sprite Grass::getDrawSprite(){
 	return mSprite;
 }
 void Grass::setCut(){

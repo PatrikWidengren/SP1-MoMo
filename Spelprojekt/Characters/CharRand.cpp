@@ -116,7 +116,11 @@ void CharRand::render(){
 	mCharSprite.setTexture(textureCat);
 }
 
-sf::Sprite CharRand::getSprite(){
+sf::Sprite* CharRand::getSprite(){
+	return &mCharSprite;
+}
+
+sf::Sprite CharRand::getDrawSprite(){
 	return mCharSprite;
 }
 

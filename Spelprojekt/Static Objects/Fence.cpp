@@ -81,7 +81,10 @@ void Fence::setCut(){
 bool Fence::getCut(){
 	return false;
 }
-sf::Sprite Fence::getSprite(){
+sf::Sprite* Fence::getSprite(){
+	return &mSprite;
+}
+sf::Sprite Fence::getDrawSprite(){
 	return mSprite;
 }
 void Fence::initialize(){

@@ -37,7 +37,10 @@ void Stone::setCut(){
 bool Stone::getCut(){
 	return false;
 }
-sf::Sprite Stone::getSprite(){
+sf::Sprite* Stone::getSprite(){
+	return &mSprite;
+}
+sf::Sprite Stone::getDrawSprite(){
 	return mSprite;
 }
 void Stone::initialize(){

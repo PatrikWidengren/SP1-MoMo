@@ -13,7 +13,8 @@ public:
 	virtual float getPosY();
 	virtual int getArrayX();
 	virtual int getArrayY();
-	virtual sf::Sprite getSprite();
+	virtual sf::Sprite* getSprite();
+	virtual sf::Sprite getDrawSprite();
 	virtual void setCut();
 	virtual bool getCut();
 	static void initialize();

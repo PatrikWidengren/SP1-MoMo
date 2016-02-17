@@ -75,10 +75,13 @@ void Player::setX(int x){
 void Player::setY(int y){
 	mArrayY = y;
 }
-sf::Sprite Player::getSprite(){
-	return mPlayerSprite;
+sf::Sprite* Player::getSprite(){
+	return &mPlayerSprite;
 }
 
+sf::Sprite Player::getDrawSprite(){
+	return mPlayerSprite;
+}
 
 float Player::getType(){
 	return mType;

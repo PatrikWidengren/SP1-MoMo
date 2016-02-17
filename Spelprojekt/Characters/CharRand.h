@@ -29,7 +29,8 @@ public:
 	virtual void render();
 	static void initialize();
 	static void finalize();
-	virtual sf::Sprite getSprite();
+	virtual sf::Sprite* getSprite();
+	virtual sf::Sprite getDrawSprite();
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide();
 private:

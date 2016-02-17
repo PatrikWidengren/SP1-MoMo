@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+int asd;
 static const string nameArray[9] = { "Resource Files/Sound/collision_fence.flac", 
 	"Resource Files/Sound/collision_vase.flac",
 	"Resource Files/Sound/collision_stone.flac",

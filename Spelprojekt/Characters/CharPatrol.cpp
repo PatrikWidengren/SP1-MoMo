@@ -163,7 +163,11 @@ void CharPatrol::render(){
 	mCharSprite.setTexture(textureGuard);
 }
 
-sf::Sprite CharPatrol::getSprite(){
+sf::Sprite* CharPatrol::getSprite(){
+	return &mCharSprite;
+}
+
+sf::Sprite CharPatrol::getDrawSprite(){
 	return mCharSprite;
 }
 

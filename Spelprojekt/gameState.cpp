@@ -12,7 +12,7 @@ ObjectsVector mLongObjects;
 
 gameState::gameState(sf::RenderWindow &window)
 {
-	mState = 4;
+	mState = 3;
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
@@ -20,7 +20,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("Maps/maptest3.txt");
+	mMap01 = new Map1("Maps/map2.txt");
 	
 	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);
@@ -29,6 +29,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mHedgeTools.push_back(new HedgeCutter(4, 2));
 
 	mMap01->spawnObjects();
+	mMap01->render(window);
 	mObjects = mMap01->getObjects();
 	mPlayer = mMap01->getPlayer();
 	mNpcs = mMap01->getNpcs();

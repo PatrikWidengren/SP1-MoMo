@@ -40,7 +40,10 @@ int Hedge::getArrayX(){
 int Hedge::getArrayY(){
 	return mArrayY;
 }
-sf::Sprite Hedge::getSprite(){
+sf::Sprite* Hedge::getSprite(){
+	return &mSprite;
+}
+sf::Sprite Hedge::getDrawSprite(){
 	return mSprite;
 }
 void Hedge::setCut(){
