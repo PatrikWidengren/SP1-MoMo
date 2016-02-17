@@ -20,7 +20,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("Maps/map2.txt");
+	mMap01 = new Map1("Maps/maptest3.txt");
 	
 	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);
@@ -307,12 +307,13 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 void gameState::resetMap()
 {
-	mMap01->deleteContent();
-	mMap01->spawnObjects();
-	mObjects = mMap01->getObjects();
-	mPlayer = mMap01->getPlayer();
-	mNpcs = mMap01->getNpcs();
-	mLongObjects = mMap01->getLongObjects();
+	mMap01->resetGrid();
+	//mMap01->deleteContent();
+	//mMap01->spawnObjects();
+	//mObjects = mMap01->getObjects();
+	//mPlayer = mMap01->getPlayer();
+	//mNpcs = mMap01->getNpcs();
+	//mLongObjects = mMap01->getLongObjects();
 	// Skriver ut position för alla object
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;

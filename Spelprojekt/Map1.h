@@ -43,6 +43,7 @@ public:
 	void deleteContent();
 	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
 	void virtual getMapInfo();
+	void resetGrid();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
 	//Added turn count
