@@ -11,13 +11,14 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mLawnMower(m),
 	mAntiLeakMower(m),
 	mHedgeTool(c),
-	mAntiLeakHedgeTool(c){
+	mAntiLeakHedgeTool(c),
+	mBaseType(5.0f){
 	//mPosX = posX;
 	//mPosY = posY;
 	//mPlayerSprite.setPosition(posX, posY);
 	mType = 5.1f;
 	//Temporär lösning. Bör fixas snarast
-	mLast = 2.1;
+	mLast = 2.1f;
 	mPlayerSprite.setTexture(texturePlayer);
 }
 
@@ -94,6 +95,13 @@ bool Player::getMowerEquipped(){
 	return mMowerEquipped;
 }
 
+bool Player::getFunctioning(){
+	if (mMowerEquipped){
+		return mLawnMower->getFunctioning();
+	}
+	else return false;
+}
+
 void Player::swapEquipped(){
 	cout << "Equipment changed from ";
 	if (mMowerEquipped){
@@ -136,6 +144,7 @@ cutVector Player::getCuts(){
 
 void Player::setLast(float l){
 	mLast = l;
+	mType = mBaseType + (mLast - 2);
 }
 void Player::initialize(){
 	imagePlayer.loadFromFile(filename);

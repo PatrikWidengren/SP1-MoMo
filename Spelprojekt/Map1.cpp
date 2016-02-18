@@ -12,7 +12,8 @@ static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
 
-Map1::Map1(string savefile){
+Map1::Map1(string savefile, Player *p){
+	mPlayer = p;
 	mSavefile = savefile;
 	getMapInfo();
 	Stone::initialize();
@@ -20,7 +21,7 @@ Map1::Map1(string savefile){
 	Fence::initialize();
 	Tree::initialize();
 	Hedge::initialize();
-	Player::initialize();
+	//Player::initialize();
 	CharRand::initialize();
 	CharPatrol::initialize();
 }
@@ -37,6 +38,12 @@ Map1::~Map1(){
 
 void Map1::resetGrid(){
 	mGrid = createGrid(mWidth, mHeigth);
+	totalAmountOfGrass = 0;
+	totalAmountOfHedges = 0;
+	turnsLeft = 50;
+	cutGrass = 0;
+	cutHedges = 0;
+	mTurnCount = 0;
 }
 
 //Skapar array
@@ -157,7 +164,7 @@ void Map1::spawnObjects(){
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
-	mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
+	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
 	mObjects[1]->setCut();
@@ -615,8 +622,8 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 2.2f){
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
-			if (mGrid[tempY][tempX] == 2.0f){
-				std::cout << "y grass no cut" << endl;
+			if (mGrid[tempY][tempX] == 2.0f && mPlayer->getFunctioning()){
+				cutGrass++;
 				mPlayer->setLast(2.1);
 			}
 			else{
@@ -663,7 +670,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			}
 			else if (mGrid[tempY][tempX] == 3){
 				//Krock med Sten
-				sound.playSound(0);
+				sound.playSound(0
 			}
 			else if (mGrid[tempY][tempX] == 4){
 				//Krock med Träd

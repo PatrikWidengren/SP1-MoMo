@@ -20,18 +20,21 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mMap01 = new Map1("Maps/maptest3.txt");
-	
 	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 	mHedgeTools.push_back(new HedgeCutter(4, 2));
 
+	Player::initialize();
+	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
+	mMap01 = new Map1("Maps/maptest3.txt", mPlayer);
+	
+
 	mMap01->spawnObjects();
 	mMap01->render(window);
 	mObjects = mMap01->getObjects();
-	mPlayer = mMap01->getPlayer();
+	//mPlayer = mMap01->getPlayer();
 	mNpcs = mMap01->getNpcs();
 	mLongObjects = mMap01->getLongObjects();
 	// Skriver ut position för alla object
@@ -42,11 +45,14 @@ gameState::gameState(sf::RenderWindow &window)
 
 gameState::~gameState()
 {
+	Player::finalize();
 	while (!mLawnMowers.empty()){
-		mLawnMowers.pop_back();
+		delete mLawnMowers.at(0);
+		mLawnMowers.erase(mLawnMowers.begin());
 	}
 	while (!mHedgeTools.empty()){
-		mHedgeTools.pop_back();
+		delete mHedgeTools.at(0);
+		mHedgeTools.erase(mHedgeTools.begin());
 	}
 }
 
