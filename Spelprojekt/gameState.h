@@ -6,6 +6,7 @@
 #include "Menu/GameOverMenu.h"
 #include "Menu\WinMenu.h"
 #include "Menu/ToolSelectMenu.h"
+#include "SoundMenu.h"
 
 #include "MusicManager.h"
 #include "SoundManager.h"
@@ -24,6 +25,7 @@ public:
 	void drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
@@ -33,7 +35,9 @@ public:
 
 private:
 	int mState; //Witch state the game curently are in
+	int mOptionMenu;
 
+	SoundMenu *mSoundmenu01;
 	WinMenu *mWinMenu01;
 	GameOverMenu *mGameOverMenu01;
 	inGameMenu *mInGameMenu01;

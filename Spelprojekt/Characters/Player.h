@@ -33,6 +33,7 @@ public:
 	float getType();
 	//true if equipped lawnmower, false if hedge cutter
 	bool getMowerEquipped();
+	bool getFunctioning();
 	//Swap which tool is equipped;
 	void swapEquipped();
 	//get the string for the currently equipped tool
@@ -59,6 +60,7 @@ private:
 	/*x and y in the array*/
 	int mArrayX = 0, mArrayY = 0;
 	/*important values for the array*/
+	const float mBaseType;
 	float mType, mLast;
 	/*x and y coordinates for sprite*/
 	//float mPosX, mPosY;

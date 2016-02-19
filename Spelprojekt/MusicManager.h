@@ -9,8 +9,12 @@ public:
 	virtual ~MusicManager();
 	virtual sf::Music* getMusic();
 	virtual void setMusic(int id);
+	void getVolume(int volume);
+	int setVolume();
 private:
 	sf::Music mMusic;
+	int const mMaxVolume = 100;
+	int mVolume;
 };
 
 #endif

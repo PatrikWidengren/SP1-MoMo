@@ -12,7 +12,8 @@ static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
 
-Map1::Map1(string savefile){
+Map1::Map1(string savefile, Player *p){
+	mPlayer = p;
 	mSavefile = savefile;
 	getMapInfo();
 	Stone::initialize();
@@ -20,7 +21,7 @@ Map1::Map1(string savefile){
 	Fence::initialize();
 	Tree::initialize();
 	Hedge::initialize();
-	Player::initialize();
+	//Player::initialize();
 	CharRand::initialize();
 	CharPatrol::initialize();
 }
@@ -33,6 +34,16 @@ Map1::~Map1(){
 	Player::finalize();
 	CharRand::finalize();
 	CharPatrol::finalize();
+}
+
+void Map1::resetGrid(){
+	mGrid = createGrid(mWidth, mHeigth);
+	totalAmountOfGrass = 0;
+	totalAmountOfHedges = 0;
+	turnsLeft = 50;
+	cutGrass = 0;
+	cutHedges = 0;
+	mTurnCount = 0;
 }
 
 //Skapar array
@@ -153,11 +164,12 @@ void Map1::spawnObjects(){
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
 	//*************************************************************************************************************************************************
-	mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
+	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
 	mObjects[1]->setCut();
 	mObjects.push_back(new Stone(0, 0, (widthOnTile), (heigthOnTile)));
+	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heigthOnTile)-200)); //Träd: plats 0
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 1));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 2));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 3));
@@ -167,8 +179,9 @@ void Map1::spawnObjects(){
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 7));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 8));
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 9));
-	mLongObjects.push_back(new Tree(0, 0, (widthOnTile) - 31, (heigthOnTile) - 200));
 	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
+	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
+	mLongObjects[11]->setCut();
 	mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heigthOnTile), 1, true));
 	//mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heigthOnTile), patrolPath));
 
@@ -293,10 +306,6 @@ void Map1::render(sf::RenderWindow &window){
 
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
-				if (mGrid[j][i] == 1.0f){
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}else
 				if (mGrid[j][i] == 1.1f){
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
@@ -329,6 +338,10 @@ void Map1::render(sf::RenderWindow &window){
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}else
+				if (mGrid[j][i] == 1.9f){
+					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+					window.draw(mObjects[0]->getDrawSprite());
+				}else
 				if (mGrid[j][i] == 2.0f){ //Gräs
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
@@ -337,71 +350,82 @@ void Map1::render(sf::RenderWindow &window){
 					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[1]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 2.2f){ //Sten
+				if (mGrid[j][i] == 3.0f){ //Sten
 					mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					window.draw(mObjects[2]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 2.3f){ //Träd
+				if (mGrid[j][i] == 4.0f){ //Träd
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 2.4f){ //Häck
+				if (mGrid[j][i] == 5.0f){ //Spelare Gräs, temp innan animation
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 3.0f){ //Spelare Gräs, temp innan animation
+				if (mGrid[j][i] == 5.1f){ //Spelare klippt Gräs, temp innan animation
 					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[1]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 3.2f){ //Npc 1 Gräs, temp innan animation
+				if (mGrid[j][i] == 6.0f){ //Rand Npc på Gräs, temp innan animation
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 3.3f){ //Npc 1 Klippt Gräs, temp innan animation
+				if (mGrid[j][i] == 6.1f){ //Rand Npc på Klippt Gräs, temp innan animation
 					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[1]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 3.4f){ //Npc 2 Gräs, temp innan animation
+				if (mGrid[j][i] == 7.0f){ //Patrull Npc på Gräs, temp innan animation
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 				}
 				else
-				if (mGrid[j][i] == 3.5f){ //Npc 2 Klippt Gräs, temp innan animation
+				if (mGrid[j][i] == 7.1f){ //Patrull Npc på Klippt Gräs, temp innan animation
 					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[1]->getDrawSprite());
 				}
+				else
+				if (mGrid[j][i] == 9.0f){ //Häck
+					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+					window.draw(mObjects[0]->getDrawSprite());
+		}
+				else
+				if (mGrid[j][i] == 9.1f){ //Klippt Häck
+					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+					window.draw(mObjects[0]->getDrawSprite());
+	}
+
 		}
 	}
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
-				if (mGrid[j][i] == 3.0f){ //Spelare Gräs, temp innan animation
+				if (mGrid[j][i] == 5.0f){ //Spelare Gräs, temp innan animation
 					mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile));
 					window.draw(mPlayer->getDrawSprite());
 					mPlayer->setX(i);
 					mPlayer->setY(j);
 				}else
-				if (mGrid[j][i] == 3.1f){ //Spelare Klippt Gräs, temp innan animation
+				if (mGrid[j][i] == 5.1f){ //Spelare Klippt Gräs, temp innan animation
 					mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile));
 					window.draw(mPlayer->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 3.2f){ //Npc 1 Gräs, temp innan animation
+				if (mGrid[j][i] == 6.0f){ //Rand Npc Gräs, temp innan animation
 					mNpcs[0]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[0]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 3.3f){ //Npc 1 Klippt Gräs, temp innan animation
+				if (mGrid[j][i] == 6.1f){ //Rand Npc Klippt Gräs, temp innan animation
 					mNpcs[0]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[0]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 3.4f){ //Npc 2 Gräs, temp innan animation
+				if (mGrid[j][i] == 7.0f){ //Patrull Npc Gräs, temp innan animation
 					//mNpcs[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					//window.draw(mNpcs[1]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 3.5f){ //Npc 2 Klippt Gräs, temp innan animation
+				if (mGrid[j][i] == 7.1f){ //Patrull Npc Klippt Gräs, temp innan animation
 					//mNpcs[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					//window.draw(mNpcs[1]->getDrawSprite());
 				}
@@ -409,10 +433,11 @@ void Map1::render(sf::RenderWindow &window){
 	}
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
-				if (mGrid[j][i] == 1.0f){
-					mLongObjects[0]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				if (mGrid[j][i] == 4.0f){ //Träd
+					mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
 					window.draw(mLongObjects[0]->getDrawSprite());
-				}else
+				} 
+				else
 				if (mGrid[j][i] == 1.1f){
 					mLongObjects[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
 					window.draw(mLongObjects[1]->getDrawSprite());
@@ -445,13 +470,17 @@ void Map1::render(sf::RenderWindow &window){
 					mLongObjects[8]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
 					window.draw(mLongObjects[8]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 2.3f){ //Träd
-					mLongObjects[9]->getSprite()->setPosition((i * widthOnTile) -31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
+				if (mGrid[j][i] == 1.9f){
+					mLongObjects[9]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
 					window.draw(mLongObjects[9]->getDrawSprite());
 				}else
-				if (mGrid[j][i] == 2.4f){ //Häck
+				if (mGrid[j][i] == 9.0f){ //Häck
 					mLongObjects[10]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
 					window.draw(mLongObjects[10]->getDrawSprite());
+				}else
+				if (mGrid[j][i] == 9.1f){ //Klippt Häck
+					mLongObjects[11]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+					window.draw(mLongObjects[11]->getDrawSprite());
 				}
 		}
 	}
@@ -593,9 +622,9 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 2.2f){
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
-			if (mGrid[tempY][tempX] == 2.0f){
-				std::cout << "y grass no cut" << endl;
-				mPlayer->setLast(2.1f);
+			if (mGrid[tempY][tempX] == 2.0f && mPlayer->getFunctioning()){
+				cutGrass++;
+				mPlayer->setLast(2.1);
 			}
 			else{
 				mPlayer->setLast(mGrid[tempY][tempX]);
@@ -607,33 +636,16 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			mPlayer->setY(tempY);
 
 			//Kan inte stänga av gräsklippning på trasig klippare förrän vi har ordentlig Render
-			/*if (!mPlayer->getMowerEquipped()) {
-				//cutVector cut = mPlayer->getCuts();
-				//cutVector toCut;
+			if (!mPlayer->getMowerEquipped()) {
+				cutVector cut = mPlayer->getCuts();
+				cutVector toCut;
 				//Beautiful, I know.
 				for (cutVector::size_type i = 0; i < cut.size(); i++){
 					if (mGrid[cut.at(i)[1]][cut.at(i)[0]] == 9.0f){
-						//If we had updated render, this mess could end right here
-						//with a single line of code:
-						//mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f
-
-
-						/*toCut.push_back(cut.at(i));
-						for (ObjectsVector::size_type j = 0; j < mLongObjects.size(); j++){
-							for (cutVector::size_type k = 0; k < toCut.size(); k++){
-								if (mLongObjects[j]->getArrayX() == toCut.at(k)[0] && mLongObjects[j]->getArrayY() == toCut.at(k)[1]){
-									if (!mLongObjects[j]->getCut()){
-										mLongObjects[j]->setCut();
-										cutHedges++;
-									}
-								}
-							}
+						mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f;
 						}
-
-
 					}
 				}
-			}*/
 			std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
 			std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 
@@ -658,7 +670,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			}
 			else if (mGrid[tempY][tempX] == 3){
 				//Krock med Sten
-				sound.playSound(0);
+				sound.playSound(0
 			}
 			else if (mGrid[tempY][tempX] == 4){
 				//Krock med Träd
@@ -714,6 +726,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		//tempPosX += 64;
 		break;
 	case 6:
+
 		tempX++;
 		//tempPosX += 64;
 		break;

@@ -2,6 +2,8 @@
 #define SOUNDMENU
 
 #include "Menu\menu.h"
+#include "SoundManager.h"
+#include "MusicManager.h"
 
 class SoundMenu : public Menu
 {

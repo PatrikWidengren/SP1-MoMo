@@ -9,7 +9,7 @@ optionMenu::optionMenu(float width, float height)
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Video settings");
+	menu[0].setString("Sound settings");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
 	menu[1].setFont(font);

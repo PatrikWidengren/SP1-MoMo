@@ -25,7 +25,7 @@
 class Map1 : public Maps{
 public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
-	Map1(std::string savefile);
+	Map1(std::string savefile, Player *m);
 	virtual ~Map1();
 	void virtual render(sf::RenderWindow &window);
 	//Spawnar alla objekten, enligt array
@@ -43,6 +43,7 @@ public:
 	void deleteContent();
 	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
 	void virtual getMapInfo();
+	void resetGrid();
 	void takeTurn(int dir, SoundManager &sound);
 	float** createGrid(int width, int heigth);
 	//Added turn count
