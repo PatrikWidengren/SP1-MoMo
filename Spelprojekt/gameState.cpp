@@ -13,6 +13,9 @@ ObjectsVector mLongObjects;
 gameState::gameState(sf::RenderWindow &window)
 {
 	mState = 3;
+	mOptionMenuState = 1;
+	
+	mKeyboardMenu01 = new KeyboardOptionMenu(window.getSize().x, window.getSize().y);
 	mSoundmenu01 = new SoundMenu(window.getSize().x, window.getSize().y);
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
@@ -78,7 +81,7 @@ void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 {
 	mSoundmenu01->updateSoundMenu(window);
 	mSoundmenu01->displayMenu01(window);
-	mState = mSoundmenu01->checkState();
+	mOptionMenuState = mSoundmenu01->checkOptionState();
 }
 
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Option Menu
@@ -86,6 +89,7 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	mOptionMenu01->updateoptionMenu(window);
 	mOptionMenu01->displayMenu01(window);
 	mState = mOptionMenu01->checkState();
+	mOptionMenuState = mOptionMenu01->checkOptionState();
 }
 
 void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Tool Select Menu
@@ -107,6 +111,13 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 	mWinMenu01->updateWinMenu(window);
 	mWinMenu01->displayMenu01(window);
 	mState = mWinMenu01->checkState();
+}
+
+void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
+{
+	mKeyboardMenu01->updateKeyboardOptionMenu(window);;
+	mKeyboardMenu01->displayMenu01(window);
+	mOptionMenuState = mKeyboardMenu01->checkOptionState();
 }
 
 
@@ -236,20 +247,21 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 4: //state 4. option.
-		switch (mOptionMenu)
+		switch (mOptionMenuState)
 		{
 		case 1: //state 1. Option.
 			drawOptionMenu(window, mouse, music, sound);
 
 			break;
 
-		case 2: //state 2. KeyboardSettings.
+		case 2: //state 2. SoundMenu.
 			drawSoundMenu(window, mouse, music, sound);
 			break;
 
-		case 3: //state 7. SoundMenu.
-			drawSoundMenu(window, mouse, music, sound);
+		case 3: //state 3. KeyboardSettings.
+			drawKeyboardMenu(window, mouse, music, sound);
 			break;
+
 
 		default:
 			break;

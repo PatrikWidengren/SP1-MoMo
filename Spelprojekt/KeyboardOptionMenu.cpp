@@ -5,27 +5,29 @@ KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 4;
+	mOptionMenuState = 3;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Sound settings");
+	menu[0].setString("Keyboard Settings");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Keyboard settings");
+	menu[1].setString("More Keyboard Settings");
 	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Resume");
+	menu[2].setString("Back To Options");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	mText01.setFont(font);
 	mText01.setColor(sf::Color::Blue);
 	mText01.setString("KeyboardSettings!");
-	mText01.setPosition(sf::Vector2f(width / 2, height / 0.8f));
+	mText01.setPosition(sf::Vector2f(width / 2, height / 10));
+	mText01.setScale(1.5f, 1.5f);
 
 	selectedIndex = 0;
 }
@@ -72,7 +74,7 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window)
 			mState = 4;
 		}
 		if (selectedIndex == 2){
-			mState = 1;
+			mOptionMenuState = 1;
 		}
 	}
 }
@@ -150,5 +152,13 @@ int KeyboardOptionMenu::checkState()
 	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 4;
+	return i;
+}
+
+
+int KeyboardOptionMenu::checkOptionState()
+{
+	int i = mOptionMenuState;
+	mOptionMenuState = 3;
 	return i;
 }

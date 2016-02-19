@@ -26,10 +26,13 @@ public:
 	virtual void moveDown();
 	sf::Vector2i mMouse;
 
+	int checkOptionState();
+
 protected:
 	static int const mNumberOfSelections = 3;
 
 private:
+	int mOptionMenuState;
 	int mState;
 	int mTimer;
 	int selectedIndex;

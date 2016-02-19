@@ -5,6 +5,7 @@ optionMenu::optionMenu(float width, float height)
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 4;
+	mOptionMenuState = 1;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
@@ -19,7 +20,7 @@ optionMenu::optionMenu(float width, float height)
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Resume");
+	menu[2].setString("Back");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
@@ -61,13 +62,13 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
-			mState = 4;
+			mOptionMenuState = 2;
 		}
 		if (selectedIndex == 1){
-			mState = 4;
+			mOptionMenuState = 3;
 		}
 		if (selectedIndex == 2){
-			mState = 1;
+			mState = 3;
 		}
 	}
 }
@@ -145,5 +146,12 @@ int optionMenu::checkState()
 	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 4;
+	return i;
+}
+
+int optionMenu::checkOptionState()
+{
+	int i = mOptionMenuState;
+	mOptionMenuState = 1;
 	return i;
 }

@@ -5,21 +5,22 @@ SoundMenu::SoundMenu(float width, float height)
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 4;
+	mOptionMenuState = 2;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Video settings");
+	menu[0].setString("Sound Settings");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Keyboard settings");
+	menu[1].setString("More Sound Settings");
 	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Resume");
+	menu[2].setString("Back To Options");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
@@ -61,13 +62,13 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
-			mState = 4;
+			mState = 4; //change sound settings
 		}
 		if (selectedIndex == 1){
-			mState = 4;
+			mState = 4; //change sound settings
 		}
 		if (selectedIndex == 2){
-			mState = 1;
+			mOptionMenuState = 1;
 		}
 	}
 }
@@ -145,5 +146,13 @@ int SoundMenu::checkState()
 	//std::cout << mState << std::endl;
 	int i = mState;
 	mState = 4;
+	return i;
+}
+
+
+int SoundMenu::checkOptionState()
+{
+	int i = mOptionMenuState;
+	mOptionMenuState = 2;
 	return i;
 }
