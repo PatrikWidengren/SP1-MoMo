@@ -595,7 +595,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
 			if (mGrid[tempY][tempX] == 2.0f){
 				std::cout << "y grass no cut" << endl;
-				mPlayer->setLast(2.1);
+				mPlayer->setLast(2.1f);
 			}
 			else{
 				mPlayer->setLast(mGrid[tempY][tempX]);

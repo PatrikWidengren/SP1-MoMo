@@ -17,7 +17,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	//mPlayerSprite.setPosition(posX, posY);
 	mType = 3.0f;
 	//Temporär lösning. Bör fixas snarast
-	mLast = 2.1;
+	mLast = 2.1f;
 	mPlayerSprite.setTexture(texturePlayer);
 }
 
