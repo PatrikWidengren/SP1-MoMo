@@ -1,13 +1,15 @@
-#ifndef OPTIONMENU
-#define OPTIONMENU
-#include "menu.h"
-class optionMenu :
-	public Menu
+#ifndef KEYBOARDOPTIONMENU
+#define KEYBOARDOPTIONMENU
+
+#include "Menu\menu.h"
+
+class KeyboardOptionMenu : public Menu
 {
 public:
-	optionMenu(float width, float height);
-	optionMenu();
-	~optionMenu();
+	KeyboardOptionMenu(float width, float height);
+	KeyboardOptionMenu();
+	~KeyboardOptionMenu();
+
 	// Load a backgrounds to show for the menu
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
@@ -16,7 +18,7 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateoptionMenu(sf::RenderWindow &window);
+	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
@@ -31,6 +33,8 @@ private:
 	int selectedIndex;
 	sf::Font font;
 	sf::Text menu[mNumberOfSelections];
+	sf::Text mText01;
+
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
 	//flaggor för keypress
@@ -38,5 +42,5 @@ private:
 	bool mDown = false;
 	bool mUp = false;
 };
-#endif
 
+#endif

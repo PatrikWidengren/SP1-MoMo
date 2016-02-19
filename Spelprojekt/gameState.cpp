@@ -13,6 +13,7 @@ ObjectsVector mLongObjects;
 gameState::gameState(sf::RenderWindow &window)
 {
 	mState = 3;
+	mSoundmenu01 = new SoundMenu(window.getSize().x, window.getSize().y);
 	mInGameMenu01 = new inGameMenu(window.getSize().x, window.getSize().y);
 	mStartMenu01 = new startMenu(window.getSize().x, window.getSize().y);
 	mOptionMenu01 = new optionMenu(window.getSize().x, window.getSize().y);
@@ -56,7 +57,7 @@ gameState::~gameState()
 	}
 }
 
-void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw In Game Menu
 {
 	
 	mInGameMenu01->updateInGameMenu(window);
@@ -65,7 +66,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	
 }
 
-void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
 {
 	mStartMenu01->updateStartMenu(window);
 	mStartMenu01->displayMenu01(window);
@@ -73,7 +74,43 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	
 }
 
-void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
+{
+	mSoundmenu01->updateSoundMenu(window);
+	mSoundmenu01->displayMenu01(window);
+	mState = mSoundmenu01->checkState();
+}
+
+void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Option Menu
+{
+	mOptionMenu01->updateoptionMenu(window);
+	mOptionMenu01->displayMenu01(window);
+	mState = mOptionMenu01->checkState();
+}
+
+void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Tool Select Menu
+{
+	mToolSelectMenu01->updateToolSelectMenu(window);
+	mToolSelectMenu01->displayMenu01(window);
+	mState = mToolSelectMenu01->checkState();
+}
+
+void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Game Over Menu
+{
+	mGameOverMenu01->updateGameOverMenu(window);
+	mGameOverMenu01->displayMenu01(window);
+	mState = mGameOverMenu01->checkState();
+}
+
+void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Win Menu
+{
+	mWinMenu01->updateWinMenu(window);
+	mWinMenu01->displayMenu01(window);
+	mState = mWinMenu01->checkState();
+}
+
+
+void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw and Update Ingame
 {
 	/*
 	//Ritar ut objekten
@@ -182,35 +219,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 
 }
 
-void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
-{
-	mOptionMenu01->updateoptionMenu(window);
-	mOptionMenu01->displayMenu01(window);
-	mState = mOptionMenu01->checkState();
-}
-
-void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
-{
-	mToolSelectMenu01->updateToolSelectMenu(window);
-	mToolSelectMenu01->displayMenu01(window);
-	mState = mToolSelectMenu01->checkState();
-}
-
-void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
-{
-	mGameOverMenu01->updateGameOverMenu(window);
-	mGameOverMenu01->displayMenu01(window);
-	mState = mGameOverMenu01->checkState();
-}
-
-void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
-{
-	mWinMenu01->updateWinMenu(window);
-	mWinMenu01->displayMenu01(window);
-	mState = mWinMenu01->checkState();
-}
-
-void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound)
+void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Game State Handler
 {
 	switch (mState) //switch that hold the states of the game
 	{
@@ -227,7 +236,25 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 4: //state 4. option.
-		drawOptionMenu(window, mouse, music, sound);
+		switch (mOptionMenu)
+		{
+		case 1: //state 1. Option.
+			drawOptionMenu(window, mouse, music, sound);
+
+			break;
+
+		case 2: //state 2. KeyboardSettings.
+			drawSoundMenu(window, mouse, music, sound);
+			break;
+
+		case 3: //state 7. SoundMenu.
+			drawSoundMenu(window, mouse, music, sound);
+			break;
+
+		default:
+			break;
+		}
+		
 		break;
 
 	case 5: //state 5. GameOver.

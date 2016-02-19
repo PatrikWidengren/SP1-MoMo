@@ -75,6 +75,7 @@
     <ClCompile Include="Characters\CharRand.cpp" />
     <ClCompile Include="Characters\Player.cpp" />
     <ClCompile Include="gameState.cpp" />
+    <ClCompile Include="KeyboardOptionMenu.cpp" />
     <ClCompile Include="Menu\GameOverMenu.cpp" />
     <ClCompile Include="Menu\inGameMenu.cpp" />
     <ClCompile Include="Menu\menu.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Characters\CharRand.h" />
     <ClInclude Include="Characters\Player.h" />
     <ClInclude Include="gameState.h" />
+    <ClInclude Include="KeyboardOptionMenu.h" />
     <ClInclude Include="Menu\GameOverMenu.h" />
     <ClInclude Include="Menu\inGameMenu.h" />
     <ClInclude Include="Menu\menu.h" />
