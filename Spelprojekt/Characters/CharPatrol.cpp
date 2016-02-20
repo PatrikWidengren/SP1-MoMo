@@ -149,6 +149,14 @@ float CharPatrol::getType(){
 	return mType;
 }
 
+bool CharPatrol::getDoneMoving() {
+	return mDoneMoving;
+}
+
+void CharPatrol::swapDoneMoving() {
+	mDoneMoving = !mDoneMoving;
+}
+
 bool CharPatrol::getCollide(){
 	return true;
 }

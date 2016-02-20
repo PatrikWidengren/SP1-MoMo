@@ -20,6 +20,8 @@ public:
 	virtual void setLast(float l);
 	virtual float getLast();
 	virtual float getType();
+	virtual bool getDoneMoving();
+	virtual void swapDoneMoving();
 	/*Update coordinates for the sprite. x and y is value the position has
 	changed by*/
 	virtual void updPos(float x, float y);
@@ -31,6 +33,7 @@ public:
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide();
 private:
+	bool mDoneMoving = false;
 	int mArrayX, mArrayY;
 	float mType, mLast, mPosX, mPosY;
 	//Path is a pointer because we don't want to copy mTurnCount0 ints per character.

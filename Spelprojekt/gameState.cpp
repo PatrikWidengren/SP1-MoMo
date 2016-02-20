@@ -6,7 +6,7 @@
 typedef std::vector<StaticObjects*> ObjectsVector;
 ObjectsVector mObjects;
 typedef std::vector<Character*> NpcVector;
-NpcVector mNpcs;
+Maps::NpcMap mNpcs;
 Player* mPlayer;
 ObjectsVector mLongObjects;
 

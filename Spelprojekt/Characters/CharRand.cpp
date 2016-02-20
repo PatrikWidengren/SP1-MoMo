@@ -21,6 +21,7 @@ CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, b
 	mType = 6.0f;
 	//dåligt tilfällig lösning. Fixa snart.
 	mLast = 2;
+	render();
 }
 
 CharRand::~CharRand(){
@@ -100,6 +101,14 @@ float CharRand::getLast(){
 
 float CharRand::getType(){
 	return mType;
+}
+
+bool CharRand::getDoneMoving() {
+	return mDoneMoving;
+}
+
+void CharRand::swapDoneMoving() {
+	mDoneMoving = !mDoneMoving;
 }
 
 bool CharRand::getCollide(){

@@ -19,6 +19,8 @@ public:
 	virtual void setLast(float l) = 0;
 	virtual float getLast() = 0;
 	virtual float getType() = 0;
+	virtual bool getDoneMoving() = 0;
+	virtual void swapDoneMoving() = 0;
 	virtual void updPos(float x, float y) = 0;
 	virtual void render() = 0;
 	virtual sf::Sprite* getSprite() = 0;

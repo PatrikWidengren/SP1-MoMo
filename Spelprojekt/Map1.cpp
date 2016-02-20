@@ -182,16 +182,16 @@ void Map1::spawnObjects(){
 	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
 	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
 	mLongObjects[11]->setCut();
-	mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heigthOnTile), 1, true));
+	//mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heigthOnTile), 1, true));
 	//mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heigthOnTile), patrolPath));
 
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		mObjects[i]->render();
 	}
 
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+	/*for (NpcMap::size_type i = 0; i < mNpcs.size(); i++){
 		mNpcs[i]->render();
-	}
+	}*/
 
 	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		mLongObjects[i]->render();
@@ -216,6 +216,20 @@ void Map1::spawnObjects(){
 			}
 		}
 	}
+
+	for (int i = 0; i < mWidth; i++) {
+		for (int j = 0; j < mHeigth; j++) {
+			if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
+				coords c = { i, j };
+					mNpcs[c] = new CharRand(i, j, widthOnTile, heigthOnTile, 2, true);
+				}
+			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
+				coords c = { i, j };
+					mNpcs[c] = new CharRand(i, j, widthOnTile, heigthOnTile, 2, true);
+			}
+		}
+	}
+
 	/*
 	for (int i = 0; i < mWidth; i++){
 		for (int j = 0; j < mHeigth; j++){
@@ -414,12 +428,18 @@ void Map1::render(sf::RenderWindow &window){
 					window.draw(mPlayer->getDrawSprite());
 				}else
 				if (mGrid[j][i] == 6.0f){ //Rand Npc Gräs, temp innan animation
-					mNpcs[0]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[0]->getDrawSprite());
+					coords c = { i, j };
+					if (mNpcs[c] != 0) {
+						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+						window.draw(mNpcs[c]->getDrawSprite());
+					}
 				}else
 				if (mGrid[j][i] == 6.1f){ //Rand Npc Klippt Gräs, temp innan animation
-					mNpcs[0]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[0]->getDrawSprite());
+					coords c = { i, j };
+					if (mNpcs[c] != 0) {
+						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+						window.draw(mNpcs[c]->getDrawSprite());
+					}
 				}else
 				if (mGrid[j][i] == 7.0f){ //Patrull Npc Gräs, temp innan animation
 					//mNpcs[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
@@ -488,64 +508,85 @@ void Map1::render(sf::RenderWindow &window){
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
-void Map1::takeTurn(int dir, SoundManager &sound){
+void Map1::takeTurn(int dir, SoundManager &sound) {
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
-	for (intVector::size_type i = 0; i < meepMove.size(); i++){
+	for (intVector::size_type i = 0; i < meepMove.size(); i++) {
 		bool moved = movePlayer(meepMove.at(i), sound);
-		if (!moved){
+		if (!moved) {
 			mPlayer->collide(meepMove, i);
 			break;
 		}
 	}
+
+	//Add all the npcs on the map to a vector for ease of looping
+	mNpcVector.clear();
+	mNpcCoords.clear();
+	for (int i = 0; i < mWidth; i++) {
+		for (int j = 0; j < mHeigth; j++) {
+			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
+				coords at = { i, j };
+				mNpcVector.push_back(mNpcs[at]);
+//				mNpcCoords.push_back(at);
+			}
+		}
+	}
 	/*Do this for every NPC in the vector*/
-	/*for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+	for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
 		//get their movement vector
-		intVector npcMove = mNpcs.at(i)->move();
+		intVector npcMove = mNpcVector[i]->move();
 		bool breakMove = false;
 		//For every int in the vector, do the following
-		for (intVector::size_type j = 0; j < npcMove.size(); j++){
+		for (intVector::size_type j = 0; j < npcMove.size(); j++) {
 			//0 means end of movement. Needed for patrols. 
 			//Breakmove means that the entire movement for this character
 			//is over for the turn
-			if (npcMove.at(j) == 0 || breakMove){
+			if (npcMove.at(j) == 0 || breakMove) {
 				breakMove = false;
+				//mNpcs[i]->swapDoneMoving();
 				break;
 			}
 			//the movement functions returns a bool. True if they moved, 
 			//false in case of collision
 			bool moved = moveNpc(npcMove.at(j), i, sound);
 			//if the NPC collided: do the following
-			if (!moved){
+			if (!moved) {
 				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
 				//get a new series of moves to attempt
 				intVector tryMove;
-				tryMove = mNpcs.at(i)->collide(npcMove, j);
+				tryMove = mNpcVector[i]->collide(npcMove, j);
 				//try out the new list of steps
-				for (intVector::size_type k = 0; k < tryMove.size(); k++){
+				for (intVector::size_type k = 0; k < tryMove.size(); k++) {
 					//again, break if 0, breakMove is made true so that
 					//the entire turn will end for the current character
 					//if there is no movement after collision
-					if (tryMove.at(k) == 0){
+					if (tryMove.at(k) == 0) {
 						breakMove = true;
 						break;
 					}
 					//check every move. If one of them works, return to standard
-					movement pattern
+					//movement pattern
 					bool retryMoved = moveNpc(tryMove.at(k), i, sound);
-					if (retryMoved){
+					if (retryMoved) {
 						break;
 					}
 				}
 
 				break;
-			}*/
-			/*else {
+			}
+			else {
 				cout << "Moved " << npcMove.at(j) << endl;
-			}*/
-		//}
-	//}
+			}
+		}
+	}
+
+/*	for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+		coords c = { mNpcVector[i]->getX(), mNpcVector[i]->getY() };
+		mNpcs[c] = mNpcVector[i];
+		mGrid[mNpcVector[i]->getX()][mNpcVector[i]->getY()] = mNpcVector[i]->getType();
+		//mNpcs.erase(at);
+	}*/
 	mTurnCount++;
 	std::cout << "That was turn " << mTurnCount << "." << endl;
 	if (mTurnCount >= 50){
@@ -686,13 +727,13 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 }
 
 void Map1::deleteContent()
-{
+{/*
 	while (!mObjects.empty()){
 		delete mObjects[0];
 		mObjects.erase(mObjects.begin());
 	}
 	while (!mNpcs.empty()){
-		delete mNpcs[0];
+		delete mNpcs.at(mNpcs.begin());
 		mNpcs.erase(mNpcs.begin());
 	}
 	while (!mLongObjects.empty()){
@@ -706,14 +747,14 @@ void Map1::deleteContent()
 	turnsLeft = 50;
 	cutGrass = 0;
 	cutHedges = 0;
-	mTurnCount = 0;
+	mTurnCount = 0;*/
 }
 
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
-	int tempX = mNpcs.at(atPos)->getX();
-	int tempY = mNpcs.at(atPos)->getY();
-	float tempPosX = 0;
-	float tempPosY = 0;
+	int tempX = mNpcVector.at(atPos)->getX();
+	int tempY = mNpcVector.at(atPos)->getY();
+	//float tempPosX = 0;
+	//float tempPosY = 0;
 	switch (dir){
 	case 8:
 		tempY--;
@@ -759,21 +800,24 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		}
 
 	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
-	if (mGrid[tempY][tempX] >= 2.2f && mGrid[tempY][tempX] < 2.2f){
-		mGrid[mNpcs.at(atPos)->getY()][mNpcs.at(atPos)->getX()] = mNpcs.at(atPos)->getLast();
-		mNpcs.at(atPos)->setLast(mGrid[tempY][tempX]);
-		mGrid[tempY][tempX] = mNpcs.at(atPos)->getType();
-		mNpcs.at(atPos)->updPos(tempPosX, tempPosY);
-
-		mNpcs.at(atPos)->setX(tempX);
-		mNpcs.at(atPos)->setY(tempY);
+	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f){
+		mGrid[mNpcVector.at(atPos)->getY()][mNpcVector.at(atPos)->getX()] = mNpcVector.at(atPos)->getLast();
+		coords tempCoords = { mNpcVector.at(atPos)->getX(), mNpcVector.at(atPos)->getY() };
+		mNpcs.erase(tempCoords);
+		mNpcVector.at(atPos)->setLast(mGrid[tempY][tempX]);
+		tempCoords = { tempX, tempY };
+		mNpcs[tempCoords] = mNpcVector[atPos];
+		mGrid[tempY][tempX] = mNpcVector.at(atPos)->getType();
+	
+		mNpcVector.at(atPos)->setX(tempX);
+		mNpcVector.at(atPos)->setY(tempY);
 		//cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 	}
 	else {
-		if (mNpcs.at(atPos)->getCollide()){
-			sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
-		}
+		/*if (mNpcs.at(atPos)->getCollide()){
+			//sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
+		}*/
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
@@ -810,7 +854,6 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
 	}
-
 }
 
 void Map1::getMapInfo(){
@@ -830,7 +873,7 @@ float** Map1::getGrid(){
 	return mGrid;
 }
 
-vector<Character*> Map1::getNpcs(){
+Maps::NpcMap Map1::getNpcs(){
 	return mNpcs;
 }
 vector<StaticObjects*> Map1::getLongObjects(){

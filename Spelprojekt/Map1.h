@@ -37,7 +37,7 @@ public:
 
 	float** Map1::getGrid();
 	//Returnerar npcs, detta behövs till main
-	virtual std::vector<Character*> getNpcs();
+	virtual NpcMap getNpcs();
 	//Returnerar långa objekt, detta behövs till main
 	virtual std::vector<StaticObjects*> getLongObjects();
 	void deleteContent();
@@ -70,7 +70,9 @@ private:
 	ObjectsVector mObjects;
 	ObjectsVector mLongObjects;
 	typedef std::vector<Character*> NpcVector;
-	NpcVector mNpcs;
+	NpcVector mNpcVector;
+	std::vector<coords> mNpcCoords;
+	NpcMap mNpcs;
 	Player* mPlayer;
 	//Mower* lawnMower;
 
