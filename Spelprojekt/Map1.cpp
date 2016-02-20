@@ -406,12 +406,12 @@ void Map1::render(sf::RenderWindow &window){
 				if (mGrid[j][i] == 9.0f){ //Häck
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
-				}
+		}
 				else
 				if (mGrid[j][i] == 9.1f){ //Klippt Häck
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
-				}
+	}
 
 		}
 	}
@@ -684,9 +684,9 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 				for (cutVector::size_type i = 0; i < cut.size(); i++){
 					if (mGrid[cut.at(i)[1]][cut.at(i)[0]] == 9.0f){
 						mGrid[cut.at(i)[1]][cut.at(i)[0]] = 9.1f;
+						}
 					}
 				}
-			}
 			std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
 			std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 

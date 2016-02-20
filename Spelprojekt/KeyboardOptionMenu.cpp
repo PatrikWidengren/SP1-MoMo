@@ -1,52 +1,58 @@
-#include "optionMenu.h"
+#include "KeyboardOptionMenu.h"
 
-optionMenu::optionMenu(float width, float height)
+KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 4;
-	mOptionMenuState = 1;
+	mOptionMenuState = 3;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Sound settings");
+	menu[0].setString("Keyboard Settings");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Keyboard settings");
+	menu[1].setString("More Keyboard Settings");
 	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
 
 	menu[2].setFont(font);
 	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Back");
+	menu[2].setString("Back To Options");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
+
+	mText01.setFont(font);
+	mText01.setColor(sf::Color::Blue);
+	mText01.setString("KeyboardSettings!");
+	mText01.setPosition(sf::Vector2f(width / 2, height / 10));
+	mText01.setScale(1.5f, 1.5f);
 
 	selectedIndex = 0;
 }
 
-optionMenu::~optionMenu()
+KeyboardOptionMenu::~KeyboardOptionMenu()
 {
 
 }
 
-void optionMenu::updateoptionMenu(sf::RenderWindow &window)
+void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		optionMenu::moveDown();
+		KeyboardOptionMenu::moveDown();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
 		mDown = false;
 	}
-	
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
-		optionMenu::moveUp();
+		KeyboardOptionMenu::moveUp();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
@@ -62,28 +68,28 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window)
 	{
 		mReturn = false;
 		if (selectedIndex == 0){
-			mOptionMenuState = 2;
+			mState = 4;
 		}
 		if (selectedIndex == 1){
-			mOptionMenuState = 3;
+			mState = 4;
 		}
 		if (selectedIndex == 2){
-			mState = 3;
+			mOptionMenuState = 1;
 		}
 	}
 }
 
-void optionMenu::displayMenu01(sf::RenderWindow &window)
+void KeyboardOptionMenu::displayMenu01(sf::RenderWindow &window)
 {
 
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
-
+	window.draw(mText01);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	//std::cout << highlightSprite01.getPosition().x << ": optionMenu :" << highlightSprite01.getPosition().y << std::endl;
+	//std::cout << highlightSprite01.getPosition().x << ": KeyboardOptionMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
@@ -96,21 +102,21 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 	}
 }
 
-void optionMenu::setTextures()
+void KeyboardOptionMenu::setTextures()
 {
 	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	texture01.loadFromFile("error.jpg");
 
 	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);
 	*/
 }
 
-void optionMenu::setFonts()
+void KeyboardOptionMenu::setFonts()
 
 {
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
@@ -119,7 +125,7 @@ void optionMenu::setFonts()
 	}
 }
 
-void optionMenu::moveUp()
+void KeyboardOptionMenu::moveUp()
 {
 	if (selectedIndex - 1 >= 0)
 	{
@@ -129,7 +135,7 @@ void optionMenu::moveUp()
 	}
 }
 
-void optionMenu::moveDown()
+void KeyboardOptionMenu::moveDown()
 {
 	if (selectedIndex + 1 < mNumberOfSelections)
 	{
@@ -141,7 +147,7 @@ void optionMenu::moveDown()
 }
 
 
-int optionMenu::checkState()
+int KeyboardOptionMenu::checkState()
 {
 	//std::cout << mState << std::endl;
 	int i = mState;
@@ -149,9 +155,10 @@ int optionMenu::checkState()
 	return i;
 }
 
-int optionMenu::checkOptionState()
+
+int KeyboardOptionMenu::checkOptionState()
 {
 	int i = mOptionMenuState;
-	mOptionMenuState = 1;
+	mOptionMenuState = 3;
 	return i;
 }

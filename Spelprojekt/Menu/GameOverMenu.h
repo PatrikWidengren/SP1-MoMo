@@ -2,7 +2,7 @@
 #define GAMEOVERMENU
 
 #include "menu.h"
-
+// Sync
 class GameOverMenu :
 	public Menu
 {
