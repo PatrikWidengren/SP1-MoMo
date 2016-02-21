@@ -89,8 +89,10 @@
     <ClCompile Include="Map1.cpp" />
     <ClCompile Include="Maps.cpp" />
     <ClCompile Include="SoundMenu.cpp" />
+    <ClCompile Include="Static Objects\Dandelion.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
     <ClCompile Include="Static Objects\Grass.cpp" />
+    <ClCompile Include="Static Objects\Gravel.cpp" />
     <ClCompile Include="Static Objects\Hedge.cpp" />
     <ClCompile Include="Static Objects\StaticObjects.cpp" />
     <ClCompile Include="Static Objects\Stone.cpp" />
@@ -122,8 +124,10 @@
     <ClInclude Include="Map1.h" />
     <ClInclude Include="Maps.h" />
     <ClInclude Include="SoundMenu.h" />
+    <ClInclude Include="Static Objects\Dandelion.h" />
     <ClInclude Include="Static Objects\Fence.h" />
     <ClInclude Include="Static Objects\Grass.h" />
+    <ClInclude Include="Static Objects\Gravel.h" />
     <ClInclude Include="Static Objects\Hedge.h" />
     <ClInclude Include="Static Objects\StaticObjects.h" />
     <ClInclude Include="Static Objects\Stone.h" />

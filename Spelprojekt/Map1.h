@@ -7,6 +7,8 @@
 #include "Static Objects/Fence.h"
 #include "Static Objects/Tree.h"
 #include "Static Objects/Hedge.h"
+#include "Static Objects/Dandelion.h"
+#include "Static Objects/Gravel.h"
 #include "Characters/Player.h"
 #include "Tools/Lawnmower/GoLawnMower.h"
 #include "Tools/Lawnmower/RoyceMower.h"
@@ -59,11 +61,13 @@ private:
 	int mBronzeGrass, mBronzeHedge;
 	int mSilverGrass, mSilverHedge;
 	int mGoldGrass, mGoldHedge;
-	int totalAmountOfGrass = 0;
-	int totalAmountOfHedges = 0;
+	float totalAmountOfGrass = 0;
+	float totalAmountOfHedges = 0;
+	float totalAmountOfDandelions = 0;
 	int turnsLeft = 50;
-	int cutGrass = 0;
-	int cutHedges = 0;
+	float cutGrass = 0;
+	float cutHedges = 0;
+	float cutDandelions = 0;
 	std::string mSavefile;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
