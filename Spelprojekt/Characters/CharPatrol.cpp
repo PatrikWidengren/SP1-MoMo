@@ -7,51 +7,51 @@ sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "Resource Files/Sprites/deputy.png";
 
-CharPatrol::CharPatrol(int arrX, int arrY, float posX, float posY, int **moves/*, int turnCount, int moveCount*/): 
+CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int moveCount*/): 
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
-	mPosX(posX),
-	mPosY(posY)
+	mBaseType(7.0f)
 	{
 
 	//Remove these when moveCount and turnCount is in constructor
 	int moveCount = 10;
 	int turnCount = 50;
 
-	int mMoveCount = moveCount;
-	int mTurnCount = turnCount;
+	mMoveCount = moveCount;
+	mTurnCount = turnCount;
 
 	//initialize retryPath with all zeroes.
+	retryPath = new int[10];
 	for (int i = 0; i < moveCount; i++){
 		retryPath[i] = 0;
 	}
-	mCharSprite.setPosition(posX, posY);
 	mTurnNo = -1;
 	//fill up path with the move array
-	
-	/*for (int i = 0; i < 50; i++){
-		for (int j = 0; j < moveCount; j++){
+	path = new int*[mTurnCount];
+	for (int i = 0; i < mTurnCount; i++) {
+		path[i] = new int[mMoveCount];
+		for (int j = 0; j < mMoveCount; j++) {
+			path[i][j] = 0;
+		}
+	}
+
+	for (int i = 0; i < mTurnCount; i++){
+		for (int j = 0; j < mMoveCount; j++) {
 			path[i][j] = moves[i][j];
 		}
-	}*/
+	}
 	path = moves;
 	//I assume guard is 7
 	mType = 7.0f;
 	//temporary fix. update asap.
-	mLast = 2;
+	mLast = 2.0f;
+	render();
 }
 
 CharPatrol::~CharPatrol(){
 	delete path;
-}
-
-float CharPatrol::getPosX(){
-	return mPosX;
-}
-
-float CharPatrol::getPosY(){
-	return mPosY;
+	delete retryPath;
 }
 
 intVector CharPatrol::move(){
@@ -139,6 +139,7 @@ void CharPatrol::setY(int y){
 
 void CharPatrol::setLast(float l){
 	mLast = l;
+	mType = mBaseType + (mLast - 2);
 }
 
 float CharPatrol::getLast(){
@@ -149,22 +150,8 @@ float CharPatrol::getType(){
 	return mType;
 }
 
-bool CharPatrol::getDoneMoving() {
-	return mDoneMoving;
-}
-
-void CharPatrol::swapDoneMoving() {
-	mDoneMoving = !mDoneMoving;
-}
-
 bool CharPatrol::getCollide(){
 	return true;
-}
-
-void CharPatrol::updPos(float x, float y){
-	mPosX += x;
-	mPosY += y;
-	mCharSprite.setPosition(mPosX, mPosY);
 }
 
 void CharPatrol::render(){

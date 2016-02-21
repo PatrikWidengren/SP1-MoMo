@@ -7,11 +7,8 @@ public:
 	/*Most of this is identical to the Player class. However, random movement
 	character also needs to know how many steps it will take and if the
 	direction should be locked between moves or not*/
-	CharRand(int arrX, int arrY, float posX, float posY, int moveLength, bool lockDir);
+	CharRand(int arrX, int arrY, int moveLength, bool lockDir);
 	virtual ~CharRand();
-	//This is the X and Y position for the sprite
-	virtual float getPosX();
-	virtual float getPosY();
 	virtual intVector move();
 	virtual intVector collide(intVector moves, int atPos);
 	//This is the position in the array
@@ -23,11 +20,7 @@ public:
 	virtual void setLast(float l);
 	virtual float getLast();
 	virtual float getType();
-	virtual bool getDoneMoving();
-	virtual void swapDoneMoving();
-	/*Update coordinates for the sprite. x and y is value the position has
-	changed by*/
-	virtual void updPos(float x, float y);
+
 	virtual void render();
 	static void initialize();
 	static void finalize();
@@ -38,7 +31,8 @@ public:
 private:
 	bool mDoneMoving = false;
 	int mArrayX, mArrayY, mSpeed;
-	float mType, mLast, mPosX, mPosY;
+	const float mBaseType;
+	float mType, mLast;
 	bool mDirLock;
 	sf::Sprite mCharSprite;
 };

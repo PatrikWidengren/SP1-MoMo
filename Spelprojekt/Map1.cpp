@@ -219,13 +219,13 @@ void Map1::spawnObjects(){
 
 	for (int i = 0; i < mWidth; i++) {
 		for (int j = 0; j < mHeigth; j++) {
-			if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
+			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 7.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
-					mNpcs[c] = new CharRand(i, j, widthOnTile, heigthOnTile, 2, true);
-				}
-			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
+				mNpcs[c] = new CharRand(i, j, 2, true);
+			}
+			else if (mGrid[j][i] >= 7.0f && mGrid[j][i] < 8.0f) {
 				coords c = { i, j };
-					mNpcs[c] = new CharRand(i, j, widthOnTile, heigthOnTile, 2, true);
+				mNpcs[c] = new CharPatrol(i, j, patrolPath);
 			}
 		}
 	}
@@ -442,12 +442,18 @@ void Map1::render(sf::RenderWindow &window){
 					}
 				}else
 				if (mGrid[j][i] == 7.0f){ //Patrull Npc Gräs, temp innan animation
-					//mNpcs[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					//window.draw(mNpcs[1]->getDrawSprite());
+					coords c = { i, j };
+					if (mNpcs[c] != 0) {
+						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+						window.draw(mNpcs[c]->getDrawSprite());
+					}
 				}else
 				if (mGrid[j][i] == 7.1f){ //Patrull Npc Klippt Gräs, temp innan animation
-					//mNpcs[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					//window.draw(mNpcs[1]->getDrawSprite());
+					coords c = { i, j };
+					if (mNpcs[c] != 0) {
+						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+						window.draw(mNpcs[c]->getDrawSprite());
+					}
 				}
 		}
 	}
@@ -528,10 +534,10 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
 				coords at = { i, j };
 				mNpcVector.push_back(mNpcs[at]);
-//				mNpcCoords.push_back(at);
 			}
 		}
 	}
+	//cout << "Size of vector " << mNpcVector.size() << endl;
 	/*Do this for every NPC in the vector*/
 	for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
 		//get their movement vector
@@ -552,6 +558,7 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 			bool moved = moveNpc(npcMove.at(j), i, sound);
 			//if the NPC collided: do the following
 			if (!moved) {
+				
 				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
 				//get a new series of moves to attempt
 				intVector tryMove;
@@ -576,7 +583,7 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 				break;
 			}
 			else {
-				cout << "Moved " << npcMove.at(j) << endl;
+				//cout << "Moved " << npcMove.at(j) << endl;
 			}
 		}
 	}
@@ -660,7 +667,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 
 		/*move meep to new place in the array and return the original value
 		to the last position*/
-		std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
+		//std::cout << "Meep trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 2.2f){
 			mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
 			if (mGrid[tempY][tempX] == 2.0f && mPlayer->getFunctioning()){
@@ -687,10 +694,10 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 						}
 					}
 				}
-			std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
-			std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
+			//std::cout << endl << "Meep has mowed: " << cutGrass << " grasstiles out of: " << totalAmountOfGrass << " total." << endl;
+			//std::cout << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total." << endl;
 
-			std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
+			//std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
 		else {

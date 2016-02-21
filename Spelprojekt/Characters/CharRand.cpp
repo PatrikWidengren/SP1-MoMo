@@ -7,33 +7,24 @@ sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
 
-CharRand::CharRand(int arrX, int arrY, float posX, float posY, int moveLength, bool lockDir) :
+CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
 	mArrayY(arrY),
-	mPosX(posX),
-	mPosY(posY),
 	mSpeed(moveLength),
-	mDirLock(lockDir){
-	mCharSprite.setPosition(posX, posY);
+	mDirLock(lockDir),
+	mBaseType(6.0f){
 	/*I am as of now unsure how to handle values like 
 	4.1, 4.2, etc for other random NPCs. Will update code as it becomes 
 	relevant*/
 	mType = 6.0f;
 	//dåligt tilfällig lösning. Fixa snart.
-	mLast = 2;
+	mLast = 2.0f;
 	render();
 }
 
 CharRand::~CharRand(){
 }
 
-float CharRand::getPosX(){
-	return mPosX;
-}
-
-float CharRand::getPosY(){
-	return mPosY;
-}
 
 intVector CharRand::move(){
 	intVector movement;
@@ -93,6 +84,7 @@ void CharRand::setY(int y){
 
 void CharRand::setLast(float l){
 	mLast = l;
+	mType = mBaseType + (mLast - 2);
 }
 
 float CharRand::getLast(){
@@ -103,22 +95,8 @@ float CharRand::getType(){
 	return mType;
 }
 
-bool CharRand::getDoneMoving() {
-	return mDoneMoving;
-}
-
-void CharRand::swapDoneMoving() {
-	mDoneMoving = !mDoneMoving;
-}
-
 bool CharRand::getCollide(){
 	return false;
-}
-
-void CharRand::updPos(float x, float y){
-	mPosX += x;
-	mPosY += y;
-	mCharSprite.setPosition(mPosX, mPosY);
 }
 
 void CharRand::render(){
