@@ -75,13 +75,12 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 void optionMenu::displayMenu01(sf::RenderWindow &window)
 {
-
+	window.draw(bg01);
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
 
-	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": optionMenu :" << highlightSprite01.getPosition().y << std::endl;
 
@@ -98,18 +97,18 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 
 void optionMenu::setTextures()
 {
-	/*
-	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
+
+	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_options_1.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
+	//	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
-	*/
-}
+	//highlightSprite01.setTexture(highlightTexture01);
 
+
+}
 void optionMenu::setFonts()
 
 {
