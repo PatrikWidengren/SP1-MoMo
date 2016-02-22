@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static const string filename_Dandelion_Uncut = "Resource Files/Sprites/dandelion.png";
+static const string filename_Dandelion_Uncut = "Resource Files/Sprites/Dandelion01_Uncut.png";
 static const string filename_Dandelion_Cut = "Resource Files/Sprites/Grass01_Cut.png";
 sf::Texture textureDandelion;
 sf::Texture textureCutDandelion;
