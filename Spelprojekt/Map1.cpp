@@ -378,7 +378,7 @@ void Map1::render(sf::RenderWindow &window){
 					window.draw(mObjects[1]->getDrawSprite());
 				}else
 				if (mGrid[j][i] == 2.2f) { //Maskros
-					mObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
+					mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[3]->getDrawSprite());
 				}
 				else
