@@ -29,7 +29,7 @@ GameOverMenu::~GameOverMenu()
 {
 }
 
-void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window)
+void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{

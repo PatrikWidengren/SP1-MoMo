@@ -30,7 +30,7 @@ ToolSelectMenu::~ToolSelectMenu()
 
 }
 
-void ToolSelectMenu::updateToolSelectMenu(sf::RenderWindow &window)
+void ToolSelectMenu::updateToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{

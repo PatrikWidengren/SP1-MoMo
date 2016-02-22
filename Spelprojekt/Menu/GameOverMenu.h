@@ -21,7 +21,7 @@ public:
 	virtual int checkState();
 //	void getTurns(int turns); Not usefull at the moment
 //	int setTurns();
-	virtual void updateGameOverMenu(sf::RenderWindow &window);
+	virtual void updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

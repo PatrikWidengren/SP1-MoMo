@@ -19,20 +19,24 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateStartMenu(sf::RenderWindow &window);
+	virtual void updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
-	sf::Vector2i mMouse;
 protected:
 	static int const mNumberOfSelections = 3;
 
 private:
+	sf::Vector2i mMouse;
+
+
 	int mState;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
 	sf::Text menu[mNumberOfSelections];
+	sf::IntRect *mRects[mNumberOfSelections];
+
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();
 	//flaggor för keypress

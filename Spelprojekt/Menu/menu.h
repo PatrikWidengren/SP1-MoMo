@@ -22,12 +22,12 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window) = 0;
 	virtual void moveUp() = 0;
 	virtual void moveDown() = 0;
-	sf::Vector2i mMouse;
 protected:
 	static int const mNumberOfSelections = 3;
 
 
 private:
+	sf::Vector2i mMouse;
 	int mState;
 	int mTimer;
 	int selectedIndex;

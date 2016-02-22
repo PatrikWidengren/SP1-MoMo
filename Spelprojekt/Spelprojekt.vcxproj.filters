@@ -67,6 +67,9 @@
     <Filter Include="Resource Files\Sound">
       <UniqueIdentifier>{0c6b55a8-68bf-4810-8933-88363e81203d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Backgrounds">
+      <UniqueIdentifier>{57aebfb8-887b-4527-a9b4-0b5b55482c6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -413,6 +416,12 @@
     </Image>
     <Image Include="Resource Files\Sprites\tree.png">
       <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\start_menu_1.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

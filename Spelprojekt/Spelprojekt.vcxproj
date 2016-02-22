@@ -178,6 +178,8 @@
     <None Include="Resource Files\Sound\YouLose.flac" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resource Files\Backgrounds\start_menu_1.png" />
+    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png" />
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />
     <Image Include="Resource Files\Sprites\cat.png" />
     <Image Include="Resource Files\Sprites\cutgrass.png" />

@@ -37,7 +37,7 @@ KeyboardOptionMenu::~KeyboardOptionMenu()
 
 }
 
-void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window)
+void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{

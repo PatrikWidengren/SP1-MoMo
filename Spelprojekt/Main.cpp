@@ -8,8 +8,8 @@
 #include <iomanip>
 
 using namespace std;
-static int const windowWidth = 1280;
-static int const windowHeigth = 720;
+static int const windowWidth = 1920;
+static int const windowHeigth = 1080;
 
 int main(){
 	
@@ -21,7 +21,6 @@ int main(){
 
 	gameState theGame(window);
 	//mMusicManager.getMusic()->play();
-
 	while (window.isOpen()){
 		sf::Event event;
 		window.setFramerateLimit(60);
@@ -31,10 +30,14 @@ int main(){
 			//delete &mMusicManager;
 				window.close();
 			}
+			else if (event.type == sf::Event::Resized)
+			{
+				window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+			}
 		}
-
+		mouse = sf::Mouse::getPosition(window);
 		window.clear();
-
+		
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager);
 		
 		window.display();

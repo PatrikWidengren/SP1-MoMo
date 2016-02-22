@@ -31,7 +31,7 @@ SoundMenu::~SoundMenu()
 
 }
 
-void SoundMenu::updateSoundMenu(sf::RenderWindow &window)
+void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
