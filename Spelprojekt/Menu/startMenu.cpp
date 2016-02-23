@@ -86,11 +86,10 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		startMenu::moveDown();
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-		mRects[0] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[0] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
 
-		//mRects = tempmRects;
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
