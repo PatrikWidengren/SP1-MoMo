@@ -2,8 +2,8 @@
 
 using namespace std;
 
-static const string filename = "Resource Files/Sprites/Hedge_01.png";
-static const string filename2 = "Resource Files/Sprites/Hedge_01_cut.png";
+static const string filename = "Resource Files/Sprites/Hedge01.png";
+static const string filename2 = "Resource Files/Sprites/Hedge01_cut.png";
 sf::Texture textureHedge;
 sf::Texture textureCutHedge;
 

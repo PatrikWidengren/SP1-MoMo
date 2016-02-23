@@ -181,15 +181,23 @@
     <Image Include="Resource Files\Backgrounds\start_menu_1.png" />
     <Image Include="Resource Files\Backgrounds\start_menu_options_1.png" />
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />
+    <Image Include="Resource Files\Sprites\asfalt01.png" />
     <Image Include="Resource Files\Sprites\cat.png" />
     <Image Include="Resource Files\Sprites\cutgrass.png" />
+    <Image Include="Resource Files\Sprites\Dandelion01_Uncut.png" />
     <Image Include="Resource Files\Sprites\deputy.png" />
     <Image Include="Resource Files\Sprites\dog.png" />
     <Image Include="Resource Files\Sprites\fence_01.png" />
     <Image Include="Resource Files\Sprites\grass.png" />
+    <Image Include="Resource Files\Sprites\Grass01_Cut.png" />
+    <Image Include="Resource Files\Sprites\Grass01_Uncut.png" />
+    <Image Include="Resource Files\Sprites\Hedge01.png" />
+    <Image Include="Resource Files\Sprites\Hedge01_Cut.png" />
     <Image Include="Resource Files\Sprites\meep.png" />
+    <Image Include="Resource Files\Sprites\meep02.png" />
     <Image Include="Resource Files\Sprites\stone.png" />
     <Image Include="Resource Files\Sprites\tree.png" />
+    <Image Include="Resource Files\Sprites\TreeStump1.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf" />
