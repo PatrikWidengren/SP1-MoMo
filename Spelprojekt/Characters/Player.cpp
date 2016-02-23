@@ -5,7 +5,7 @@ using namespace std;
 
 sf::Texture texturePlayer;
 sf::Image imagePlayer;
-static const string filename = "Resource Files/Sprites/meep.png";
+static const string filename = "Resource Files/Sprites/meep02.png";
 
 Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mLawnMower(m),
