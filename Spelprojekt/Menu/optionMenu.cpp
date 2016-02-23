@@ -2,8 +2,7 @@
 
 optionMenu::optionMenu(float width, float height)
 {
-	highlightSprite01.setPosition(10, 235);
-	slider01.setPosition(1400, 718);
+	highlightSprite01.setPosition(1400, 718);
 	mTimer = 0;
 	mState = 4;
 	mOptionMenuState = 1;
@@ -63,8 +62,11 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mState = 3;
 	}
-	if (slider01.getPosition().x <= maxX && slider01.getPosition().x >= minX && sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		slider01.setPosition(mMouse.x, 718);
+
+	if (mMouse.x <= maxX && mMouse.x >= minX && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		highlightSprite01.setPosition(mMouse.x - 32, 718);
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
@@ -114,23 +116,15 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void optionMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
+	window.draw(highlightSprite01);
+
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
-	window.draw(slider01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": optionMenu :" << highlightSprite01.getPosition().y << std::endl;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
-	{
-		window.close();
-	}
-	if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
-	{
-		highlightSprite01.setPosition(10, 235);
-		window.draw(highlightSprite01);
-	}
 }
 
 void optionMenu::setTextures()
@@ -141,12 +135,12 @@ void optionMenu::setTextures()
 	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_options_1.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
-	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	//	highlightTexture01.loadFromFile("error.jpg");
+	if (!highlightTexture01.loadFromFile("Resource Files/Sprites/cat.png")) //try to load the texture. if its wrong, give error
+		highlightTexture01.loadFromFile("error.jpg");
 
 	slider01.setTexture(sliderTextuer01);
 	bg01.setTexture(texture01);
-	//highlightSprite01.setTexture(highlightTexture01);
+	highlightSprite01.setTexture(highlightTexture01);
 
 
 }
