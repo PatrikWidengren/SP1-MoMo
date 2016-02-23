@@ -133,7 +133,6 @@ void Player::setMower(Mower *m){
 }
 
 void Player::setHedgeTool(Shears *s){
-	delete mHedgeTool;
 	mHedgeTool = s;
 }
 

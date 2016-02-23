@@ -9,6 +9,8 @@ public:
 	direction should be locked between moves or not*/
 	CharRand(int arrX, int arrY, int moveLength, bool lockDir);
 	virtual ~CharRand();
+	virtual void reset();
+
 	virtual intVector move();
 	virtual intVector collide(intVector moves, int atPos);
 	//This is the position in the array
@@ -31,6 +33,7 @@ public:
 private:
 	bool mDoneMoving = false;
 	int mArrayX, mArrayY, mSpeed;
+	const coords mStartPos;
 	const float mBaseType;
 	float mType, mLast;
 	bool mDirLock;

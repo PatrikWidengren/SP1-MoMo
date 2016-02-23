@@ -10,6 +10,7 @@ static const string filename = "Resource Files/Sprites/cat.png";
 CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
 	mArrayY(arrY),
+	mStartPos{ arrX, arrY },
 	mSpeed(moveLength),
 	mDirLock(lockDir),
 	mBaseType(6.0f){
@@ -25,6 +26,10 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 CharRand::~CharRand(){
 }
 
+void CharRand::reset() {
+	mArrayX = mStartPos[0];
+	mArrayY = mStartPos[1];
+}
 
 intVector CharRand::move(){
 	intVector movement;

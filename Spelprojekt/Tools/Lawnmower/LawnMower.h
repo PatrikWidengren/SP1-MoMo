@@ -28,6 +28,8 @@ public:
 	/*all important info into a nice readable string*/
 	virtual std::string getStats();
 
+	virtual void resetStats();
+
 	/*setToMin() reduces mower to minimum speed in case of collision*/
 	virtual void setToMin(int dmg);
 	/*resetValues() is used to change the mLastDir and mCurMom so that they

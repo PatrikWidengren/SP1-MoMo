@@ -7,6 +7,8 @@ public:
 	//Write in turncount and movecount when ready in Map1
 	CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int moveCount*/);
 	virtual ~CharPatrol();//This is the X and Y position for the sprite
+	virtual void reset();
+
 	virtual intVector move();
 	virtual intVector collide(intVector moves, int atPos);
 	//This is the position in the array
@@ -28,6 +30,7 @@ public:
 	virtual bool getCollide();
 private:
 	int mArrayX, mArrayY;
+	const coords mStartPos;
 	const float mBaseType;
 	float mType, mLast;
 	//Path is a pointer because we don't want to copy mTurnCount0 ints per character.

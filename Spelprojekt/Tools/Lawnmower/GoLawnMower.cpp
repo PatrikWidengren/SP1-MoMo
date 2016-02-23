@@ -211,6 +211,10 @@ std::string GoLawnMower::getStats(){
 	return nextLine;
 }
 
+void GoLawnMower::resetStats() {
+	mStats.mDurability = mStats.mMaxDurability;
+}
+
 void GoLawnMower::resetValues(){
 	mCurMom = mStats.mMinMom;
 	mLastDir = 0;

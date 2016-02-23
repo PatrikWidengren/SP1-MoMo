@@ -1,13 +1,17 @@
 #ifndef INCLUDED_NPCBASE
 #define INCLUDED_NPCBASE
 #include <vector>
+#include <array>
 #include "SFML\Graphics.hpp"
+
+typedef std::array<int, 2> coords;
 
 typedef std::vector<int> intVector;
 class Character{
 public:
 	Character();
 	virtual ~Character();
+	virtual void reset()=0;
 	virtual intVector move() = 0;
 	virtual intVector collide(intVector moves, int atPos) = 0;
 	virtual int getX() = 0;

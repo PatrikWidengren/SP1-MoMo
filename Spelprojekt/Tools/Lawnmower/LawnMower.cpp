@@ -139,6 +139,10 @@ std::string LawnMower::getStats(){
 	return nextLine;
 }
 
+void LawnMower::resetStats() {
+	mStats.mDurability = mStats.mMaxDurability;
+}
+
 void LawnMower::resetValues(){
 	mCurMom = mStats.mMinMom;
 	mLastDir = 0;

@@ -10,6 +10,7 @@ struct mowStats{
 	int mMinMom;
 	int mRise;
 	int mFall;
+	const int mMaxDurability = 20;
 	int mDurability;
 	bool mFunctioning=true;
 };
@@ -35,6 +36,8 @@ public:
 
 	/*all important info into a nice readable string*/
 	virtual std::string getStats() = 0;
+
+	virtual void resetStats() = 0;
 
 	/*setToMin() reduces mower to minimum speed in case of collision*/
 	virtual void setToMin(int dmg) = 0;

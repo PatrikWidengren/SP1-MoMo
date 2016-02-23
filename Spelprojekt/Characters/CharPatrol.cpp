@@ -11,6 +11,7 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
+	mStartPos{ arrX, arrY },
 	mBaseType(7.0f)
 	{
 
@@ -52,6 +53,12 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 CharPatrol::~CharPatrol(){
 	delete path;
 	delete retryPath;
+}
+
+void CharPatrol::reset() {
+	mTurnNo = -1;
+	mArrayX = mStartPos[0];
+	mArrayY = mStartPos[1];
 }
 
 intVector CharPatrol::move(){

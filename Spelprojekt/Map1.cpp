@@ -1,6 +1,5 @@
 #include "Map1.h"
 #include <iostream>
-#include <math.h>
 #include <iomanip>
 
 
@@ -43,6 +42,23 @@ Map1::~Map1(){
 }
 
 void Map1::resetGrid(){
+	std::vector<coords> startPosList;
+	NpcVector npcList;
+	for (int i = 0; i < mWidth; i++) {
+		for (int j = 0; j < mHeigth; j++) {
+			coords tempCoords = { i, j };
+			if (mNpcs[tempCoords] != 0) {
+				mNpcs[tempCoords]->reset();
+				coords baseCoords{ mNpcs[tempCoords]->getX(), mNpcs[tempCoords]->getY() };
+				startPosList.push_back(baseCoords);
+				npcList.push_back(mNpcs[tempCoords]);
+				mNpcs.erase(tempCoords);
+			}
+		}
+	}
+	for (int i = 0; i < npcList.size(); i++) {
+		mNpcs[startPosList[i]] = npcList[i];
+	}
 	mGrid = createGrid(mWidth, mHeigth);
 	turnsLeft = 50;
 	cutGrass = 0;
@@ -778,7 +794,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 		else {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
-			//sound.playSound((mGrid[tempY][tempX]));
+			sound.playSound((mGrid[tempY][tempX]));
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
 				sound.playSound(0.1f);
@@ -806,30 +822,6 @@ bool Map1::movePlayer(int dir, SoundManager &sound){
 			}*/
 		return false;
 	}
-}
-
-void Map1::deleteContent()
-{/*
-	while (!mObjects.empty()){
-		delete mObjects[0];
-		mObjects.erase(mObjects.begin());
-	}
-	while (!mNpcs.empty()){
-		delete mNpcs.at(mNpcs.begin());
-		mNpcs.erase(mNpcs.begin());
-	}
-	while (!mLongObjects.empty()){
-		delete mLongObjects[0];
-		mLongObjects.erase(mLongObjects.begin());
-	}
-
-	delete mPlayer;
-	totalAmountOfGrass = 0;
-	totalAmountOfHedges = 0;
-	turnsLeft = 50;
-	cutGrass = 0;
-	cutHedges = 0;
-	mTurnCount = 0;*/
 }
 
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
@@ -935,6 +927,19 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 
 		//cout << "Cat tried: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 		return false;
+	}
+}
+
+void Map1::deleteContent()
+{
+	for (int i = 0; i < mWidth; i++) {
+		for (int j = 0; j < mHeigth; j++) {
+			coords tempCoord = { i, j };
+			if (!mNpcs[tempCoord] != 0) {
+				delete mNpcs[tempCoord];
+				mNpcs.erase(tempCoord);
+			}
+		}
 	}
 }
 

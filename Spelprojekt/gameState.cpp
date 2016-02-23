@@ -352,8 +352,11 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 void gameState::resetMap()
 {
-	mMap01->resetGrid();
+	for (std::vector<Mower*>::size_type i = 0; i < mLawnMowers.size(); i++) {
+		mLawnMowers[i]->resetStats();
+	}
 	//mMap01->deleteContent();
+	mMap01->resetGrid();
 	//mMap01->spawnObjects();
 	//mObjects = mMap01->getObjects();
 	//mPlayer = mMap01->getPlayer();

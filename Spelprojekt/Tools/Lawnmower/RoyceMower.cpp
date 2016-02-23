@@ -108,6 +108,10 @@ std::string RoyceMower::getStats(){
 	return nextLine;
 }
 
+void RoyceMower::resetStats() {
+	mStats.mDurability = mStats.mMaxDurability;
+}
+
 void RoyceMower::resetValues(){
 	mCurMom = mStats.mMinMom;
 	mLastDir = 0;
