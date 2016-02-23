@@ -44,8 +44,8 @@ Map1::~Map1() {
 void Map1::resetGrid(){
 	std::vector<coords> startPosList;
 	NpcVector npcList;
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			coords tempCoords = { i, j };
 			if (mNpcs[tempCoords] != 0) {
 				mNpcs[tempCoords]->reset();
@@ -75,14 +75,22 @@ float** Map1::createGrid(int width, int heigth) {
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d = 0;
-	array2d = new float*[heigth];
+	array2d = new float*[width];
+	for (int i = 0; i < width; i++) {
+		array2d[i] = new float[heigth];
+		for (int j = 0; j < heigth; j++) {
+			array2d[i][j] = 0;
+		}
+	}
+
 	for (int i = 0; i < heigth; i++) {
-		array2d[i] = new float[width];
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
 			array2d[i][j] = tempValue;
 		}
 	}
+	/*			file >> tempValue;
+			array2d[i][j] = tempValue;*/
 
 	return array2d;
 }
@@ -158,8 +166,8 @@ void Map1::spawnObjects() {
 
 	mGrid = createGrid(mWidth, mHeigth);
 	
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 2.0f) {
 				totalAmountOfGrass++;
 			}
@@ -178,8 +186,8 @@ void Map1::spawnObjects() {
 		}
 	}
 
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 7.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
 				mNpcs[c] = new CharRand(i, j, 2, true);
@@ -192,8 +200,8 @@ void Map1::spawnObjects() {
 	}
 
 	/*
-	for (int i = 0; i < mWidth; i++){
-		for (int j = 0; j < mHeigth; j++){
+	for (int j = 0; j < mHeigth; j++){
+		for (int i = 0; i < mWidth; i++){
 			if (mGrid[j][i] == 1){
 				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
 
@@ -279,8 +287,8 @@ void Map1::spawnObjects() {
 
 void Map1::render(sf::RenderWindow &window) {
 
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 1.1f) {
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
@@ -394,13 +402,9 @@ void Map1::render(sf::RenderWindow &window) {
 		}
 	}
 
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
-			if (mGrid[j][i] == 4.0f) { //Träd
-				mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
-				window.draw(mLongObjects[0]->getDrawSprite());
-			}
-			else if (mGrid[j][i] == 1.1f) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
+			if (mGrid[j][i] == 1.1f) {
 				mLongObjects[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[1]->getDrawSprite());
 			}
@@ -442,9 +446,13 @@ void Map1::render(sf::RenderWindow &window) {
 			}
 		}
 		}
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
-			if (mGrid[j][i] == 1.2f) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
+			if (mGrid[j][i] == 4.0f) { //Träd
+				mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
+				window.draw(mLongObjects[0]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 1.2f) {
 				mLongObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[2]->getDrawSprite());
 	}
@@ -519,8 +527,8 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 	//Add all the npcs on the map to a vector for ease of looping
 	mNpcVector.clear();
 	mNpcCoords.clear();
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
 				coords at = { i, j };
 				mNpcVector.push_back(mNpcs[at]);
@@ -845,8 +853,8 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 void Map1::deleteContent()
 {
-	for (int i = 0; i < mWidth; i++) {
-		for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeigth; j++) {
+		for (int i = 0; i < mWidth; i++) {
 			coords tempCoord = { i, j };
 			if (!mNpcs[tempCoord] != 0) {
 				delete mNpcs[tempCoord];
