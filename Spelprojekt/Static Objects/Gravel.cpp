@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static const string filename_Gravel = "Resource Files/Sprites/gravel.png";
+static const string filename_Gravel = "Resource Files/Sprites/asfalt01.png";
 sf::Texture textureGravel;
 
 Gravel::Gravel(int arrayX, int arrayY, float posX, float posY) {
