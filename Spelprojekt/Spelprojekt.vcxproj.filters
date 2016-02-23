@@ -70,6 +70,9 @@
     <Filter Include="Resource Files\Backgrounds">
       <UniqueIdentifier>{57aebfb8-887b-4527-a9b4-0b5b55482c6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menu">
+      <UniqueIdentifier>{7767797e-09ff-4c07-9640-0f8cf0b1e312}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -417,12 +420,6 @@
     <Image Include="Resource Files\Sprites\tree.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\start_menu_1.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
     <Image Include="Resource Files\Sprites\asfalt01.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
@@ -446,6 +443,171 @@
     </Image>
     <Image Include="Resource Files\Sprites\TreeStump1.png">
       <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio_Effects.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio_Master.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio_Music.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio_Small.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Audio_Small_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\BackArrow.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\BackArrow_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Cancel.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Cancel_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Confirm.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Confirm_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Controls.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Controls_Small.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Controls_Small_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Credits.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Credits_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Decline.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Decline_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Desktop.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Desktop_Highligh.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\MainMenu.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\MainMenu_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\NewGame.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\NewGame_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Options.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Options_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Quit.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Quit_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Resume.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Resume_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Slider.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Slider_Knapp.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Slider_Knapp_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Video.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Video_Small.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Video_Small_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Wood_ConfirmBanner.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Wood_ConfirmBox.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Wood_ESC.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Wood_Options.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\WoodBanner.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\WoodBanner_Small.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_ESC.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_ESC_Confirm.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_ESC_Quit.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_Options.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_Options_Audio.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_Options_Controls.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_Options_Video.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_StartMenu.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Background_Title.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\start_menu_1.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
