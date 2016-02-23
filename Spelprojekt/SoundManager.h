@@ -10,15 +10,14 @@ public:
 	SoundManager();
 	virtual ~SoundManager();
 	virtual void playSound(float id);
-	void getVolume(int volume);
-	int setVolume();
+	void setVolume(int volume);
+	int getVolume();
 private:
 	static const std::string mNameArray[2];
 	typedef std::vector<sf::SoundBuffer*> SoundBufferList;
 	SoundBufferList mSoundBufferList;
 	typedef std::vector<sf::Sound*> SoundList;
 	SoundList mSoundList;
-	int const mMaxVolume = 100;
 	int mVolume;
 };
 
