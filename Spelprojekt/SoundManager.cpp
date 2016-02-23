@@ -140,7 +140,7 @@ void SoundManager::playSound(float id){
 
 void SoundManager::setVolume(int volume){
 	mVolume = volume;
-	for (int i = 0; i < mSoundList.size; i++){
+	for (int i = 0; i < 100; i++){
 		mSoundList[i]->setVolume(mVolume);
 	}
 }
