@@ -892,6 +892,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound){
 		/*if (mNpcs.at(atPos)->getCollide()){
 			//sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
 		}*/
+		sound.playSound(mGrid[tempY][tempX]);
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep

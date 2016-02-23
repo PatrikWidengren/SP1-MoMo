@@ -1,6 +1,7 @@
 #include "SoundManager.h"
 #include <iostream>
 #include <math.h>
+#include <cstdlib>
 
 using namespace std;
 int asd;
@@ -75,16 +76,16 @@ static const string nameArray[100] = {
 	"Resource Files/Sound/katt.flac",				//67
 	"Resource Files/Sound/katt.flac",				//68
 	"Resource Files/Sound/katt.flac",				//69
-	"Resource Files/Sound/collision_guard_3.flac",	//70
-	"Resource Files/Sound/collision_guard_3.flac",	//71
+	"Resource Files/Sound/collision_guard_1.flac",	//70
+	"Resource Files/Sound/collision_guard_2.flac",	//71
 	"Resource Files/Sound/collision_guard_3.flac",	//72
-	"Resource Files/Sound/collision_guard_3.flac",	//73
-	"Resource Files/Sound/collision_guard_3.flac",	//74
-	"Resource Files/Sound/collision_guard_3.flac",	//75
+	"Resource Files/Sound/collision_guard_4.flac",	//73
+	"Resource Files/Sound/collision_guard_1.flac",	//74
+	"Resource Files/Sound/collision_guard_2.flac",	//75
 	"Resource Files/Sound/collision_guard_3.flac",	//76
-	"Resource Files/Sound/collision_guard_3.flac",	//77
+	"Resource Files/Sound/collision_guard_4.flac",	//77
 	"Resource Files/Sound/collision_guard_3.flac",	//78
-	"Resource Files/Sound/collision_guard_3.flac",	//79
+	"Resource Files/Sound/collision_guard_4.flac",	//79
 	"Resource Files/Sound/collision_vase.flac",		//80
 	"Resource Files/Sound/collision_vase.flac",		//81
 	"Resource Files/Sound/collision_vase.flac",		//82
@@ -111,9 +112,12 @@ static const string nameArray[100] = {
 
 SoundManager::SoundManager(){
 	for (int i = 0; i < 100; i++){
-		mSoundBuffer.loadFromFile(nameArray[i]); //mNameArry har igent i sig än, ****************** ladda från txt?
+//		sf::SoundBuffer buff;
+//		cout << &buff << endl;
+		mSoundBufferList.push_back(new sf::SoundBuffer);
+		mSoundBufferList[i]->loadFromFile(nameArray[i]); //mNameArry har igent i sig än, ****************** ladda från txt?
 		mSoundList.push_back(new sf::Sound);
-		mSoundList[i]->setBuffer(mSoundBuffer);
+		mSoundList[i]->setBuffer(*mSoundBufferList[i]);
 	}
 }
 
@@ -124,6 +128,10 @@ SoundManager::~SoundManager(){
 void SoundManager::playSound(float id){
 	float tempTest = id * 10;
 	int temp = (int)tempTest;
-	//cout << endl << temp << ", " << id << endl;
+	if (temp >= 70 && temp <= 79) {
+		int i = (rand() % 10)+70;
+		temp = i;
+	}
+	cout << endl << temp << ", " << id << endl;
 	mSoundList[temp]->play();
 }

@@ -24,8 +24,8 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 
-	mLawnMowers.push_back(new GoLawnMower);
 	mLawnMowers.push_back(new LawnMower);
+	mLawnMowers.push_back(new GoLawnMower);
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 	mHedgeTools.push_back(new HedgeCutter(4, 2));
