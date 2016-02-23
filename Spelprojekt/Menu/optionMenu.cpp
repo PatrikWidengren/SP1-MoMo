@@ -8,6 +8,8 @@ optionMenu::optionMenu(float width, float height)
 	mOptionMenuState = 1;
 	setFonts();
 	setTextures();
+	/*
+
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("Sound settings");
@@ -22,7 +24,7 @@ optionMenu::optionMenu(float width, float height)
 	menu[2].setColor(sf::Color::White);
 	menu[2].setString("Back");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
-
+	*/
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
@@ -120,11 +122,14 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	window.draw(highlightSprite01);
+	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
+	*/
+
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": optionMenu :" << highlightSprite01.getPosition().y << std::endl;
 

@@ -7,6 +7,8 @@ startMenu::startMenu(float width, float height)
 	mState = 3;
 	setFonts();
 	setTextures();
+	/*
+
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("New Game");
@@ -22,7 +24,7 @@ startMenu::startMenu(float width, float height)
 	menu[2].setColor(sf::Color::White);
 	menu[2].setString("Exit to Desktop");
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
-
+	*/
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(650, 640), sf::Vector2i(550, 100));
@@ -130,11 +132,13 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void startMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
+	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
+	*/
 }
 
 void startMenu::setTextures()

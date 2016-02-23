@@ -7,6 +7,8 @@ WinMenu::WinMenu(float width, float height)
 	mState = 6;
 	setFonts();
 	setTextures();
+	/*
+
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("New Game");
@@ -21,7 +23,7 @@ WinMenu::WinMenu(float width, float height)
 	mCompleteText.setColor(sf::Color::Cyan);
 	mCompleteText.setString("Stage Complete!");
 	mCompleteText.setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 1));
-
+	*/
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
@@ -75,11 +77,13 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 void WinMenu::displayMenu01(sf::RenderWindow &window)
 {
-
+	/*
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
 	}
+	*/
+
 	window.draw(mCompleteText);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
