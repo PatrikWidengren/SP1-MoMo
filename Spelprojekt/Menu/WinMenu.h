@@ -29,6 +29,7 @@ protected:
 	static int const mNumberOfSelections = 2;
 
 private:
+	sf::IntRect *mRects[mNumberOfSelections];
 	int mState;
 	int mTimer;
 	int selectedIndex;

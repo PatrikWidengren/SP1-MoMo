@@ -12,8 +12,13 @@ public:
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
 
+	sf::Texture sliderTextuer01; //hold the texture
+
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+
+	sf::Sprite slider01;
+
 
 	virtual int checkState();
 	virtual void updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
@@ -25,9 +30,12 @@ public:
 	int checkOptionState();
 
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 4;
 
 private:
+	int const maxX = 1462;
+	int const minX = 956;
+	sf::IntRect *mRects[mNumberOfSelections];
 	int mOptionMenuState;
 	int mState;
 	int mTimer;

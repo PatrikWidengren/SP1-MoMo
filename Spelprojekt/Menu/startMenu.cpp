@@ -12,7 +12,6 @@ startMenu::startMenu(float width, float height)
 	menu[0].setString("New Game");
 	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(640, 500), sf::Vector2i(500, 100));
 
 	menu[1].setFont(font);
 	menu[1].setColor(sf::Color::White);
@@ -25,6 +24,11 @@ startMenu::startMenu(float width, float height)
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(650, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650, 740), sf::Vector2i(550, 100));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+
 }
 
 startMenu::startMenu()
@@ -43,17 +47,26 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
+	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
+		mState = 1;
+		reset = true;
 	}
-	/*if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-	highlightSprite01.setPosition(10, 235);
-	window.draw(highlightSprite01);
-	}*/
+		mState = 4;
+		reset = true;
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		reset = true;
+		window.close();
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
@@ -63,6 +76,8 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		std::cout << "Inside" << " ";
 		//window.close();
 	}
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+		std::cout << "dasda";
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
@@ -71,7 +86,9 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		startMenu::moveDown();
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-		mRects[0] = new sf::IntRect(sf::Vector2i(640 * bg01.getScale().x, 500 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[0] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
 
 		//mRects = tempmRects;
 	}
@@ -98,14 +115,14 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			reset = true;
 			mState = 1;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			mState = 4;
 		}
-		if (selectedIndex == 2){
+		if (selectedIndex == 2) {
 			window.close();
 		}
 	}
@@ -114,7 +131,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void startMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
-	
+
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
@@ -123,7 +140,7 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 
 void startMenu::setTextures()
 {
-	
+
 	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
@@ -132,8 +149,8 @@ void startMenu::setTextures()
 
 	bg01.setTexture(texture01);
 	//highlightSprite01.setTexture(highlightTexture01);
-	
-	
+
+
 }
 
 void startMenu::setFonts()

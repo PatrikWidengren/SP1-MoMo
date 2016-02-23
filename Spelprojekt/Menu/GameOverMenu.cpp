@@ -23,6 +23,9 @@ GameOverMenu::GameOverMenu(float width, float height)
 	gameOver.setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 1));
 
 	selectedIndex = 0;
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+
 }
 
 GameOverMenu::~GameOverMenu()
@@ -59,10 +62,10 @@ void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mo
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			mState = 3;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			window.close();
 		}
 	}
@@ -77,16 +80,16 @@ void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 	}
 	window.draw(gameOver);
 	// draw background window.draw(bg01);
-//	std::cout << highlightSprite01.getPosition().x << ": GameOverMenu :" << highlightSprite01.getPosition().y << std::endl;
+	//	std::cout << highlightSprite01.getPosition().x << ": GameOverMenu :" << highlightSprite01.getPosition().y << std::endl;
 	/*
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
-		window.close();
+	window.close();
 	}
 	if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
 	{
-		highlightSprite01.setPosition(10, 235);
-		window.draw(highlightSprite01);
+	highlightSprite01.setPosition(10, 235);
+	window.draw(highlightSprite01);
 	}
 	*/
 
@@ -96,10 +99,10 @@ void GameOverMenu::setTextures()
 {
 	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	texture01.loadFromFile("error.jpg");
 
 	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);
@@ -147,11 +150,11 @@ int GameOverMenu::checkState()
 /* Not usefull at the moment
 void GameOverMenu::getTurns(int turns)
 {
-	mTurns = turns;
+mTurns = turns;
 }
 
 int GameOverMenu::setTurns()
 {
-	return mTurns;
+return mTurns;
 }
 */

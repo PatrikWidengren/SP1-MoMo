@@ -23,6 +23,10 @@ WinMenu::WinMenu(float width, float height)
 	mCompleteText.setPosition(sf::Vector2f(width / 2, height / (3 + 1) * 1));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+
 }
 
 WinMenu::~WinMenu()
@@ -59,11 +63,11 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			reset = true;
 			mState = 1;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			window.close();
 		}
 	}
@@ -96,12 +100,12 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 
 void WinMenu::setTextures()
 {
-	/*
+	/* test
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	texture01.loadFromFile("error.jpg");
 
 	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);

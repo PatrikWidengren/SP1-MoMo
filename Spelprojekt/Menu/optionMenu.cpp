@@ -3,6 +3,7 @@
 optionMenu::optionMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
+	slider01.setPosition(1400, 718);
 	mTimer = 0;
 	mState = 4;
 	mOptionMenuState = 1;
@@ -24,6 +25,12 @@ optionMenu::optionMenu(float width, float height)
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+	mRects[3] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
+
 }
 
 optionMenu::~optionMenu()
@@ -33,8 +40,39 @@ optionMenu::~optionMenu()
 
 void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
+	mMouse.x = mouse.x;
+	mMouse.y = mouse.y;
+	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
+
+	/*
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+	mState = 1;
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+	mState = 4;
+	}
+	*/
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		window.close();
+	}
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		mState = 3;
+	}
+	if (slider01.getPosition().x <= maxX && slider01.getPosition().x >= minX && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		slider01.setPosition(mMouse.x, 718);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
+		mRects[0] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+		mRects[3] = new sf::IntRect(sf::Vector2i(1375 * bg01.getScale().x, 504 * bg01.getScale().y), sf::Vector2i(500 * bg01.getScale().x, 100 * bg01.getScale().y));
+
 		mDown = true;
 		optionMenu::moveDown();
 	}
@@ -42,7 +80,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = false;
 	}
-	
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
@@ -61,13 +99,13 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			mOptionMenuState = 2;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			mOptionMenuState = 3;
 		}
-		if (selectedIndex == 2){
+		if (selectedIndex == 2) {
 			mState = 3;
 		}
 	}
@@ -80,7 +118,7 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 	{
 		window.draw(menu[i]);
 	}
-
+	window.draw(slider01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": optionMenu :" << highlightSprite01.getPosition().y << std::endl;
 
@@ -97,6 +135,8 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 
 void optionMenu::setTextures()
 {
+	if (!sliderTextuer01.loadFromFile("Resource Files/Sprites/slider_button.png")) //try to load the texture. if its wrong, give error
+		sliderTextuer01.loadFromFile("error.jpg");
 
 	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_options_1.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
@@ -104,6 +144,7 @@ void optionMenu::setTextures()
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	//	highlightTexture01.loadFromFile("error.jpg");
 
+	slider01.setTexture(sliderTextuer01);
 	bg01.setTexture(texture01);
 	//highlightSprite01.setTexture(highlightTexture01);
 

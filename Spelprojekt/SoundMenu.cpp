@@ -24,6 +24,12 @@ SoundMenu::SoundMenu(float width, float height)
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+
+
 }
 
 SoundMenu::~SoundMenu()
@@ -61,13 +67,13 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			mState = 4; //change sound settings
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			mState = 4; //change sound settings
 		}
-		if (selectedIndex == 2){
+		if (selectedIndex == 2) {
 			mOptionMenuState = 1;
 		}
 	}

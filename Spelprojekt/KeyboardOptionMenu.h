@@ -29,6 +29,7 @@ protected:
 	static int const mNumberOfSelections = 3;
 
 private:
+	sf::IntRect *mRects[mNumberOfSelections];
 	int mOptionMenuState;
 	int mState;
 	int mTimer;

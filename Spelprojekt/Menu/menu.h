@@ -8,7 +8,7 @@ class Menu
 {
 public:
 	Menu();
-	
+
 	~Menu();
 
 	// Load a backgrounds to show for the menu
@@ -17,7 +17,7 @@ public:
 
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
-	
+
 	virtual int checkState() = 0;
 	virtual void displayMenu01(sf::RenderWindow &window) = 0;
 	virtual void moveUp() = 0;
@@ -27,6 +27,7 @@ protected:
 
 
 private:
+	sf::IntRect *mRects[mNumberOfSelections];
 	sf::Vector2i mMouse;
 	int mState;
 	int mTimer;

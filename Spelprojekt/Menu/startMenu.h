@@ -27,15 +27,13 @@ protected:
 	static int const mNumberOfSelections = 3;
 
 private:
+	sf::IntRect *mRects[mNumberOfSelections];
 	sf::Vector2i mMouse;
-
-
 	int mState;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
 	sf::Text menu[mNumberOfSelections];
-	sf::IntRect *mRects[mNumberOfSelections];
 
 	virtual void setTextures(); //Set a texture to a sprite
 	virtual void setFonts();

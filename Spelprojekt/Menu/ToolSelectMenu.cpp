@@ -23,6 +23,11 @@ ToolSelectMenu::ToolSelectMenu(float width, float height)
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+
 }
 
 ToolSelectMenu::~ToolSelectMenu()
@@ -60,13 +65,13 @@ void ToolSelectMenu::updateToolSelectMenu(sf::RenderWindow &window, sf::Vector2i
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			mState = 8;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			mState = 9;
 		}
-		if (selectedIndex == 2){
+		if (selectedIndex == 2) {
 			mState = 1;
 		}
 	}
@@ -99,10 +104,10 @@ void ToolSelectMenu::setTextures()
 {
 	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	texture01.loadFromFile("error.jpg");
 
 	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);
@@ -141,7 +146,7 @@ void ToolSelectMenu::moveDown()
 
 int ToolSelectMenu::checkState()
 {
-//	std::cout << mState << std::endl;
+	//	std::cout << mState << std::endl;
 	int i = mState;
 	mState = 0;
 	return i;

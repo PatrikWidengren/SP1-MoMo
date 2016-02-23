@@ -23,6 +23,11 @@ inGameMenu::inGameMenu(float width, float height)
 	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+
 }
 
 inGameMenu::~inGameMenu()
@@ -59,13 +64,13 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
 	{
 		mReturn = false;
-		if (selectedIndex == 0){
+		if (selectedIndex == 0) {
 			mState = 1;
 		}
-		if (selectedIndex == 1){
+		if (selectedIndex == 1) {
 			mState = 4;
 		}
-		if (selectedIndex == 2){
+		if (selectedIndex == 2) {
 			mState = 3;
 		}
 	}
@@ -81,7 +86,7 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-//	std::cout << highlightSprite01.getPosition().x << ": IngameMenu :" << highlightSprite01.getPosition().y << std::endl;
+	//	std::cout << highlightSprite01.getPosition().x << ": IngameMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x > 10 && mMouse.x < 200 && mMouse.y > 235 && mMouse.y < 365) // left click if its on the option
 	{
@@ -100,10 +105,10 @@ void inGameMenu::setTextures()
 {
 	/*
 	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	texture01.loadFromFile("error.jpg");
 
 	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	highlightTexture01.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
 	highlightSprite01.setTexture(highlightTexture01);

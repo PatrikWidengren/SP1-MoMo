@@ -19,8 +19,8 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-//	void getTurns(int turns); Not usefull at the moment
-//	int setTurns();
+	//	void getTurns(int turns); Not usefull at the moment
+	//	int setTurns();
 	virtual void updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
@@ -31,6 +31,7 @@ protected:
 	static int const mNumberOfSelections = 2;
 
 private:
+	sf::IntRect *mRects[mNumberOfSelections];
 	int mTurns;
 	int mState;
 	int mTimer;
