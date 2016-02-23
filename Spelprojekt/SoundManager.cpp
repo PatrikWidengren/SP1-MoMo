@@ -111,6 +111,7 @@ static const string nameArray[100] = {
 };
 
 SoundManager::SoundManager(){
+	mVolume = 100;
 	for (int i = 0; i < 100; i++){
 //		sf::SoundBuffer buff;
 //		cout << &buff << endl;
@@ -118,6 +119,7 @@ SoundManager::SoundManager(){
 		mSoundBufferList[i]->loadFromFile(nameArray[i]); //mNameArry har igent i sig än, ****************** ladda från txt?
 		mSoundList.push_back(new sf::Sound);
 		mSoundList[i]->setBuffer(*mSoundBufferList[i]);
+		mSoundList[i]->setVolume(mVolume);
 	}
 }
 
@@ -134,4 +136,15 @@ void SoundManager::playSound(float id){
 	}
 	cout << endl << temp << ", " << id << endl;
 	mSoundList[temp]->play();
+}
+
+void SoundManager::setVolume(int volume){
+	mVolume = volume;
+	for (int i = 0; i < mSoundList.size; i++){
+		mSoundList[i]->setVolume(mVolume);
+	}
+}
+
+int SoundManager::getVolume() {
+	return mVolume;
 }
