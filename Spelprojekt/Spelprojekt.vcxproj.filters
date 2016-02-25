@@ -388,6 +388,12 @@
     <None Include="Resource Files\Sound\MeepTest_Hello.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
+    <None Include="..\Debug\thor-d.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="..\Release\thor.dll">
+      <Filter>Debug/Release</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png">
