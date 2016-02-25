@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <Thor/Animations.hpp>
 #include <vector>
 #include "gameState.h"
 #include "MusicManager.h"
@@ -32,7 +33,7 @@ int main(){
 			}
 			else if (event.type == sf::Event::Resized)
 			{
-				window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+				window.setView(sf::View(sf::FloatRect(0, 0, (float)event.size.width, (float)event.size.height)));
 			}
 		}
 		mouse = sf::Mouse::getPosition(window);
