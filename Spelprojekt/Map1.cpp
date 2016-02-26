@@ -101,7 +101,6 @@ int** Map1::getPatrolPath(int &skipLines) {
 	int tempValue;
 	int patrolPathWidth;
 	int patrolPathHeight;
-	int jumpY;
 
 	//Loop för att komma förbi tidigare patrull-paths
 	for (int i = 0; i < skipLines; i++) {
