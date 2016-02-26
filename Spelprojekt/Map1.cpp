@@ -13,9 +13,10 @@ static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
 
-Map1::Map1(string savefile, Player *p) {
+Map1::Map1(string savefile, Player *p, string patrolpath) {
 	mPlayer = p;
 	mSavefile = savefile;
+	mPatrolPath = patrolpath;
 	getMapInfo();
 	Stone::initialize();
 	Grass::initialize();
@@ -97,30 +98,43 @@ float** Map1::createGrid(int width, int heigth) {
 
 //Loopar igenom array och spawnar alla objekt
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
-void Map1::spawnObjects() {
+/*int** Map1::getPatrolPath(int skipLines) {
 
+}*/
+void Map1::spawnObjects() {
+	ifstream file(mPatrolPath);
+	int tempValue;
+	int patrolPathWidth;
+	int patrolPathHeight;
+	int jumpY;
+
+	file >> patrolPathWidth >> patrolPathHeight;
 	//50x10 array med varje värde 0
-	int **patrolPath = 0;
-	patrolPath = new int*[50];
-	for (int i = 0; i < 50; i++) {
-		patrolPath[i] = new int[10];
-		for (int j = 0; j < 10; j++) {
+	int** patrolPath = 0;
+
+	// patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad
+	patrolPath = new int*[patrolPathWidth + 1];
+	for (int i = 0; i < patrolPathWidth + 1; i++) {
+		patrolPath[i] = new int[patrolPathHeight];
+		for (int j = 0; j < patrolPathHeight; j++) {
+			//file >> tempValue;
 			patrolPath[i][j] = 0;
 		}
 	}
 	//skapar temporärt en array med bara de steg och turer som inte är noll.
-	int tempPath[5][4]{
+	/*int tempPath[5][4]{
 			{ 4, 0, 0, 0 },
 			{ 2, 2, 0, 0 },
 			{ 6, 6, 6, 6 },
 			{ 8, 8, 0, 0 },
 			{ 4, 4, 4, 0 }
-	};
+	};*/
 
 	//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 4; j++) {
-			patrolPath[i][j] = tempPath[i][j];
+	for (int i = 0; i < patrolPathWidth; i++) {
+		for (int j = 0; j < patrolPathHeight; j++) {
+			file >> tempValue;
+			patrolPath[i][j] = tempValue;
 		}
 	}
 
