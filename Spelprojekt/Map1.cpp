@@ -66,16 +66,16 @@ void Map1::resetGrid(){
 	cutHedges = 0;
 	cutDandelions = 0;
 	mTurnCount = 0;
+	mSkipLines = 0;
 }
 
 //Skapar array
 float** Map1::createGrid(int width, int heigth) {
-
 	float tempValue;
 	ifstream file(mSavefile);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
-	float** array2d = 0;
+	float** array2d;
 	array2d = new float*[width];
 	for (int i = 0; i < width; i++) {
 		array2d[i] = new float[heigth];
@@ -90,29 +90,30 @@ float** Map1::createGrid(int width, int heigth) {
 			array2d[i][j] = tempValue;
 		}
 	}
-	/*			file >> tempValue;
-			array2d[i][j] = tempValue;*/
-
 	return array2d;
 }
 
 //Loopar igenom array och spawnar alla objekt
-//Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas
-/*int** Map1::getPatrolPath(int skipLines) {
-
-}*/
-void Map1::spawnObjects() {
+//Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas, samma med hedge & dandelions
+//skipLines räknar varje värde som sparas från patrullens .txt fil, för att inte ladda samma värden för flera patruller
+int** Map1::getPatrolPath(int &skipLines) {
 	ifstream file(mPatrolPath);
 	int tempValue;
 	int patrolPathWidth;
 	int patrolPathHeight;
 	int jumpY;
 
-	file >> patrolPathWidth >> patrolPathHeight;
-	//50x10 array med varje värde 0
-	int** patrolPath = 0;
+	//Loop för att komma förbi tidigare patrull-paths
+	for (int i = 0; i < skipLines; i++) {
+		file >> tempValue;
+	}
 
-	// patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad
+	file >> patrolPathWidth >> patrolPathHeight;
+	skipLines += 2;
+
+	//patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad, dvs vi skapar en extra nollrad här
+	//här sparas bara nollor i hela arrayen
+	int** patrolPath;
 	patrolPath = new int*[patrolPathWidth + 1];
 	for (int i = 0; i < patrolPathWidth + 1; i++) {
 		patrolPath[i] = new int[patrolPathHeight];
@@ -121,23 +122,18 @@ void Map1::spawnObjects() {
 			patrolPath[i][j] = 0;
 		}
 	}
-	//skapar temporärt en array med bara de steg och turer som inte är noll.
-	/*int tempPath[5][4]{
-			{ 4, 0, 0, 0 },
-			{ 2, 2, 0, 0 },
-			{ 6, 6, 6, 6 },
-			{ 8, 8, 0, 0 },
-			{ 4, 4, 4, 0 }
-	};*/
 
-	//Flytta över alla siffror från temporära arrayen till den som ska skickas med i konstruktorn
+	//här sätts värdena till patrolPath från .txt fil
 	for (int i = 0; i < patrolPathWidth; i++) {
 		for (int j = 0; j < patrolPathHeight; j++) {
 			file >> tempValue;
 			patrolPath[i][j] = tempValue;
+			skipLines++;
 		}
 	}
-
+	return patrolPath;
+}
+void Map1::spawnObjects() {
 	
 	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
 	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
@@ -208,7 +204,7 @@ void Map1::spawnObjects() {
 			}
 			else if (mGrid[j][i] >= 7.0f && mGrid[j][i] < 8.0f) {
 				coords c = { i, j };
-				mNpcs[c] = new CharPatrol(i, j, patrolPath);
+				mNpcs[c] = new CharPatrol(i, j, getPatrolPath(mSkipLines));
 			}
 		}
 	}
@@ -724,8 +720,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			if (totalAmountOfHedges > 0) {
 				std::cout << fixed << setprecision(0) << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total. % cut: " << (cutHedges / totalAmountOfHedges) * 100 << "." << endl;
 			}
-			cout << endl << mObjects.size() << endl;
-
+			cout << mSkipLines << " skiplines" << endl;
 			//std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
