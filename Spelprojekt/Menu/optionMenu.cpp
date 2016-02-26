@@ -8,8 +8,13 @@ optionMenu::optionMenu(float width, float height)
 	mOptionMenuState = 1;
 	setFonts();
 	setTextures();
-	/*
 
+	spriteControl.setPosition(745, 660);
+	spriteVideo.setPosition(786, 780);
+	spriteAudio.setPosition(786, 900);
+	spriteBack.setPosition(1385, 515);
+
+	/*
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("Sound settings");
@@ -27,11 +32,10 @@ optionMenu::optionMenu(float width, float height)
 	*/
 	selectedIndex = 0;
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
-	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+	mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730, 770), sf::Vector2i(360, 75));
+	mRects[2] = new sf::IntRect(sf::Vector2i(730, 890), sf::Vector2i(360, 75));
 	mRects[3] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
-
 }
 
 optionMenu::~optionMenu()
@@ -45,25 +49,52 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
-	/*
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-	mState = 1;
+		spriteControl.setTexture(textHighlightControl);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//Control option
+		}
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-	mState = 4;
-	}
-	*/
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		window.close();
-	}
+	else
+		spriteControl.setTexture(textControl);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mState = 3;
+		spriteVideo.setTexture(textHighlightVideo);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//Video Option
+		}
 	}
+	else
+		spriteVideo.setTexture(textVideo);
+
+	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteAudio.setTexture(textHighlightAudio);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//Audio option
+		}
+	}
+	else
+		spriteAudio.setTexture(textAudio);
+
+	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteBack.setTexture(textHighlightBack);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//Back
+			mState = 3;
+			mOptionMenuState = 1;
+		}
+	}
+	else
+		spriteBack.setTexture(textBack);
+
 
 	if (mMouse.x <= maxX && mMouse.x >= minX && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -122,6 +153,12 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	window.draw(highlightSprite01);
+
+	window.draw(spriteControl);
+	window.draw(spriteAudio);
+	window.draw(spriteVideo);
+	window.draw(spriteBack);
+
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
@@ -140,15 +177,39 @@ void optionMenu::setTextures()
 	if (!sliderTextuer01.loadFromFile("Resource Files/Sprites/slider_button.png")) //try to load the texture. if its wrong, give error
 		sliderTextuer01.loadFromFile("error.jpg");
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_options_1.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
+		textBg01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("Resource Files/Sprites/cat.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	if (!highlighttextBg01.loadFromFile("Resource Files/Sprites/cat.png")) //try to load the texture. if its wrong, give error
+		highlighttextBg01.loadFromFile("error.jpg");
+
+	if (!textControl.loadFromFile("Resource Files/Menus/Controls_Small.png"))
+		textControl.loadFromFile("error.jpg");
+	if (!textAudio.loadFromFile("Resource Files/Menus/Audio_Small.png"))
+		textAudio.loadFromFile("error.jpg");
+	if (!textVideo.loadFromFile("Resource Files/Menus/Video_Small.png"))
+		textVideo.loadFromFile("error.jpg");
+	if (!textBack.loadFromFile("Resource Files/Menus/BackArrow.png"))
+		textBack.loadFromFile("error.jpg");
+
+	if (!textHighlightControl.loadFromFile("Resource Files/Menus/Controls_Small_Highlight.png"))
+		textHighlightControl.loadFromFile("error.jpg");
+	if (!textHighlightAudio.loadFromFile("Resource Files/Menus/Audio_Small_highlight.png"))
+		textHighlightAudio.loadFromFile("error.jpg");
+	if (!textHighlightVideo.loadFromFile("Resource Files/Menus/Video_Small_Highlight.png"))
+		textHighlightVideo.loadFromFile("error.jpg");
+	if (!textHighlightBack.loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
+		textHighlightBack.loadFromFile("error.jpg");
+
+
+	spriteControl.setTexture(textControl);
+	spriteAudio.setTexture(textAudio);
+	spriteVideo.setTexture(textVideo);
+	spriteBack.setTexture(textBack);
 
 	slider01.setTexture(sliderTextuer01);
-	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
+	bg01.setTexture(textBg01);
+	highlightSprite01.setTexture(highlighttextBg01);
 
 
 }

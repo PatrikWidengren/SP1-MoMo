@@ -9,8 +9,8 @@ public:
 	optionMenu();
 	~optionMenu();
 	// Load a backgrounds to show for the menu
-	sf::Texture highlightTexture01; //the highlightTexture for displaying.
-	sf::Texture texture01; //hold the texture
+	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
+	sf::Texture textBg01; //hold the texture
 
 	sf::Texture sliderTextuer01; //hold the texture
 
@@ -18,6 +18,21 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	sf::Sprite slider01;
+
+	sf::Texture textControl;
+	sf::Texture textVideo;
+	sf::Texture textAudio;
+	sf::Texture textBack;
+
+	sf::Texture textHighlightControl;
+	sf::Texture textHighlightVideo;
+	sf::Texture textHighlightAudio;
+	sf::Texture textHighlightBack;
+
+	sf::Sprite spriteControl;
+	sf::Sprite spriteVideo;
+	sf::Sprite spriteAudio;
+	sf::Sprite spriteBack;
 
 
 	virtual int checkState();
