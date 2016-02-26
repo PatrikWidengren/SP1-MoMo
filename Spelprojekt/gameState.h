@@ -4,8 +4,9 @@
 #include "Menu/startMenu.h"
 #include "Menu/optionMenu.h"
 #include "Menu/GameOverMenu.h"
-#include "Menu\WinMenu.h"
+#include "Menu/WinMenu.h"
 #include "Menu/ToolSelectMenu.h"
+#include "WorldMap.h"
 #include "SoundMenu.h"
 #include "KeyboardOptionMenu.h"
 
@@ -28,6 +29,7 @@ public:
 	void drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
@@ -47,6 +49,7 @@ private:
 	startMenu *mStartMenu01;
 	optionMenu *mOptionMenu01;
 	ToolSelectMenu *mToolSelectMenu01;
+	WorldMap *mWorldMap01;
 	Map1 *mMap01;
 	int mCurMower = 0;
 	int mCurHedgeTool = 0;

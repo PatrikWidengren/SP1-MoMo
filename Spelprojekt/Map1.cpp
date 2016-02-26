@@ -289,7 +289,11 @@ void Map1::render(sf::RenderWindow &window) {
 
 	for (int j = 0; j < mHeigth; j++) {
 		for (int i = 0; i < mWidth; i++) {
-			if (mGrid[j][i] == 1.1f) {
+			if (mGrid[j][i] == 0.1f) {
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 1.1f) {
 					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
 					window.draw(mObjects[0]->getDrawSprite());
 			}

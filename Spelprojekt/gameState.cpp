@@ -23,6 +23,8 @@ gameState::gameState(sf::RenderWindow &window)
 	mToolSelectMenu01 = new ToolSelectMenu(window.getSize().x, window.getSize().y);
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
+	mWorldMap01 = new WorldMap(window.getSize().x, window.getSize().y);
+
 
 	mLawnMowers.push_back(new LawnMower);
 	mLawnMowers.push_back(new GoLawnMower);
@@ -120,6 +122,13 @@ void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 	mOptionMenuState = mKeyboardMenu01->checkOptionState();
 }
 
+void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw World Map
+{
+	mWorldMap01->updateWorldMap(window, mouse);
+	mWorldMap01->displayMenu01(window); //Update mouse in update...
+	mState = mWorldMap01->checkState();
+
+}
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw and Update Ingame
 {
@@ -275,6 +284,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 6: //state 6. WinMenu.
 		drawWinMenu(window, mouse, music, sound);
+		break;
+
+	case 7: //State 7. World Map
+		drawWorldMap(window, mouse, music, sound);
 		break;
 
 	case 8:

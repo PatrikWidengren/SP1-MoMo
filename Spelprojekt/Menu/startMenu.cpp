@@ -67,8 +67,8 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteNewgame.setTexture(textHighlightNewgame);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			mState = 1;
-		}
+			mState = 7;
+	}
 	}
 	else
 		spriteNewgame.setTexture(textNewgame);
@@ -78,8 +78,8 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteOption.setTexture(textHighlightOption);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			mState = 4;
-		}
+		mState = 4;
+	}
 	}
 	else
 		spriteOption.setTexture(textOption);
@@ -89,9 +89,9 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteExit.setTexture(textHighlightExit);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			window.close();
+		window.close();
 
-		}
+	}
 	}
 	else
 		spriteExit.setTexture(textExit);
@@ -102,7 +102,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			//mState = 1; Continue
-		}
+	}
 	}
 	else
 		spriteContinue.setTexture(textContinue);
@@ -111,7 +111,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		spriteCredits.setTexture(textHighlightCredits);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
+	{
 			//mState = 1; Credits
 		}
 	}

@@ -104,6 +104,7 @@
     <ClCompile Include="Tools\Lawnmower\GoLawnMower.cpp" />
     <ClCompile Include="Tools\Lawnmower\LawnMower.cpp" />
     <ClCompile Include="Tools\Lawnmower\RoyceMower.cpp" />
+    <ClCompile Include="WorldMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\Character.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Tools\Lawnmower\GoLawnMower.h" />
     <ClInclude Include="Tools\Lawnmower\LawnMower.h" />
     <ClInclude Include="Tools\Lawnmower\RoyceMower.h" />
+    <ClInclude Include="WorldMap.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\openal32.dll" />
