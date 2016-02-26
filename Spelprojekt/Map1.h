@@ -27,7 +27,7 @@
 class Map1 : public Maps{
 public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
-	Map1(std::string savefile, Player *m);
+	Map1(std::string savefile, Player *m, std::string patrolPath);
 	virtual ~Map1();
 	void virtual render(sf::RenderWindow &window);
 	//Spawnar alla objekten, enligt array
@@ -47,6 +47,7 @@ public:
 	void virtual getMapInfo();
 	void resetGrid();
 	void takeTurn(int dir, SoundManager &sound);
+	int** getPatrolPath(int skipLines);
 	float** createGrid(int width, int heigth);
 	//Added turn count
 	int mTurnCount = 0;
@@ -68,7 +69,7 @@ private:
 	float cutGrass = 0;
 	float cutHedges = 0;
 	float cutDandelions = 0;
-	std::string mSavefile;
+	std::string mSavefile, mPatrolPath;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;

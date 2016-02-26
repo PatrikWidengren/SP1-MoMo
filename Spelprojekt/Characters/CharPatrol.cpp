@@ -29,7 +29,9 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	}
 	mTurnNo = -1;
 	//fill up path with the move array
-	path = new int*[mTurnCount];
+
+	// Not needed
+	/*path = new int*[mTurnCount];
 	for (int i = 0; i < mTurnCount; i++) {
 		path[i] = new int[mMoveCount];
 		for (int j = 0; j < mMoveCount; j++) {
@@ -41,7 +43,8 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 		for (int j = 0; j < mMoveCount; j++) {
 			path[i][j] = moves[i][j];
 		}
-	}
+	}*/
+
 	path = moves;
 	//I assume guard is 7
 	mType = 7.0f;

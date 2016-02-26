@@ -73,6 +73,9 @@
     <Filter Include="Resource Files\Menu">
       <UniqueIdentifier>{7767797e-09ff-4c07-9640-0f8cf0b1e312}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maps\patrols">
+      <UniqueIdentifier>{fad8f4f4-a3f4-4075-928a-47e1f7066d7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -635,6 +638,12 @@
       <Filter>Maps</Filter>
     </Text>
     <Text Include="Maps\maptest3.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\patrols\Patrols_patroltest.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patroltest.txt">
       <Filter>Maps</Filter>
     </Text>
   </ItemGroup>
