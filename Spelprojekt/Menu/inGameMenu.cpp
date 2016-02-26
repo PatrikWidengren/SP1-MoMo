@@ -7,6 +7,11 @@ inGameMenu::inGameMenu(float width, float height)
 	mState = 2;
 	setFonts();
 	setTextures();
+
+	spriteResume.setPosition(700, 630);
+	spriteOption.setPosition(700, 750);
+	spriteQuit.setPosition(700, 870);
+
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("Resume");
@@ -36,6 +41,41 @@ inGameMenu::~inGameMenu()
 
 void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteResume.setTexture(textHighlightResume);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			mState = 1;
+		}
+	}
+	else
+		spriteResume.setTexture(textResume);
+
+	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteOption.setTexture(textHighlightOption);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			mState = 4;
+		}
+	}
+	else
+		spriteOption.setTexture(textOption);
+
+	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteQuit.setTexture(textHighlightQuit);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			window.close();
+
+		}
+	}
+	else
+		spriteQuit.setTexture(textQuit);
+
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
@@ -45,7 +85,6 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = false;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
@@ -55,8 +94,6 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mUp = false;
 	}
-
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
@@ -85,6 +122,9 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 	}
 
 	window.draw(bg01);
+	window.draw(spriteResume);
+	window.draw(spriteOption);
+	window.draw(spriteQuit);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//	std::cout << highlightSprite01.getPosition().x << ": IngameMenu :" << highlightSprite01.getPosition().y << std::endl;
 
@@ -103,16 +143,16 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 
 void inGameMenu::setTextures()
 {
-	/*
-	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-	texture01.loadFromFile("error.jpg");
+	
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_ESC.png")) //try to load the texture. if its wrong, give error
+	textBg01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	highlightTexture01.loadFromFile("error.jpg");
+	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
+	highlighttextBg01.loadFromFile("error.jpg");
 
-	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
-	*/
+	bg01.setTexture(textBg01);
+	highlightSprite01.setTexture(highlighttextBg01);
+	
 }
 
 void inGameMenu::setFonts()

@@ -9,8 +9,8 @@ public:
 	optionMenu();
 	~optionMenu();
 	// Load a backgrounds to show for the menu
-	sf::Texture highlightTexture01; //the highlightTexture for displaying.
-	sf::Texture texture01; //hold the texture
+	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
+	sf::Texture textBg01; //hold the texture
 
 	sf::Texture sliderTextuer01; //hold the texture
 

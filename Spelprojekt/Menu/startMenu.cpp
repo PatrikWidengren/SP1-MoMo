@@ -33,9 +33,12 @@ startMenu::startMenu(float width, float height)
 	*/
 	selectedIndex = 0;
 
+	mRects[3] = new sf::IntRect(sf::Vector2i(640, 510), sf::Vector2i(540, 100));
 	mRects[0] = new sf::IntRect(sf::Vector2i(640, 630), sf::Vector2i(540, 100));
 	mRects[1] = new sf::IntRect(sf::Vector2i(650, 750), sf::Vector2i(550, 100));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+	mRects[4] = new sf::IntRect(sf::Vector2i(650, 870), sf::Vector2i(550, 100));
+
 
 }
 
@@ -93,6 +96,27 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	else
 		spriteExit.setTexture(textExit);
 
+	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteContinue.setTexture(textHighlightContinue);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//mState = 1; Continue
+		}
+	}
+	else
+		spriteContinue.setTexture(textContinue);
+
+	if (mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteCredits.setTexture(textHighlightCredits);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//mState = 1; Credits
+		}
+	}
+	else
+		spriteCredits.setTexture(textCredits);
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
@@ -165,8 +189,8 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 void startMenu::setTextures()
 {
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
+		textBg01.loadFromFile("error.jpg");
 
 	if (!textContinue.loadFromFile("Resource Files/Menus/Decline.png"))
 		textContinue.loadFromFile("error.jpg");
@@ -185,12 +209,12 @@ void startMenu::setTextures()
 		textHighlightNewgame.loadFromFile("error.jpg");
 	if (!textHighlightOption.loadFromFile("Resource Files/Menus/Options_Highlight.png"))
 		textHighlightOption.loadFromFile("error.jpg");
-	if (!textHighlightCredits.loadFromFile("Resource Files/Menus/Confirm_Highlight.png"))
+	if (!textHighlightCredits.loadFromFile("Resource Files/Menus/Credits_Highlight.png"))
 		textHighlightCredits.loadFromFile("error.jpg");
 	if (!textHighlightExit.loadFromFile("Resource Files/Menus/Decline_Highlight.png"))
 		textHighlightExit.loadFromFile("error.jpg");
 
-	bg01.setTexture(texture01);
+	bg01.setTexture(textBg01);
 
 	spriteContinue.setTexture(textContinue);
 	spriteNewgame.setTexture(textNewgame);

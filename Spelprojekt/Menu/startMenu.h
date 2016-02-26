@@ -12,8 +12,8 @@ public:
 	bool reset = false;
 
 	// Load a backgrounds to show for the menu
-	sf::Texture highlightTexture01; //the highlightTexture for displaying.
-	sf::Texture texture01; //hold the texture
+	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
+	sf::Texture textBg01; //hold the texture
 
 	sf::Texture textContinue;
 	sf::Texture textNewgame;
@@ -43,7 +43,7 @@ public:
 	virtual void moveUp();
 	virtual void moveDown();
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 5;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];

@@ -3,6 +3,7 @@
 GameOverMenu::GameOverMenu(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
+	bg01.scale(33, 33);
 	mTimer = 0;
 	mState = 2;
 	setFonts();
@@ -97,16 +98,16 @@ void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 
 void GameOverMenu::setTextures()
 {
-	/*
-	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-	texture01.loadFromFile("error.jpg");
+	
+	if (!textBg01.loadFromFile("Resource Files/Menus/Decline.png")) //try to load the texture. if its wrong, give error
+		textBg01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	highlightTexture01.loadFromFile("error.jpg");
+	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
+	highlighttextBg01.loadFromFile("error.jpg");
 
-	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
-	*/
+	bg01.setTexture(textBg01);
+	highlightSprite01.setTexture(highlighttextBg01);
+	
 }
 
 void GameOverMenu::setFonts()

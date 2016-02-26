@@ -103,14 +103,14 @@ void ToolSelectMenu::displayMenu01(sf::RenderWindow &window)
 void ToolSelectMenu::setTextures()
 {
 	/*
-	if (!texture01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
-	texture01.loadFromFile("error.jpg");
+	if (!textBg01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
+	textBg01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	highlightTexture01.loadFromFile("error.jpg");
+	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
+	highlighttextBg01.loadFromFile("error.jpg");
 
-	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
+	bg01.setTexture(textBg01);
+	highlightSprite01.setTexture(highlighttextBg01);
 	*/
 }
 

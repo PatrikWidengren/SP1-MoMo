@@ -54,7 +54,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteControl.setTexture(textHighlightControl);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			mState = 1;
+			//Control option
 		}
 	}
 	else
@@ -65,7 +65,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteVideo.setTexture(textHighlightVideo);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			mState = 4;
+			//Video Option
 		}
 	}
 	else
@@ -76,8 +76,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteAudio.setTexture(textHighlightAudio);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			window.close();
-
+			//Audio option
 		}
 	}
 	else
@@ -88,8 +87,9 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteBack.setTexture(textHighlightBack);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			window.close();
-
+			//Back
+			mState = 3;
+			mOptionMenuState = 1;
 		}
 	}
 	else
@@ -177,11 +177,11 @@ void optionMenu::setTextures()
 	if (!sliderTextuer01.loadFromFile("Resource Files/Sprites/slider_button.png")) //try to load the texture. if its wrong, give error
 		sliderTextuer01.loadFromFile("error.jpg");
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
+		textBg01.loadFromFile("error.jpg");
 
-	if (!highlightTexture01.loadFromFile("Resource Files/Sprites/cat.png")) //try to load the texture. if its wrong, give error
-		highlightTexture01.loadFromFile("error.jpg");
+	if (!highlighttextBg01.loadFromFile("Resource Files/Sprites/cat.png")) //try to load the texture. if its wrong, give error
+		highlighttextBg01.loadFromFile("error.jpg");
 
 	if (!textControl.loadFromFile("Resource Files/Menus/Controls_Small.png"))
 		textControl.loadFromFile("error.jpg");
@@ -208,8 +208,8 @@ void optionMenu::setTextures()
 	spriteBack.setTexture(textBack);
 
 	slider01.setTexture(sliderTextuer01);
-	bg01.setTexture(texture01);
-	highlightSprite01.setTexture(highlightTexture01);
+	bg01.setTexture(textBg01);
+	highlightSprite01.setTexture(highlighttextBg01);
 
 
 }
