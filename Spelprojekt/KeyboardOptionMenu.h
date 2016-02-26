@@ -14,6 +14,12 @@ public:
 	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
 	sf::Texture textBg01; //hold the texture
 
+	sf::Texture textBack;
+
+	sf::Texture textHighlightBack;
+
+	sf::Sprite spriteBack;
+
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 

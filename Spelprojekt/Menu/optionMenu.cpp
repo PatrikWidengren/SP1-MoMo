@@ -54,7 +54,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteControl.setTexture(textHighlightControl);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			//Control option
+			mOptionMenuState = 3;
 		}
 	}
 	else
@@ -76,7 +76,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteAudio.setTexture(textHighlightAudio);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			//Audio option
+			mOptionMenuState = 2;
 		}
 	}
 	else
@@ -89,7 +89,6 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			//Back
 			mState = 3;
-			mOptionMenuState = 1;
 		}
 	}
 	else

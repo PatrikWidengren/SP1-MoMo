@@ -8,6 +8,9 @@ KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 	mOptionMenuState = 3;
 	setFonts();
 	setTextures();
+
+	spriteBack.setPosition(1385, 515);
+
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("Keyboard Settings");
@@ -33,7 +36,7 @@ KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
 	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
 
 }
 
@@ -44,6 +47,24 @@ KeyboardOptionMenu::~KeyboardOptionMenu()
 
 void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
+
+	mMouse.x = mouse.x;
+	mMouse.y = mouse.y;
+	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
+
+
+	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteBack.setTexture(textHighlightBack);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			//Back
+			mOptionMenuState = 1;
+		}
+	}
+	else
+		spriteBack.setTexture(textBack);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
@@ -93,6 +114,8 @@ void KeyboardOptionMenu::displayMenu01(sf::RenderWindow &window)
 	}
 	window.draw(mText01);
 	window.draw(bg01);
+	window.draw(spriteBack);
+
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": KeyboardOptionMenu :" << highlightSprite01.getPosition().y << std::endl;
 
@@ -115,6 +138,15 @@ void KeyboardOptionMenu::setTextures()
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	highlighttextBg01.loadFromFile("error.jpg");
+
+	if (!textBack.loadFromFile("Resource Files/Menus/BackArrow.png"))
+		textBack.loadFromFile("error.jpg");
+
+	if (!textHighlightBack.loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
+		textHighlightBack.loadFromFile("error.jpg");
+
+
+	spriteBack.setTexture(textBack);
 
 	bg01.setTexture(textBg01);
 	highlightSprite01.setTexture(highlighttextBg01);
