@@ -180,6 +180,9 @@
     <ClCompile Include="Static Objects\Gravel.cpp">
       <Filter>Source Files\Static Objects</Filter>
     </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map1.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Static Objects\Gravel.h">
       <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

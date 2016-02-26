@@ -1,61 +1,46 @@
-#include "startMenu.h"
+#include "WorldMap.h"
 
-startMenu::startMenu(float width, float height)
+WorldMap::WorldMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 3;
 	setFonts();
 	setTextures();
-	/*
-
-	menu[0].setFont(font);
-	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("New Game");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
-
-
-	menu[1].setFont(font);
-	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Options");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
-
-	menu[2].setFont(font);
-	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Exit to Desktop");
-	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
-	*/
 	selectedIndex = 0;
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(650, 640), sf::Vector2i(550, 100));
+	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	mRects[1] = new sf::IntRect(sf::Vector2i(650, 740), sf::Vector2i(550, 100));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
 
 }
 
-startMenu::startMenu()
+WorldMap::WorldMap()
 {
 
 }
 
-startMenu::~startMenu()
+WorldMap::~WorldMap()
 {
 
 }
 
-void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
+void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	//std::cout << window.getSize().x << " " << window.getSize().y << " " << mEvent.size.width << " " << mEvent.size.height << std::endl;
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	//std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+		std::cout << "CLICK NOW" << std::endl;
+	}
+	//std::cout << highlightSprite01.getPosition().x << ": WorldMap :" << highlightSprite01.getPosition().y << std::endl;
 
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mState = 7;
+		mState = 1;
 		reset = true;
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
@@ -85,12 +70,14 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		startMenu::moveDown();
+		WorldMap::moveDown();
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-		mRects[0] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+		//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
+		//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
+		mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
 		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
 
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
@@ -101,7 +88,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
-		startMenu::moveUp();
+		WorldMap::moveUp();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
@@ -117,8 +104,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mReturn = false;
 		if (selectedIndex == 0) {
-			reset = true;
-			mState = 1;
+			mState = 10;
 		}
 		if (selectedIndex == 1) {
 			mState = 4;
@@ -129,22 +115,22 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	}
 }
 
-void startMenu::displayMenu01(sf::RenderWindow &window)
+void WorldMap::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
-		window.draw(menu[i]);
+	window.draw(menu[i]);
 	}
 	*/
 }
 
-void startMenu::setTextures()
+void WorldMap::setTextures()
 {
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
+	if (!texture01.loadFromFile("Resource Files/Backgrounds/worldMap_temp.jpg")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
@@ -156,7 +142,7 @@ void startMenu::setTextures()
 
 }
 
-void startMenu::setFonts()
+void WorldMap::setFonts()
 
 {
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
@@ -165,7 +151,7 @@ void startMenu::setFonts()
 	}
 }
 
-void startMenu::moveUp()
+void WorldMap::moveUp()
 {
 	if (selectedIndex - 1 >= 0)
 	{
@@ -175,7 +161,7 @@ void startMenu::moveUp()
 	}
 }
 
-void startMenu::moveDown()
+void WorldMap::moveDown()
 {
 	if (selectedIndex + 1 < mNumberOfSelections)
 	{
@@ -186,10 +172,10 @@ void startMenu::moveDown()
 
 }
 
-int startMenu::checkState()
+int WorldMap::checkState()
 {
 	//std::cout << mState << std::endl;
 	int i = mState;
-	mState = 3;
+	mState = 7;
 	return i;
 }
