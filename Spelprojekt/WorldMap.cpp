@@ -31,25 +31,29 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y))) {
-		std::cout << "CLICK NOW" << std::endl;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
+
+	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": WorldMap :" << highlightSprite01.getPosition().y << std::endl;
 
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
 	{
+		mClick = false;
 		mState = 1;
 		reset = true;
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
 	{
+		mClick = false;
 		mState = 4;
 		reset = true;
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
 	{
+		mClick = false;
 		reset = true;
 		window.close();
 	}
@@ -113,6 +117,11 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			window.close();
 		}
 	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+		mClick = false;
+	}
+
 }
 
 void WorldMap::displayMenu01(sf::RenderWindow &window)

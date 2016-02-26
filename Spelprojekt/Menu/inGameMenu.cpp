@@ -44,11 +44,16 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteResume.setTexture(textHighlightResume);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			mState = 1;
 		}
 	}
@@ -58,8 +63,9 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteOption.setTexture(textHighlightOption);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			mState = 4;
 		}
 	}
@@ -69,8 +75,9 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteQuit.setTexture(textHighlightQuit);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			window.close();
 
 		}
@@ -114,6 +121,10 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mState = 3;
 		}
 	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+		mClick = false;
+	}
+
 }
 
 void inGameMenu::displayMenu01(sf::RenderWindow &window)

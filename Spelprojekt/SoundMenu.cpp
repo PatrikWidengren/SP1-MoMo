@@ -48,13 +48,17 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack.setTexture(textHighlightBack);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			//Back
+			mClick = false;
 			mOptionMenuState = 1;
 		}
 	}
@@ -99,6 +103,11 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mOptionMenuState = 1;
 		}
 	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+		mClick = false;
+	}
+
 }
 
 void SoundMenu::displayMenu01(sf::RenderWindow &window)

@@ -49,11 +49,17 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+
+
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteControl.setTexture(textHighlightControl);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			mOptionMenuState = 3;
 		}
 	}
@@ -63,8 +69,9 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteVideo.setTexture(textHighlightVideo);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			//Video Option
 		}
 	}
@@ -74,8 +81,9 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteAudio.setTexture(textHighlightAudio);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			mClick = false;
 			mOptionMenuState = 2;
 		}
 	}
@@ -85,9 +93,10 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack.setTexture(textHighlightBack);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			//Back
+			mClick = false;
 			mState = 3;
 		}
 	}
@@ -146,6 +155,11 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mState = 3;
 		}
 	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+		mClick = false;
+	}
+
 }
 
 void optionMenu::displayMenu01(sf::RenderWindow &window)

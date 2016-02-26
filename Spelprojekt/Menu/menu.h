@@ -24,7 +24,7 @@ public:
 	virtual void moveDown() = 0;
 protected:
 	static int const mNumberOfSelections = 3;
-
+	bool mClick=false;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
