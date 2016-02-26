@@ -7,8 +7,14 @@ startMenu::startMenu(float width, float height)
 	mState = 3;
 	setFonts();
 	setTextures();
-	/*
 
+	spriteContinue.setPosition(700, 520);
+	spriteNewgame.setPosition(700, 630);
+	spriteOption.setPosition(700, 750);
+	spriteCredits.setPosition(700, 880);
+	spriteExit.setPosition(1750, 35);
+
+	/*
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
 	menu[0].setString("New Game");
@@ -27,8 +33,8 @@ startMenu::startMenu(float width, float height)
 	*/
 	selectedIndex = 0;
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(650, 640), sf::Vector2i(550, 100));
-	mRects[1] = new sf::IntRect(sf::Vector2i(650, 740), sf::Vector2i(550, 100));
+	mRects[0] = new sf::IntRect(sf::Vector2i(640, 630), sf::Vector2i(540, 100));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650, 750), sf::Vector2i(550, 100));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1750, 35), sf::Vector2i(115, 95));
 
 }
@@ -53,35 +59,47 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	//std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mState = 1;
-		reset = true;
+		spriteNewgame.setTexture(textHighlightNewgame);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			mState = 1;
+		}
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	else
+		spriteNewgame.setTexture(textNewgame);
+
+	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mState = 4;
-		reset = true;
+		spriteOption.setTexture(textHighlightOption);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			mState = 4;
+		}
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	else
+		spriteOption.setTexture(textOption);
+
+	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		reset = true;
-		window.close();
+		spriteExit.setTexture(textHighlightExit);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			window.close();
+
+		}
 	}
+	else
+		spriteExit.setTexture(textExit);
+
+
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		std::cout << "Inside" << " ";
-		//window.close();
-	}
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-		std::cout << "dasda";
-
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
@@ -97,7 +115,6 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = false;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
@@ -107,8 +124,6 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mUp = false;
 	}
-
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
@@ -132,8 +147,14 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void startMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
-	/*
+	window.draw(spriteContinue);
+	window.draw(spriteNewgame);
+	window.draw(spriteOption);
+	window.draw(spriteCredits);
+	window.draw(spriteExit);
 
+
+	/*
 	for (int i = 0; i < mNumberOfSelections; i++)
 	{
 		window.draw(menu[i]);
@@ -147,13 +168,35 @@ void startMenu::setTextures()
 	if (!texture01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
-	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	//	highlightTexture01.loadFromFile("error.jpg");
+	if (!textContinue.loadFromFile("Resource Files/Menus/Decline.png"))
+		textContinue.loadFromFile("error.jpg");
+	if (!textNewgame.loadFromFile("Resource Files/Menus/NewGame.png"))
+		textNewgame.loadFromFile("error.jpg");
+	if (!textOption.loadFromFile("Resource Files/Menus/Options.png"))
+		textOption.loadFromFile("error.jpg");
+	if (!textCredits.loadFromFile("Resource Files/Menus/Credits.png"))
+		textCredits.loadFromFile("error.jpg");
+	if (!textExit.loadFromFile("Resource Files/Menus/Decline.png"))
+		textExit.loadFromFile("error.jpg");
+
+	if (!textHighlightContinue.loadFromFile("Resource Files/Menus/Decline_Highlight.png"))
+		textHighlightContinue.loadFromFile("error.jpg");
+	if (!textHighlightNewgame.loadFromFile("Resource Files/Menus/NewGame_Highlight.png"))
+		textHighlightNewgame.loadFromFile("error.jpg");
+	if (!textHighlightOption.loadFromFile("Resource Files/Menus/Options_Highlight.png"))
+		textHighlightOption.loadFromFile("error.jpg");
+	if (!textHighlightCredits.loadFromFile("Resource Files/Menus/Confirm_Highlight.png"))
+		textHighlightCredits.loadFromFile("error.jpg");
+	if (!textHighlightExit.loadFromFile("Resource Files/Menus/Decline_Highlight.png"))
+		textHighlightExit.loadFromFile("error.jpg");
 
 	bg01.setTexture(texture01);
-	//highlightSprite01.setTexture(highlightTexture01);
 
-
+	spriteContinue.setTexture(textContinue);
+	spriteNewgame.setTexture(textNewgame);
+	spriteOption.setTexture(textOption);
+	spriteCredits.setTexture(textCredits);
+	spriteExit.setTexture(textExit);
 }
 
 void startMenu::setFonts()

@@ -19,6 +19,21 @@ public:
 
 	sf::Sprite slider01;
 
+	sf::Texture textControl;
+	sf::Texture textVideo;
+	sf::Texture textAudio;
+	sf::Texture textBack;
+
+	sf::Texture textHighlightControl;
+	sf::Texture textHighlightVideo;
+	sf::Texture textHighlightAudio;
+	sf::Texture textHighlightBack;
+
+	sf::Sprite spriteControl;
+	sf::Sprite spriteVideo;
+	sf::Sprite spriteAudio;
+	sf::Sprite spriteBack;
+
 
 	virtual int checkState();
 	virtual void updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
