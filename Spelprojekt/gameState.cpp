@@ -34,7 +34,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("Maps/patroltest.txt", mPlayer, "Maps/patrols/Patrols_patroltest.txt");
+	mMap01 = new Map1("Maps/testing.txt", mPlayer, "Maps/patrols/Patrols_testing.txt");
 	
 
 	mMap01->spawnObjects();

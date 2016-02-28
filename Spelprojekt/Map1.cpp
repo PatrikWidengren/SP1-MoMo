@@ -6,9 +6,9 @@
 using namespace std;
 
 static float widthOnTile = 64.0f;
-static float heigthOnTile = 52.0f;
+static float heightOnTile = 52.0f;
 static int widthTile = 64;
-static int heigthTile = 52;
+static int heightTile = 52;
 static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
@@ -45,7 +45,7 @@ Map1::~Map1() {
 void Map1::resetGrid(){
 	std::vector<coords> startPosList;
 	NpcVector npcList;
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			coords tempCoords = { i, j };
 			if (mNpcs[tempCoords] != 0) {
@@ -57,10 +57,10 @@ void Map1::resetGrid(){
 			}
 		}
 	}
-	for (int i = 0; i < npcList.size(); i++) {
+	for (NpcVector::size_type i = 0; i < npcList.size(); i++) {
 		mNpcs[startPosList[i]] = npcList[i];
 	}
-	mGrid = createGrid(mWidth, mHeigth);
+	mGrid = createGrid(mWidth, mHeight);
 	turnsLeft = 50;
 	cutGrass = 0;
 	cutHedges = 0;
@@ -70,21 +70,21 @@ void Map1::resetGrid(){
 }
 
 //Skapar array
-float** Map1::createGrid(int width, int heigth) {
+float** Map1::createGrid(int width, int height) {
 	float tempValue;
 	ifstream file(mSavefile);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
 	array2d = new float*[width];
 	for (int i = 0; i < width; i++) {
-		array2d[i] = new float[heigth];
-		for (int j = 0; j < heigth; j++) {
+		array2d[i] = new float[height];
+		for (int j = 0; j < height; j++) {
 			array2d[i][j] = 0;
 		}
 	}
 
-	for (int i = 0; i < heigth; i++) {
+	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
 			array2d[i][j] = tempValue;
@@ -135,30 +135,30 @@ int** Map1::getPatrolPath(int &skipLines) {
 void Map1::spawnObjects() {
 	
 	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
-	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
-	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heigthOnTile)));
+	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heightOnTile)));
+	mObjects.push_back(new Grass(0, 0, (widthOnTile), (heightOnTile)));
 	mObjects[1]->setCut();
-	mObjects.push_back(new Stone(0, 0, (widthOnTile), (heigthOnTile)));
-	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heigthOnTile));
-	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heigthOnTile));
+	mObjects.push_back(new Stone(0, 0, (widthOnTile), (heightOnTile)));
+	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heightOnTile));
+	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heightOnTile));
 	mObjects[4]->setCut();
-	mObjects.push_back(new Gravel(0, 0, widthOnTile, heigthOnTile));
+	mObjects.push_back(new Gravel(0, 0, widthOnTile, heightOnTile));
 
-	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heigthOnTile)-200)); //Träd: plats 0
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 1));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 2));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 3));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 4));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 5));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 6));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 7));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 8));
-	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heigthOnTile)+pushFenceY, 9));
-	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
-	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heigthOnTile)));
+	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heightOnTile)-200)); //Träd: plats 0
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 1));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 2));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 3));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 4));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 5));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 6));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 7));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 8));
+	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 9));
+	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heightOnTile)));
+	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heightOnTile)));
 	mLongObjects[11]->setCut();
-	//mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heigthOnTile), 1, true));
-	//mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heigthOnTile), patrolPath));
+	//mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heightOnTile), 1, true));
+	//mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heightOnTile), patrolPath));
 
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++) {
 		mObjects[i]->render();
@@ -173,9 +173,9 @@ void Map1::spawnObjects() {
 	}
 	//mPlayer->render();
 
-	mGrid = createGrid(mWidth, mHeigth);
+	mGrid = createGrid(mWidth, mHeight);
 	
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 2.0f) {
 				totalAmountOfGrass++;
@@ -195,7 +195,7 @@ void Map1::spawnObjects() {
 		}
 	}
 
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 7.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
@@ -209,86 +209,86 @@ void Map1::spawnObjects() {
 	}
 
 	/*
-	for (int j = 0; j < mHeigth; j++){
+	for (int j = 0; j < mHeight; j++){
 		for (int i = 0; i < mWidth; i++){
 			if (mGrid[j][i] == 1){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 1));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 1));
 			}
 			if (mGrid[j][i] == 1.1f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 1));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 1));
 			}
 			if (mGrid[j][i] == 1.2f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 2));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 2));
 			}
 			if (mGrid[j][i] == 1.3f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 3));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 3));
 			}
 			if (mGrid[j][i] == 1.4f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 4));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 4));
 			}
 			if (mGrid[j][i] == 1.5f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 5));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 5));
 			}
 			if (mGrid[j][i] == 1.6f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 6));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 6));
 			}
 			if (mGrid[j][i] == 1.7f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 7));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 7));
 			}
 			if (mGrid[j][i] == 1.8f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 8));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 8));
 			}
 			if (mGrid[j][i] == 1.9f){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heigthOnTile) + pushFenceY, 9));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mLongObjects.push_back(new Fence(i, j, (i * widthOnTile), (j * heightOnTile) + pushFenceY, 9));
 			}
 			if (mGrid[j][i] == 2){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
 			}
 			if (mGrid[j][i] == 3){
-				mObjects.push_back(new Stone(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Stone(i, j, (i * widthOnTile), (j * heightOnTile)));
 			}
 			if (mGrid[j][i] == 4){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mLongObjects.push_back(new Tree(i, j, (i * widthOnTile) - 31, (j * heigthOnTile) - 200));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mLongObjects.push_back(new Tree(i, j, (i * widthOnTile) - 31, (j * heightOnTile) - 200));
 			}
 			if (mGrid[j][i] == 5){
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mPlayer = new Player(i, j, new LawnMower(), new HedgeCutter(2, 1), (i * widthOnTile), (j * heigthOnTile));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mPlayer = new Player(i, j, new LawnMower(), new HedgeCutter(2, 1), (i * widthOnTile), (j * heightOnTile));
 			}
 			if (mGrid[j][i] == 6){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heigthOnTile), 1, true));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mNpcs.push_back(new CharRand(i, j, (i * widthOnTile), (j * heightOnTile), 1, true));
 			}	
 			if (mGrid[j][i] == 7){
 				totalAmountOfGrass++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heigthOnTile), patrolPath));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mNpcs.push_back(new CharPatrol(i, j, (i * widthOnTile), (j * heightOnTile), patrolPath));
 			}
 			if (mGrid[j][i] == 9){
 				totalAmountOfHedges++;
-				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY));
-				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heigthOnTile)));
+				mObjects.push_back(new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY));
+				mLongObjects.push_back(new Hedge(i, j, (i * widthOnTile), (j * heightOnTile)));
 			}
 		}
 	}*/
@@ -296,229 +296,262 @@ void Map1::spawnObjects() {
 
 void Map1::render(sf::RenderWindow &window) {
 
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 0.1f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.1f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.2f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.3f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.4f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.5f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.6f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.7f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.8f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.9f) {
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.0f) { //Gräs
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.1f) { //Klippt gräs
-					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[1]->getDrawSprite());
+				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.2f) { //Maskros
-					mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[3]->getDrawSprite());
-				}
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[3]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 2.3f) { //Klippt Maskros
-					mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[4]->getDrawSprite());
-				}
+				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[4]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 2.4f) { //Grusväg
-					mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mObjects[5]->getDrawSprite());
-				}
+				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[5]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 3.0f) { //Sten
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-					mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mObjects[2]->getDrawSprite());
-				}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+				mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[2]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 4.0f) { //Träd
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare klippt Gräs, temp innan animation
-					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[1]->getDrawSprite());
-				}
-			else if (mGrid[j][i] == 5.2f) { //Spelare klippt maskros, temp innan animation
-					mObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mObjects[3]->getDrawSprite());
-				}
+				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[3]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-					mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[4]->getDrawSprite());
-				}
+				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[4]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-					mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-					window.draw(mObjects[5]->getDrawSprite());
-				}
+				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[5]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc på Gräs, temp innan animation
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc på Klippt Gräs, temp innan animation
-					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[1]->getDrawSprite());
-				}
+				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc på Gräs, temp innan animation
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-				}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc på Klippt Gräs, temp innan animation
-					mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[1]->getDrawSprite());
-				}
+				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 7.2f) { //Patrull Npc på maskros, temp innan animation
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[3]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 7.3f) { //Patrull Npc på Klippt maskros, temp innan animation
+				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[4]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 7.4f) { //Patrull Npc på grusväg, temp innan animation
+				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[5]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 9.0f) { //Häck
-					mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
-					window.draw(mObjects[0]->getDrawSprite());
-		}
+				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[0]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 		}
 	}
 
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 1.1f) {
-				mLongObjects[1]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[1]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.3f) {
-				mLongObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.4f) {
-				mLongObjects[4]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[4]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.5f) {
-				mLongObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.6f) {
-				mLongObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[6]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.7f) {
-				mLongObjects[7]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[7]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[7]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.8f) {
-				mLongObjects[8]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[8]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[8]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.9f) {
-				mLongObjects[9]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[9]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[9]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.0f) { //Häck
-				mLongObjects[10]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY - 12); //Sätter positionen enligt grid
+				mLongObjects[10]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY - 12); //Sätter positionen enligt grid
 				window.draw(mLongObjects[10]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
-				mLongObjects[11]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heigthOnTile) + pushGrassY - 22); //Sätter positionen enligt grid
+				mLongObjects[11]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY - 22); //Sätter positionen enligt grid
 				window.draw(mLongObjects[11]->getDrawSprite());
 			}
 		}
-		}
-	for (int j = 0; j < mHeigth; j++) {
+	}
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 4.0f) { //Träd
-				mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heigthOnTile) - 200); //Sätter positionen enligt grid
+				mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heightOnTile) - 200); //Sätter positionen enligt grid
 				window.draw(mLongObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.2f) {
-				mLongObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[2]->getDrawSprite());
-	}
+			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 75);
+				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());
 					mPlayer->setX(i);
 					mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 75);
+				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());
-				}
+			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 75);
+				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());
-				}
+			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 75);
+				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());
-				}
+			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile) - 75);
+				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());
-				}
+			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
-					coords c = { i, j };
-					if (mNpcs[c] != 0) {
-						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-						window.draw(mNpcs[c]->getDrawSprite());
-					}
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
 			}
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
-					coords c = { i, j };
-					if (mNpcs[c] != 0) {
-						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-						window.draw(mNpcs[c]->getDrawSprite());
-					}
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
 			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc Gräs, temp innan animation
-					coords c = { i, j };
-					if (mNpcs[c] != 0) {
-						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-						window.draw(mNpcs[c]->getDrawSprite());
-					}
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
 			}
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc Klippt Gräs, temp innan animation
-					coords c = { i, j };
-					if (mNpcs[c] != 0) {
-						mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heigthOnTile)); //Sätter positionen enligt grid
-						window.draw(mNpcs[c]->getDrawSprite());
-					}
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
 				}
+			}
+			else if (mGrid[j][i] == 7.2f) { //Patrull Npc maskros, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+			}
+			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+			}
+			else if (mGrid[j][i] == 7.4f) { //Patrull Npc grusväg, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+			}
 		}
 	}
 }
@@ -540,7 +573,7 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 	//Add all the npcs on the map to a vector for ease of looping
 	mNpcVector.clear();
 	mNpcCoords.clear();
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
 				coords at = { i, j };
@@ -683,11 +716,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 		mGrid[mPlayer->getY()][mPlayer->getX()] = mPlayer->getLast();
 		if (mGrid[tempY][tempX] == 2.0f && mPlayer->getFunctioning()) {
 			cutGrass++;
-			mPlayer->setLast(2.1);
+			mPlayer->setLast(2.1f);
 		}
 		else if (mGrid[tempY][tempX] == 2.2f && mPlayer->getFunctioning()) {
 			cutDandelions++;
-			mPlayer->setLast(2.3);
+			mPlayer->setLast(2.3f);
 		}
 		else {
 			mPlayer->setLast(mGrid[tempY][tempX]);
@@ -865,7 +898,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 void Map1::deleteContent()
 {
-	for (int j = 0; j < mHeigth; j++) {
+	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			coords tempCoord = { i, j };
 			if (!mNpcs[tempCoord] != 0) {
@@ -878,7 +911,7 @@ void Map1::deleteContent()
 
 void Map1::getMapInfo(){
 	ifstream file(mSavefile);
-	file >> mWidth >> mHeigth >> mBronzeGrass >> mBronzeHedge >> mSilverGrass >> mSilverHedge >> mGoldGrass >> mGoldHedge;
+	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion;
 }
 
 //Funktion för att returnera objekten

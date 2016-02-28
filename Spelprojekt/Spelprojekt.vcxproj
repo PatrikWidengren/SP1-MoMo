@@ -264,7 +264,9 @@
     <Text Include="Maps\map2.txt" />
     <Text Include="Maps\maptest3.txt" />
     <Text Include="Maps\patrols\Patrols_patroltest.txt" />
+    <Text Include="Maps\patrols\Patrols_testing.txt" />
     <Text Include="Maps\patroltest.txt" />
+    <Text Include="Maps\testing.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
