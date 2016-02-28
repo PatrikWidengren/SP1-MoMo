@@ -634,9 +634,6 @@
     <Text Include="Maps\map1.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map2.txt">
-      <Filter>Maps</Filter>
-    </Text>
     <Text Include="Maps\maptest3.txt">
       <Filter>Maps</Filter>
     </Text>
@@ -650,6 +647,9 @@
       <Filter>Maps\patrols</Filter>
     </Text>
     <Text Include="Maps\testing.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map2.txt">
       <Filter>Maps</Filter>
     </Text>
   </ItemGroup>
