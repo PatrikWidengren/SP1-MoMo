@@ -39,7 +39,6 @@ optionMenu::optionMenu(float width, float height)
 	mRects[1] = new sf::IntRect(sf::Vector2i(730, 770), sf::Vector2i(360, 75));
 	mRects[2] = new sf::IntRect(sf::Vector2i(730, 890), sf::Vector2i(360, 75));
 	mRects[3] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
-	mRects[4] = new sf::IntRect(sf::Vector2i(1400, 718), sf::Vector2i(113, 91));
 
 }
 
@@ -90,6 +89,8 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			mClick = false;
 			mOptionMenuState = 2;
+			//Audio Option
+
 		}
 	}
 	else
@@ -119,13 +120,22 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	//
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
-		
-		mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
-		mRects[3] = new sf::IntRect(sf::Vector2i(1375 * bg01.getScale().x, 504 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
-
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+		spriteControl.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		spriteVideo.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		spriteAudio.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		spriteBack.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+		mRects[0] = new sf::IntRect(sf::Vector2i(745 * bg01.getScale().x, 660 * bg01.getScale().y), sf::Vector2i(360 * bg01.getScale().x, 75 * bg01.getScale().y));
+		mRects[1] = new sf::IntRect(sf::Vector2i(786 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(360 * bg01.getScale().x, 75 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(786 * bg01.getScale().x, 900 * bg01.getScale().y), sf::Vector2i(360 * bg01.getScale().x, 75 * bg01.getScale().y));
+		mRects[3] = new sf::IntRect(sf::Vector2i(1385 * bg01.getScale().x, 515 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
+
+		spriteControl.setPosition(745 * bg01.getScale().x, 660 * bg01.getScale().y);
+		spriteVideo.setPosition(786 * bg01.getScale().x, 780 * bg01.getScale().y);
+		spriteAudio.setPosition(786 * bg01.getScale().x, 900 * bg01.getScale().y);
+		spriteBack.setPosition(1385 * bg01.getScale().x, 515 * bg01.getScale().y);
 
 		mDown = true;
 		optionMenu::moveDown();
@@ -173,7 +183,6 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void optionMenu::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
-	window.draw(slider01);
 
 	window.draw(spriteControl);
 	window.draw(spriteAudio);
@@ -195,8 +204,6 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 
 void optionMenu::setTextures()
 {
-	if (!sliderTextuer01.loadFromFile("Resource Files/menus/slider_knapp.png")) //try to load the texture. if its wrong, give error
-		sliderTextuer01.loadFromFile("error.jpg");
 
 	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
@@ -225,7 +232,6 @@ void optionMenu::setTextures()
 	spriteVideo.setTexture(textVideo);
 	spriteBack.setTexture(textBack);
 
-	slider01.setTexture(sliderTextuer01);
 	bg01.setTexture(textBg01);
 
 
