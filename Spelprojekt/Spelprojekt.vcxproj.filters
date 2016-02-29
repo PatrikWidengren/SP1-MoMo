@@ -624,6 +624,9 @@
     <Image Include="Resource Files\Backgrounds\start_menu_options_1.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">
