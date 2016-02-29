@@ -101,6 +101,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 			//Back
 			mClick = false;
 			mState = 3;
+			mOptionMenuState = 1;
 		}
 	}
 	else

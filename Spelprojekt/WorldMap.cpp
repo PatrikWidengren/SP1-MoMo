@@ -4,11 +4,10 @@ WorldMap::WorldMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 3;
+	mState = 7;
 	setFonts();
 	setTextures();
-	selectedIndex = 0;
-
+	
 	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	mRects[1] = new sf::IntRect(sf::Vector2i(650, 740), sf::Vector2i(550, 100));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
@@ -39,24 +38,45 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	//std::cout << highlightSprite01.getPosition().x << ": WorldMap :" << highlightSprite01.getPosition().y << std::endl;
 
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mClick = false;
-		mState = 1;
-		reset = true;
+		//Set sprite to highlight texture
+
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			mState = 1;
+			reset = true;
+		}
 	}
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
+	else
+		//set sprite to regular texture
+
+	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mClick = false;
-		mState = 4;
-		reset = true;
+		//Set sprite to highlight texture
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			mState = 4;
+			reset = true;
+		}
 	}
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)) && mClick)
+	else
+		//set sprite to regular texture
+
+	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		mClick = false;
-		reset = true;
-		window.close();
+		//Set sprite to highlight texture
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			window.close();
+			reset = true;
+		}
 	}
+	else
+		//set sprite to regular texture
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
