@@ -31,7 +31,7 @@ public:
 private:
 	int mArrayX, mArrayY;
 	const coords mStartPos;
-	const float mBaseType;
+	const float mBaseType, mOrigLast;
 	float mType, mLast;
 	//Path is a pointer because we don't want to copy mTurnCount0 ints per character.
 	int **path;

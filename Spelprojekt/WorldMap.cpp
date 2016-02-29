@@ -94,7 +94,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		WorldMap::moveDown();
+		//WorldMap::moveDown();
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
 		//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
@@ -109,7 +109,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mDown = false;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
 		WorldMap::moveUp();
@@ -117,7 +117,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
 		mUp = false;
-	}
+	}*/
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
@@ -182,22 +182,22 @@ void WorldMap::setFonts()
 
 void WorldMap::moveUp()
 {
-	if (selectedIndex - 1 >= 0)
+	/*if (selectedIndex - 1 >= 0)
 	{
 		menu[selectedIndex].setColor(sf::Color::White);
 		selectedIndex--;
 		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+	}*/
 }
 
 void WorldMap::moveDown()
 {
-	if (selectedIndex + 1 < mNumberOfSelections)
+	/*if (selectedIndex + 1 < mNumberOfSelections)
 	{
 		menu[selectedIndex].setColor(sf::Color::White);
 		selectedIndex++;
 		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+	}*/
 
 }
 
