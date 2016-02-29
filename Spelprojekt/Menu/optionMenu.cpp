@@ -52,15 +52,15 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
+	}*/
 
 
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteControl.setTexture(textHighlightControl);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			mOptionMenuState = 3;
@@ -72,7 +72,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteVideo.setTexture(textHighlightVideo);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			//Video Option
@@ -84,7 +84,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteAudio.setTexture(textHighlightAudio);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			mOptionMenuState = 2;
@@ -96,7 +96,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack.setTexture(textHighlightBack);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			//Back
 			mClick = false;
@@ -107,14 +107,13 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	else
 		spriteBack.setTexture(textBack);
 
-
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		if (mMouse.x <= maxX && mMouse.x >= minX)
 		{
-			slider01.setPosition(mMouse.x - 32, 718);
+			slider01.setPosition((float)(mMouse.x - 32), (float)718);
 		}
-	}
+	}*/
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
@@ -123,6 +122,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
 		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
 		mRects[3] = new sf::IntRect(sf::Vector2i(1375 * bg01.getScale().x, 504 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
+		mRects[4] = new sf::IntRect(sf::Vector2i(1400 * bg01.getScale().x, 718 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
 
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
@@ -163,8 +163,8 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-		mClick = false;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 }
