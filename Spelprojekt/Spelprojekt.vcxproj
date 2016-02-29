@@ -194,6 +194,7 @@
     <Image Include="Resource Files\Backgrounds\Background_Title.png" />
     <Image Include="Resource Files\Backgrounds\start_menu_1.png" />
     <Image Include="Resource Files\Backgrounds\start_menu_options_1.png" />
+    <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Menus\Audio.png" />
     <Image Include="Resource Files\Menus\Audio_Effects.png" />
     <Image Include="Resource Files\Menus\Audio_Master.png" />
