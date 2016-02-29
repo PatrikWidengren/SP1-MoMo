@@ -34,7 +34,7 @@ private:
 	bool mDoneMoving = false;
 	int mArrayX, mArrayY, mSpeed;
 	const coords mStartPos;
-	const float mBaseType;
+	const float mBaseType, mOrigLast;
 	float mType, mLast;
 	bool mDirLock;
 	sf::Sprite mCharSprite;

@@ -12,7 +12,8 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	mArrayX(arrX),
 	mArrayY(arrY),
 	mStartPos{ arrX, arrY },
-	mBaseType(7.0f)
+	mBaseType(7.0f),
+	mOrigLast(2.0f)
 	{
 
 	//Remove these when moveCount and turnCount is in constructor
@@ -62,6 +63,7 @@ void CharPatrol::reset() {
 	mTurnNo = -1;
 	mArrayX = mStartPos[0];
 	mArrayY = mStartPos[1];
+	mLast = mOrigLast;
 }
 
 intVector CharPatrol::move(){
