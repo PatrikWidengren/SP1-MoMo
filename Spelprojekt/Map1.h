@@ -37,7 +37,7 @@ public:
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
 
-	float** Map1::getGrid();
+	float** getGrid();
 	//Returnerar npcs, detta behövs till main
 	virtual NpcMap getNpcs();
 	//Returnerar långa objekt, detta behövs till main
@@ -47,8 +47,8 @@ public:
 	void virtual getMapInfo();
 	void resetGrid();
 	void takeTurn(int dir, SoundManager &sound);
-	int** getPatrolPath(int skipLines);
-	float** createGrid(int width, int heigth);
+	int** getPatrolPath(int &skipLines);
+	float** createGrid(int width, int height);
 	//Added turn count
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
@@ -57,11 +57,11 @@ private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
-	//int patrolPath[50][10] = {};
-	int mWidth, mHeigth;
-	int mBronzeGrass, mBronzeHedge;
-	int mSilverGrass, mSilverHedge;
-	int mGoldGrass, mGoldHedge;
+	int mWidth, mHeight;
+	int mBronzeGrass, mBronzeHedge, mBronzeDandelion;
+	int mSilverGrass, mSilverHedge, mSilverDandelion;
+	int mGoldGrass, mGoldHedge, mGoldDandelion;
+	int mSkipLines = 0;
 	float totalAmountOfGrass = 0;
 	float totalAmountOfHedges = 0;
 	float totalAmountOfDandelions = 0;
