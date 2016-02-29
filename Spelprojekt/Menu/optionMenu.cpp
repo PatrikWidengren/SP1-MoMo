@@ -2,6 +2,8 @@
 
 optionMenu::optionMenu(float width, float height)
 {
+	minSliderX = 956; maxSliderX = 1462;
+
 	mTimer = 0;
 	mState = 4;
 	mOptionMenuState = 1;
@@ -107,15 +109,14 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	else
 		spriteBack.setTexture(textBack);
 
-
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		if (mMouse.x <= maxX && mMouse.x >= minX)
-		{
-			slider01.setPosition(mMouse.x - 32, 718);
-		}
-	}
-
+	//if ( mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	//{
+	//	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mMouse.x <= maxSliderX && mMouse.x >= minSliderX)
+	//	{
+	//		slider01.setPosition(mMouse.x - 32, 718);
+	//	}
+	//} 
+	//
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		
