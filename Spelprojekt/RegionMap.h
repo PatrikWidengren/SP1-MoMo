@@ -24,7 +24,7 @@ public:
 	virtual void moveUp();
 	virtual void moveDown();
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 7;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];

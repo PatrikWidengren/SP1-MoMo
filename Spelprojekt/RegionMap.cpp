@@ -12,6 +12,11 @@ RegionMap::RegionMap(float width, float height)
 	mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
 
+	mRects[3] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+	mRects[4] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+	mRects[6] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+
 }
 
 RegionMap::RegionMap()
