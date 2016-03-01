@@ -16,6 +16,22 @@ public:
 	sf::Texture texture01; //hold the texture
 
 	sf::Texture textureShop;
+
+	sf::Texture textArrow01;
+	sf::Texture textArrow02;
+	sf::Texture textArrow03;
+	sf::Texture textArrow04;
+
+	sf::Texture textHighlightArrow01;
+	sf::Texture textHighlightArrow02;
+	sf::Texture textHighlightArrow03;
+	sf::Texture textHighlightArrow04;
+
+	sf::Sprite spriteArrow01;
+	sf::Sprite spriteArrow02;
+	sf::Sprite spriteArrow03;
+	sf::Sprite spriteArrow04;
+
 	sf::Sprite spriteShop;
 
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
