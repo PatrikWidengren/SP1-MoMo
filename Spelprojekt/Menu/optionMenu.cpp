@@ -12,11 +12,11 @@ optionMenu::optionMenu(float width, float height)
 
 	slider01.setPosition(1400, 718);
 
-	spriteControl.setPosition(745, 660);
+	spriteControl.setPosition(745, 650);
 	spriteVideo.setPosition(786, 780);
-	spriteAudio.setPosition(786, 900);
+	spriteAudio.setPosition(786, 910);
 	spriteBack.setPosition(1385, 515);
-
+	spriteOptionText.setPosition(675, 500);
 	/*
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
@@ -132,9 +132,9 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mRects[2] = new sf::IntRect(sf::Vector2i(786 * bg01.getScale().x, 900 * bg01.getScale().y), sf::Vector2i(360 * bg01.getScale().x, 75 * bg01.getScale().y));
 		mRects[3] = new sf::IntRect(sf::Vector2i(1385 * bg01.getScale().x, 515 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
 
-		spriteControl.setPosition(745 * bg01.getScale().x, 660 * bg01.getScale().y);
+		spriteControl.setPosition(745 * bg01.getScale().x, 650 * bg01.getScale().y);
 		spriteVideo.setPosition(786 * bg01.getScale().x, 780 * bg01.getScale().y);
-		spriteAudio.setPosition(786 * bg01.getScale().x, 900 * bg01.getScale().y);
+		spriteAudio.setPosition(786 * bg01.getScale().x, 910 * bg01.getScale().y);
 		spriteBack.setPosition(1385 * bg01.getScale().x, 515 * bg01.getScale().y);
 
 		mDown = true;
@@ -188,7 +188,7 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteAudio);
 	window.draw(spriteVideo);
 	window.draw(spriteBack);
-
+	window.draw(spriteOptionText);
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
@@ -205,7 +205,7 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 void optionMenu::setTextures()
 {
 
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_OptionsMain.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
 
 	if (!textControl.loadFromFile("Resource Files/Menus/Controls_Small.png"))
@@ -226,7 +226,10 @@ void optionMenu::setTextures()
 	if (!textHighlightBack.loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
 		textHighlightBack.loadFromFile("error.jpg");
 
+	if (!textOptionText.loadFromFile("Resource Files/Menus/Options.png"))
+		textOptionText.loadFromFile("error.jpg");
 
+	spriteOptionText.setTexture(textOptionText);
 	spriteControl.setTexture(textControl);
 	spriteAudio.setTexture(textAudio);
 	spriteVideo.setTexture(textVideo);

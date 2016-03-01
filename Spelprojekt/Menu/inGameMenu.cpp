@@ -158,7 +158,7 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 void inGameMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_ESC.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 	textBg01.loadFromFile("error.jpg");
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
