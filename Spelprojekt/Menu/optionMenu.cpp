@@ -205,7 +205,7 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 void optionMenu::setTextures()
 {
 
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_OptionsMain.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
 
 	if (!textControl.loadFromFile("Resource Files/Menus/Controls_Small.png"))
