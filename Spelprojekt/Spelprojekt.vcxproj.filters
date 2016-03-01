@@ -43,12 +43,6 @@
     <Filter Include="Header Files\Tools\Hedge Cutter">
       <UniqueIdentifier>{3c585e28-bb7f-4850-b79f-e719afa6a725}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Menu">
-      <UniqueIdentifier>{9e1e467f-a7b4-4fa2-8fed-1938b6b29cad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menu">
-      <UniqueIdentifier>{e07e6b78-1784-457c-b05d-a6d2ec4c2d62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Sprites">
       <UniqueIdentifier>{a8860124-544e-4cab-b748-effad888f501}</UniqueIdentifier>
     </Filter>
@@ -70,24 +64,33 @@
     <Filter Include="Resource Files\Backgrounds">
       <UniqueIdentifier>{57aebfb8-887b-4527-a9b4-0b5b55482c6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Menu">
-      <UniqueIdentifier>{7767797e-09ff-4c07-9640-0f8cf0b1e312}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Maps\patrols">
       <UniqueIdentifier>{fad8f4f4-a3f4-4075-928a-47e1f7066d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{e07e6b78-1784-457c-b05d-a6d2ec4c2d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates\Menu">
+      <UniqueIdentifier>{d394ebc1-5dc1-402f-92c9-5592faf2eb99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{9e1e467f-a7b4-4fa2-8fed-1938b6b29cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameStates\Menu">
+      <UniqueIdentifier>{3e100e77-b08b-4b58-a91b-1059728d0f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{93608ea8-4266-4915-9ed2-2385d6d49a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{cf1ab215-8aab-4e28-bbd3-1f4813c17f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus">
+      <UniqueIdentifier>{7767797e-09ff-4c07-9640-0f8cf0b1e312}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Maps.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameState.cpp">
@@ -104,18 +107,6 @@
     </ClCompile>
     <ClCompile Include="Characters\Player.cpp">
       <Filter>Source Files\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\inGameMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\menu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\optionMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\startMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
     </ClCompile>
     <ClCompile Include="Static Objects\Fence.cpp">
       <Filter>Source Files\Static Objects</Filter>
@@ -150,9 +141,6 @@
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tools\Hedge Cutter\BaseShears.cpp">
       <Filter>Source Files\Tools\Hedge Cutter</Filter>
     </ClCompile>
@@ -162,44 +150,59 @@
     <ClCompile Include="Static Objects\Hedge.cpp">
       <Filter>Source Files\Static Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\GameOverMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\ToolSelectMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\WinMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardOptionMenu.cpp">
-      <Filter>Source Files\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="Static Objects\Dandelion.cpp">
       <Filter>Source Files\Static Objects</Filter>
     </ClCompile>
     <ClCompile Include="Static Objects\Gravel.cpp">
       <Filter>Source Files\Static Objects</Filter>
     </ClCompile>
-    <ClCompile Include="WorldMap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Managers\MusicManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="RegionMap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Managers\SoundManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Map1.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Maps.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\RegionMap.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\WorldMap.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\GameOverMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\inGameMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\KeyboardOptionMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\menu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\optionMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\SoundMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\startMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\ToolSelectMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\Menu\WinMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Maps.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MusicManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Characters\CharPatrol.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
@@ -208,18 +211,6 @@
     </ClInclude>
     <ClInclude Include="Characters\Player.h">
       <Filter>Header Files\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\inGameMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\menu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\optionMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\startMenu.h">
-      <Filter>Header Files\Menu</Filter>
     </ClInclude>
     <ClInclude Include="Static Objects\Fence.h">
       <Filter>Header Files\Static Objects</Filter>
@@ -257,9 +248,6 @@
     <ClInclude Include="Tools\Hedge Cutter\HedgeCutter.h">
       <Filter>Header Files\Tools\Hedge Cutter</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Characters\Character.h">
       <Filter>Header Files\Characters</Filter>
     </ClInclude>
@@ -269,32 +257,56 @@
     <ClInclude Include="Static Objects\Hedge.h">
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\GameOverMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\ToolSelectMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\WinMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardOptionMenu.h">
-      <Filter>Header Files\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="Static Objects\Dandelion.h">
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Static Objects\Gravel.h">
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
-    <ClInclude Include="WorldMap.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameStates\Menu\GameOverMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="RegionMap.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameStates\Menu\inGameMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\KeyboardOptionMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\menu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\optionMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\SoundMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\startMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\ToolSelectMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\WinMenu.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Map1.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Maps.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\RegionMap.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\WorldMap.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\MusicManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\SoundManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -466,133 +478,133 @@
       <Filter>Resource Files\Sprites</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio_Effects.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio_Master.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio_Music.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio_Small.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Audio_Small_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\BackArrow.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\BackArrow_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Cancel.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Cancel_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Confirm.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Confirm_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Controls.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Controls_Small.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Controls_Small_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Credits.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Credits_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Decline.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Decline_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Desktop.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Desktop_Highligh.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\MainMenu.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\MainMenu_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\NewGame.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\NewGame_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Options.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Options_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Quit.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Quit_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Resume.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Resume_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Slider.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Slider_Knapp.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Slider_Knapp_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Video.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Video_Small.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Video_Small_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Wood_ConfirmBanner.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Wood_ConfirmBox.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Wood_ESC.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Wood_Options.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\WoodBanner.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\WoodBanner_Small.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Backgrounds\Background.png">
       <Filter>Resource Files\Backgrounds</Filter>
@@ -634,16 +646,16 @@
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
     <Image Include="Resource Files\Menus\LevelPick.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\Shop_temp.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\HUD_Arrow_Right.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
     <Image Include="Resource Files\Menus\HUD_Arrow_Right_Highlight.png">
-      <Filter>Resource Files\Menu</Filter>
+      <Filter>Resource Files\Menus</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

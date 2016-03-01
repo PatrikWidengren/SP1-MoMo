@@ -1,19 +1,19 @@
 #ifndef GAMESTATE
 #define GAMESTATE
-#include "Menu/inGameMenu.h"
-#include "Menu/startMenu.h"
-#include "Menu/optionMenu.h"
-#include "Menu/GameOverMenu.h"
-#include "Menu/WinMenu.h"
-#include "Menu/ToolSelectMenu.h"
-#include "WorldMap.h"
-#include "RegionMap.h"
-#include "SoundMenu.h"
-#include "KeyboardOptionMenu.h"
+#include "GameStates/Menu/inGameMenu.h"
+#include "GameStates/Menu/startMenu.h"
+#include "GameStates/Menu/optionMenu.h"
+#include "GameStates/Menu/GameOverMenu.h"
+#include "GameStates/Menu/WinMenu.h"
+#include "GameStates/Menu/ToolSelectMenu.h"
+#include "GameStates/WorldMap.h"
+#include "GameStates/RegionMap.h"
+#include "GameStates/Menu/SoundMenu.h"
+#include "GameStates/Menu/KeyboardOptionMenu.h"
 
-#include "MusicManager.h"
-#include "SoundManager.h"
-#include "Map1.h"
+#include "Managers/MusicManager.h"
+#include "Managers/SoundManager.h"
+#include "GameStates/Map1.h"
 #include <iostream>
 
 class gameState

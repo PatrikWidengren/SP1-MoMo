@@ -2,8 +2,8 @@
 #include <Thor/Animations.hpp>
 #include <vector>
 #include "gameState.h"
-#include "MusicManager.h"
-#include "SoundManager.h"
+#include "Managers/MusicManager.h"
+#include "Managers/SoundManager.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>

@@ -1,8 +1,8 @@
 #ifndef INCLUDED_MAPS
 #define INCLUDED_MAPS
-#include "Static Objects/StaticObjects.h"
-#include "Characters/Player.h"
-#include "Characters/Character.h"
+#include "../Static Objects/StaticObjects.h"
+#include "../Characters/Player.h"
+#include "../Characters/Character.h"
 #include <vector>
 #include <map>
 
