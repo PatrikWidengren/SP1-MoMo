@@ -848,6 +848,8 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		mNpcs[tempCoords] = mNpcVector[atPos];
 		mGrid[tempY][tempX] = mNpcVector.at(atPos)->getType();
 	
+		//getX()/getY() will show old position, tempX/tempY will show new position
+
 		mNpcVector.at(atPos)->setX(tempX);
 		mNpcVector.at(atPos)->setY(tempY);
 		//cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;

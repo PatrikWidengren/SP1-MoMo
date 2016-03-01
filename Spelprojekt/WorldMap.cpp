@@ -45,7 +45,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			mState = 1;
+			mState = 8;
 			reset = true;
 		}
 	}
@@ -128,7 +128,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mReturn = false;
 		if (selectedIndex == 0) {
-			mState = 10;
+			mState = 8;
+			std::cout << "State is now 8" << std::endl;
 		}
 		if (selectedIndex == 1) {
 			mState = 4;

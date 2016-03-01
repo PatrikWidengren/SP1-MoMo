@@ -24,7 +24,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mGameOverMenu01 = new GameOverMenu(window.getSize().x, window.getSize().y);
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 	mWorldMap01 = new WorldMap(window.getSize().x, window.getSize().y);
-
+	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
 
 	mLawnMowers.push_back(new LawnMower);
 	mLawnMowers.push_back(new GoLawnMower);
@@ -126,8 +126,15 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 	mWorldMap01->updateWorldMap(window, mouse);
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
 	mState = mWorldMap01->checkState();
-
 }
+
+void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Region Map
+{
+	mRegionMap01->updateRegionMap(window, mouse);
+	mRegionMap01->displayMenu01(window); //Update mouse in update...
+	mState = mRegionMap01->checkState();
+}
+
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw and Update Ingame
 {
@@ -290,6 +297,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 8:
+		drawRegionMap(window, mouse, music, sound);
+		break;
+
+	/*case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
 		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
 		mCurMower++;
@@ -307,7 +318,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 0: //The illustrious state 0. Swap out equipment
 		drawToolSelectMenu(window, mouse, music, sound);
-		break;
+		break;*/
 
 	default:
 		std::cout << "default gamestate";
@@ -344,10 +355,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 	{
 		mState = 0;
-	}
+	}*/
 
 	if (mMap01->mTurnCount >= 50
 		)
