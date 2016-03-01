@@ -639,6 +639,12 @@
     <Image Include="Resource Files\Menus\Shop_temp.png">
       <Filter>Resource Files\Menu</Filter>
     </Image>
+    <Image Include="Resource Files\Menus\HUD_Arrow_Right.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\HUD_Arrow_Right_Highlight.png">
+      <Filter>Resource Files\Menu</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

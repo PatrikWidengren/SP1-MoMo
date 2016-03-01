@@ -218,6 +218,8 @@
     <Image Include="Resource Files\Menus\Decline_Highlight.png" />
     <Image Include="Resource Files\Menus\Desktop.png" />
     <Image Include="Resource Files\Menus\Desktop_Highligh.png" />
+    <Image Include="Resource Files\Menus\HUD_Arrow_Right.png" />
+    <Image Include="Resource Files\Menus\HUD_Arrow_Right_Highlight.png" />
     <Image Include="Resource Files\Menus\LevelPick.png" />
     <Image Include="Resource Files\Menus\MainMenu.png" />
     <Image Include="Resource Files\Menus\MainMenu_Highlight.png" />
