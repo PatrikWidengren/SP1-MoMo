@@ -190,6 +190,8 @@
     <Image Include="Resource Files\Backgrounds\Background_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\Background_StartMenu.png" />
     <Image Include="Resource Files\Backgrounds\Background_Title.png" />
+    <Image Include="Resource Files\Backgrounds\Garden_01.png" />
+    <Image Include="Resource Files\Backgrounds\Garden_02.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Confirm.png" />
     <Image Include="Resource Files\Backgrounds\InGame_ESC.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
@@ -216,6 +218,7 @@
     <Image Include="Resource Files\Menus\Decline_Highlight.png" />
     <Image Include="Resource Files\Menus\Desktop.png" />
     <Image Include="Resource Files\Menus\Desktop_Highligh.png" />
+    <Image Include="Resource Files\Menus\LevelPick.png" />
     <Image Include="Resource Files\Menus\MainMenu.png" />
     <Image Include="Resource Files\Menus\MainMenu_Highlight.png" />
     <Image Include="Resource Files\Menus\NewGame.png" />
@@ -226,6 +229,7 @@
     <Image Include="Resource Files\Menus\Quit_Highlight.png" />
     <Image Include="Resource Files\Menus\Resume.png" />
     <Image Include="Resource Files\Menus\Resume_Highlight.png" />
+    <Image Include="Resource Files\Menus\Shop_temp.png" />
     <Image Include="Resource Files\Menus\Slider.png" />
     <Image Include="Resource Files\Menus\Slider_Knapp.png" />
     <Image Include="Resource Files\Menus\Slider_Knapp_Highlight.png" />
