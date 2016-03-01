@@ -30,7 +30,7 @@ public:
 	int checkRegionState();
 
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 7;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
