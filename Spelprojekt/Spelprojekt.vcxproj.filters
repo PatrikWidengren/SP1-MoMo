@@ -591,25 +591,13 @@
     <Image Include="Resource Files\Backgrounds\Background.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Background_ESC.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Background_ESC_Confirm.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Background_ESC_Quit.png">
+    <Image Include="Resource Files\Backgrounds\Background_Confirm.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
     <Image Include="Resource Files\Backgrounds\Background_Options.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Background_Options_Audio.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Background_Options_Controls.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Background_Options_Video.png">
+    <Image Include="Resource Files\Backgrounds\Background_OptionsMain.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
     <Image Include="Resource Files\Backgrounds\Background_StartMenu.png">
@@ -618,10 +606,16 @@
     <Image Include="Resource Files\Backgrounds\Background_Title.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\start_menu_1.png">
+    <Image Include="Resource Files\Backgrounds\InGame_Confirm.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png">
+    <Image Include="Resource Files\Backgrounds\InGame_ESC.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\InGame_Options.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg">

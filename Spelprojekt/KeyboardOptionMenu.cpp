@@ -142,7 +142,7 @@ void KeyboardOptionMenu::displayMenu01(sf::RenderWindow &window)
 void KeyboardOptionMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("resource Files/Backgrounds/Background_Options_Controls.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error

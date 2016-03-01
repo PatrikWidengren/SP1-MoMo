@@ -219,7 +219,7 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 void startMenu::setTextures()
 {
 
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/start_menu_1.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_StartMenu.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
 
 	if (!textContinue.loadFromFile("Resource Files/Menus/Decline.png"))

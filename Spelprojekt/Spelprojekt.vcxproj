@@ -183,17 +183,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Backgrounds\Background.png" />
-    <Image Include="Resource Files\Backgrounds\Background_ESC.png" />
-    <Image Include="Resource Files\Backgrounds\Background_ESC_Confirm.png" />
-    <Image Include="Resource Files\Backgrounds\Background_ESC_Quit.png" />
+    <Image Include="Resource Files\Backgrounds\Background_Confirm.png" />
     <Image Include="Resource Files\Backgrounds\Background_Options.png" />
-    <Image Include="Resource Files\Backgrounds\Background_Options_Audio.png" />
-    <Image Include="Resource Files\Backgrounds\Background_Options_Controls.png" />
-    <Image Include="Resource Files\Backgrounds\Background_Options_Video.png" />
+    <Image Include="Resource Files\Backgrounds\Background_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\Background_StartMenu.png" />
     <Image Include="Resource Files\Backgrounds\Background_Title.png" />
-    <Image Include="Resource Files\Backgrounds\start_menu_1.png" />
-    <Image Include="Resource Files\Backgrounds\start_menu_options_1.png" />
+    <Image Include="Resource Files\Backgrounds\InGame_Confirm.png" />
+    <Image Include="Resource Files\Backgrounds\InGame_ESC.png" />
+    <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
+    <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Menus\Audio.png" />
     <Image Include="Resource Files\Menus\Audio_Effects.png" />
