@@ -14,6 +14,7 @@ gameState::gameState(sf::RenderWindow &window)
 {
 	mState = 3;
 	mOptionMenuState = 1;
+	mRegionState = 0;
 	
 	mKeyboardMenu01 = new KeyboardOptionMenu(window.getSize().x, window.getSize().y);
 	mSoundmenu01 = new SoundMenu(window.getSize().x, window.getSize().y);
@@ -126,6 +127,9 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 	mWorldMap01->updateWorldMap(window, mouse);
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
 	mState = mWorldMap01->checkState();
+	mRegionState = mWorldMap01->getRegion();
+	std::cout << mRegionState << " from world map" << std::endl;
+
 }
 
 void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Region Map
@@ -133,6 +137,8 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	mRegionMap01->updateRegionMap(window, mouse);
 	mRegionMap01->displayMenu01(window); //Update mouse in update...
 	mState = mRegionMap01->checkState();
+	mRegionState = mRegionMap01->checkRegionState();
+	std::cout << mRegionState << " from region map" << std::endl;
 }
 
 
@@ -247,6 +253,8 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Game State Handler
 {
+	std::cout << mState << std::endl;
+	std::cout << mRegionState << std::endl;
 	switch (mState) //switch that hold the states of the game
 	{
 	case 1: //Game state 1. in game. 
@@ -291,13 +299,34 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 7: //State 7. World Map
-		drawWorldMap(window, mouse, music, sound);
+		switch (mRegionState) {
+		case 0:
+			drawWorldMap(window, mouse, music, sound);
+			break;
+		case 1:
+			mRegionMap01->setRegionState(1);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+		case 2:
+			mRegionMap01->setRegionState(2);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
+			/*		case 1:
+			mRegionMap01->setRegionState(mRegionState);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+		case 2:
+			mRegionMap01->setRegionState(mRegionState);
+			drawRegionMap(window, mouse, music, sound);
+			break;*/
+		}
 		break;
 
 	case 8:
+		mRegionMap01->setRegionState(mRegionState);
 		drawRegionMap(window, mouse, music, sound);
 		break;
-
 	/*case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
 		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;

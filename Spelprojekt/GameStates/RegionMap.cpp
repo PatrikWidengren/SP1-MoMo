@@ -7,10 +7,18 @@ RegionMap::RegionMap(float width, float height)
 	mState = 8;
 	mInternalState = 0;
 	mRegionState = 0;
+
+	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Garden_01.png";
+	mRegions[1].levelCount = 4;
+
+	mRegions[2].BackgroundName = "Resource Files/Backgrounds/Garden_02.png";
+	mRegions[2].levelCount = 7;
+
 	setFonts();
 	setTextures();
 
-	spriteShop.setPosition(0, 780);
+
+	spriteShop.setPosition(0, 1080);
 
 	spriteArrow01.setPosition(85, 850);
 	spriteArrow02.setPosition(285, 850);
@@ -90,7 +98,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 				{
 					mClick = false;
 					if (mInternalState == 0) {
-						window.close();
+						//window.close();
+						mRegionState = 0;
 					}
 					else {
 						changeInternalState(0);
@@ -193,9 +202,19 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 
 void RegionMap::setTextures()
 {
+	
+	/*if (!texture01.loadFromFile("Resource Files/Backgrounds/Garden_02.png")) //try to load the texture. if its wrong, give error
+		texture01.loadFromFile("error.jpg");*/
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/garden_01.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");
+	/*if (!textBackgrounds[mRegionState].loadFromFile(mRegions[mRegionState].BackgroundName)) //try to load the texture. if its wrong, give error
+		textBackgrounds[mRegionState].loadFromFile("error.jpg");*/
+
+
+	for (int i = 0; i < mMaxRegions; i++) {
+		if (!textBackgrounds[i].loadFromFile(mRegions[i].BackgroundName)) //try to load the texture. if its wrong, give error
+			textBackgrounds[i].loadFromFile("error.jpg");
+	}
+	
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
 
@@ -214,7 +233,8 @@ void RegionMap::setTextures()
 	spriteArrow03.setTexture(textArrow01);
 	spriteArrow04.setTexture(textArrow01);
 	
-	bg01.setTexture(texture01);
+	bg01.setTexture(textBackgrounds[mRegionState]);
+	//bg01.setTexture(texture01);
 	spriteShop.setTexture(textureShop);
 	//highlightSprite01.setTexture(highlightTexture01);
 
@@ -255,12 +275,18 @@ int RegionMap::checkState()
 {
 	//std::cout << mState << std::endl;
 	int i = mState;
-	mState = 8;
+	mState = 7;
 	return i;
 }
 
 int RegionMap::checkRegionState() {
 	return mRegionState;
+}
+
+void RegionMap::setRegionState(int state) {
+	mRegionState = state;
+	bg01.setTexture(textBackgrounds[mRegionState]);
+	std::cout << "mRegionState is now " << mRegionState << std::endl;
 }
 
 void RegionMap::changeInternalState(int newState) {

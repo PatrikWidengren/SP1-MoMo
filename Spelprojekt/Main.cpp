@@ -24,7 +24,7 @@ int main(){
 	//mMusicManager.getMusic()->play();
 	while (window.isOpen()){
 		sf::Event event;
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(10);
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
 			//delete &theGame;

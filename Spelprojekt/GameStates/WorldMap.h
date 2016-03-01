@@ -19,6 +19,9 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
+	int getRegion();
+	void resetRegion();
+
 	virtual void updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
@@ -30,6 +33,7 @@ private:
 	sf::IntRect *mRects[mNumberOfSelections];
 	sf::Vector2i mMouse;
 	int mState;
+	int mRegion=0;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;

@@ -41,6 +41,7 @@ public:
 	~gameState();
 	int mState; //Witch state the game curently are in
 	int mOptionMenuState;
+	int mRegionState;
 
 
 private:

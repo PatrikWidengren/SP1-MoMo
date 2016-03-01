@@ -3,6 +3,11 @@
 
 #include "Menu/menu.h"
 
+struct RegionVariables {
+	std::string BackgroundName= "Resource Files/Backgrounds/error.jpg";
+	int levelCount = 0;
+};
+
 class RegionMap : public Menu
 {
 public:
@@ -14,6 +19,10 @@ public:
 	// Load a backgrounds to show for the menu
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
+
+	static const int mMaxRegions = 3;
+
+	sf::Texture textBackgrounds[mMaxRegions];
 
 	sf::Texture textureShop;
 
@@ -37,6 +46,7 @@ public:
 	virtual void moveUp();
 	virtual void moveDown();
 
+	void setRegionState(int state);
 	int checkRegionState();
 
 protected:
@@ -46,6 +56,7 @@ private:
 	sf::IntRect *mRects[mNumberOfSelections];
 	sf::Vector2i mMouse;
 	int mState, mRegionState, mInternalState;
+	RegionVariables mRegions[mMaxRegions];
 	void changeInternalState(int newState);
 	int mTimer;
 	int selectedIndex;
