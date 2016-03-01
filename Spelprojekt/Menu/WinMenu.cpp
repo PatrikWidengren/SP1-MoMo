@@ -116,16 +116,13 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 
 void WinMenu::setTextures()
 {
-	/* test
-	if (!textBg01.loadFromFile("testmenu.png")) //try to load the texture. if its wrong, give error
+	
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Title.png")) //try to load the texture. if its wrong, give error
 	textBg01.loadFromFile("error.jpg");
-
-	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	highlighttextBg01.loadFromFile("error.jpg");
 
 	bg01.setTexture(textBg01);
 	highlightSprite01.setTexture(highlighttextBg01);
-	*/
+
 }
 
 void WinMenu::setFonts()

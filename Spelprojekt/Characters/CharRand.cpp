@@ -13,7 +13,8 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mStartPos{ arrX, arrY },
 	mSpeed(moveLength),
 	mDirLock(lockDir),
-	mBaseType(6.0f){
+	mBaseType(6.0f),
+	mOrigLast(2.0f){
 	/*I am as of now unsure how to handle values like 
 	4.1, 4.2, etc for other random NPCs. Will update code as it becomes 
 	relevant*/
@@ -29,6 +30,7 @@ CharRand::~CharRand(){
 void CharRand::reset() {
 	mArrayX = mStartPos[0];
 	mArrayY = mStartPos[1];
+	mLast = mOrigLast;
 }
 
 intVector CharRand::move(){

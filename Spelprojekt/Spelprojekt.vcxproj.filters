@@ -186,6 +186,9 @@
     <ClCompile Include="WorldMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RegionMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map1.h">
@@ -288,6 +291,9 @@
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="WorldMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegionMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
