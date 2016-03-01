@@ -15,6 +15,9 @@ public:
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
 
+	sf::Texture textureShop;
+	sf::Sprite spriteShop;
+
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
@@ -23,13 +26,17 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
+
+	int checkRegionState();
+
 protected:
 	static int const mNumberOfSelections = 7;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
 	sf::Vector2i mMouse;
-	int mState;
+	int mState, mRegionState, mInternalState;
+	void changeInternalState(int newState);
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
