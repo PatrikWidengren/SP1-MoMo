@@ -38,11 +38,15 @@ WinMenu::~WinMenu()
 void WinMenu::updateWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	//These are unused as of now, but may become important once a win menu is in place
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+	}*/
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
 		mClick = false;
+	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)

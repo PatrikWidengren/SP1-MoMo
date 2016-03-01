@@ -48,8 +48,8 @@ protected:
 	static int const mNumberOfSelections = 4;
 
 private:
-	int const maxX = 1462;
-	int const minX = 956;
+	int maxSliderX;
+	int minSliderX;
 	sf::IntRect *mRects[mNumberOfSelections];
 	int mOptionMenuState;
 	int mState;

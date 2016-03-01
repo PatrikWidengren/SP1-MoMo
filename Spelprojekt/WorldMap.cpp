@@ -30,9 +30,9 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
+	}*/
 
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": WorldMap :" << highlightSprite01.getPosition().y << std::endl;
@@ -42,7 +42,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		//Set sprite to highlight texture
 
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			mState = 1;
@@ -55,7 +55,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		//Set sprite to highlight texture
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			mState = 4;
@@ -68,7 +68,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		//Set sprite to highlight texture
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			window.close();
@@ -138,8 +138,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-		mClick = false;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 }

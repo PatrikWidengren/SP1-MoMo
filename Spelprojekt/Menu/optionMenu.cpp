@@ -2,6 +2,8 @@
 
 optionMenu::optionMenu(float width, float height)
 {
+	minSliderX = 956; maxSliderX = 1462;
+
 	mTimer = 0;
 	mState = 4;
 	mOptionMenuState = 1;
@@ -122,7 +124,6 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
 		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
 		mRects[3] = new sf::IntRect(sf::Vector2i(1375 * bg01.getScale().x, 504 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
-		mRects[4] = new sf::IntRect(sf::Vector2i(1400 * bg01.getScale().x, 718 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
 
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
