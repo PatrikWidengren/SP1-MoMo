@@ -18,14 +18,8 @@ public:
 	sf::Texture textureShop;
 
 	sf::Texture textArrow01;
-	sf::Texture textArrow02;
-	sf::Texture textArrow03;
-	sf::Texture textArrow04;
 
 	sf::Texture textHighlightArrow01;
-	sf::Texture textHighlightArrow02;
-	sf::Texture textHighlightArrow03;
-	sf::Texture textHighlightArrow04;
 
 	sf::Sprite spriteArrow01;
 	sf::Sprite spriteArrow02;

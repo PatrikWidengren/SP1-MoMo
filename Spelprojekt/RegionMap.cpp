@@ -12,6 +12,15 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteShop.setPosition(0, 780);
 
+	spriteArrow01.setPosition(85, 850);
+	spriteArrow02.setPosition(285, 850);
+	spriteArrow02.setScale(-1, 1);
+
+	spriteArrow03.setPosition(575, 850);
+	spriteArrow04.setPosition(775, 850);
+	spriteArrow04.setScale(-1, 1);
+
+
 	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
 	mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
@@ -190,10 +199,21 @@ void RegionMap::setTextures()
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
 
+	if (!textArrow01.loadFromFile("Resource Files/Menus/"))
+		textArrow01.loadFromFile("error.jpg");
+
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+
 
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	//	highlightTexture01.loadFromFile("error.jpg");
 
+	spriteArrow01.setTexture(textArrow01);
+	spriteArrow02.setTexture(textArrow01);
+	spriteArrow03.setTexture(textArrow01);
+	spriteArrow04.setTexture(textArrow01);
+	
 	bg01.setTexture(texture01);
 	spriteShop.setTexture(textureShop);
 	//highlightSprite01.setTexture(highlightTexture01);
