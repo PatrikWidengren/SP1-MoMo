@@ -1,48 +1,48 @@
-#include "WorldMap.h"
+#include "RegionMap.h"
 
-WorldMap::WorldMap(float width, float height)
+RegionMap::RegionMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 7;
+	mState = 10;
 	setFonts();
 	setTextures();
-	
+
 	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	mRects[1] = new sf::IntRect(sf::Vector2i(650, 740), sf::Vector2i(550, 100));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
 
 }
 
-WorldMap::WorldMap()
+RegionMap::RegionMap()
 {
 
 }
 
-WorldMap::~WorldMap()
+RegionMap::~RegionMap()
 {
 
 }
 
-void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
+void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
 	//std::cout << window.getSize().x << " " << window.getSize().y << " " << mEvent.size.width << " " << mEvent.size.height << std::endl;
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}*/
+	}
 
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
-	//std::cout << highlightSprite01.getPosition().x << ": WorldMap :" << highlightSprite01.getPosition().y << std::endl;
+	//std::cout << highlightSprite01.getPosition().x << ": RegionMap :" << highlightSprite01.getPosition().y << std::endl;
 
 
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		//Set sprite to highlight texture
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			mState = 1;
@@ -52,36 +52,36 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	else
 		//set sprite to regular texture
 
-	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 		{
-			mClick = false;
-			mState = 4;
-			reset = true;
+			//Set sprite to highlight texture
+			if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+			{
+				mClick = false;
+				mState = 4;
+				reset = true;
+			}
 		}
-	}
-	else
-		//set sprite to regular texture
+		else
+			//set sprite to regular texture
 
-	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-		{
-			mClick = false;
-			window.close();
-			reset = true;
-		}
-	}
-	else
-		//set sprite to regular texture
+			if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+			{
+				//Set sprite to highlight texture
+				if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+				{
+					mClick = false;
+					window.close();
+					reset = true;
+				}
+			}
+			else
+				//set sprite to regular texture
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
-	{
-		mReturn = true;
-	}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
+				{
+					mReturn = true;
+				}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		std::cout << "Inside" << " ";
@@ -94,7 +94,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		//WorldMap::moveDown();
+		//RegionMap::moveDown();
 		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
 		//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
@@ -109,14 +109,14 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mDown = false;
 	}
 
-/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+	/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
-		mUp = true;
-		WorldMap::moveUp();
+	mUp = true;
+	RegionMap::moveUp();
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
-		mUp = false;
+	mUp = false;
 	}*/
 
 
@@ -138,13 +138,13 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
-		mClick = true;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+		mClick = false;
 	}
 
 }
 
-void WorldMap::displayMenu01(sf::RenderWindow &window)
+void RegionMap::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	/*
@@ -156,10 +156,10 @@ void WorldMap::displayMenu01(sf::RenderWindow &window)
 	*/
 }
 
-void WorldMap::setTextures()
+void RegionMap::setTextures()
 {
 
-	if (!texture01.loadFromFile("Resource Files/Backgrounds/worldMap_temp.jpg")) //try to load the texture. if its wrong, give error
+	if (!texture01.loadFromFile("Resource Files/Backgrounds/garden_01.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");
 
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
@@ -171,7 +171,7 @@ void WorldMap::setTextures()
 
 }
 
-void WorldMap::setFonts()
+void RegionMap::setFonts()
 
 {
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
@@ -180,28 +180,28 @@ void WorldMap::setFonts()
 	}
 }
 
-void WorldMap::moveUp()
+void RegionMap::moveUp()
 {
 	/*if (selectedIndex - 1 >= 0)
 	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
+	menu[selectedIndex].setColor(sf::Color::White);
+	selectedIndex--;
+	menu[selectedIndex].setColor(sf::Color::Red);
 	}*/
 }
 
-void WorldMap::moveDown()
+void RegionMap::moveDown()
 {
 	/*if (selectedIndex + 1 < mNumberOfSelections)
 	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
+	menu[selectedIndex].setColor(sf::Color::White);
+	selectedIndex++;
+	menu[selectedIndex].setColor(sf::Color::Red);
 	}*/
 
 }
 
-int WorldMap::checkState()
+int RegionMap::checkState()
 {
 	//std::cout << mState << std::endl;
 	int i = mState;
