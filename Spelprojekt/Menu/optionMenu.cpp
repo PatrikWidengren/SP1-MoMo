@@ -16,7 +16,7 @@ optionMenu::optionMenu(float width, float height)
 	spriteVideo.setPosition(786, 780);
 	spriteAudio.setPosition(786, 910);
 	spriteBack.setPosition(1385, 515);
-
+	spriteOptionText.setPosition(675, 500);
 	/*
 	menu[0].setFont(font);
 	menu[0].setColor(sf::Color::Red);
@@ -188,7 +188,7 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteAudio);
 	window.draw(spriteVideo);
 	window.draw(spriteBack);
-
+	window.draw(spriteOptionText);
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
@@ -226,7 +226,10 @@ void optionMenu::setTextures()
 	if (!textHighlightBack.loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
 		textHighlightBack.loadFromFile("error.jpg");
 
+	if (!textOptionText.loadFromFile("Resource Files/Menus/Options.png"))
+		textOptionText.loadFromFile("error.jpg");
 
+	spriteOptionText.setTexture(textOptionText);
 	spriteControl.setTexture(textControl);
 	spriteAudio.setTexture(textAudio);
 	spriteVideo.setTexture(textVideo);
