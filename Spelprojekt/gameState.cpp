@@ -266,7 +266,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: //state 1. Option.
 			drawOptionMenu(window, mouse, music, sound);
-
 			break;
 
 		case 2: //state 2. SoundMenu.
@@ -277,9 +276,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawKeyboardMenu(window, mouse, music, sound);
 			break;
 
-
-		default:
-			break;
+		/*default:
+			break;*/
 		}
 		
 		break;

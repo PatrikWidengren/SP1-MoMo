@@ -35,11 +35,14 @@ GameOverMenu::~GameOverMenu()
 
 void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+	}*/
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
 		mClick = false;
+	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)

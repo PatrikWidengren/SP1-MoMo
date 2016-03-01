@@ -48,14 +48,14 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
+	}*/
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack.setTexture(textHighlightBack);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			//Back
 			mClick = false;
@@ -104,8 +104,8 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-		mClick = false;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 }
@@ -138,7 +138,7 @@ void SoundMenu::displayMenu01(sf::RenderWindow &window)
 void SoundMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options_Audio.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 	textBg01.loadFromFile("error.jpg");
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error

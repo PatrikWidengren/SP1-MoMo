@@ -40,7 +40,7 @@ int main(){
 		window.clear();
 		
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager);
-		cout << theGame.mState << "     " <<  theGame.mOptionMenu01->checkOptionState() << endl;
+		//cout << theGame.mState << "     " <<  theGame.mOptionMenu01->checkOptionState() << endl;
 		window.display();
 	}
 	return 0;

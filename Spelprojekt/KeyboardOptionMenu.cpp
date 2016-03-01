@@ -52,14 +52,14 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 	mMouse.y = mouse.y;
 	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
-	}
+	}*/
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack.setTexture(textHighlightBack);
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
 			//Back
@@ -108,8 +108,8 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-		mClick = false;
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 
 }
@@ -142,7 +142,7 @@ void KeyboardOptionMenu::displayMenu01(sf::RenderWindow &window)
 void KeyboardOptionMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("resource Files/Backgrounds/Background_Options_Controls.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01.loadFromFile("resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
 		textBg01.loadFromFile("error.jpg");
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error

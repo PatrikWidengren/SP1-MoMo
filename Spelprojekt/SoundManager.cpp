@@ -111,7 +111,7 @@ static const string nameArray[100] = {
 };
 
 SoundManager::SoundManager(){
-	mVolume = 100;
+	mVolume = 50;
 	for (int i = 0; i < 100; i++){
 //		sf::SoundBuffer buff;
 //		cout << &buff << endl;
