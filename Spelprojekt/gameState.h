@@ -36,11 +36,16 @@ public:
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	void resetMap();
+
+	bool checkStartState(int checkState);
+	bool checkStartOptionState(int lowerState);
 	optionMenu *mOptionMenu01;
 
 	~gameState();
 	int mState; //Witch state the game curently are in
 	int mOptionMenuState;
+	bool mStartState;
+	bool mStartOptionState;
 	int mRegionState;
 
 

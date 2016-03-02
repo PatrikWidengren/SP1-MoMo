@@ -85,7 +85,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow02.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 			spriteArrow03.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 			spriteArrow04.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
-		}
+	}
 
 
 
@@ -127,29 +127,29 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 		{
-			mClick = false;
+			//Set sprite to highlight texture
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+			{
+				mClick = false;
 			mInternalState = 1;
-			reset = true;
+				reset = true;
+			}
 		}
-	}
 
-	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
+			if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+			{
+				//Set sprite to highlight texture
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-		{
-			mClick = false;
-			window.close();
+				{
+					mClick = false;
+					window.close();
 
 		}
-		reset = true;
+					reset = true;
 
-	}
+				}
 
 #pragma region ArrowRects
 	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
@@ -159,21 +159,21 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow01.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-		}
-		else
+			}
+			else
 			spriteArrow01.setTexture(textArrow01);
 	}
 
 
 
 	if (mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
+				{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			spriteArrow02.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-		}
+				}
 		else
 			spriteArrow02.setTexture(textArrow01);
 	}
@@ -219,18 +219,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = true;
 		//RegionMap::moveDown();
-		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-
-		/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
-		mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
-		*/
-
-		spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-
-		mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
 
 		if (mInternalState == 1) {
 			spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
@@ -292,7 +280,7 @@ void RegionMap::setTextures()
 		textHighlightArrow01.loadFromFile("error.jpg");
 
 
-											 //	highlightTexture01.loadFromFile("error.jpg");
+	//	highlightTexture01.loadFromFile("error.jpg");
 
 		spriteArrow01.setTexture(textArrow01);
 	spriteArrow02.setTexture(textArrow01);
@@ -336,12 +324,23 @@ void RegionMap::moveDown()
 
 }
 
-int RegionMap::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int RegionMap::checkState() {
+	return mState;
+}
+
+void RegionMap::scale(sf::RenderWindow &window) {
+
 	mState = 8;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
+	//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
+	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
+
+
 }
 
 int RegionMap::checkRegionState() {

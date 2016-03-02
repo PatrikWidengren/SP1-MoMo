@@ -96,6 +96,15 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Map1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Maps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -358,9 +367,6 @@
     <None Include="..\Debug\Spelprojekt.pdb">
       <Filter>Debug/Release</Filter>
     </None>
-    <None Include="Resource Files\Music\test1.flac">
-      <Filter>Resource Files\Music</Filter>
-    </None>
     <None Include="Resource Files\Sound\collision_fence.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
@@ -423,6 +429,12 @@
     </None>
     <None Include="..\Release\thor.dll">
       <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="Resource Files\Music\Miyoda1.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\Title.ogg">
+      <Filter>Resource Files\Music</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
