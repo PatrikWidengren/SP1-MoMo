@@ -4,7 +4,7 @@ RegionMap::RegionMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 8;
+	mState = 7;
 	mInternalState = 0;
 	mRegionState = 0;
 
@@ -143,11 +143,23 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			window.close();
+			if (mInternalState != 0) {
+				mInternalState = 0;
+			}
+			else {
+				mRegionState = 0;
+			}
 
 		}
 		reset = true;
 
+	}
+	std::cout << "levelcount: " << mRegions[mRegionState].levelCount << std::endl;
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		std::cout << "Checking " << i << std::endl;
+		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+			std::cout << "It's inside " << i << "!" << std::endl;
+		}
 	}
 
 #pragma region Old
@@ -260,70 +272,70 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
+	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
+	{
+		mDown = true;
+		std::cout << "bbbbbbbbbbbbbb" << std::endl;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
-		{
-			mDown = true;
-			//RegionMap::moveDown();
-			bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		//RegionMap::moveDown();
+		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-			/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
-				mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
-				mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
-			*/
+		/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
+			mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
+			mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+		*/
 
-			spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-			mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
-			mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
-			mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
+		mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
+		mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
+		mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
 
-			if (mInternalState == 1) {
-				spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
-			}
-			else {
-				spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
-			}
+		if (mInternalState == 1) {
+			spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
 		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
-		{
-			mDown = false;
+		else {
+			spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
 		}
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
+	{
+		mDown = false;
+	}
 
-		/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
-		{
-		mUp = true;
-		RegionMap::moveUp();
+	/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+	{
+	mUp = true;
+	RegionMap::moveUp();
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
+	{
+	mUp = false;
+	}*/
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
+	{
+		mReturn = true;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
+	{
+		mReturn = false;
+		if (selectedIndex == 0) {
+			mState = 10;
 		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
-		{
-		mUp = false;
-		}*/
-
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
-		{
-			mReturn = true;
+		if (selectedIndex == 1) {
+			mState = 4;
 		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
-		{
-			mReturn = false;
-			if (selectedIndex == 0) {
-				mState = 10;
-			}
-			if (selectedIndex == 1) {
-				mState = 4;
-			}
-			if (selectedIndex == 2) {
-				window.close();
-			}
+		if (selectedIndex == 2) {
+			window.close();
 		}
+	}
 
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
-			mClick = true;
-		}
-
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
 	}
 }
 
@@ -425,10 +437,15 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
+	delete[] mLevelRects;
 	mRegionState = state;
 	bg01.setTexture(textBackgrounds[mRegionState]);
-	std::cout << "mRegionState is now " << mRegionState << std::endl;
+	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
+	}
 }
+
 //
 //void RegionMap::changeInternalState(int newState) {
 //	if (mInternalState != newState) {

@@ -54,6 +54,7 @@ protected:
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
+	sf::IntRect *mLevelRects;
 	sf::Vector2i mMouse;
 	int mState, mRegionState, mInternalState;
 	RegionVariables mRegions[mMaxRegions];
