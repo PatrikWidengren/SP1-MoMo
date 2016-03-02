@@ -53,6 +53,7 @@ public:
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
 	int mWinRounds = 40;
+	void scale(sf::RenderWindow &window);
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);

@@ -90,9 +90,6 @@
     <ClCompile Include="MusicManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Characters\Character.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
@@ -187,6 +184,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RegionMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -343,9 +343,6 @@
     <None Include="..\Debug\Spelprojekt.pdb">
       <Filter>Debug/Release</Filter>
     </None>
-    <None Include="Resource Files\Music\test1.flac">
-      <Filter>Resource Files\Music</Filter>
-    </None>
     <None Include="Resource Files\Sound\collision_fence.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
@@ -408,6 +405,12 @@
     </None>
     <None Include="..\Release\thor.dll">
       <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="Resource Files\Music\Miyoda1.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\Title.ogg">
+      <Filter>Resource Files\Music</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -932,3 +932,7 @@ Maps::NpcMap Map1::getNpcs() {
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
 }
+
+void Map1::scale(sf::RenderWindow &window) {
+	//scale stuff and * bg01 for render
+}

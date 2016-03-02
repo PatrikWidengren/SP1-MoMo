@@ -14,6 +14,8 @@ gameState::gameState(sf::RenderWindow &window)
 {
 	mState = 3;
 	mOptionMenuState = 1;
+	mStartState = true;
+	mStartOptionState = true;
 	
 	mKeyboardMenu01 = new KeyboardOptionMenu(window.getSize().x, window.getSize().y);
 	mSoundmenu01 = new SoundMenu(window.getSize().x, window.getSize().y);
@@ -63,9 +65,10 @@ gameState::~gameState()
 
 void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw In Game Menu
 {
-	
 	mInGameMenu01->updateInGameMenu(window, mouse);
+	window.clear();
 	mInGameMenu01->displayMenu01(window);
+	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
 	
 }
@@ -73,58 +76,78 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
 {
 	mStartMenu01->updateStartMenu(window, mouse);
+	window.clear();
 	mStartMenu01->displayMenu01(window); //Update mouse in update...
+	mStartState = checkStartState(mStartMenu01->checkState());
 	mState = mStartMenu01->checkState();
-	
+	std::cout << "blubb: " << mStartMenu01->checkState() << std::endl;
 }
 
 void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
 {
 	mSoundmenu01->updateSoundMenu(window, mouse);
+	window.clear();
 	mSoundmenu01->displayMenu01(window);
+	mStartOptionState = checkStartOptionState(mSoundmenu01->checkOptionState());
 	mOptionMenuState = mSoundmenu01->checkOptionState();
 }
 
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Option Menu
 {
-	mOptionMenu01->updateoptionMenu(window, mouse);
+	mOptionMenu01->updateoptionMenu(window, mouse); 
+	window.clear();
 	mOptionMenu01->displayMenu01(window);
+	mStartOptionState = checkStartState(mOptionMenu01->checkState());
+	mStartState = checkStartState(mOptionMenu01->checkState());
 	mState = mOptionMenu01->checkState();
-	mOptionMenuState = mOptionMenu01->checkOptionState();
+	if (mState == 4) {
+		mStartOptionState = checkStartOptionState(mOptionMenu01->checkOptionState());
+		mOptionMenuState = mOptionMenu01->checkOptionState();
+	}
 }
 
 void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Tool Select Menu
 {
 	mToolSelectMenu01->updateToolSelectMenu(window, mouse);
+	window.clear();
 	mToolSelectMenu01->displayMenu01(window);
+	mStartState = checkStartState(mToolSelectMenu01->checkState());
 	mState = mToolSelectMenu01->checkState();
 }
 
 void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Game Over Menu
 {
 	mGameOverMenu01->updateGameOverMenu(window, mouse);
+	window.clear();
 	mGameOverMenu01->displayMenu01(window);
+	mStartState = checkStartState(mGameOverMenu01->checkState());
 	mState = mGameOverMenu01->checkState();
 }
 
 void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Win Menu
 {
 	mWinMenu01->updateWinMenu(window, mouse);
+	window.clear();
 	mWinMenu01->displayMenu01(window);
+	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
 }
 
 void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
 {
 	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse);
+	window.clear();
 	mKeyboardMenu01->displayMenu01(window);
+	mStartOptionState = checkStartOptionState(mKeyboardMenu01->checkOptionState());
 	mOptionMenuState = mKeyboardMenu01->checkOptionState();
 }
 
 void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw World Map
 {
 	mWorldMap01->updateWorldMap(window, mouse);
+	window.clear();
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
+	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mWorldMap01->checkState();
 
 }
@@ -145,6 +168,8 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		window.draw(mLongObjects[i]->getSprite());
 		//mObjects[i]->render();
 	}*/
+	window.clear();
+
 	mMap01->render(window);
 
 
@@ -242,51 +267,110 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 {
 	switch (mState) //switch that hold the states of the game
 	{
-	case 1: //Game state 1. in game. 
+	case 1: { //Game state 1. in game. 
+		if (mStartState) {
+			music.setMusic(1);
+			mMap01->scale(window);
+			mStartState = false;
+			//Startar musik osv
+		}
 		drawInGame(window, mouse, music, sound);
 		break;
-
-	case 2: //Case 2, Draw ingame menu
+	}
+	case 2: { //Case 2, Draw ingame menu
+		if (mStartState) {
+			music.setMusic(1);
+			mInGameMenu01->scale(window);
+			mStartState = false;
+			//Starta musik osv
+		}
 		drawInGameMenu(window, mouse, music, sound);
 		break;
-
-	case 3: //State 3. Start menu.
+	}
+	case 3: { //State 3. Start menu.
+		if (mStartState) {
+			music.setMusic(0);
+			mStartMenu01->scale(window);
+			mStartState = false;
+			//Startar musik osv
+		}
 		drawStartMenu(window, mouse, music, sound);
 		break;
+	}
+	case 4: { //state 4. option.
 
-	case 4: //state 4. option.
 		switch (mOptionMenuState)
 		{
-		case 1: //state 1. Option.
+		case 1: { //state 1. Option.
+			if (mStartOptionState) {
+				music.setMusic(1);
+				mOptionMenu01->scale(window);
+				mStartOptionState = false;
+				mStartState = false;
+				//Starta musik osv
+			}
 			drawOptionMenu(window, mouse, music, sound);
 			break;
-
-		case 2: //state 2. SoundMenu.
+		}
+		case 2: { //state 2. SoundMenu.
+			if (mStartOptionState) {
+				music.setMusic(1);
+				mSoundmenu01->scale(window);
+				mStartOptionState = false;
+				mStartState = false;
+				//Starta musik osv
+			}
 			drawSoundMenu(window, mouse, music, sound);
 			break;
-
-		case 3: //state 3. KeyboardSettings.
+		}
+		case 3: { //state 3. KeyboardSettings.
+			if (mStartOptionState) {
+				music.setMusic(1);
+				mKeyboardMenu01->scale(window);
+				mStartOptionState = false;
+				mStartState = false;
+				//Starta musik osv
+			}
 			drawKeyboardMenu(window, mouse, music, sound);
 			break;
-
-		/*default:
-			break;*/
 		}
-		
-		break;
+				/*default:
+					break;*/
+		}
 
-	case 5: //state 5. GameOver.
+		break;
+	}
+	case 5: { //state 5. GameOver.
+		if (mStartState) {
+			music.setMusic(1);
+			mGameOverMenu01->scale(window);
+			mStartState = false;
+			//Starta musik osv
+		}
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
-
-	case 6: //state 6. WinMenu.
+	}
+	case 6: { //state 6. WinMenu.
+		if (mStartState) {
+			music.setMusic(1);
+			mWinMenu01->scale(window);
+			mStartState = false;
+			//Starta musik osv
+		}
 		drawWinMenu(window, mouse, music, sound);
 		break;
-
-	case 7: //State 7. World Map
+	}
+	case 7: { //State 7. World Map
+		std::cout << "here we are now";
+		if (mStartState) {
+			music.setMusic(0);
+			mWorldMap01->scale(window);
+			mStartState = false;
+			//Starta musik osv
+		}
 		drawWorldMap(window, mouse, music, sound);
 		break;
-
+	}
 	case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
 		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
@@ -316,21 +400,25 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		mState = 1;
+		mStartState = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		mState = 2;
+		mStartState = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		mState = 3;
+		mStartState = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		mState = 4;
+		mStartState = true;
 	}
 
 
@@ -345,19 +433,23 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 	{
 		mState = 0;
+		mStartState = true;
 	}
 
-	if (mMap01->mTurnCount >= 50
-		)
-	//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
-	//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-	if (mMap01->mTurnCount >= mMap01->mLoseRounds)
-		mState = 5;
+	if (mMap01->mTurnCount >= 50) {
+		//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
+		//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+		if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
+			mState = 5;
+			mStartState = true;
+		}
 
-	//For now, just testing phase of Winning screen. Need Winning condition for the map.
-	if (mMap01->mTurnCount >= mMap01->mWinRounds)
-		mState = 6;
-
+		//For now, just testing phase of Winning screen. Need Winning condition for the map.
+		if (mMap01->mTurnCount >= mMap01->mWinRounds) {
+			mState = 6;
+			mStartState = true;
+		}
+	}
 }
 
 void gameState::resetMap()
@@ -377,3 +469,22 @@ void gameState::resetMap()
 		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
 	}
 }
+
+bool gameState::checkStartState(int lowerState){
+	if (mState == lowerState) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+bool gameState::checkStartOptionState(int lowerState) {
+	if (mOptionMenuState == lowerState) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+

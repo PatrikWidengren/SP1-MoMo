@@ -219,10 +219,26 @@ void inGameMenu::moveDown()
 
 }
 
-int inGameMenu::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int inGameMenu::checkState() {
+	return mState;
+}
+
+void inGameMenu::scale(sf::RenderWindow &window) {
+
 	mState = 2;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	spriteResume.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteOption.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteQuit.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01.getScale().x, 546 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(643 * bg01.getScale().x, 725 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(643 * bg01.getScale().x, 896 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+
+	spriteResume.setPosition(700 * bg01.getScale().x, 550 * bg01.getScale().y);
+	spriteOption.setPosition(700 * bg01.getScale().x, 730 * bg01.getScale().y);
+	spriteQuit.setPosition(700 * bg01.getScale().x, 900 * bg01.getScale().y);
+
 }

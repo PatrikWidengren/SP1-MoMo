@@ -4,7 +4,7 @@ RegionMap::RegionMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 10;
+	mState = 8;
 	setFonts();
 	setTextures();
 
@@ -95,14 +95,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = true;
 		//RegionMap::moveDown();
-		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-
-		//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
-		//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
-		mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
-
+		
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
@@ -201,10 +194,21 @@ void RegionMap::moveDown()
 
 }
 
-int RegionMap::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
-	mState = 7;
-	return i;
+int RegionMap::checkState() {
+	return mState;
+}
+
+void RegionMap::scale(sf::RenderWindow &window) {
+
+	mState = 8;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
+	//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
+	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
+
+
 }

@@ -30,6 +30,7 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
+	virtual void scale(sf::RenderWindow &window);
 	sf::Vector2i mMouse;
 
 	int checkOptionState();
