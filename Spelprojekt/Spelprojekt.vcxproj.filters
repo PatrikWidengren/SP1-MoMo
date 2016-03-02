@@ -168,9 +168,6 @@
     <ClCompile Include="GameStates\Maps.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="GameStates\RegionMap.cpp">
-      <Filter>Source Files\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="GameStates\WorldMap.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
@@ -200,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="GameStates\Menu\WinMenu.cpp">
       <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\RegionMap.cpp">
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
