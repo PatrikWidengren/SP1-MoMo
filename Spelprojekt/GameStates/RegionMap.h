@@ -27,9 +27,11 @@ public:
 	sf::Texture textureShop;
 	sf::Texture textArrow01;
 	sf::Texture textHighlightArrow01;
-	sf::Texture textMowers[4];
+	sf::Texture textMowers[2];
+	sf::Texture textMowers[1];
 
 	sf::Sprite spriteMower;
+	sf::Sprite spriteHedgecutter;
 
 	sf::Sprite spriteArrow01;
 	sf::Sprite spriteArrow02;
