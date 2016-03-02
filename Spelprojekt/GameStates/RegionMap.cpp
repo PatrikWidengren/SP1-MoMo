@@ -4,7 +4,7 @@ RegionMap::RegionMap(float width, float height)
 {
 	highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
-	mState = 8;
+	mState = 7;
 	mInternalState = 0;
 	mRegionState = 0;
 
@@ -115,9 +115,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 		//	spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
 
-
-
-
 		break;
 	}
 
@@ -151,11 +148,23 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			window.close();
+			if (mInternalState != 0) {
+				mInternalState = 0;
+			}
+			else {
+				mRegionState = 0;
+			}
 
 		}
 		reset = true;
 
+	}
+	std::cout << "levelcount: " << mRegions[mRegionState].levelCount << std::endl;
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		std::cout << "Checking " << i << std::endl;
+		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+			std::cout << "It's inside " << i << "!" << std::endl;
+		}
 	}
 
 #pragma region Old
@@ -273,6 +282,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 		{
 			mDown = true;
+		std::cout << "bbbbbbbbbbbbbb" << std::endl;
+
 			//RegionMap::moveDown();
 			bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
@@ -331,7 +342,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 			mClick = true;
 		}
-
 	}
 
 
@@ -390,7 +400,7 @@ void RegionMap::setTextures()
 		textHighlightArrow01.loadFromFile("error.jpg");
 	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
 		textHighlightArrow01.loadFromFile("error.jpg");
-	
+
 
 #pragma endregion
 
@@ -454,10 +464,15 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
+	delete[] mLevelRects;
 	mRegionState = state;
 	bg01.setTexture(textBackgrounds[mRegionState]);
-	std::cout << "mRegionState is now " << mRegionState << std::endl;
+	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
+	}
 }
+
 //
 //void RegionMap::changeInternalState(int newState) {
 //	if (mInternalState != newState) {
