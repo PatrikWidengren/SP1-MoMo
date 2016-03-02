@@ -11,7 +11,7 @@ WorldMap::WorldMap(float width, float height)
 	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	mRects[1] = new sf::IntRect(sf::Vector2i(1170, 290), sf::Vector2i(75, 25));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
-
+	//Test
 }
 
 WorldMap::WorldMap()

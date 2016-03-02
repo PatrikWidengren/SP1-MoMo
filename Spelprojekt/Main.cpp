@@ -22,6 +22,7 @@ int main(){
 
 	gameState theGame(window);
 	//mMusicManager.getMusic()->play();
+	
 	while (window.isOpen()){
 		sf::Event event;
 		window.setFramerateLimit(60);

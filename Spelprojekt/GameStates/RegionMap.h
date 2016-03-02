@@ -21,14 +21,15 @@ public:
 	sf::Texture texture01; //hold the texture
 
 	static const int mMaxRegions = 3;
-
+	
 	sf::Texture textBackgrounds[mMaxRegions];
 
 	sf::Texture textureShop;
-
 	sf::Texture textArrow01;
-
 	sf::Texture textHighlightArrow01;
+	sf::Texture textMowers[4];
+
+	sf::Sprite spriteMower;
 
 	sf::Sprite spriteArrow01;
 	sf::Sprite spriteArrow02;

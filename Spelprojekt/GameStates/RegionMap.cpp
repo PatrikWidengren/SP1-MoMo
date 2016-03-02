@@ -20,6 +20,7 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteShop.setPosition(0, 1080);
 
+
 	spriteArrow01.setPosition(120, 850);
 	spriteArrow01.setScale(-1, 1);
 	spriteArrow02.setPosition(285, 850);
@@ -52,12 +53,10 @@ RegionMap::~RegionMap()
 
 void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
-
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	switch (mInternalState)
-	{
+	switch (mInternalState) {
 	case 0: //nothing visible, yet
 		std::cout << "Case 0";
 
@@ -88,8 +87,14 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow04.move
 		*/
 
-		if (spriteShop.getPosition().y <= bg01.getScale().y + 1080)
+		if (spriteShop.getPosition().y <= bg01.getScale().y * window.getSize().y)
+		{
 			spriteShop.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow01.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow02.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow03.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow04.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+		}
 
 
 
@@ -98,9 +103,9 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 	case 2: //Shop visible
-		std::cout << "Case 2";
+		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
-		if (spriteShop.getPosition().y >= bg01.getScale().y + 780)
+		if (spriteShop.getPosition().y >= bg01.getScale().y  * window.getSize().y - 300)
 		{
 			spriteShop.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
 			spriteArrow01.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
@@ -274,76 +279,81 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mReturn = true;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
-	{
-		mDown = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
+		{
+			mDown = true;
 		std::cout << "bbbbbbbbbbbbbb" << std::endl;
 
-		//RegionMap::moveDown();
-		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+			//RegionMap::moveDown();
+			bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-		/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
-			mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
-			mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
-		*/
+			/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
+				mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
+				mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
+			*/
 
-		spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+			spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-		mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
+			mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
+			mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
+			mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
 
-		if (mInternalState == 1) {
-			spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
+			if (mInternalState == 1) {
+				spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
+			}
+			else {
+				spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
+			}
 		}
-		else {
-			spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
+		{
+			mDown = false;
 		}
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
-	{
-		mDown = false;
-	}
 
-	/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
-	{
-	mUp = true;
-	RegionMap::moveUp();
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
-	{
-	mUp = false;
-	}*/
+		/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+		{
+		mUp = true;
+		RegionMap::moveUp();
+		}
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
+		{
+		mUp = false;
+		}*/
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
-	{
-		mReturn = true;
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
-	{
-		mReturn = false;
-		if (selectedIndex == 0) {
-			mState = 10;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
+		{
+			mReturn = true;
 		}
-		if (selectedIndex == 1) {
-			mState = 4;
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
+		{
+			mReturn = false;
+			if (selectedIndex == 0) {
+				mState = 10;
+			}
+			if (selectedIndex == 1) {
+				mState = 4;
+			}
+			if (selectedIndex == 2) {
+				window.close();
+			}
 		}
-		if (selectedIndex == 2) {
-			window.close();
+
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+			mClick = true;
 		}
 	}
 
-	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
-		mClick = true;
-	}
-}
 
 void RegionMap::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	window.draw(spriteShop);
 	window.draw(spriteArrow01);
+	window.draw(spriteArrow02);
+	window.draw(spriteArrow03);
+	window.draw(spriteArrow04);
+
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
@@ -371,13 +381,30 @@ void RegionMap::setTextures()
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
 
-	if (!textArrow01.loadFromFile("Resource Files/Menus/"))
+	if (!textArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right.png"))
 		textArrow01.loadFromFile("error.jpg");
 
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/"))
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+#pragma region Set Textures Mowers
+
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
 		textHighlightArrow01.loadFromFile("error.jpg");
 
 
+#pragma endregion
+
+	
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	//	highlightTexture01.loadFromFile("error.jpg");
 
