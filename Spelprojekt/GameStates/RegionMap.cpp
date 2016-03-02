@@ -22,6 +22,9 @@ RegionMap::RegionMap(float width, float height)
 
 
 	spriteArrow01.setPosition(120, 850);
+
+	spriteMower.setPosition(140, 850);
+
 	spriteArrow01.setScale(-1, 1);
 	spriteArrow02.setPosition(285, 850);
 
@@ -63,10 +66,10 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (spriteShop.getPosition().y >= 1080 * bg01.getScale().y)
 			spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
 
-		spriteArrow01.setPosition(120 * bg01.getScale().x, 1100 * bg01.getScale().y);
-		spriteArrow02.setPosition(285 * bg01.getScale().x, 1100 * bg01.getScale().y);
-		spriteArrow03.setPosition(610 * bg01.getScale().x, 1100 * bg01.getScale().y);
-		spriteArrow04.setPosition(775 * bg01.getScale().x, 1100 * bg01.getScale().y);
+		spriteArrow01.setPosition(120 * bg01.getScale().x, 1120 * bg01.getScale().y);
+		spriteArrow02.setPosition(285 * bg01.getScale().x, 1120 * bg01.getScale().y);
+		spriteArrow03.setPosition(610 * bg01.getScale().x, 1120 * bg01.getScale().y);
+		spriteArrow04.setPosition(775 * bg01.getScale().x, 1120 * bg01.getScale().y);
 
 		//spriteArrow01.move
 		//spriteArrow02.move
@@ -353,6 +356,7 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow02);
 	window.draw(spriteArrow03);
 	window.draw(spriteArrow04);
+	window.draw(spriteMower);
 
 	/*
 
@@ -365,19 +369,19 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 
 void RegionMap::setTextures()
 {
-	
+
 	/*if (!texture01.loadFromFile("Resource Files/Backgrounds/Garden_02.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");*/
 
-	/*if (!textBackgrounds[mRegionState].loadFromFile(mRegions[mRegionState].BackgroundName)) //try to load the texture. if its wrong, give error
-		textBackgrounds[mRegionState].loadFromFile("error.jpg");*/
+		/*if (!textBackgrounds[mRegionState].loadFromFile(mRegions[mRegionState].BackgroundName)) //try to load the texture. if its wrong, give error
+			textBackgrounds[mRegionState].loadFromFile("error.jpg");*/
 
 
 	for (int i = 0; i < mMaxRegions; i++) {
 		if (!textBackgrounds[i].loadFromFile(mRegions[i].BackgroundName)) //try to load the texture. if its wrong, give error
 			textBackgrounds[i].loadFromFile("error.jpg");
 	}
-	
+
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
 
@@ -388,19 +392,14 @@ void RegionMap::setTextures()
 		textHighlightArrow01.loadFromFile("error.jpg");
 #pragma region Set Textures Mowers
 
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
-		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textMowers[0].loadFromFile("Resource Files/Sprites/Mowers/mow0.png"))
+		textMowers[0].loadFromFile("error.jpg");
+	if (!textMowers[1].loadFromFile("Resource Files/Sprites/Mowers/mow1.png"))
+		textMowers[1].loadFromFile("error.jpg");
+	if (!textMowers[2].loadFromFile("Resource Files/Sprites/Mowers/mow2.png"))
+		textMowers[2].loadFromFile("error.jpg");
 
+	spriteMower.setTexture(textMowers[0]);
 
 #pragma endregion
 

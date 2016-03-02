@@ -259,6 +259,9 @@
     <Image Include="Resource Files\Sprites\Hedge01_Cut.png" />
     <Image Include="Resource Files\Sprites\meep.png" />
     <Image Include="Resource Files\Sprites\meep02.png" />
+    <Image Include="Resource Files\Sprites\Mowers\mow0.png" />
+    <Image Include="Resource Files\Sprites\Mowers\mow1.png" />
+    <Image Include="Resource Files\Sprites\Mowers\mow2.png" />
     <Image Include="Resource Files\Sprites\stone.png" />
     <Image Include="Resource Files\Sprites\tree.png" />
     <Image Include="Resource Files\Sprites\TreeStump1.png" />
