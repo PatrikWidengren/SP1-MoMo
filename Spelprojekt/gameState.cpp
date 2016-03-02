@@ -311,7 +311,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
-
+			//testinggg
 			/*		case 1:
 			mRegionMap01->setRegionState(mRegionState);
 			drawRegionMap(window, mouse, music, sound);

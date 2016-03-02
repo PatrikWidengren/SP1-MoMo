@@ -14,7 +14,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mAntiLeakHedgeTool(c),
 	mBaseType(5.0f){
 	//mPosX = posX;
-	//mPosY = posY;
+	//mPosY = posY
 	//mPlayerSprite.setPosition(posX, posY);
 	mType = 5.1f;
 	//Temporär lösning. Bör fixas snarast

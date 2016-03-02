@@ -22,9 +22,10 @@ int main(){
 
 	gameState theGame(window);
 	//mMusicManager.getMusic()->play();
+	
 	while (window.isOpen()){
 		sf::Event event;
-		window.setFramerateLimit(10);
+		window.setFramerateLimit(60);
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
 			//delete &theGame;

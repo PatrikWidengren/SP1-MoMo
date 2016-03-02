@@ -3,7 +3,7 @@
 
 #include "StaticObjects.h"
 
-//Underklass till "StaticObjects"
+//Underklass till "StaticObjects".
 class Stone : public StaticObjects{
 public:
 	Stone(int arrayX, int arrayY, float posX, float posY);

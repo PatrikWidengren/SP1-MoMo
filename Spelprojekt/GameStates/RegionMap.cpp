@@ -20,6 +20,7 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteShop.setPosition(0, 1080);
 
+
 	spriteArrow01.setPosition(120, 850);
 	spriteArrow01.setScale(-1, 1);
 	spriteArrow02.setPosition(285, 850);
@@ -52,12 +53,10 @@ RegionMap::~RegionMap()
 
 void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
-
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	switch (mInternalState)
-	{
+	switch (mInternalState) {
 	case 0: //nothing visible, yet
 		std::cout << "Case 0";
 
@@ -88,8 +87,14 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow04.move
 		*/
 
-		if (spriteShop.getPosition().y <= bg01.getScale().y + 1080)
+		if (spriteShop.getPosition().y <= bg01.getScale().y * window.getSize().y)
+		{
 			spriteShop.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow01.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow02.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow03.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow04.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+		}
 
 
 
@@ -98,9 +103,9 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 	case 2: //Shop visible
-		std::cout << "Case 2";
+		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
-		if (spriteShop.getPosition().y >= bg01.getScale().y + 780)
+		if (spriteShop.getPosition().y >= bg01.getScale().y  * window.getSize().y - 300)
 		{
 			spriteShop.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
 			spriteArrow01.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
@@ -109,6 +114,9 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow04.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
 		}
 		//	spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
+
+
+
 
 		break;
 	}
@@ -260,7 +268,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
-
+	}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 		{
@@ -325,13 +333,17 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 
 	}
-}
+
 
 void RegionMap::displayMenu01(sf::RenderWindow &window)
 {
 	window.draw(bg01);
 	window.draw(spriteShop);
 	window.draw(spriteArrow01);
+	window.draw(spriteArrow02);
+	window.draw(spriteArrow03);
+	window.draw(spriteArrow04);
+
 	/*
 
 	for (int i = 0; i < mNumberOfSelections; i++)
@@ -359,13 +371,30 @@ void RegionMap::setTextures()
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
 
-	if (!textArrow01.loadFromFile("Resource Files/Menus/"))
+	if (!textArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right.png"))
 		textArrow01.loadFromFile("error.jpg");
 
-	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/"))
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
 		textHighlightArrow01.loadFromFile("error.jpg");
+#pragma region Set Textures Mowers
 
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	if (!textHighlightArrow01.loadFromFile("Resource Files/Menus/HUD_Arrow_Right_Highlight.png"))
+		textHighlightArrow01.loadFromFile("error.jpg");
+	
 
+#pragma endregion
+
+	
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	//	highlightTexture01.loadFromFile("error.jpg");
 
