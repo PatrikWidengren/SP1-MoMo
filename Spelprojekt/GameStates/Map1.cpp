@@ -28,6 +28,7 @@ Map1::Map1(string savefile, Player *p, string patrolpath) {
 	//Player::initialize();
 	CharRand::initialize();
 	CharPatrol::initialize();
+	Fountain::initialize();
 }
 Map1::~Map1() {
 	Stone::finalize();
@@ -40,6 +41,7 @@ Map1::~Map1() {
 	Player::finalize();
 	CharRand::finalize();
 	CharPatrol::finalize();
+	Fountain::finalize();
 }
 
 void Map1::resetGrid(){
@@ -73,7 +75,7 @@ void Map1::resetGrid(){
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
 	ifstream file(mSavefile);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
 	array2d = new float*[width];
@@ -143,6 +145,7 @@ void Map1::spawnObjects() {
 	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heightOnTile));
 	mObjects[4]->setCut();
 	mObjects.push_back(new Gravel(0, 0, widthOnTile, heightOnTile));
+	mObjects.push_back(new Fountain(0, 0, widthOnTile, heightOnTile));
 
 	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heightOnTile)-200)); //Träd: plats 0
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 1));
@@ -298,11 +301,11 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
-			if (mGrid[j][i] == 0.1f) {
+			/*if (mGrid[j][i] == 0.1f) {
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
-			}
-			else if (mGrid[j][i] == 1.1f) {
+			}*/
+			if (mGrid[j][i] == 1.1f) {
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
@@ -423,6 +426,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
 				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 10.0f) { //Fontän
+				mObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushGrassY / 2); //Sätter positionen enligt grid
+				window.draw(mObjects[6]->getDrawSprite());
 			}
 		}
 	}
@@ -928,7 +935,7 @@ void Map1::deleteContent()
 
 void Map1::getMapInfo(){
 	ifstream file(mSavefile);
-	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion;
+	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 
 //Funktion för att returnera objekten

@@ -207,6 +207,9 @@
     <ClCompile Include="GameStates\RegionMap.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="Static Objects\Fountain.cpp">
+      <Filter>Source Files\Static Objects</Filter>
+    </ClCompile>
     <ClCompile Include="Managers\AnimeManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="Managers\SoundManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Static Objects\Fountain.h">
+      <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Managers\AnimeManager.h">
       <Filter>Header Files\Managers</Filter>
@@ -734,6 +740,12 @@
       <Filter>Maps</Filter>
     </Text>
     <Text Include="Maps\map2.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\nymaptest.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\nymaptest2.txt">
       <Filter>Maps</Filter>
     </Text>
   </ItemGroup>
