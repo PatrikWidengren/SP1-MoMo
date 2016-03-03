@@ -3,12 +3,15 @@
 #include <string>
 
 using namespace std;
-static const string nameArray[3] = {"Resource Files/Music/test1.flac", "Resource Files/Music/test2.flac", "Resource Files/Music/test3.flac"};
+static const string nameArray[3] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda1.ogg", "Resource Files/Music/test3.flac"};
 
 MusicManager::MusicManager(int id) {
 	mVolume = 50;
 	mMusic.openFromFile(nameArray[id]);
 	mMusic.setVolume(mVolume);
+	mMusic.setLoop(true);
+	mMusic.play();
+	saveID = id;
 }
 
 MusicManager::~MusicManager(){
@@ -19,8 +22,14 @@ sf::Music* MusicManager::getMusic(){
 }
 
 void MusicManager::setMusic(int id){
-	mMusic.openFromFile(nameArray[id]);
-	mMusic.setVolume(mVolume);
+	if (saveID != id) {
+		mMusic.stop();
+		mMusic.openFromFile(nameArray[id]);
+		mMusic.setVolume(mVolume);
+		mMusic.setLoop(true);
+		mMusic.play();
+		saveID = id;
+	}
 }
 
 int MusicManager::getVolume() {

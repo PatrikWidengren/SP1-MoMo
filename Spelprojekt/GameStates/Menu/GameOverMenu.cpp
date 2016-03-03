@@ -5,7 +5,7 @@ GameOverMenu::GameOverMenu(float width, float height)
 	highlightSprite01.setPosition(10, 235);
 	bg01.scale(33, 33);
 	mTimer = 0;
-	mState = 2;
+	mState = 5;
 	setFonts();
 	setTextures();
 	menu[0].setFont(font);
@@ -150,12 +150,23 @@ void GameOverMenu::moveDown()
 
 }
 
-int GameOverMenu::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
-	mState = 2;
-	return i;
+int GameOverMenu::checkState() {
+	return mState;
+}
+
+void GameOverMenu::scale(sf::RenderWindow &window) {
+
+	mState = 5;
+	
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	/*spriteResume.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01.getScale().x, 546 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+
+	spriteResume.setPosition(700 * bg01.getScale().x, 550 * bg01.getScale().y);*/
+
+
 }
 
 /* Not usefull at the moment

@@ -2,7 +2,7 @@
 
 WinMenu::WinMenu(float width, float height)
 {
-	highlightSprite01.setPosition(10, 235);
+	//highlightSprite01.setPosition(10, 235);
 	mTimer = 0;
 	mState = 6;
 	setFonts();
@@ -96,7 +96,7 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 	}
 	*/
 
-	window.draw(mCompleteText);
+	//window.draw(mCompleteText);
 	window.draw(bg01);
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": WinMenu :" << highlightSprite01.getPosition().y << std::endl;
@@ -105,11 +105,11 @@ void WinMenu::displayMenu01(sf::RenderWindow &window)
 	{
 		window.close();
 	}
-	if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
+	/*if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
 	{
 		highlightSprite01.setPosition(10, 235);
 		window.draw(highlightSprite01);
-	}
+	}*/
 
 
 }
@@ -121,7 +121,7 @@ void WinMenu::setTextures()
 	textBg01.loadFromFile("error.jpg");
 
 	bg01.setTexture(textBg01);
-	highlightSprite01.setTexture(highlighttextBg01);
+	//highlightSprite01.setTexture(highlighttextBg01);
 
 }
 
@@ -155,10 +155,17 @@ void WinMenu::moveDown()
 
 }
 
-int WinMenu::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int WinMenu::checkState() {
+	return mState;
+}
+
+void WinMenu::scale(sf::RenderWindow &window) {
+
 	mState = 6;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+
 }

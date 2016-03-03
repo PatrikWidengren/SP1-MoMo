@@ -1,9 +1,9 @@
 #ifndef SOUNDMENU
 #define SOUNDMENU
 
-#include "menu.h"
-#include "../../Managers/SoundManager.h"
-#include "../../Managers/MusicManager.h"
+#include "Menu\menu.h"
+#include "SoundManager.h"
+#include "MusicManager.h"
 
 class SoundMenu : public Menu
 {
@@ -30,6 +30,7 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
+	virtual void scale(sf::RenderWindow &window);
 	sf::Vector2i mMouse;
 
 	int checkOptionState();

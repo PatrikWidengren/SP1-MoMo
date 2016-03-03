@@ -3,11 +3,6 @@
 
 #include "Menu/menu.h"
 
-struct RegionVariables {
-	std::string BackgroundName= "Resource Files/Backgrounds/error.jpg";
-	int levelCount = 0;
-};
-
 class RegionMap : public Menu
 {
 public:
@@ -20,26 +15,6 @@ public:
 	sf::Texture highlightTexture01; //the highlightTexture for displaying.
 	sf::Texture texture01; //hold the texture
 
-	static const int mMaxRegions = 3;
-	
-	sf::Texture textBackgrounds[mMaxRegions];
-
-	sf::Texture textureShop;
-	sf::Texture textArrow01;
-	sf::Texture textHighlightArrow01;
-	sf::Texture textMowers[2];
-	sf::Texture textHedgecutters[1];
-
-	sf::Sprite spriteMower;
-	sf::Sprite spriteHedgecutter;
-
-	sf::Sprite spriteArrow01;
-	sf::Sprite spriteArrow02;
-	sf::Sprite spriteArrow03;
-	sf::Sprite spriteArrow04;
-
-	sf::Sprite spriteShop;
-
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
@@ -48,20 +23,14 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
-
-	void setRegionState(int state);
-	int checkRegionState();
-
+	virtual void scale(sf::RenderWindow &window);
 protected:
-	static int const mNumberOfSelections = 7;
+	static int const mNumberOfSelections = 3;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
-	sf::IntRect *mLevelRects;
 	sf::Vector2i mMouse;
-	int mState, mRegionState, mInternalState;
-	RegionVariables mRegions[mMaxRegions];
-	void changeInternalState(int newState);
+	int mState;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;

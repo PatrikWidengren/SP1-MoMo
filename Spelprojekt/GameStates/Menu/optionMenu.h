@@ -19,7 +19,6 @@ public:
 
 	sf::Sprite slider01;
 
-	sf::Texture textOptionText;
 	sf::Texture textControl;
 	sf::Texture textVideo;
 	sf::Texture textAudio;
@@ -30,7 +29,6 @@ public:
 	sf::Texture textHighlightAudio;
 	sf::Texture textHighlightBack;
 
-	sf::Sprite spriteOptionText;
 	sf::Sprite spriteControl;
 	sf::Sprite spriteVideo;
 	sf::Sprite spriteAudio;
@@ -42,6 +40,7 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
+	virtual void scale(sf::RenderWindow &window);
 	sf::Vector2i mMouse;
 
 	int checkOptionState();
