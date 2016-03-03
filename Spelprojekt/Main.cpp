@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <Thor/Animations.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "gameState.h"
 #include "Managers/MusicManager.h"
@@ -9,20 +10,32 @@
 #include <iomanip>
 
 using namespace std;
-static int const windowWidth = 1920;
-static int const windowHeigth = 1080;
+//static int const windowWidth = 1920;
+//static int const windowHeigth = 1080;
 
 int main(){
+
+	sf::Texture titleTexture;
+	sf::Sprite titleScreen;
+	titleTexture.loadFromFile("Resource Files/Backgrounds/Background_Title.png");
+	titleScreen.setTexture(titleTexture);
+
+	sf::RenderWindow window(sf::VideoMode
+		(sf::VideoMode::getDesktopMode().width, 
+			sf::VideoMode::getDesktopMode().height, 
+			sf::VideoMode::getDesktopMode().bitsPerPixel), 
+		"garden"/*, sf::Style::Fullscreen*/);
+
+	titleScreen.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	
 	MusicManager mMusicManager(0);
-	SoundManager mSoundManager;
+	window.draw(titleScreen);
+	window.display();
 
-	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeigth), "garden");
 	sf::Vector2i mouse;
-
+	SoundManager mSoundManager;
 	gameState theGame(window);
-	//mMusicManager.getMusic()->play();
-	
+
 	while (window.isOpen()){
 		sf::Event event;
 		window.setFramerateLimit(60);
@@ -38,8 +51,6 @@ int main(){
 			}
 		}
 		mouse = sf::Mouse::getPosition(window);
-		window.clear();
-		
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager);
 		//cout << theGame.mState << "     " <<  theGame.mOptionMenu01->checkOptionState() << endl;
 		window.display();

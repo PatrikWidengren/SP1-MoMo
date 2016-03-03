@@ -52,6 +52,7 @@ public:
 	void setRegionState(int state);
 	int checkRegionState();
 
+	virtual void scale(sf::RenderWindow &window);
 protected:
 	static int const mNumberOfSelections = 7;
 

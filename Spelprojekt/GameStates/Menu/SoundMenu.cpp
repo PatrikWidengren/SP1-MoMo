@@ -31,7 +31,7 @@ SoundMenu::SoundMenu(float width, float height)
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
 	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1385, 515), sf::Vector2i(113, 91));
 
 
 }
@@ -189,18 +189,28 @@ void SoundMenu::moveDown()
 }
 
 
-int SoundMenu::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int SoundMenu::checkState() {
+	return mState;
+}
+
+int SoundMenu::checkOptionState(){
+	return mOptionMenuState;
+}
+
+void SoundMenu::scale(sf::RenderWindow &window) {
+
 	mState = 4;
-	return i;
-}
-
-
-int SoundMenu::checkOptionState()
-{
-	int i = mOptionMenuState;
 	mOptionMenuState = 2;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	spriteBack.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1385 * bg01.getScale().x, 515 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
+
+	spriteBack.setPosition(1385 * bg01.getScale().x, 515 * bg01.getScale().y);
+
 }
+

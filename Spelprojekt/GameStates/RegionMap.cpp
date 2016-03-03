@@ -131,23 +131,23 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 		{
-			mClick = false;
+			//Set sprite to highlight texture
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+			{
+				mClick = false;
 			mInternalState = 1;
-			reset = true;
+				reset = true;
+			}
 		}
-	}
 
-	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
-		//Set sprite to highlight texture
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-		{
-			mClick = false;
+			if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+			{
+				//Set sprite to highlight texture
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+				{
+					mClick = false;
 			if (mInternalState != 0) {
 				mInternalState = 0;
 			}
@@ -156,7 +156,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			}
 
 		}
-		reset = true;
+					reset = true;
 
 	}
 	std::cout << "levelcount: " << mRegions[mRegionState].levelCount << std::endl;
@@ -165,7 +165,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
 		}
-	}
+				}
 
 #pragma region Old
 	//if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
@@ -225,8 +225,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow01.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-		}
-		else
+			}
+			else
 			spriteArrow01.setTexture(textArrow01);
 	}
 
@@ -244,13 +244,13 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 	if (mRects[5]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	{
+				{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			spriteArrow03.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-		}
+				}
 		else
 			spriteArrow03.setTexture(textArrow01);
 
@@ -264,7 +264,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow04.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-		}
+	}
 		else
 			spriteArrow04.setTexture(textArrow01);
 	}
@@ -279,70 +279,52 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mReturn = true;
 	}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
-		{
-			mDown = true;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
+	{
+		mDown = true;
 		std::cout << "bbbbbbbbbbbbbb" << std::endl;
 
-			//RegionMap::moveDown();
-			bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+		//RegionMap::moveDown();
 
-			/*	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
-				mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
-				mRects[2] = new sf::IntRect(sf::Vector2i(1660, 75), sf::Vector2i(180, 145));
-			*/
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
+	{
+		mDown = false;
+	}
 
-			spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
+	{
+	mUp = true;
+	RegionMap::moveUp();
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
+	{
+	mUp = false;
+	}*/
 
-			mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
-			mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
-			mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
 
-			if (mInternalState == 1) {
-				spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
-			}
-			else {
-				spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
-			}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
+	{
+		mReturn = true;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
+	{
+		mReturn = false;
+		if (selectedIndex == 0) {
+			mState = 10;
 		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
-		{
-			mDown = false;
+		if (selectedIndex == 1) {
+			mState = 4;
 		}
-
-		/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
-		{
-		mUp = true;
-		RegionMap::moveUp();
-		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
-		{
-		mUp = false;
-		}*/
-
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
-		{
-			mReturn = true;
-		}
-		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
-		{
-			mReturn = false;
-			if (selectedIndex == 0) {
-				mState = 10;
-			}
-			if (selectedIndex == 1) {
-				mState = 4;
-			}
-			if (selectedIndex == 2) {
-				window.close();
-			}
-		}
-
-		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
-			mClick = true;
+		if (selectedIndex == 2) {
+			window.close();
 		}
 	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+}
 
 
 void RegionMap::displayMenu01(sf::RenderWindow &window)
@@ -365,7 +347,7 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 
 void RegionMap::setTextures()
 {
-	
+
 	/*if (!texture01.loadFromFile("Resource Files/Backgrounds/Garden_02.png")) //try to load the texture. if its wrong, give error
 		texture01.loadFromFile("error.jpg");*/
 
@@ -451,12 +433,8 @@ void RegionMap::moveDown()
 
 }
 
-int RegionMap::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
-	mState = 7;
-	return i;
+int RegionMap::checkState() {
+	return mState;
 }
 
 int RegionMap::checkRegionState() {
@@ -472,47 +450,15 @@ void RegionMap::setRegionState(int state) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
 	}
 }
+	mState = 8;
 
-//
-//void RegionMap::changeInternalState(int newState) {
-//	if (mInternalState != newState) {
-//		switch (mInternalState) {
-//		case 0:
-//			switch (newState) {
-//			case 1:
-//				spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			case 2:
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//		case 1:
-//			switch (newState) {
-//			case 0:
-//				spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			case 2:
-//				spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//
-//		case 2:
-//			switch (newState) {
-//			case 0:
-//				mInternalState = newState;
-//				break;
-//			case 1:
-//				spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//
-//		}
-//	}
-//}
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
+	//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
+	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
+
+
+}

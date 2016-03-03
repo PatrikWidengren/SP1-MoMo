@@ -88,6 +88,9 @@
     <Filter Include="Resource Files\Menus">
       <UniqueIdentifier>{7767797e-09ff-4c07-9640-0f8cf0b1e312}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sprites\Mowers">
+      <UniqueIdentifier>{189ceca3-8af9-4f39-85d2-1dde3db07d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -355,9 +358,6 @@
     <None Include="..\Debug\Spelprojekt.pdb">
       <Filter>Debug/Release</Filter>
     </None>
-    <None Include="Resource Files\Music\test1.flac">
-      <Filter>Resource Files\Music</Filter>
-    </None>
     <None Include="Resource Files\Sound\collision_fence.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
@@ -420,6 +420,12 @@
     </None>
     <None Include="..\Release\thor.dll">
       <Filter>Debug/Release</Filter>
+    </None>
+    <None Include="Resource Files\Music\Title.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\Miyoda1.ogg">
+      <Filter>Resource Files\Music</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -656,6 +662,15 @@
     </Image>
     <Image Include="Resource Files\Menus\HUD_Arrow_Right_Highlight.png">
       <Filter>Resource Files\Menus</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mowers\mow0.png">
+      <Filter>Resource Files\Sprites\Mowers</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mowers\mow1.png">
+      <Filter>Resource Files\Sprites\Mowers</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mowers\mow2.png">
+      <Filter>Resource Files\Sprites\Mowers</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

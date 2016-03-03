@@ -58,7 +58,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
-	std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
+	std::cout << mMouse.x << " "<< mState << " " << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
 
 	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
@@ -70,6 +70,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteNewgame.setTexture(textHighlightNewgame);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
+			std::cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
 			mClick = false;
 			mState = 7;
 		}
@@ -137,27 +138,6 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = true;
 		startMenu::moveDown();
-
-
-		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-
-		spriteContinue.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-		spriteNewgame.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-		spriteOption.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-		spriteExit.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-		spriteCredits.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-
-		mRects[3] = new sf::IntRect(sf::Vector2i(640 * bg01.getScale().x, 510 * bg01.getScale().y), sf::Vector2i(540 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[0] = new sf::IntRect(sf::Vector2i(640 * bg01.getScale().x, 630 * bg01.getScale().y), sf::Vector2i(540 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 750 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-		mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
-		mRects[4] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 870 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-
-		spriteContinue.setPosition(689 * bg01.getScale().x, 525 * bg01.getScale().y);
-		spriteNewgame.setPosition(689 * bg01.getScale().x, 635 * bg01.getScale().y);
-		spriteOption.setPosition(689 * bg01.getScale().x, 755 * bg01.getScale().y);
-		spriteExit.setPosition(1770 * bg01.getScale().x, 45 * bg01.getScale().y);
-		spriteCredits.setPosition(689 * bg01.getScale().x, 875 * bg01.getScale().y);
 
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
@@ -283,10 +263,31 @@ void startMenu::moveDown()
 
 }
 
-int startMenu::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int startMenu::checkState(){
+	return mState;
+}
+
+void startMenu::scale(sf::RenderWindow &window) {
+
 	mState = 3;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	spriteContinue.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteNewgame.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteOption.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteExit.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteCredits.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[3] = new sf::IntRect(sf::Vector2i(640 * bg01.getScale().x, 510 * bg01.getScale().y), sf::Vector2i(540 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(640 * bg01.getScale().x, 630 * bg01.getScale().y), sf::Vector2i(540 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 750 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1750 * bg01.getScale().x, 35 * bg01.getScale().y), sf::Vector2i(115 * bg01.getScale().x, 95 * bg01.getScale().y));
+	mRects[4] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 870 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+
+	spriteContinue.setPosition(689 * bg01.getScale().x, 525 * bg01.getScale().y);
+	spriteNewgame.setPosition(689 * bg01.getScale().x, 635 * bg01.getScale().y);
+	spriteOption.setPosition(689 * bg01.getScale().x, 755 * bg01.getScale().y);
+	spriteExit.setPosition(1770 * bg01.getScale().x, 45 * bg01.getScale().y);
+	spriteCredits.setPosition(689 * bg01.getScale().x, 875 * bg01.getScale().y);
 }

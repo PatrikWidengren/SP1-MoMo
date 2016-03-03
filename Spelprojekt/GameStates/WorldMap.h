@@ -26,6 +26,7 @@ public:
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
+	virtual void scale(sf::RenderWindow &window);
 protected:
 	static int const mNumberOfSelections = 3;
 

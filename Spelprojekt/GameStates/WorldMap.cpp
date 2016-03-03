@@ -51,6 +51,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
+	else
+		//set sprite to regular texture
 
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
@@ -64,6 +66,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
+	else
+		//set sprite to regular texture
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
@@ -75,6 +79,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
+	else
+		//set sprite to regular texture
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
@@ -93,7 +99,6 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = true;
 		//WorldMap::moveDown();
-		bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
 		//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 		//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
@@ -201,12 +206,20 @@ void WorldMap::moveDown()
 
 }
 
-int WorldMap::checkState()
-{
-	//std::cout << mState << std::endl;
-	int i = mState;
+int WorldMap::checkState(){
+	return mState;
+}
+
+void WorldMap::scale(sf::RenderWindow &window) {
+
 	mState = 7;
-	return i;
+
+	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(650 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
+
 }
 
 int WorldMap::getRegion() {

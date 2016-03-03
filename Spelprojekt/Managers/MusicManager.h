@@ -14,6 +14,7 @@ public:
 private:
 	sf::Music mMusic;
 	int const mMaxVolume = 100;
+	int saveID;
 	int mVolume;
 };
 
