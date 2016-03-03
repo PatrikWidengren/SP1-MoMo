@@ -91,6 +91,9 @@
     <Filter Include="Resource Files\Sprites\Mowers">
       <UniqueIdentifier>{189ceca3-8af9-4f39-85d2-1dde3db07d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\SpriteSheets">
+      <UniqueIdentifier>{99d44ff8-632e-4a6b-a2f9-927efe5a2eb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -204,6 +207,9 @@
     <ClCompile Include="GameStates\RegionMap.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\AnimeManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -309,6 +315,9 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="Managers\SoundManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\AnimeManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -692,6 +701,12 @@
     </Image>
     <Image Include="Resource Files\Sprites\Mowers\mow2.png">
       <Filter>Resource Files\Sprites\Mowers</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

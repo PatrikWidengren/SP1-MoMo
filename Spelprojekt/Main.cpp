@@ -5,6 +5,7 @@
 #include "gameState.h"
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
+#include "Managers/AnimeManager.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -33,6 +34,7 @@ int main(){
 	window.display();
 
 	sf::Vector2i mouse;
+	AnimeManager mAnimeManager;
 	SoundManager mSoundManager;
 	gameState theGame(window);
 
@@ -51,7 +53,8 @@ int main(){
 			}
 		}
 		mouse = sf::Mouse::getPosition(window);
-		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager);
+		window.clear();
+		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
 		//cout << theGame.mState << "     " <<  theGame.mOptionMenu01->checkOptionState() << endl;
 		window.display();
 	}

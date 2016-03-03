@@ -294,7 +294,7 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window) {
+void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
@@ -482,26 +482,41 @@ void Map1::render(sf::RenderWindow &window) {
 				window.draw(mLongObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				//mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					//window.draw(mPlayer->getDrawSprite());
 					mPlayer->setX(i);
 					mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };

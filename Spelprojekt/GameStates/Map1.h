@@ -17,6 +17,7 @@
 #include "../Characters/CharRand.h"
 #include "../Characters/CharPatrol.h"
 #include "../Managers/SoundManager.h"
+#include "../Managers/AnimeManager.h"
 #include <fstream>
 #include <array>
 #include <iomanip>
@@ -29,7 +30,7 @@ public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile, Player *m, std::string patrolPath);
 	virtual ~Map1();
-	void virtual render(sf::RenderWindow &window);
+	void virtual render(sf::RenderWindow &window, AnimeManager &anime);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
 	//Returnerar objekten, detta behövs till main

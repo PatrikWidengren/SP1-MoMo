@@ -41,7 +41,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mMap01 = new Map1("Maps/testing.txt", mPlayer, "Maps/patrols/Patrols_testing.txt");
 	
 	mMap01->spawnObjects();
-	mMap01->render(window);
+	//mMap01->render(window, anime);
 	mObjects = mMap01->getObjects();
 	//mPlayer = mMap01->getPlayer();
 	mNpcs = mMap01->getNpcs();
@@ -170,7 +170,7 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 }
 
 
-void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw and Update Ingame
+void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Draw and Update Ingame
 {
 	/*
 	//Ritar ut objekten
@@ -188,7 +188,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}*/
 	window.clear();
 
-	mMap01->render(window);
+	mMap01->render(window, anime);
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){
@@ -281,7 +281,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 
 }
 
-void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Game State Handler
+void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Game State Handler
 {
 	switch (mState) //switch that hold the states of the game
 	{
@@ -292,7 +292,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mStartState = false;
 			//Startar musik osv
 		}
-		drawInGame(window, mouse, music, sound);
+		drawInGame(window, mouse, music, sound, anime);
 		break;
 	}
 	case 2: { //Case 2, Draw ingame menu
