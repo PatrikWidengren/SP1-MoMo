@@ -18,17 +18,11 @@ RegionMap::RegionMap(float width, float height)
 	setFonts();
 	setTextures();
 
-
 	spriteShop.setPosition(0, 1080);
-
-
 	spriteArrow01.setPosition(120, 850);
-
 	spriteMower.setPosition(140, 850);
-
 	spriteArrow01.setScale(-1, 1);
 	spriteArrow02.setPosition(285, 850);
-
 	spriteArrow03.setPosition(610, 850);
 	spriteArrow03.setScale(-1, 1);
 	spriteArrow04.setPosition(775, 850);
@@ -64,8 +58,9 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	case 0: //nothing visible, yet
 		std::cout << "Case 0";
 
-		if (spriteShop.getPosition().y >= 1080 * bg01.getScale().y)
-			spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
+		//if (spriteShop.getPosition().y >= 1080 * bg01.getScale().y)
+
+		spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
 
 		spriteArrow01.setPosition(120 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		spriteArrow02.setPosition(285 * bg01.getScale().x, 1120 * bg01.getScale().y);
@@ -191,56 +186,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		}
 	}
 
-#pragma region Old
-	//if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	//{
-	//	//Set sprite to highlight texture
-
-	//	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-	//	{
-	//		mClick = false;
-	//		changeInternalState(1);
-	//		reset = true;
-	//	}
-	//}
-	//else
-	//	//set sprite to regular texture
-
-	//	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	//	{
-	//		//Set sprite to highlight texture
-	//		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-	//		{
-	//			mClick = false;
-	//			changeInternalState(2);
-	//			reset = true;
-	//		}
-	//	}
-	//	else
-	//		//set sprite to regular texture
-
-	//		if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
-	//		{
-	//			//Set sprite to highlight texture
-	//			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
-	//			{
-	//				mClick = false;
-	//				if (mInternalState == 0) {
-	//					//window.close();
-	//					mRegionState = 0;
-	//				}
-	//				else {
-	//					changeInternalState(0);
-	//				}
-	//				reset = true;
-	//			}
-	//		}
-	//		else
-	//			//set sprite to regular texture
-
-
-#pragma endregion
-
 #pragma region ArrowRects
 	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
@@ -304,11 +249,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow04.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-			if (selectedMow  < 2)
-			{
-				selectedMow++;
-			}
-			spriteMower.setTexture(textMowers[selectedMow]);
+
 		}
 		else
 			spriteArrow04.setTexture(textArrow01);
@@ -514,11 +455,11 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01.getScale().x, 75 * bg01.getScale().y), sf::Vector2i(180 * bg01.getScale().x, 145 * bg01.getScale().y));
-	mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 1120 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-	mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 1120 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-	mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 1120 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-	mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 1120 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-
+	mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 850 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+	mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 850 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+	mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 850 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+	mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 850 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+	
 	if (mInternalState == 1) {
 		spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
 		spriteMower.setPosition(140 * bg01.getScale().x, 550 * bg01.getScale().y);
