@@ -1,9 +1,9 @@
 #ifndef SOUNDMENU
 #define SOUNDMENU
 
-#include "Menu\menu.h"
-#include "SoundManager.h"
-#include "MusicManager.h"
+#include "menu.h"
+#include "..\..\Managers\SoundManager.h"
+#include "..\..\Managers\MusicManager.h"
 
 class SoundMenu : public Menu
 {

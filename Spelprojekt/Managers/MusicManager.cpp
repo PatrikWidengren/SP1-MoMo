@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace std;
-static const string nameArray[3] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda1.ogg", "Resource Files/Music/test3.flac"};
+static const string nameArray[3] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Gardenice.ogg"};
 
 MusicManager::MusicManager(int id) {
 	mVolume = 50;

@@ -137,7 +137,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 			{
 				mClick = false;
-			mInternalState = 1;
+				mInternalState = 1;
 				reset = true;
 			}
 		}
@@ -450,10 +450,14 @@ void RegionMap::setRegionState(int state) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
 	}
 }
+
+void RegionMap::scale(sf::RenderWindow &window){
+
 	mState = 8;
 
 	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
+	spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	//(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	//sf::Vector2i(1635, 780), sf::Vector2i(95, 25)
 	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));

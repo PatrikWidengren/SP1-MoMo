@@ -1,7 +1,7 @@
 #ifndef KEYBOARDOPTIONMENU
 #define KEYBOARDOPTIONMENU
 
-#include "Menu\menu.h"
+#include "menu.h"
 
 class KeyboardOptionMenu : public Menu
 {

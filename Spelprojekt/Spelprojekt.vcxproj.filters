@@ -421,10 +421,31 @@
     <None Include="..\Release\thor.dll">
       <Filter>Debug/Release</Filter>
     </None>
+    <None Include="Resource Files\Music\GardenGeneric1.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\GardenGeneric2.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\GardenGeneric3.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\GardenIce.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\GardenTemple1-7.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\GardenTemple8.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Music\Miyoda.ogg">
+      <Filter>Resource Files\Music</Filter>
+    </None>
     <None Include="Resource Files\Music\Title.ogg">
       <Filter>Resource Files\Music</Filter>
     </None>
-    <None Include="Resource Files\Music\Miyoda1.ogg">
+    <None Include="Resource Files\Music\Worldmap.ogg">
       <Filter>Resource Files\Music</Filter>
     </None>
   </ItemGroup>

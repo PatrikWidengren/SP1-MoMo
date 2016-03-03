@@ -34,7 +34,9 @@ public:
 	void drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
-
+	
+	bool checkStartState(int lowerState);
+	bool checkStartOptionState(int lowerState);
 	void resetMap();
 	optionMenu *mOptionMenu01;
 

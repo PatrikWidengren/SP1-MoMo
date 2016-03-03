@@ -294,7 +294,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
 			music.setMusic(1);
-			//mInGameMenu01->scale(window);
+			mInGameMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
 		}
@@ -304,7 +304,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 3: { //State 3. Start menu.
 		if (mStartState) {
 			music.setMusic(0);
-			//mStartMenu01->scale(window);
+			mStartMenu01->scale(window);
 			mStartState = false;
 			//Startar musik osv
 		}
@@ -317,8 +317,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: { //state 1. Option.
 			if (mStartOptionState) {
-				music.setMusic(1);
-				//mOptionMenu01->scale(window);
+				music.setMusic(2);
+				mOptionMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
 				//Starta musik osv
@@ -329,7 +329,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
 				music.setMusic(1);
-				//mSoundmenu01->scale(window);
+				mSoundmenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
 				//Starta musik osv
@@ -339,8 +339,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
-				music.setMusic(1);
-				//mKeyboardMenu01->scale(window);
+				music.setMusic(2);
+				mKeyboardMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
 				//Starta musik osv
@@ -357,7 +357,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 5: { //state 5. GameOver.
 		if (mStartState) {
 			music.setMusic(1);
-			//mGameOverMenu01->scale(window);
+			mGameOverMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
 		}
@@ -367,7 +367,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 6: { //state 6. WinMenu.
 		if (mStartState) {
 			music.setMusic(1);
-			//mWinMenu01->scale(window);
+			mWinMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
 		}
@@ -379,7 +379,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 0:
 			if (mStartState) {
 				music.setMusic(0);
-				//mWorldMap01->scale(window);
+				mWorldMap01->scale(window);
 				mStartState = false;
 				//Starta musik osv
 			}
@@ -389,7 +389,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(1);
 			if (mStartState) {
 				music.setMusic(0);
-				//mWorldMap01->scale(window);
+				mRegionMap01->scale(window);
 				mStartState = false;
 				//Starta musik osv
 			}
@@ -398,7 +398,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 2:
 			if (mStartState) {
 				music.setMusic(0);
-				//mWorldMap01->scale(window);
+				mRegionMap01->scale(window);
 				mStartState = false;
 				//Starta musik osv
 			}

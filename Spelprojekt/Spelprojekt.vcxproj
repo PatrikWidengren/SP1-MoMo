@@ -162,7 +162,15 @@
     <None Include="..\Release\Spelprojekt.exe" />
     <None Include="..\Release\Spelprojekt.pdb" />
     <None Include="..\Release\thor.dll" />
-    <None Include="Resource Files\Music\test1.flac" />
+    <None Include="Resource Files\Music\GardenGeneric1.ogg" />
+    <None Include="Resource Files\Music\GardenGeneric2.ogg" />
+    <None Include="Resource Files\Music\GardenGeneric3.ogg" />
+    <None Include="Resource Files\Music\GardenIce.ogg" />
+    <None Include="Resource Files\Music\GardenTemple1-7.ogg" />
+    <None Include="Resource Files\Music\GardenTemple8.ogg" />
+    <None Include="Resource Files\Music\Miyoda.ogg" />
+    <None Include="Resource Files\Music\Title.ogg" />
+    <None Include="Resource Files\Music\Worldmap.ogg" />
     <None Include="Resource Files\Sound\collision_fence.flac" />
     <None Include="Resource Files\Sound\collision_hedge.flac" />
     <None Include="Resource Files\Sound\collision_stone.flac" />

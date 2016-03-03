@@ -28,7 +28,7 @@ public:
 	sf::Texture textArrow01;
 	sf::Texture textHighlightArrow01;
 	sf::Texture textMowers[2];
-	sf::Texture textMowers[1];
+	//sf::Texture textMowers[1];
 
 	sf::Sprite spriteMower;
 	sf::Sprite spriteHedgecutter;
