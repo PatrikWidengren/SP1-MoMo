@@ -28,7 +28,7 @@ public:
 	sf::Texture textArrow01;
 	sf::Texture textHighlightArrow01;
 	sf::Texture textMowers[2];
-	//sf::Texture textMowers[1];
+	sf::Texture textHedgecutters[1];
 
 	sf::Sprite spriteMower;
 	sf::Sprite spriteHedgecutter;
@@ -51,12 +51,13 @@ public:
 
 	void setRegionState(int state);
 	int checkRegionState();
+	void scale(sf::RenderWindow &window);
 
-	virtual void scale(sf::RenderWindow &window);
 protected:
 	static int const mNumberOfSelections = 7;
 
 private:
+	int selectedMow;
 	sf::IntRect *mRects[mNumberOfSelections];
 	sf::IntRect *mLevelRects;
 	sf::Vector2i mMouse;

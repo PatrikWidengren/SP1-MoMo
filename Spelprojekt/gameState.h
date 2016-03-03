@@ -37,6 +37,7 @@ public:
 	
 	bool checkStartState(int lowerState);
 	bool checkStartOptionState(int lowerState);
+	bool checkStartRegionState(int lowerState);
 	void resetMap();
 	optionMenu *mOptionMenu01;
 
@@ -45,6 +46,7 @@ public:
 	int mOptionMenuState;
 	bool mStartState;
 	bool mStartOptionState;
+	bool mStartRegionState;
 	int mRegionState;
 
 

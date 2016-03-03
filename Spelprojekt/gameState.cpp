@@ -151,6 +151,7 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mWorldMap01->checkState();
+	mStartRegionState = checkStartRegionState(mWorldMap01->getRegion());
 	mRegionState = mWorldMap01->getRegion();
 	std::cout << mRegionState << " from world map" << std::endl;
 
@@ -159,8 +160,11 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Region Map
 {
 	mRegionMap01->updateRegionMap(window, mouse);
+	window.clear();
 	mRegionMap01->displayMenu01(window); //Update mouse in update...
+	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mRegionMap01->checkState();
+	mStartRegionState = checkStartRegionState(mRegionMap01->checkRegionState());
 	mRegionState = mRegionMap01->checkRegionState();
 	std::cout << mRegionState << " from region map" << std::endl;
 }
@@ -377,29 +381,32 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 7: //State 7. World Map
 		switch (mRegionState) {
 		case 0:
-			if (mStartState) {
-				music.setMusic(0);
+			if (mStartRegionState || mStartState) {
+				music.setMusic(2);
 				mWorldMap01->scale(window);
 				mStartState = false;
+				mStartRegionState = false;
 				//Starta musik osv
 			}
 		drawWorldMap(window, mouse, music, sound);
 		break;
 		case 1:
 			mRegionMap01->setRegionState(1);
-			if (mStartState) {
-				music.setMusic(0);
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
+				mStartRegionState = false;
 				//Starta musik osv
 			}
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 2:
-			if (mStartState) {
+			if (mStartRegionState || mStartState) {
 				music.setMusic(0);
 				mRegionMap01->scale(window);
 				mStartState = false;
+				mStartRegionState = false;
 				//Starta musik osv
 			}
 			mRegionMap01->setRegionState(2);
@@ -536,3 +543,11 @@ bool gameState::checkStartOptionState(int lowerState) {
 	}
 }
 
+bool gameState::checkStartRegionState(int lowerState) {
+	if (mRegionState == lowerState) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}

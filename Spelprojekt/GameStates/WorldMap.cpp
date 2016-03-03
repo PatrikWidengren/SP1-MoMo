@@ -213,6 +213,7 @@ int WorldMap::checkState(){
 void WorldMap::scale(sf::RenderWindow &window) {
 
 	mState = 7;
+	mRegion = 0;
 
 	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
