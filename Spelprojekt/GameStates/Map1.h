@@ -9,6 +9,7 @@
 #include "../Static Objects/Hedge.h"
 #include "../Static Objects/Dandelion.h"
 #include "../Static Objects/Gravel.h"
+#include "../Static Objects/Fountain.h"
 #include "../Characters/Player.h"
 #include "../Tools/Lawnmower/GoLawnMower.h"
 #include "../Tools/Lawnmower/RoyceMower.h"
@@ -69,6 +70,8 @@ private:
 	float cutGrass = 0;
 	float cutHedges = 0;
 	float cutDandelions = 0;
+	int meepSpawnDirection;
+	int specialFeature;
 	std::string mSavefile, mPatrolPath;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;

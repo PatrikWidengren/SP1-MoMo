@@ -3,14 +3,16 @@
 #include <math.h>
 #include <cstdlib>
 
+const int numberOfSounds = 101;
+
 using namespace std;
 int asd;
-static const string nameArray[100] = { 
+static const string nameArray[numberOfSounds] = {
 	"Resource Files/Sound/collision_vase.flac",		//0
-	"Resource Files/Sound/collision_vase.flac",		//1
-	"Resource Files/Sound/collision_vase.flac",		//2
-	"Resource Files/Sound/collision_vase.flac",		//3
-	"Resource Files/Sound/collision_vase.flac",		//4
+	"Resource Files/Sound/collision_fence.flac",	//1
+	"Resource Files/Sound/collision_stone.flac",	//2
+	"Resource Files/Sound/collision_hedge.flac",	//3
+	"Resource Files/Sound/collision_tree.flac",		//4
 	"Resource Files/Sound/collision_vase.flac",		//5
 	"Resource Files/Sound/collision_vase.flac",		//6
 	"Resource Files/Sound/collision_vase.flac",		//7
@@ -105,14 +107,14 @@ static const string nameArray[100] = {
 	"Resource Files/Sound/collision_hedge.flac",	//96
 	"Resource Files/Sound/collision_hedge.flac",	//97
 	"Resource Files/Sound/collision_hedge.flac",	//98
-	"Resource Files/Sound/collision_hedge.flac"		//99
-//	"Resource Files/Sound/collision_vase.flac",		//test 99
+	"Resource Files/Sound/collision_hedge.flac",	//99
+	"Resource Files/Sound/collision_vase.flac"		//100
 
 };
 
 SoundManager::SoundManager(){
 	mVolume = 50;
-	for (int i = 0; i < 100; i++){
+	for (int i = 0; i < numberOfSounds; i++){
 //		sf::SoundBuffer buff;
 //		cout << &buff << endl;
 		mSoundBufferList.push_back(new sf::SoundBuffer);
@@ -140,7 +142,7 @@ void SoundManager::playSound(float id){
 
 void SoundManager::setVolume(int volume){
 	mVolume = volume;
-	for (int i = 0; i < 100; i++){
+	for (int i = 0; i < numberOfSounds; i++){
 		mSoundList[i]->setVolume(mVolume);
 	}
 }
