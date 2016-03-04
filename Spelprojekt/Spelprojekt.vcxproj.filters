@@ -94,6 +94,9 @@
     <Filter Include="Resource Files\SpriteSheets">
       <UniqueIdentifier>{99d44ff8-632e-4a6b-a2f9-927efe5a2eb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sprites\Hedgecutters">
+      <UniqueIdentifier>{ec2c6f38-1eb0-49f0-a40c-37112842ef49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -707,6 +710,18 @@
     </Image>
     <Image Include="Resource Files\Sprites\Mowers\mow2.png">
       <Filter>Resource Files\Sprites\Mowers</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png">
+      <Filter>Resource Files\Sprites\Hedgecutters</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png">
+      <Filter>Resource Files\Sprites\Hedgecutters</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
