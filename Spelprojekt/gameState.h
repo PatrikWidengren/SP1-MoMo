@@ -13,6 +13,7 @@
 
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
+#include "Managers/AnimeManager.h"
 #include "GameStates/Map1.h"
 #include <iostream>
 
@@ -21,7 +22,7 @@ class gameState
 public:
 	gameState(sf::RenderWindow &window);
 
-	void drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime);
 	void drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
@@ -33,7 +34,7 @@ public:
 	void drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
-	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime);
 	
 	bool checkStartState(int lowerState);
 	bool checkStartOptionState(int lowerState);

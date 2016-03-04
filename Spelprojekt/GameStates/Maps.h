@@ -3,6 +3,7 @@
 #include "../Static Objects/StaticObjects.h"
 #include "../Characters/Player.h"
 #include "../Characters/Character.h"
+#include "../Managers/AnimeManager.h"
 #include <vector>
 #include <map>
 
@@ -12,7 +13,7 @@ class Maps{
 public:
 	Maps();
 	virtual ~Maps();
-	void virtual render(sf::RenderWindow &window) = 0;
+	void virtual render(sf::RenderWindow &window, AnimeManager &anime) = 0;
 	void virtual spawnObjects() = 0;
 	void virtual getMapInfo() = 0;
 	virtual std::vector<StaticObjects*> getObjects() = 0;

@@ -88,11 +88,13 @@
     <ClCompile Include="GameStates\Menu\WinMenu.cpp" />
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
+    <ClCompile Include="Managers\AnimeManager.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Static Objects\Dandelion.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
+    <ClCompile Include="Static Objects\Fountain.cpp" />
     <ClCompile Include="Static Objects\Grass.cpp" />
     <ClCompile Include="Static Objects\Gravel.cpp" />
     <ClCompile Include="Static Objects\Hedge.cpp" />
@@ -126,10 +128,12 @@
     <ClInclude Include="GameStates\Menu\WinMenu.h" />
     <ClInclude Include="GameStates\RegionMap.h" />
     <ClInclude Include="GameStates\WorldMap.h" />
+    <ClInclude Include="Managers\AnimeManager.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />
     <ClInclude Include="Static Objects\Fence.h" />
+    <ClInclude Include="Static Objects\Fountain.h" />
     <ClInclude Include="Static Objects\Grass.h" />
     <ClInclude Include="Static Objects\Gravel.h" />
     <ClInclude Include="Static Objects\Hedge.h" />
@@ -252,6 +256,8 @@
     <Image Include="Resource Files\Menus\Wood_ConfirmBox.png" />
     <Image Include="Resource Files\Menus\Wood_ESC.png" />
     <Image Include="Resource Files\Menus\Wood_Options.png" />
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png" />
+    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png" />
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />
     <Image Include="Resource Files\Sprites\asfalt01.png" />
     <Image Include="Resource Files\Sprites\cat.png" />
@@ -283,6 +289,8 @@
     <Text Include="Maps\map1.txt" />
     <Text Include="Maps\map2.txt" />
     <Text Include="Maps\maptest3.txt" />
+    <Text Include="Maps\nymaptest.txt" />
+    <Text Include="Maps\nymaptest2.txt" />
     <Text Include="Maps\patrols\Patrols_patroltest.txt" />
     <Text Include="Maps\patrols\Patrols_testing.txt" />
     <Text Include="Maps\patroltest.txt" />

@@ -28,6 +28,7 @@ Map1::Map1(string savefile, Player *p, string patrolpath) {
 	//Player::initialize();
 	CharRand::initialize();
 	CharPatrol::initialize();
+	Fountain::initialize();
 }
 Map1::~Map1() {
 	Stone::finalize();
@@ -40,6 +41,7 @@ Map1::~Map1() {
 	Player::finalize();
 	CharRand::finalize();
 	CharPatrol::finalize();
+	Fountain::finalize();
 }
 
 void Map1::resetGrid(){
@@ -73,7 +75,7 @@ void Map1::resetGrid(){
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
 	ifstream file(mSavefile);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
 	array2d = new float*[width];
@@ -143,6 +145,7 @@ void Map1::spawnObjects() {
 	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heightOnTile));
 	mObjects[4]->setCut();
 	mObjects.push_back(new Gravel(0, 0, widthOnTile, heightOnTile));
+	mObjects.push_back(new Fountain(0, 0, widthOnTile, heightOnTile));
 
 	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heightOnTile)-200)); //Träd: plats 0
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 1));
@@ -294,15 +297,15 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window) {
+void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
-			if (mGrid[j][i] == 0.1f) {
+			/*if (mGrid[j][i] == 0.1f) {
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
-			}
-			else if (mGrid[j][i] == 1.1f) {
+			}*/
+			if (mGrid[j][i] == 1.1f) {
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
@@ -424,6 +427,10 @@ void Map1::render(sf::RenderWindow &window) {
 				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
+			else if (mGrid[j][i] == 10.0f) { //Fontän
+				mObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushGrassY / 2); //Sätter positionen enligt grid
+				window.draw(mObjects[6]->getDrawSprite());
+			}
 		}
 	}
 
@@ -482,26 +489,41 @@ void Map1::render(sf::RenderWindow &window) {
 				window.draw(mLongObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				//mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					//window.draw(mPlayer->getDrawSprite());
 					mPlayer->setX(i);
 					mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-				mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
-					window.draw(mPlayer->getDrawSprite());
+				anime.playTest();
+				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				window.draw(*anime.getSpriteSheet());
+				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
@@ -913,7 +935,7 @@ void Map1::deleteContent()
 
 void Map1::getMapInfo(){
 	ifstream file(mSavefile);
-	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion;
+	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 
 //Funktion för att returnera objekten
