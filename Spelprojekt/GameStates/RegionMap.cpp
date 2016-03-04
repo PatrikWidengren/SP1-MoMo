@@ -14,7 +14,7 @@ RegionMap::RegionMap(float width, float height)
 	mRegions[1].levelCount = 4;
 
 	mRegions[2].BackgroundName = "Resource Files/Backgrounds/Garden_02.png";
-	mRegions[2].levelCount = 7;
+	mRegions[2].levelCount = 8;
 
 	setFonts();
 	setTextures();
@@ -184,9 +184,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		reset = true;
 
 	}
-	std::cout << "levelcount: " << mRegions[mRegionState].levelCount << std::endl;
+
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		std::cout << "Checking " << i << std::endl;
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
 		}
@@ -334,6 +333,9 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow04);
 	window.draw(spriteHedgecutter);
 //	window.draw(spriteGrassMower);
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		window.draw(spriteLevels[i]);
+	}
 
 	/*
 
@@ -351,6 +353,9 @@ void RegionMap::setTextures()
 		if (!textBackgrounds[i].loadFromFile(mRegions[i].BackgroundName)) //try to load the texture. if its wrong, give error
 			textBackgrounds[i].loadFromFile("error.jpg");
 	}
+
+	if (!textLevels.loadFromFile("Resource Files/Menus/LevelPick.png"))
+		textureShop.loadFromFile("error.jpg");
 
 	if (!textureShop.loadFromFile("Resource Files/Menus/Shop_temp.png"))
 		textureShop.loadFromFile("error.jpg");
@@ -431,12 +436,22 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
+	if (mLevelRects!=0)
 	delete[] mLevelRects;
+
+	if (spriteLevels!=0)
+	delete[] spriteLevels;
+
 	mRegionState = state;
 	bg01.setTexture(textBackgrounds[mRegionState]);
+	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
 	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
+	}
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		spriteLevels[i].setPosition(0, i * 100);
+		spriteLevels[i].setTexture(textLevels);
 	}
 }
 

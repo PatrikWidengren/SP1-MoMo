@@ -399,6 +399,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartRegionState = false;
 				//Starta musik osv
 			}
+			mRegionMap01->setRegionState(1);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 2:
@@ -425,8 +426,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 8:
-		mRegionMap01->setRegionState(mRegionState);
-		drawRegionMap(window, mouse, music, sound);
 		break;
 	/*case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));

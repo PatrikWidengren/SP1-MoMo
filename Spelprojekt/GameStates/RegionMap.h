@@ -36,6 +36,9 @@ public:
 
 	sf::Sprite spriteShop;
 
+	sf::Sprite *spriteLevels;
+	sf::Texture textLevels;
+
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
 	//sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
