@@ -757,5 +757,11 @@
     <Text Include="Maps\nymaptest2.txt">
       <Filter>Maps</Filter>
     </Text>
+    <Text Include="Maps\map0101.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map0102.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

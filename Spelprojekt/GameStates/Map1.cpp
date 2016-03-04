@@ -503,6 +503,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.1f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				anime.playTest();
@@ -510,6 +513,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.2f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
 				anime.playTest();
@@ -517,11 +523,17 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.3f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
 				anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 				window.draw(*anime.getSpriteSheet());
+				mPlayer->setLast(2.4f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 			}
@@ -744,6 +756,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			cutDandelions++;
 			mPlayer->setLast(2.3f);
 		}
+
 		else {
 			mPlayer->setLast(mGrid[tempY][tempX]);
 		}

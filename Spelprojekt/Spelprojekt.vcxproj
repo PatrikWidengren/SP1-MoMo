@@ -286,6 +286,8 @@
     <Font Include="Resource Files\Fonts\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Maps\map0101.txt" />
+    <Text Include="Maps\map0102.txt" />
     <Text Include="Maps\map1.txt" />
     <Text Include="Maps\map2.txt" />
     <Text Include="Maps\maptest3.txt" />
