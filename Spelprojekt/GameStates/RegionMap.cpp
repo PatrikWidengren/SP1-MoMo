@@ -333,7 +333,7 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow03);
 	window.draw(spriteArrow04);
 	window.draw(spriteHedgecutter);
-	window.draw(spriteGrassMower);
+//	window.draw(spriteGrassMower);
 
 	/*
 
@@ -370,9 +370,9 @@ void RegionMap::setTextures()
 		textMowers[2].loadFromFile("error.jpg");
 
 
-	if (!textHedgecutters[0].loadFromFile("Resource Files/Sprites/HedgeCutters/Hedgecutt0.png"))
+	if (!textHedgecutters[0].loadFromFile("Resource Files/Sprites/Hedgecutters/hedgecutter0.png"))
 		textHedgecutters[0].loadFromFile("error.jpg");
-	if (!textHedgecutters[1].loadFromFile("Resource Files/Sprites/HedgeCutters/Hedgecutt1.png"))
+	if (!textHedgecutters[1].loadFromFile("Resource Files/Sprites/Hedgecutters/hedgecutter1.png"))
 		textHedgecutters[1].loadFromFile("error.jpg");
 
 	spriteGrassMower.setTexture(textMowers[0]);
@@ -484,47 +484,3 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 
 }
-
-//
-//void RegionMap::changeInternalState(int newState) {
-//	if (mInternalState != newState) {
-//		switch (mInternalState) {
-//		case 0:
-//			switch (newState) {
-//			case 1:
-//				spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			case 2:
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//		case 1:
-//			switch (newState) {
-//			case 0:
-//				spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			case 2:
-//				spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//
-//		case 2:
-//			switch (newState) {
-//			case 0:
-//				mInternalState = newState;
-//				break;
-//			case 1:
-//				spriteShop.move(0 * bg01.getScale().x, -300 * bg01.getScale().y);
-//				mInternalState = newState;
-//				break;
-//			}
-//			break;
-//
-//		}
-//	}
-//}
