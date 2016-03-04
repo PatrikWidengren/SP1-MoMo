@@ -380,7 +380,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
@@ -571,6 +571,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[c]->getDrawSprite());
 				}
+				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
@@ -585,6 +586,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[c]->getDrawSprite());
 				}
+				mNpcs[c]->setLast(2.4f);
 			}
 		}
 	}
@@ -787,7 +789,6 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			if (totalAmountOfHedges > 0) {
 				std::cout << fixed << setprecision(0) << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total. % cut: " << (cutHedges / totalAmountOfHedges) * 100 << "." << endl;
 			}
-			cout << mSkipLines << " skiplines" << endl;
 			//std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
@@ -851,6 +852,10 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		//tempPosY += 52;
 		//tempPosX += 64;
 		break;
+	case 5:
+		tempX += 0;
+		tempY += 0;
+		break;
 	case 2:
 		tempY++;
 		//tempPosY += 52;
@@ -870,8 +875,8 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		tempY--;
 		//tempPosY += -52;
 		//tempPosX += -64;
-			break;
-		}
+		break;
+	}
 
 	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f) {

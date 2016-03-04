@@ -763,5 +763,41 @@
     <Text Include="Maps\map0102.txt">
       <Filter>Maps</Filter>
     </Text>
+    <Text Include="Maps\map02a01.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map02a02.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map02a03.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map02a04.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map02a05.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a01.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a02.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map04a04.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map0103.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map0105.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map04a04.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map04a02.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

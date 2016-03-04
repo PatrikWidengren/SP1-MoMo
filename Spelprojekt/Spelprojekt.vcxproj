@@ -288,11 +288,23 @@
   <ItemGroup>
     <Text Include="Maps\map0101.txt" />
     <Text Include="Maps\map0102.txt" />
+    <Text Include="Maps\map0103.txt" />
+    <Text Include="Maps\map0105.txt" />
+    <Text Include="Maps\map02a01.txt" />
+    <Text Include="Maps\map02a02.txt" />
+    <Text Include="Maps\map02a03.txt" />
+    <Text Include="Maps\map02a04.txt" />
+    <Text Include="Maps\map02a05.txt" />
+    <Text Include="Maps\map03a01.txt" />
+    <Text Include="Maps\map03a02.txt" />
+    <Text Include="Maps\map04a04.txt" />
     <Text Include="Maps\map1.txt" />
     <Text Include="Maps\map2.txt" />
     <Text Include="Maps\maptest3.txt" />
     <Text Include="Maps\nymaptest.txt" />
     <Text Include="Maps\nymaptest2.txt" />
+    <Text Include="Maps\patrols\patrols_map04a02.txt" />
+    <Text Include="Maps\patrols\patrols_map04a04.txt" />
     <Text Include="Maps\patrols\Patrols_patroltest.txt" />
     <Text Include="Maps\patrols\Patrols_testing.txt" />
     <Text Include="Maps\patroltest.txt" />

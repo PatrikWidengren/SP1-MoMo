@@ -38,18 +38,18 @@ gameState::gameState(sf::RenderWindow &window)
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("Maps/map0101.txt", mPlayer, "Maps/patrols/Patrols_testing.txt");
+	mMap01 = new Map1("Maps/map04a02.txt", mPlayer, "Maps/patrols/patrols_map04a02.txt");
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
-	mObjects = mMap01->getObjects();
+	//mObjects = mMap01->getObjects();
 	//mPlayer = mMap01->getPlayer();
-	mNpcs = mMap01->getNpcs();
-	mLongObjects = mMap01->getLongObjects();
+	//mNpcs = mMap01->getNpcs();
+	//mLongObjects = mMap01->getLongObjects();
 	// Skriver ut position för alla object
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
-	}
+	//for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+	//	std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
+	//}
 }
 
 gameState::~gameState()
@@ -519,9 +519,9 @@ void gameState::resetMap(){
 	//mNpcs = mMap01->getNpcs();
 	//mLongObjects = mMap01->getLongObjects();
 	// Skriver ut position för alla object
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+	/*for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
-	}
+	}*/
 }
 
 bool gameState::checkStartState(int lowerState){
