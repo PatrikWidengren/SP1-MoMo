@@ -16,10 +16,6 @@ public:
 	~RegionMap();
 	bool reset = false;
 
-	// Load a backgrounds to show for the menu
-	sf::Texture highlightTexture01; //the highlightTexture for displaying.
-	sf::Texture texture01; //hold the texture
-
 	static const int mMaxRegions = 3;
 	
 	sf::Texture textBackgrounds[mMaxRegions];
@@ -30,7 +26,7 @@ public:
 	sf::Texture textMowers[2];
 	sf::Texture textHedgecutters[1];
 
-	sf::Sprite spriteMower;
+	sf::Sprite spriteGrassMower;
 	sf::Sprite spriteHedgecutter;
 
 	sf::Sprite spriteArrow01;
@@ -41,7 +37,7 @@ public:
 	sf::Sprite spriteShop;
 
 	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	//sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
 	virtual void updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse);
@@ -58,6 +54,7 @@ protected:
 
 private:
 	int selectedMow;
+	int selectedHedgeCutter;
 	sf::IntRect *mRects[mNumberOfSelections];
 	sf::IntRect *mLevelRects;
 	sf::Vector2i mMouse;

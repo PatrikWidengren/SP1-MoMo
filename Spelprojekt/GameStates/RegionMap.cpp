@@ -6,6 +6,7 @@ RegionMap::RegionMap(float width, float height)
 	mTimer = 0;
 	mState = 7;
 	selectedMow = 0;
+	selectedHedgeCutter = 0;
 	mInternalState = 0;
 	mRegionState = 0;
 
@@ -20,13 +21,15 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteShop.setPosition(0, 1080);
 	spriteArrow01.setPosition(120, 850);
-	spriteMower.setPosition(140, 850);
 	spriteArrow01.setScale(-1, 1);
 	spriteArrow02.setPosition(285, 850);
 	spriteArrow03.setPosition(610, 850);
 	spriteArrow03.setScale(-1, 1);
 	spriteArrow04.setPosition(775, 850);
 
+	spriteHedgecutter.setPosition(630, 850);
+	
+	spriteGrassMower.setPosition(140, 850);
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
 	mRects[1] = new sf::IntRect(sf::Vector2i(925, 300), sf::Vector2i(395, 200));
@@ -67,8 +70,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow03.setPosition(610 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		spriteArrow04.setPosition(775 * bg01.getScale().x, 1120 * bg01.getScale().y);
 
-		spriteMower.setPosition(140 * bg01.getScale().x, 1120 * bg01.getScale().y);
-
+		spriteGrassMower.setPosition(140 * bg01.getScale().x, 1120 * bg01.getScale().y);
+		spriteHedgecutter.setPosition(630 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
@@ -88,20 +91,22 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow04.move
 		*/
 
-		if (spriteShop.getPosition().y < window.getSize().y - 5)
+		if (spriteShop.getPosition().y < window.getSize().y)
 		{
-			spriteShop.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
-			spriteArrow01.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
-			spriteArrow02.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
-			spriteArrow03.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
-			spriteArrow04.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
+			spriteShop.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow01.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow02.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow03.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteArrow04.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 
-			spriteMower.move(0 * bg01.getScale().x, 5 * bg01.getScale().y);
+			spriteGrassMower.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+			spriteHedgecutter.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
+
 
 			/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-			mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-			mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-			mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+			mRects[4] = new sf::IntRect(sf::Vector2i(287 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+			mRects[7] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+			mRects[6] = new sf::IntRect(sf::Vector2i(777 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 */
 
 		}
@@ -117,13 +122,14 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 		if (spriteShop.getPosition().y >= window.getSize().y - spriteShop.getGlobalBounds().height)
 		{
-			spriteShop.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
-			spriteArrow01.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
-			spriteArrow02.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
-			spriteArrow03.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
-			spriteArrow04.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
+			spriteShop.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
+			spriteArrow01.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
+			spriteArrow02.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
+			spriteArrow03.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
+			spriteArrow04.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
 
-			spriteMower.move(0 * bg01.getScale().x, -5 * bg01.getScale().y);
+			spriteGrassMower.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
+			spriteHedgecutter.move(0 * bg01.getScale().x, -4 * bg01.getScale().y);
 
 
 
@@ -198,7 +204,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			{
 				selectedMow--;
 			}
-			spriteMower.setTexture(textMowers[selectedMow]);
+			spriteGrassMower.setTexture(textMowers[selectedMow]);
 
 		}
 		else
@@ -216,7 +222,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			{
 				selectedMow++;
 			}
-			spriteMower.setTexture(textMowers[selectedMow]);
+			spriteGrassMower.setTexture(textMowers[selectedMow]);
 		}
 		else
 			spriteArrow02.setTexture(textArrow01);
@@ -230,11 +236,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow03.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
-			//if (selectedMow >= 1)
-			//{
-			//	selectedMow--;
-			//}
-			//spriteMower.setTexture(textMowers[selectedMow]);
+			if (selectedHedgeCutter >= 1)
+			{
+				selectedHedgeCutter--;
+			}
+			spriteHedgecutter.setTexture(textHedgecutters[selectedHedgeCutter]);
 		}
 		else
 			spriteArrow03.setTexture(textArrow01);
@@ -249,6 +255,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow04.setTexture(textHighlightArrow01);
 			mClick = false;
 			reset = true;
+			if (selectedHedgeCutter < 1)
+			{
+				selectedHedgeCutter++;
+			}
+			spriteHedgecutter.setTexture(textHedgecutters[selectedHedgeCutter]);
 
 		}
 		else
@@ -321,7 +332,8 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow02);
 	window.draw(spriteArrow03);
 	window.draw(spriteArrow04);
-	window.draw(spriteMower);
+	window.draw(spriteHedgecutter);
+	window.draw(spriteGrassMower);
 
 	/*
 
@@ -334,13 +346,6 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 
 void RegionMap::setTextures()
 {
-
-	/*if (!texture01.loadFromFile("Resource Files/Backgrounds/Garden_02.png")) //try to load the texture. if its wrong, give error
-		texture01.loadFromFile("error.jpg");*/
-
-		/*if (!textBackgrounds[mRegionState].loadFromFile(mRegions[mRegionState].BackgroundName)) //try to load the texture. if its wrong, give error
-			textBackgrounds[mRegionState].loadFromFile("error.jpg");*/
-
 
 	for (int i = 0; i < mMaxRegions; i++) {
 		if (!textBackgrounds[i].loadFromFile(mRegions[i].BackgroundName)) //try to load the texture. if its wrong, give error
@@ -364,13 +369,16 @@ void RegionMap::setTextures()
 	if (!textMowers[2].loadFromFile("Resource Files/Sprites/Mowers/mow2.png"))
 		textMowers[2].loadFromFile("error.jpg");
 
-	spriteMower.setTexture(textMowers[0]);
+
+	if (!textHedgecutters[0].loadFromFile("Resource Files/Sprites/HedgeCutters/Hedgecutt0.png"))
+		textHedgecutters[0].loadFromFile("error.jpg");
+	if (!textHedgecutters[1].loadFromFile("Resource Files/Sprites/HedgeCutters/Hedgecutt1.png"))
+		textHedgecutters[1].loadFromFile("error.jpg");
+
+	spriteGrassMower.setTexture(textMowers[0]);
+	spriteHedgecutter.setTexture(textHedgecutters[0]);
 
 #pragma endregion
-
-	
-	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	//	highlightTexture01.loadFromFile("error.jpg");
 
 	spriteArrow01.setTexture(textArrow01);
 	spriteArrow02.setTexture(textArrow01);
@@ -378,9 +386,7 @@ void RegionMap::setTextures()
 	spriteArrow04.setTexture(textArrow01);
 	
 	bg01.setTexture(textBackgrounds[mRegionState]);
-	//bg01.setTexture(texture01);
 	spriteShop.setTexture(textureShop);
-	//highlightSprite01.setTexture(highlightTexture01);
 
 
 }
@@ -446,7 +452,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	*/
 
 	spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
-	spriteMower.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteGrassMower.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow01.setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow02.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow03.setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
@@ -462,7 +468,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	
 	if (mInternalState == 1) {
 		spriteShop.setPosition(0 * bg01.getScale().x, 780 * bg01.getScale().y);
-		spriteMower.setPosition(140 * bg01.getScale().x, 550 * bg01.getScale().y);
+		spriteGrassMower.setPosition(140 * bg01.getScale().x, 550 * bg01.getScale().y);
 		spriteArrow01.setPosition(120 * bg01.getScale().x, 550 * bg01.getScale().y);
 		spriteArrow02.setPosition(285 * bg01.getScale().x, 550 * bg01.getScale().y);
 		spriteArrow03.setPosition(610 * bg01.getScale().x, 550 * bg01.getScale().y);
@@ -470,7 +476,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 	else {
 		spriteShop.setPosition(0 * bg01.getScale().x, 1080 * bg01.getScale().y);
-		spriteMower.setPosition(140 * bg01.getScale().x, 850 * bg01.getScale().y);
+		spriteGrassMower.setPosition(140 * bg01.getScale().x, 850 * bg01.getScale().y);
 		spriteArrow01.setPosition(120 * bg01.getScale().x, 850 * bg01.getScale().y);
 		spriteArrow02.setPosition(285 * bg01.getScale().x, 850 * bg01.getScale().y);
 		spriteArrow03.setPosition(610 * bg01.getScale().x, 850 * bg01.getScale().y);

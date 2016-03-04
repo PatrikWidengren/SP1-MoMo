@@ -91,6 +91,9 @@
     <Filter Include="Resource Files\Sprites\Mowers">
       <UniqueIdentifier>{189ceca3-8af9-4f39-85d2-1dde3db07d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sprites\Hedgecutters">
+      <UniqueIdentifier>{28998351-d382-4916-8c16-5b9fe559ebb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -692,6 +695,12 @@
     </Image>
     <Image Include="Resource Files\Sprites\Mowers\mow2.png">
       <Filter>Resource Files\Sprites\Mowers</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png">
+      <Filter>Resource Files\Sprites\Hedgecutters</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png">
+      <Filter>Resource Files\Sprites\Hedgecutters</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
