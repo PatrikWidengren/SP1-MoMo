@@ -6,7 +6,7 @@ using namespace std;
 static const string nameArray[3] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Gardenice.ogg"};
 
 MusicManager::MusicManager(int id) {
-	mVolume = 50;
+	mVolume = 25;
 	mMusic.openFromFile(nameArray[id]);
 	mMusic.setVolume(mVolume);
 	mMusic.setLoop(true);
