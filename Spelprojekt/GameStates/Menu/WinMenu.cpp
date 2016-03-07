@@ -62,7 +62,7 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mReturn = false;
 		if (selectedIndex == 0) {
 			reset = true;
-			mState = 3;
+			mState = 7;
 		}
 		if (selectedIndex == 1) {
 			window.close();
