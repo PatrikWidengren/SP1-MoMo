@@ -337,7 +337,7 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow03);
 	window.draw(spriteArrow04);
 	window.draw(spriteHedgecutter);
-//	window.draw(spriteGrassMower);
+	window.draw(spriteGrassMower);
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		window.draw(spriteLevels[i]);
 	}
