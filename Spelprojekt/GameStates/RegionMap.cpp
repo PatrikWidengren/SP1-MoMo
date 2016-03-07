@@ -189,6 +189,10 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+				mLevelToLoad = i;
+				mState = 8;
+			}
 		}
 	}
 
@@ -458,10 +462,15 @@ void RegionMap::setRegionState(int state) {
 
 std::string RegionMap::loadLevel() {
 	std::stringstream ss;
-	ss << "map"<<mRegionState<<"_"<<mLevelToLoad<<".txt";
+	ss << "map" << "0" << mRegionState << "a" << "0" << mLevelToLoad << ".txt";
 	std::string s;
 	ss >> s;
-	return s;
+	if (mRegionState == 1) {
+		return "map04a04.txt";
+	}
+	else {
+		return "map02a01.txt";
+	}
 }
 
 void RegionMap::scale(sf::RenderWindow &window) {

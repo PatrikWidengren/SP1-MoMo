@@ -106,7 +106,7 @@ float** Map1::createGrid(int width, int height) {
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas, samma med hedge & dandelions
 //skipLines räknar varje värde som sparas från patrullens .txt fil, för att inte ladda samma värden för flera patruller
 int** Map1::getPatrolPath(int &skipLines) {
-	string patrolFilePath = "Maps/patrols/Patrols_" + mSavefile;
+	string patrolFilePath = "Maps/patrols/patrols_" + mSavefile;
 	ifstream file(patrolFilePath);
 	int tempValue;
 	int patrolPathWidth;
@@ -388,7 +388,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
@@ -511,6 +511,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.1f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				anime.playTest();
@@ -518,6 +521,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.2f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
 				anime.playTest();
@@ -525,11 +531,17 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(*anime.getSpriteSheet());
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
+				mPlayer->setLast(2.3f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
 				anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 				window.draw(*anime.getSpriteSheet());
+				mPlayer->setLast(2.4f);
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 			}
@@ -567,6 +579,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[c]->getDrawSprite());
 				}
+				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
@@ -581,6 +594,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[c]->getDrawSprite());
 				}
+				mNpcs[c]->setLast(2.4f);
 			}
 		}
 	}
@@ -752,6 +766,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			cutDandelions++;
 			mPlayer->setLast(2.3f);
 		}
+
 		else {
 			mPlayer->setLast(mGrid[tempY][tempX]);
 		}
@@ -782,7 +797,6 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			if (totalAmountOfHedges > 0) {
 				std::cout << fixed << setprecision(0) << "Meep has mowed: " << cutHedges << " hedges out of: " << totalAmountOfHedges << " total. % cut: " << (cutHedges / totalAmountOfHedges) * 100 << "." << endl;
 			}
-			cout << mSkipLines << " skiplines" << endl;
 			//std::cout << "Meep moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 		}
@@ -846,6 +860,10 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		//tempPosY += 52;
 		//tempPosX += 64;
 		break;
+	case 5:
+		tempX += 0;
+		tempY += 0;
+		break;
 	case 2:
 		tempY++;
 		//tempPosY += 52;
@@ -865,8 +883,8 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		tempY--;
 		//tempPosY += -52;
 		//tempPosX += -64;
-			break;
-		}
+		break;
+	}
 
 	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f) {

@@ -79,7 +79,7 @@ intVector CharPatrol::move(){
 		}
 		for (int i = 0; i < mMoveCount; i++){
 			//add all the steps. Cancel if a move has val 0
-			if (path[mTurnNo][i] <= 0){
+			if (path[mTurnNo][i] <= 0 || path[mTurnNo][0] == 5){
 				break;
 			}
 			else {
