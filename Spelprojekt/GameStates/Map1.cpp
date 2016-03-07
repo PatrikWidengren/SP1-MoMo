@@ -372,7 +372,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			else if (mGrid[j][i] == 3.0f) { //Sten
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
-				mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 15); //Sätter positionen enligt grid
 				window.draw(mObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 4.0f) { //Träd
