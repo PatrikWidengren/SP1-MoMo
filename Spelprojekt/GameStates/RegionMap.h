@@ -17,7 +17,7 @@ public:
 	~RegionMap();
 	bool reset = false;
 
-	static const int mMaxRegions = 3;
+	static const int mMaxRegions = 6;
 	
 	sf::Texture textBackgrounds[mMaxRegions];
 
@@ -49,6 +49,8 @@ public:
 	virtual void moveUp();
 	virtual void moveDown();
 
+	int getMower();
+	int getHedgeCutter();
 	void setRegionState(int state);
 	int checkRegionState();
 	void scale(sf::RenderWindow &window);

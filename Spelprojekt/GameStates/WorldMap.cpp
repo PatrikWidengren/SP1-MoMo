@@ -10,7 +10,10 @@ WorldMap::WorldMap(float width, float height)
 	
 	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
 	mRects[1] = new sf::IntRect(sf::Vector2i(1170, 290), sf::Vector2i(75, 25));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
+	mRects[2] = new sf::IntRect(sf::Vector2i(355, 405), sf::Vector2i(145, 25));
+	mRects[3] = new sf::IntRect(sf::Vector2i(590, 730), sf::Vector2i(145, 30));
+	mRects[4] = new sf::IntRect(sf::Vector2i(990, 545), sf::Vector2i(75, 25));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
 	//Test
 }
 
@@ -51,8 +54,6 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
-	else
-		//set sprite to regular texture
 
 	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
@@ -67,10 +68,50 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
-	else
-		//set sprite to regular texture
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		//Set sprite to highlight texture
+		std::cout << "It's in!" << std::endl;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			//mState = 8;
+			mRegion = 3;
+			std::cout << "mRegion is now " << mRegion << std::endl;
+			reset = true;
+		}
+	}
+
+	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		//Set sprite to highlight texture
+		std::cout << "It's in!" << std::endl;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			//mState = 8;
+			mRegion = 4;
+			std::cout << "mRegion is now " << mRegion << std::endl;
+			reset = true;
+		}
+	}
+			
+	if (mRects[4]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		//Set sprite to highlight texture
+		std::cout << "It's in!" << std::endl;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			//mState = 8;
+			mRegion = 5;
+			std::cout << "mRegion is now " << mRegion << std::endl;
+			reset = true;
+		}
+	}
+
+	if (mRects[5]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		//Set sprite to highlight texture
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
@@ -80,13 +121,13 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			reset = true;
 		}
 	}
-	else
-		//set sprite to regular texture
 
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
 	}
+*/
 	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		std::cout << "Inside" << " ";
@@ -95,7 +136,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 		std::cout << "dasda";*/
 
-
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
@@ -112,7 +153,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	{
 		mDown = false;
 	}
-
+	*/
 /*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
@@ -123,7 +164,7 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mUp = false;
 	}*/
 
-
+/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
@@ -139,11 +180,11 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			//mState = 8;
 			mRegion = 2;
 		}
-		if (selectedIndex == 2) {
+		if (selectedIndex == 5) {
 			window.close();
 		}
 	}
-
+*/
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
 		mClick = true;
 	}
@@ -220,7 +261,10 @@ void WorldMap::scale(sf::RenderWindow &window) {
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01.getScale().x, 335 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(1170 * bg01.getScale().x, 290 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(355 * bg01.getScale().x, 405 * bg01.getScale().y), sf::Vector2i(145 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[3] = new sf::IntRect(sf::Vector2i(590 * bg01.getScale().x, 730 * bg01.getScale().y), sf::Vector2i(145 * bg01.getScale().x, 30 * bg01.getScale().y));
+	mRects[4] = new sf::IntRect(sf::Vector2i(990 * bg01.getScale().x, 545 * bg01.getScale().y), sf::Vector2i(75 * bg01.getScale().x, 25 * bg01.getScale().y));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1635 * bg01.getScale().x, 780 * bg01.getScale().y), sf::Vector2i(95 * bg01.getScale().x, 25 * bg01.getScale().y));
 
 }
 

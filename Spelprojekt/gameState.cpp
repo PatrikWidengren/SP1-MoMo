@@ -30,15 +30,15 @@ gameState::gameState(sf::RenderWindow &window)
 	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
 
 
-	mLawnMowers.push_back(new LawnMower);
-	mLawnMowers.push_back(new GoLawnMower);
+	mLawnMowers.push_back(new LawnMower(2,1,1,1,20));
+	mLawnMowers.push_back(new LawnMower(3,1,1,2,20));
+	mLawnMowers.push_back(new LawnMower (4,2,2,2,30));
+	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
-	mHedgeTools.push_back(new HedgeCutter(2, 1));
-	mHedgeTools.push_back(new HedgeCutter(4, 2));
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map02b01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("nymaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -155,7 +155,7 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 	mState = mWorldMap01->checkState();
 	mStartRegionState = checkStartRegionState(mWorldMap01->getRegion());
 	mRegionState = mWorldMap01->getRegion();
-	std::cout << mRegionState << " from world map" << std::endl;
+	//std::cout << mRegionState << " from world map" << std::endl;
 
 }
 
@@ -168,7 +168,7 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	mState = mRegionMap01->checkState();
 	mStartRegionState = checkStartRegionState(mRegionMap01->checkRegionState());
 	mRegionState = mRegionMap01->checkRegionState();
-	std::cout << mRegionState << " from region map" << std::endl;
+	//std::cout << mRegionState << " from region map" << std::endl;
 }
 
 
@@ -287,7 +287,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 {
 	switch (mState) //switch that hold the states of the game
 	{
-	case 1: { //Game state 1. in game. 
+	case 1: 
+	{ //Game state 1. in game. 
+		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+
 		if (mStartState) {
 			music.setMusic(1);
 			//mMap01->scale(window);
@@ -381,6 +384,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 	}
 	case 7: //State 7. World Map
+		mPlayer->setMower(mLawnMowers.at(mRegionMap01->getMower()));
+		mPlayer->setHedgeTool(mHedgeTools.at(mRegionMap01->getHedgeCutter()));
+
 		switch (mRegionState) {
 		case 0:
 			if (mStartRegionState || mStartState) {
@@ -406,7 +412,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 2:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(0);
+				music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -415,6 +421,42 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
+		case 3:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(3);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
+		case 4:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(4);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
+		case 5:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(5);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
 			//testinggg
 			/*		case 1:
 			mRegionMap01->setRegionState(mRegionState);
@@ -428,6 +470,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 8:
+		mRegionState = 0;
 		loadMap();
 		mState = 1;
 		break;

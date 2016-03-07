@@ -12,10 +12,19 @@ RegionMap::RegionMap(float width, float height)
 	mRegionState = 0;
 
 	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Garden_01.png";
-	mRegions[1].levelCount = 4;
+	mRegions[1].levelCount = 5;
 
 	mRegions[2].BackgroundName = "Resource Files/Backgrounds/Garden_02.png";
-	mRegions[2].levelCount = 8;
+	mRegions[2].levelCount = 5;
+
+	mRegions[3].BackgroundName = "Resource Files/Backgrounds/Garden_03.png";
+	mRegions[3].levelCount = 5;
+
+	mRegions[4].BackgroundName = "Resource Files/Backgrounds/Garden_04.png";
+	mRegions[4].levelCount = 5;
+
+	mRegions[5].BackgroundName = "Resource Files/Backgrounds/Garden_05.png";
+	mRegions[5].levelCount = 8;
 
 	setFonts();
 	setTextures();
@@ -73,24 +82,15 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 		spriteGrassMower.setPosition(140 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		spriteHedgecutter.setPosition(630 * bg01.getScale().x, 1120 * bg01.getScale().y);
-		/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+
 		break;
 
 	case 1: //Level select visible
 		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
-
-		//spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-
-		/*
-		spriteArrow01.move
-		spriteArrow02.move
-		spriteArrow03.move
-		spriteArrow04.move
-		*/
 
 		if (spriteShop.getPosition().y < window.getSize().y)
 		{
@@ -104,11 +104,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteHedgecutter.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 
 
-			/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+			mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[4] = new sf::IntRect(sf::Vector2i(287 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 			mRects[7] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[6] = new sf::IntRect(sf::Vector2i(777 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+
 
 		}
 
@@ -135,11 +135,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 		}
-		/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+		mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+
 
 		break;
 	}
@@ -190,7 +190,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-				mLevelToLoad = i;
+				mLevelToLoad = i+1;
 				mState = 8;
 			}
 		}
@@ -404,10 +404,10 @@ void RegionMap::setTextures()
 void RegionMap::setFonts()
 
 {
-	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
+	/*if (!font.loadFromFile("Resource Files/Fonts/arial.ttf"))
 	{
 		//handle error
-	}
+	}*/
 }
 
 void RegionMap::moveUp()
@@ -465,12 +465,10 @@ std::string RegionMap::loadLevel() {
 	ss << "map" << "0" << mRegionState << "a" << "0" << mLevelToLoad << ".txt";
 	std::string s;
 	ss >> s;
-	if (mRegionState == 1) {
-		return "map04a04.txt";
-	}
-	else {
-		return "map02a01.txt";
-	}
+
+	std::cout << s << std::endl;
+
+	return s;
 }
 
 void RegionMap::scale(sf::RenderWindow &window) {
@@ -516,4 +514,14 @@ void RegionMap::scale(sf::RenderWindow &window) {
 		spriteArrow04.setPosition(775 * bg01.getScale().x, 850 * bg01.getScale().y);
 	}
 
+}
+
+int RegionMap::getMower()
+{
+	return selectedMow;
+}
+
+int RegionMap::getHedgeCutter()
+{
+	return selectedHedgeCutter;
 }

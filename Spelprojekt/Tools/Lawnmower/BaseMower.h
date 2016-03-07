@@ -2,6 +2,7 @@
 #define INCLUDED_ABS_MOWER
 #include <vector>
 #include <string>
+#include <sstream>
 
 typedef std::vector<int> intVector;
 struct mowStats{
