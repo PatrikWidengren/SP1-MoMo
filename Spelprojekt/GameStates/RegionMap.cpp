@@ -508,3 +508,13 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 
 }
+
+int RegionMap::getMower()
+{
+	return selectedMow;
+}
+
+int RegionMap::getHedgeCutter()
+{
+	return selectedHedgeCutter;
+}

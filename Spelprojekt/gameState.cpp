@@ -30,11 +30,11 @@ gameState::gameState(sf::RenderWindow &window)
 	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
 
 
-	mLawnMowers.push_back(new LawnMower);
-	mLawnMowers.push_back(new GoLawnMower);
+	mLawnMowers.push_back(new LawnMower(2,1,1,1,20));
+	mLawnMowers.push_back(new LawnMower(3,1,1,2,20));
+	mLawnMowers.push_back(new LawnMower (4,2,2,2,30));
+	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
-	mHedgeTools.push_back(new HedgeCutter(2, 1));
-	mHedgeTools.push_back(new HedgeCutter(4, 2));
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
@@ -155,7 +155,7 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 	mState = mWorldMap01->checkState();
 	mStartRegionState = checkStartRegionState(mWorldMap01->getRegion());
 	mRegionState = mWorldMap01->getRegion();
-	std::cout << mRegionState << " from world map" << std::endl;
+	//std::cout << mRegionState << " from world map" << std::endl;
 
 }
 
@@ -168,7 +168,7 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	mState = mRegionMap01->checkState();
 	mStartRegionState = checkStartRegionState(mRegionMap01->checkRegionState());
 	mRegionState = mRegionMap01->checkRegionState();
-	std::cout << mRegionState << " from region map" << std::endl;
+	//std::cout << mRegionState << " from region map" << std::endl;
 }
 
 
@@ -287,7 +287,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 {
 	switch (mState) //switch that hold the states of the game
 	{
-	case 1: { //Game state 1. in game. 
+	case 1: 
+	{ //Game state 1. in game. 
+		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+
 		if (mStartState) {
 			music.setMusic(1);
 			//mMap01->scale(window);
@@ -381,6 +384,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 	}
 	case 7: //State 7. World Map
+		mPlayer->setMower(mLawnMowers.at(mRegionMap01->getMower()));
+		mPlayer->setHedgeTool(mHedgeTools.at(mRegionMap01->getHedgeCutter()));
+
 		switch (mRegionState) {
 		case 0:
 			if (mStartRegionState || mStartState) {
