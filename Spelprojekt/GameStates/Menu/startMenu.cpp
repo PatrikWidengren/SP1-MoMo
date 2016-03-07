@@ -14,23 +14,6 @@ startMenu::startMenu(float width, float height)
 	spriteCredits.setPosition(689, 875);
 	spriteExit.setPosition(1770, 45);
 
-	/*
-	menu[0].setFont(font);
-	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("New Game");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
-
-
-	menu[1].setFont(font);
-	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Options");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
-
-	menu[2].setFont(font);
-	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Exit to Desktop");
-	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
-	*/
 	selectedIndex = 0;
 
 	mRects[3] = new sf::IntRect(sf::Vector2i(640, 510), sf::Vector2i(540, 100));
@@ -54,23 +37,14 @@ startMenu::~startMenu()
 
 void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 {
-	//std::cout << window.getSize().x << " " << window.getSize().y << " " << mEvent.size.width << " " << mEvent.size.height << std::endl;
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
-
-	std::cout << mMouse.x << " "<< mState << " " << mMouse.y << std::endl;
-	//std::cout << highlightSprite01.getPosition().x << ": StartMenu :" << highlightSprite01.getPosition().y << std::endl;
-
-	/*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
-		mClick = true;
-	}*/
 
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteNewgame.setTexture(textHighlightNewgame);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
-			std::cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
 			mClick = false;
 			mState = 7;
 		}
@@ -108,7 +82,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			//mState = 1; Continue
+			mState = 1;
 		}
 	}
 	else
@@ -127,28 +101,11 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteCredits.setTexture(textCredits);
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
-	{
-		mReturn = true;
-	}
-	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y))) {
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
-	{
-		mDown = true;
-		startMenu::moveDown();
-
-	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
 		mDown = false;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
-	{
-		mUp = true;
-		startMenu::moveUp();
-	}
+
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{
 		mUp = false;
@@ -156,20 +113,6 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && !mReturn)
 	{
 		mReturn = true;
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && mReturn)
-	{
-		mReturn = false;
-		if (selectedIndex == 0) {
-			reset = true;
-			mState = 1;
-		}
-		if (selectedIndex == 1) {
-			mState = 4;
-		}
-		if (selectedIndex == 2) {
-			window.close();
-		}
 	}
 
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
@@ -187,13 +130,6 @@ void startMenu::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteCredits);
 	window.draw(spriteExit);
 
-
-	/*
-	for (int i = 0; i < mNumberOfSelections; i++)
-	{
-		window.draw(menu[i]);
-	}
-	*/
 }
 
 void startMenu::setTextures()

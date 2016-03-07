@@ -29,6 +29,8 @@ RegionMap::RegionMap(float width, float height)
 	setFonts();
 	setTextures();
 
+
+
 	spriteShop.setPosition(0, 1080);
 	spriteArrow01.setPosition(120, 850);
 	spriteArrow01.setScale(-1, 1);
@@ -109,9 +111,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mRects[7] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[6] = new sf::IntRect(sf::Vector2i(777 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 
-
 		}
-
 
 
 		//spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
@@ -441,23 +441,25 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
-	if (mLevelRects!=0)
-	delete[] mLevelRects;
+	if (mLevelRects != 0)
+		delete[] mLevelRects;
 
-	if (spriteLevels!=0)
-	delete[] spriteLevels;
+	if (spriteLevels != 0)
+		delete[] spriteLevels;
 
 	mRegionState = state;
 	bg01.setTexture(textBackgrounds[mRegionState]);
 	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
 	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
-	}
-	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		spriteLevels[i].setPosition(0, i * 100);
 		spriteLevels[i].setTexture(textLevels);
 	}
+
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
+	}
+
 }
 
 std::string RegionMap::loadLevel() {

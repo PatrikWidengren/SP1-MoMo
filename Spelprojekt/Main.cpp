@@ -55,7 +55,6 @@ int main(){
 		mouse = sf::Mouse::getPosition(window);
 		window.clear();
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
-		//cout << theGame.mState << "     " <<  theGame.mOptionMenu01->checkOptionState() << endl;
 		window.display();
 	}
 	return 0;
