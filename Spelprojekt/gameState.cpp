@@ -38,7 +38,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map02b01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("nymaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -406,7 +406,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 2:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(0);
+				music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -415,6 +415,42 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
+		case 3:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(3);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
+		case 4:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(4);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
+		case 5:
+			if (mStartRegionState || mStartState) {
+				music.setMusic(1);
+				mRegionMap01->scale(window);
+				mStartState = false;
+				mStartRegionState = false;
+				//Starta musik osv
+			}
+			mRegionMap01->setRegionState(5);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+
 			//testinggg
 			/*		case 1:
 			mRegionMap01->setRegionState(mRegionState);
@@ -428,6 +464,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 
 	case 8:
+		mRegionState = 0;
 		loadMap();
 		mState = 1;
 		break;

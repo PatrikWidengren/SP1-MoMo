@@ -28,7 +28,7 @@ public:
 	virtual void moveDown();
 	virtual void scale(sf::RenderWindow &window);
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 6;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];

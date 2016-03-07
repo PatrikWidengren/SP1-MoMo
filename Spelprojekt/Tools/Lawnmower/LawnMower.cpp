@@ -128,15 +128,11 @@ int mFall;
 int mDurability;
 bool mFunctioning=true;*/
 std::string LawnMower::getStats(){
-	std::string s, nextLine;
-	s = "Minimum momentum: " + mStats.mMinMom;
-	nextLine = "\nMaximum momentum" + mStats.mMaxMom;
-	s += nextLine;
-	nextLine = "\nRise: " + mStats.mRise;
-	s += nextLine;
-	nextLine = "\nFall: " + mStats.mFall;
-	s += nextLine;
-	return nextLine;
+	std::stringstream ss;
+	ss << "Minimum momentum: " << mStats.mMinMom << "\nMaximum momentum" << mStats.mMaxMom << "\nRise: " << mStats.mRise << "\nFall: " << mStats.mFall;
+	std::string s;
+	ss >> s;
+	return s;
 }
 
 void LawnMower::resetStats() {
