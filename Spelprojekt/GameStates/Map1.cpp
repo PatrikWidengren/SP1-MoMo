@@ -44,10 +44,10 @@ Map1::~Map1() {
 	Fountain::finalize();
 
 	mNpcs.clear();
-	while (!mNpcVector.empty()) {
+	/*while (!mNpcVector.empty()) {
 		delete mNpcVector[0];
 		mNpcVector.erase(mNpcVector.begin());
-	}
+	}*/
 }
 
 void Map1::resetGrid(){
@@ -85,11 +85,23 @@ float** Map1::createGrid(int width, int height) {
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
-	array2d = new float*[width];
-	for (int i = 0; i < width; i++) {
-		array2d[i] = new float[height];
-		for (int j = 0; j < height; j++) {
-			array2d[i][j] = 0;
+	if (width > height) {
+		array2d = new float*[width];
+		for (int i = 0; i < width; i++) {
+			array2d[i] = new float[height];
+			for (int j = 0; j < height; j++) {
+				array2d[i][j] = 0;
+			}
+		}
+	}
+	//Skapar grid på annat sätt om height är större än width
+	else {
+		array2d = new float*[height];
+		for (int i = 0; i < height; i++) {
+			array2d[i] = new float[width];
+			for (int j = 0; j < width; j++) {
+				array2d[i][j] = 0;
+			}
 		}
 	}
 
@@ -407,6 +419,18 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
+			else if (mGrid[j][i] == 6.2f) { //Rand Npc på maskros, temp innan animation
+				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[3]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 6.3f) { //Rand Npc på Klippt maskros, temp innan animation
+				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				window.draw(mObjects[4]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 6.4f) { //Rand Npc på grusväg, temp innan animation
+				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				window.draw(mObjects[5]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc på Gräs, temp innan animation
 				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
@@ -558,6 +582,29 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
 					window.draw(mNpcs[c]->getDrawSprite());
 				}
+			}
+			else if (mGrid[j][i] == 6.2f) { //Rand Npc maskros, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+				mNpcs[c]->setLast(2.2f);
+			}
+			else if (mGrid[j][i] == 6.3f) { //Rand Npc Klippt maskros, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+			}
+			else if (mGrid[j][i] == 6.4f) { //Rand Npc grusväg, temp innan animation
+				coords c = { i, j };
+				if (mNpcs[c] != 0) {
+					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(mNpcs[c]->getDrawSprite());
+				}
+				mNpcs[c]->setLast(2.4f);
 			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc Gräs, temp innan animation
 				coords c = { i, j };
