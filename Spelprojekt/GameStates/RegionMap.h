@@ -1,6 +1,7 @@
 #ifndef INCLUDED_REGIONMAP
 #define INCLUDED_REGIONMAP
 
+#include <string>
 #include "Menu/menu.h"
 
 struct RegionVariables {
@@ -52,6 +53,8 @@ public:
 	int checkRegionState();
 	void scale(sf::RenderWindow &window);
 
+	std::string loadLevel();
+
 protected:
 	static int const mNumberOfSelections = 7;
 
@@ -64,6 +67,7 @@ private:
 	int mState, mRegionState, mInternalState;
 	RegionVariables mRegions[mMaxRegions];
 	void changeInternalState(int newState);
+	int mLevelToLoad=0;
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;

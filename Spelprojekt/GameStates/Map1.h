@@ -29,7 +29,7 @@
 class Map1 : public Maps{
 public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
-	Map1(std::string savefile, Player *m, std::string patrolPath);
+	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
 	void virtual render(sf::RenderWindow &window, AnimeManager &anime);
 	//Spawnar alla objekten, enligt array
@@ -73,7 +73,7 @@ private:
 	float cutDandelions = 0;
 	int meepSpawnDirection;
 	int specialFeature;
-	std::string mSavefile, mPatrolPath;
+	std::string mSavefile/*, mPatrolPath*/;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;

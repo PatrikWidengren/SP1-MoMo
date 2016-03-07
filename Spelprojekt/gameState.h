@@ -63,6 +63,8 @@ private:
 	WorldMap *mWorldMap01;
 	RegionMap *mRegionMap01;
 	Map1 *mMap01;
+	
+	void LoadMap();
 	int mCurMower = 0;
 	int mCurHedgeTool = 0;
 	std::vector<Mower*> mLawnMowers;

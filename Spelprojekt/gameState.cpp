@@ -38,7 +38,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("Maps/nymaptest.txt", mPlayer, "Maps/patrols/Patrols_testing.txt");
+	mMap01 = new Map1("patroltest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -47,9 +47,11 @@ gameState::gameState(sf::RenderWindow &window)
 	mNpcs = mMap01->getNpcs();
 	mLongObjects = mMap01->getLongObjects();
 	// Skriver ut position för alla object
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+
+	//This thing broke the code, no clue why
+	/*for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
-	}
+	}*/
 }
 
 gameState::~gameState()
@@ -549,4 +551,23 @@ bool gameState::checkStartRegionState(int lowerState) {
 	else {
 		return true;
 	}
+}
+
+void gameState::LoadMap() {
+	delete mMap01;
+	
+	std::string levelToLoad = mRegionMap01->loadLevel();
+
+	mMap01 = new Map1(levelToLoad, mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+
+	mMap01->spawnObjects();
+
+	mObjects.clear();
+	mObjects = mMap01->getObjects();
+
+	mNpcs.clear();
+	mNpcs = mMap01->getNpcs();
+
+	mLongObjects.clear();
+	mLongObjects = mMap01->getLongObjects();
 }

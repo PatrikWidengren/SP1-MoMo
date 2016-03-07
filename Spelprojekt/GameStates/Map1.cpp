@@ -13,10 +13,10 @@ static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
 
-Map1::Map1(string savefile, Player *p, string patrolpath) {
+Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	mPlayer = p;
 	mSavefile = savefile;
-	mPatrolPath = patrolpath;
+	//mPatrolPath = patrolpath;
 	getMapInfo();
 	Stone::initialize();
 	Grass::initialize();
@@ -42,6 +42,12 @@ Map1::~Map1() {
 	CharRand::finalize();
 	CharPatrol::finalize();
 	Fountain::finalize();
+
+	mNpcs.clear();
+	while (!mNpcVector.empty()) {
+		delete mNpcVector[0];
+		mNpcVector.erase(mNpcVector.begin());
+	}
 }
 
 void Map1::resetGrid(){
@@ -74,7 +80,8 @@ void Map1::resetGrid(){
 //Skapar array
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
-	ifstream file(mSavefile);
+	string saveFilePath = "Maps/" + mSavefile;
+	ifstream file(saveFilePath);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
@@ -99,7 +106,8 @@ float** Map1::createGrid(int width, int height) {
 //Variabeln totalAmoutOfGrass håller koll på hur många gräs som skall kunna klippas, samma med hedge & dandelions
 //skipLines räknar varje värde som sparas från patrullens .txt fil, för att inte ladda samma värden för flera patruller
 int** Map1::getPatrolPath(int &skipLines) {
-	ifstream file(mPatrolPath);
+	string patrolFilePath = "Maps/patrols/Patrols_" + mSavefile;
+	ifstream file(patrolFilePath);
 	int tempValue;
 	int patrolPathWidth;
 	int patrolPathHeight;
@@ -934,7 +942,8 @@ void Map1::deleteContent()
 }
 
 void Map1::getMapInfo(){
-	ifstream file(mSavefile);
+	string saveFilePath = "Maps/"+mSavefile;
+	ifstream file(saveFilePath);
 	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 

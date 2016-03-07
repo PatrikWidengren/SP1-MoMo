@@ -1,4 +1,5 @@
 ﻿#include "RegionMap.h"
+#include <sstream>
 
 RegionMap::RegionMap(float width, float height)
 {
@@ -453,6 +454,14 @@ void RegionMap::setRegionState(int state) {
 		spriteLevels[i].setPosition(0, i * 100);
 		spriteLevels[i].setTexture(textLevels);
 	}
+}
+
+std::string RegionMap::loadLevel() {
+	std::stringstream ss;
+	ss << "map"<<mRegionState<<"_"<<mLevelToLoad<<".txt";
+	std::string s;
+	ss >> s;
+	return s;
 }
 
 void RegionMap::scale(sf::RenderWindow &window) {
