@@ -49,6 +49,8 @@ public:
 	virtual void moveUp();
 	virtual void moveDown();
 
+	int getMower();
+	int getHedgeCutter();
 	void setRegionState(int state);
 	int checkRegionState();
 	void scale(sf::RenderWindow &window);

@@ -82,24 +82,15 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 		spriteGrassMower.setPosition(140 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		spriteHedgecutter.setPosition(630 * bg01.getScale().x, 1120 * bg01.getScale().y);
-		/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+
 		break;
 
 	case 1: //Level select visible
 		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
-
-		//spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
-
-		/*
-		spriteArrow01.move
-		spriteArrow02.move
-		spriteArrow03.move
-		spriteArrow04.move
-		*/
 
 		if (spriteShop.getPosition().y < window.getSize().y)
 		{
@@ -113,11 +104,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteHedgecutter.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 
 
-			/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+			mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[4] = new sf::IntRect(sf::Vector2i(287 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 			mRects[7] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[6] = new sf::IntRect(sf::Vector2i(777 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+
 
 		}
 
@@ -144,11 +135,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 		}
-		/*mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
-		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
-*/
+		mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
+		mRects[6] = new sf::IntRect(sf::Vector2i(775 * bg01.getScale().x, 830 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
+
 
 		break;
 	}
@@ -523,4 +514,14 @@ void RegionMap::scale(sf::RenderWindow &window) {
 		spriteArrow04.setPosition(775 * bg01.getScale().x, 850 * bg01.getScale().y);
 	}
 
+}
+
+int RegionMap::getMower()
+{
+	return selectedMow;
+}
+
+int RegionMap::getHedgeCutter()
+{
+	return selectedHedgeCutter;
 }
