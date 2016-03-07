@@ -17,7 +17,7 @@ public:
 	~RegionMap();
 	bool reset = false;
 
-	static const int mMaxRegions = 3;
+	static const int mMaxRegions = 6;
 	
 	sf::Texture textBackgrounds[mMaxRegions];
 

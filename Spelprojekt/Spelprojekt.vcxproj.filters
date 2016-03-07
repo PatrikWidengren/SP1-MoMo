@@ -757,12 +757,6 @@
     <Text Include="Maps\nymaptest2.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map0101.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\map0102.txt">
-      <Filter>Maps</Filter>
-    </Text>
     <Text Include="Maps\map02a01.txt">
       <Filter>Maps</Filter>
     </Text>
@@ -778,92 +772,101 @@
     <Text Include="Maps\map02a05.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map03a01.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\map03a02.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\map04a04.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\map0103.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\map0105.txt">
-      <Filter>Maps</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a04.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
     <Text Include="Maps\patrols\patrols_map04a02.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\patrols\patrols_map04a01.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a03.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a05.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a06.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a07.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\patrols\patrols_map04a08.txt">
-      <Filter>Maps\patrols</Filter>
-    </Text>
-    <Text Include="Maps\map02b01.txt">
+    <Text Include="Maps\map01a01.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map02b02.txt">
+    <Text Include="Maps\map01a02.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map02b03.txt">
+    <Text Include="Maps\map01a03.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map02b04.txt">
+    <Text Include="Maps\map01a04.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map02b05.txt">
+    <Text Include="Maps\map01a05.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map03a03.txt">
+    <Text Include="Maps\map05a08.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map03a04.txt">
+    <Text Include="Maps\map05a07.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map03a05.txt">
+    <Text Include="Maps\map05a06.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a01.txt">
+    <Text Include="Maps\map05a05.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a02.txt">
+    <Text Include="Maps\map05a04.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a03.txt">
+    <Text Include="Maps\map05a03.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map05a02.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map05a01.txt">
       <Filter>Maps</Filter>
     </Text>
     <Text Include="Maps\map04a05.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a06.txt">
+    <Text Include="Maps\map04a04.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a07.txt">
+    <Text Include="Maps\map04a03.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map04a08.txt">
+    <Text Include="Maps\map04a02.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\map0104.txt">
+    <Text Include="Maps\map04a01.txt">
       <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a05.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a04.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a03.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a02.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\map03a01.txt">
+      <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a01.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a08.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a07.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a06.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a05.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a04.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a03.txt">
+      <Filter>Maps\patrols</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map05a02.txt">
+      <Filter>Maps\patrols</Filter>
     </Text>
   </ItemGroup>
 </Project>

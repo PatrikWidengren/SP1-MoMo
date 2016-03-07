@@ -55,8 +55,8 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 }
 
 CharPatrol::~CharPatrol(){
-	delete path;
-	delete retryPath;
+	delete[] path;
+	delete[] retryPath;
 }
 
 void CharPatrol::reset() {
