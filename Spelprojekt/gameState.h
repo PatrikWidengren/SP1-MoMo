@@ -69,6 +69,7 @@ private:
 	void loadMap();
 	int mCurMower = 0;
 	int mCurHedgeTool = 0;
+	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;
 	std::vector<Shears*> mHedgeTools;
 	int moveMeep = 0;

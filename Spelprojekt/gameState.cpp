@@ -39,7 +39,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	Player::initialize();
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("nymaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("map01a01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -191,7 +191,6 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}*/
 	window.clear();
 
-	mMap01->render(window, anime);
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){
@@ -217,6 +216,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
 		moveMeep = 1;
+		meepHeightAnimation = "idle2";
 		std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -224,6 +224,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
 		moveMeep = 3;
+		meepHeightAnimation = "idle8";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -231,6 +232,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
 		moveMeep = 7;
+		meepHeightAnimation = "idle4";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -238,6 +240,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
 		moveMeep = 9;
+		meepHeightAnimation = "idle6";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -246,6 +249,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
 		moveMeep = 2;
+		meepHeightAnimation = "idle1";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -253,6 +257,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
 		moveMeep = 4;
+		meepHeightAnimation = "idle3";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -260,6 +265,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
 		moveMeep = 6;
+		meepHeightAnimation = "idle7";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
@@ -267,12 +273,16 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
 		moveMeep = 8;
+		meepHeightAnimation = "idle5";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
 		space = true;
 		//std::cout << "confirm dir " << moveMeep << std::endl;
+		//anime.setHeightPosition(meepHeightAnimation);
+		
+		anime.changeAnimation(meepHeightAnimation);
 		mMap01->takeTurn(moveMeep, sound);
 		moveMeep = 0;
 		keyPressed = false;
@@ -281,6 +291,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 		space = false;
 	}
+	mMap01->render(window, anime);
 
 }
 
@@ -290,10 +301,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 	case 1: 
 	{ //Game state 1. in game. 
-		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
 
 		if (mStartState) {
-			music.setMusic(1);
+			//music.setMusic(1);
 			//mMap01->scale(window);
 			mStartState = false;
 			//Startar musik osv
@@ -303,7 +313,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
-			music.setMusic(1);
+			//music.setMusic(1);
 			mInGameMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -313,7 +323,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 3: { //State 3. Start menu.
 		if (mStartState) {
-			music.setMusic(0);
+			//music.setMusic(0);
 			mStartMenu01->scale(window);
 			mStartState = false;
 			//Startar musik osv
@@ -327,7 +337,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: { //state 1. Option.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				//music.setMusic(2);
 				mOptionMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -338,7 +348,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mSoundmenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -349,7 +359,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				//music.setMusic(2);
 				mKeyboardMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -366,7 +376,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 5: { //state 5. GameOver.
 		if (mStartState) {
-			music.setMusic(1);
+			//music.setMusic(1);
 			mGameOverMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -376,7 +386,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 6: { //state 6. WinMenu.
 		if (mStartState) {
-			music.setMusic(1);
+			//music.setMusic(1);
 			mWinMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -391,7 +401,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		switch (mRegionState) {
 		case 0:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(2);
+				//music.setMusic(2);
 				mWorldMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -402,7 +412,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 1:
 			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -413,7 +423,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 2:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -424,7 +434,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 3:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -436,7 +446,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		case 4:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -448,7 +458,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		case 5:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				//music.setMusic(1);
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
