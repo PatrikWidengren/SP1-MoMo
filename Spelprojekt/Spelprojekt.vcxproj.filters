@@ -723,6 +723,15 @@
     <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
       <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_03.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_04.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_05.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">
