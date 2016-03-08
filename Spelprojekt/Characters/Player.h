@@ -16,10 +16,13 @@ public:
 	/*collision during movement "moves" at position "atPos"*/
 	void collide(intVector moves, int atPos);
 	void collideWith(int dmg);
-	/*Get Player's X value from the array*/
+
+	//Get array position
 	int getX();
-	/*Get Player's Y value from the array*/
 	int getY();
+	int getLastX();
+	int getLastY();
+
 	/*Set Players X value in the array*/
 	void setX(int x);
 	/*Set Players Y value in the array*/
@@ -31,6 +34,9 @@ public:
 	float getLast();
 	/*Get the Player's type (the int that represents it in the array)*/
 	float getType();
+	//Get the time to spend animating each tiles movement
+	float getMoveTime();
+
 	//true if equipped lawnmower, false if hedge cutter
 	bool getMowerEquipped();
 	bool getFunctioning();
@@ -58,10 +64,10 @@ private:
 	//When hedge cutter is equipped, this value is false
 	bool mMowerEquipped = true;
 	/*x and y in the array*/
-	int mArrayX = 0, mArrayY = 0;
+	int mArrayX = 0, mArrayY = 0, mLastX = 0, mLastY = 0;
 	/*important values for the array*/
 	const float mBaseType;
-	float mType, mLast;
+	float mType, mLast, mMoveTime;
 	/*x and y coordinates for sprite*/
 	//float mPosX, mPosY;
 	/*sprite*/

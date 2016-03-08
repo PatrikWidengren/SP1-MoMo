@@ -36,6 +36,7 @@ Player::~Player(){
 }
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
+	mMoveTime = 1.0 / movement.size();
 	return movement;
 }
 
@@ -68,11 +69,21 @@ int Player::getY(){
 	return mArrayY;
 }
 
+int Player::getLastX() {
+	return mLastX;
+}
+
+int Player::getLastY() {
+	return mLastY;
+}
+
 void Player::setX(int x){
+	mLastX = mArrayX;
 	mArrayX = x;
 }
 
 void Player::setY(int y){
+	mLastY = mArrayY;
 	mArrayY = y;
 }
 sf::Sprite* Player::getSprite(){
@@ -154,6 +165,7 @@ void Player::finalize(){
 	texturePlayer.~Texture();
 	imagePlayer.~Image();
 }
-/*void Player::update(){
 
-}*/
+float Player::getMoveTime() {
+	return mMoveTime;
+}

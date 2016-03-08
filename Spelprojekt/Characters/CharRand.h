@@ -16,12 +16,18 @@ public:
 	//This is the position in the array
 	virtual int getX();
 	virtual int getY();
+	virtual int getLastX();
+	virtual int getLastY();
+
 	//Set X and Y in the array
 	virtual void setX(int x);
 	virtual void setY(int Y);
 	virtual void setLast(float l);
 	virtual float getLast();
 	virtual float getType();
+	//Get the time to spend animating each tiles movement
+	virtual float getMoveTime();
+
 
 	virtual void render();
 	static void initialize();
@@ -32,10 +38,10 @@ public:
 	virtual bool getCollide();
 private:
 	bool mDoneMoving = false;
-	int mArrayX, mArrayY, mSpeed;
+	int mArrayX, mArrayY, mSpeed, mLastX, mLastY;
 	const coords mStartPos;
 	const float mBaseType, mOrigLast;
-	float mType, mLast;
+	float mType, mLast, mMoveTime;
 	bool mDirLock;
 	sf::Sprite mCharSprite;
 };
