@@ -256,6 +256,9 @@
     <Image Include="Resource Files\Menus\Wood_ConfirmBox.png" />
     <Image Include="Resource Files\Menus\Wood_ESC.png" />
     <Image Include="Resource Files\Menus\Wood_Options.png" />
+    <Image Include="Resource Files\SpriteSheets\DOG_IDLE.png" />
+    <Image Include="Resource Files\SpriteSheets\FWD_L.png" />
+    <Image Include="Resource Files\SpriteSheets\FWD_L_IDLE.png" />
     <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png" />
     <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png" />
     <Image Include="Resource Files\Sprites\3D_0000_tree.png" />

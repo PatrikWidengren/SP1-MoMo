@@ -12,8 +12,8 @@ static int heightTile = 52;
 static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
-static int pushMeepX = -100;
-static int pushMeepY = -110;
+static int pushMeepX = -96;
+static int pushMeepY = -116;
 
 Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	mPlayer = p;
@@ -574,74 +574,84 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.2f) { //Rand Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 6.3f) { //Rand Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.4f) { //Rand Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
 			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.2f) { //Patrull Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.4f) { //Patrull Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
 			}
