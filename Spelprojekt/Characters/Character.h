@@ -18,6 +18,10 @@ public:
 	virtual intVector collide(intVector moves, int atPos) = 0;
 	virtual int getX() = 0;
 	virtual int getY() = 0;
+	virtual int getLastX() = 0;
+	virtual int getLastY() = 0;
+
+
 	virtual void setX(int x) = 0;
 	virtual void setY(int Y) = 0;
 	virtual void setLast(float l) = 0;
@@ -26,6 +30,10 @@ public:
 	virtual void playAnimation() = 0;
 	virtual void changeAnimation(std::string nr) = 0;
 	virtual sf::Sprite* getSpriteSheet() = 0;
+	virtual float getMoveTime() = 0;
+
+
+
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide() = 0;
 };

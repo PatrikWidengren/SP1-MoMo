@@ -89,6 +89,7 @@
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
     <ClCompile Include="Managers\AnimeManager.cpp" />
+    <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="GameStates\RegionMap.h" />
     <ClInclude Include="GameStates\WorldMap.h" />
     <ClInclude Include="Managers\AnimeManager.h" />
+    <ClInclude Include="Managers\DialogManager.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />

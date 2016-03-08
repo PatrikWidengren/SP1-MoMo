@@ -71,7 +71,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	switch (mInternalState) {
 	case 0: //nothing visible, yet
-		std::cout << "Case 0";
 
 		//if (spriteShop.getPosition().y >= 1080 * bg01.getScale().y)
 
@@ -84,6 +83,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 		spriteGrassMower.setPosition(140 * bg01.getScale().x, 1120 * bg01.getScale().y);
 		spriteHedgecutter.setPosition(630 * bg01.getScale().x, 1120 * bg01.getScale().y);
+		
 		mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 		mRects[4] = new sf::IntRect(sf::Vector2i(285 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 		mRects[5] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
@@ -92,7 +92,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		break;
 
 	case 1: //Level select visible
-		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
 		if (spriteShop.getPosition().y < window.getSize().y)
 		{
@@ -104,7 +103,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 			spriteGrassMower.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
 			spriteHedgecutter.move(0 * bg01.getScale().x, 4 * bg01.getScale().y);
-
 
 			mRects[3] = new sf::IntRect(sf::Vector2i(3 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[4] = new sf::IntRect(sf::Vector2i(287 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
@@ -119,7 +117,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 	case 2: //Shop visible
-		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
 		if (spriteShop.getPosition().y >= window.getSize().y - spriteShop.getGlobalBounds().height)
 		{
@@ -186,14 +183,16 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	}
 
+	if (mInternalState == 1) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-				mLevelToLoad = i+1;
+					mLevelToLoad = i + 1;
 				mState = 8;
 			}
 		}
+	}
 	}
 
 #pragma region ArrowRects
@@ -283,7 +282,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 		{
 			mDown = true;
-		std::cout << "bbbbbbbbbbbbbb" << std::endl;
 
 			//RegionMap::moveDown();
 			
@@ -338,8 +336,10 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteArrow04);
 	window.draw(spriteHedgecutter);
 	window.draw(spriteGrassMower);
+	if (mInternalState == 1) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		window.draw(spriteLevels[i]);
+	}
 	}
 
 	/*
@@ -442,22 +442,23 @@ int RegionMap::checkRegionState() {
 
 void RegionMap::setRegionState(int state) {
 	if (mLevelRects != 0)
-		delete[] mLevelRects;
+	delete[] mLevelRects;
 
 	if (spriteLevels != 0)
-		delete[] spriteLevels;
+	delete[] spriteLevels;
 
 	mRegionState = state;
 	bg01.setTexture(textBackgrounds[mRegionState]);
 	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
 	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		spriteLevels[i].setPosition(0, i * 100);
-		spriteLevels[i].setTexture(textLevels);
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01.getScale().x, i * 100 * bg01.getScale().y), sf::Vector2i(200 * bg01.getScale().x, 100 * bg01.getScale().y));
 	}
 
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		mLevelRects[i] = sf::IntRect(sf::Vector2i(0, i * 100), sf::Vector2i(200, 100));
+		spriteLevels[i].setPosition(0 * bg01.getScale().x, i * 100 * bg01.getScale().y);
+		spriteLevels[i].setScale(bg01.getScale().x, bg01.getScale().y);
+		spriteLevels[i].setTexture(textLevels);
 	}
 
 }
@@ -490,6 +491,11 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	spriteArrow02.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow03.setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow04.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		spriteLevels[i].setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	}
+
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01.getScale().x, 295 * bg01.getScale().y), sf::Vector2i(410 * bg01.getScale().x, 200 * bg01.getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01.getScale().x, 300 * bg01.getScale().y), sf::Vector2i(395 * bg01.getScale().x, 200 * bg01.getScale().y));

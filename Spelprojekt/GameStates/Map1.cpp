@@ -40,7 +40,6 @@ Map1::~Map1() {
 	Hedge::finalize();
 	Gravel::finalize();
 	Dandelion::finalize();
-	Player::finalize();
 	CharRand::finalize();
 	CharPatrol::finalize();
 	Fountain::finalize();
@@ -523,18 +522,24 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				window.draw(mLongObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-				anime.playTest();
-				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
-				window.draw(*anime.getSpriteSheet());
+				mPlayer->playPlayer();
+				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				window.draw(*mPlayer->getSpriteSheet());
+				//anime.playTest();
+				//anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				//window.draw(*anime.getSpriteSheet());
 				//mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					//window.draw(mPlayer->getDrawSprite());
 					mPlayer->setX(i);
 					mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
-				anime.playTest();
+				mPlayer->playPlayer();
+				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				window.draw(*mPlayer->getSpriteSheet());
+				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
-				window.draw(*anime.getSpriteSheet());
+				window.draw(*anime.getSpriteSheet());*/
 					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.1f);
@@ -542,9 +547,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				anime.playTest();
+				mPlayer->playPlayer();
+				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				window.draw(*mPlayer->getSpriteSheet());
+				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
-				window.draw(*anime.getSpriteSheet());
+				window.draw(*anime.getSpriteSheet());*/
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.2f);
@@ -552,9 +560,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-				anime.playTest();
+				mPlayer->playPlayer();
+				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				window.draw(*mPlayer->getSpriteSheet());
+				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
-				window.draw(*anime.getSpriteSheet());
+				window.draw(*anime.getSpriteSheet());*/
 				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.3f);
@@ -562,9 +573,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-				anime.playTest();
+				mPlayer->playPlayer();
+				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				window.draw(*mPlayer->getSpriteSheet());
+				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
-				window.draw(*anime.getSpriteSheet());
+				window.draw(*anime.getSpriteSheet());*/
 				mPlayer->setLast(2.4f);
 				mPlayer->setX(i);
 				mPlayer->setY(j);

@@ -216,6 +216,9 @@
     <ClCompile Include="Managers\AnimeManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\DialogManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -327,6 +330,9 @@
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Managers\AnimeManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\DialogManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>

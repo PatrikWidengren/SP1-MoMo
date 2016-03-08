@@ -125,7 +125,15 @@ SoundManager::SoundManager(){
 	}
 }
 
-SoundManager::~SoundManager(){
+SoundManager::~SoundManager() {
+	while (!mSoundBufferList.empty()){
+		delete mSoundBufferList.back();
+		mSoundBufferList.pop_back();
+	}
+	while (!mSoundList.empty()) {
+		delete mSoundList.back();
+			mSoundList.pop_back();
+	}
 }
 
 
