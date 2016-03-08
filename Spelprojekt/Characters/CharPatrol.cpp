@@ -11,6 +11,8 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	
 	mArrayX(arrX),
 	mArrayY(arrY),
+	mLastX(arrX),
+	mLastY(arrY),
 	mStartPos{ arrX, arrY },
 	mBaseType(7.0f),
 	mOrigLast(2.0f)
@@ -126,8 +128,9 @@ intVector CharPatrol::collide(intVector moves, int atPos){
 	}
 	//cout << "Saving " << test << "for next turn" << endl;
 	intVector col;
-	col.push_back(0);
 	//return a 0 to break the movement for the turn
+	col.push_back(0);
+	mMoveTime = 1.0f / col.size();
 	return col;
 }
 
@@ -141,11 +144,21 @@ int CharPatrol::getY(){
 	return mArrayY;
 }
 
+int CharPatrol::getLastX() {
+	return mLastX;
+}
+
+int CharPatrol::getLastY() {
+	return mLastY;
+}
+
 void CharPatrol::setX(int x){
+	mLastX = mArrayX;
 	mArrayX = x;
 }
 
 void CharPatrol::setY(int y){
+	mLastY = mArrayY;
 	mArrayY = y;
 }
 
@@ -187,4 +200,8 @@ void CharPatrol::initialize(){
 void CharPatrol::finalize(){
 	textureGuard.~Texture();
 	imageGuard.~Image();
+}
+
+float CharPatrol::getMoveTime() {
+	return mMoveTime;
 }
