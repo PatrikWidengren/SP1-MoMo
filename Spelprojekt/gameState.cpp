@@ -270,7 +270,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
 		moveMeep = 8;
-		meepHeightAnimation = "idle5";
+		meepHeightAnimation = "walk5";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
