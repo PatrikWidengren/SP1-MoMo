@@ -3,31 +3,37 @@
 #include <string>
 
 using namespace std;
-static const string nameArray[3] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Gardenice.ogg"};
+const int numberOfSongs = 3;
+static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Gardenice.ogg"};
 
 MusicManager::MusicManager(int id) {
-	mVolume = 50;
-	mMusic.openFromFile(nameArray[id]);
-	mMusic.setVolume(mVolume);
-	mMusic.setLoop(true);
-	mMusic.play();
+	mVolume = 25;
+	for (int i = 0; i < numberOfSongs; i++) {
+		mSongList.push_back(new sf::Music);
+		mSongList[i]->openFromFile(nameArray[i]);
+		mSongList[i]->setVolume(mVolume);
+		mSongList[i]->setLoop(true);
+	}
+	mSongList[id]->play();
 	saveID = id;
 }
 
 MusicManager::~MusicManager(){
+	while (!mSongList.empty()) {
+		delete mSongList.back();
+		mSongList.pop_back();
+	}
 }
 
 sf::Music* MusicManager::getMusic(){
-	return &mMusic;
+	return mSongList[saveID];
 }
 
 void MusicManager::setMusic(int id){
 	if (saveID != id) {
-		mMusic.stop();
-		mMusic.openFromFile(nameArray[id]);
-		mMusic.setVolume(mVolume);
-		mMusic.setLoop(true);
-		mMusic.play();
+		mSongList[saveID]->stop();
+		mSongList[id]->setVolume(mVolume);
+		mSongList[id]->play();
 		saveID = id;
 	}
 }
@@ -38,5 +44,5 @@ int MusicManager::getVolume() {
 
 void MusicManager::setVolume(int volume) {
 	mVolume = volume;
-	mMusic.setVolume(mVolume);
+	mSongList[saveID]->setVolume(mVolume);
 }

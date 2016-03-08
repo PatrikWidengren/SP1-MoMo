@@ -29,6 +29,8 @@ RegionMap::RegionMap(float width, float height)
 	setFonts();
 	setTextures();
 
+
+
 	spriteShop.setPosition(0, 1080);
 	spriteArrow01.setPosition(120, 850);
 	spriteArrow01.setScale(-1, 1);
@@ -109,9 +111,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mRects[7] = new sf::IntRect(sf::Vector2i(493 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 173 * bg01.getScale().y));
 			mRects[6] = new sf::IntRect(sf::Vector2i(777 * bg01.getScale().x, 11200 * bg01.getScale().y), sf::Vector2i(116 * bg01.getScale().x, 180 * bg01.getScale().y));
 
-
 		}
-
 
 
 		//spriteShop.move(0 * bg01.getScale().x, 300 * bg01.getScale().y);
@@ -187,15 +187,15 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	}
 
 	if (mInternalState == 1) {
-		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-			if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
-				std::cout << "It's inside " << i << "!" << std::endl;
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+			std::cout << "It's inside " << i << "!" << std::endl;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
 					mLevelToLoad = i + 1;
-					mState = 8;
-				}
+				mState = 8;
 			}
 		}
+	}
 	}
 
 #pragma region ArrowRects
@@ -341,9 +341,9 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(spriteHedgecutter);
 	window.draw(spriteGrassMower);
 	if (mInternalState == 1) {
-		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-			window.draw(spriteLevels[i]);
-		}
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		window.draw(spriteLevels[i]);
+	}
 	}
 
 	/*
@@ -445,10 +445,10 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
-	if (mLevelRects!=0)
+	if (mLevelRects != 0)
 	delete[] mLevelRects;
 
-	if (spriteLevels!=0)
+	if (spriteLevels != 0)
 	delete[] spriteLevels;
 
 	mRegionState = state;
@@ -458,11 +458,13 @@ void RegionMap::setRegionState(int state) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01.getScale().x, i * 100 * bg01.getScale().y), sf::Vector2i(200 * bg01.getScale().x, 100 * bg01.getScale().y));
 	}
+
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		spriteLevels[i].setPosition(0 * bg01.getScale().x, i * 100 * bg01.getScale().y);
 		spriteLevels[i].setScale(bg01.getScale().x, bg01.getScale().y);
 		spriteLevels[i].setTexture(textLevels);
 	}
+
 }
 
 std::string RegionMap::loadLevel() {
