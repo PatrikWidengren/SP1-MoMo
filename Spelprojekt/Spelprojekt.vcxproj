@@ -89,6 +89,7 @@
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
     <ClCompile Include="Managers\AnimeManager.cpp" />
+    <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="GameStates\RegionMap.h" />
     <ClInclude Include="GameStates\WorldMap.h" />
     <ClInclude Include="Managers\AnimeManager.h" />
+    <ClInclude Include="Managers\DialogManager.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />
@@ -204,9 +206,6 @@
     <Image Include="Resource Files\Backgrounds\Background_Title.png" />
     <Image Include="Resource Files\Backgrounds\Garden_01.png" />
     <Image Include="Resource Files\Backgrounds\Garden_02.png" />
-    <Image Include="Resource Files\Backgrounds\Garden_03.png" />
-    <Image Include="Resource Files\Backgrounds\Garden_04.png" />
-    <Image Include="Resource Files\Backgrounds\Garden_05.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Confirm.png" />
     <Image Include="Resource Files\Backgrounds\InGame_ESC.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
