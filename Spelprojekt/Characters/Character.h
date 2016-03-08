@@ -16,11 +16,19 @@ public:
 	virtual intVector collide(intVector moves, int atPos) = 0;
 	virtual int getX() = 0;
 	virtual int getY() = 0;
+	virtual int getLastX() = 0;
+	virtual int getLastY() = 0;
+
+
 	virtual void setX(int x) = 0;
 	virtual void setY(int Y) = 0;
 	virtual void setLast(float l) = 0;
 	virtual float getLast() = 0;
 	virtual float getType() = 0;
+	virtual float getMoveTime() = 0;
+
+
+
 	virtual void render() = 0;
 	virtual sf::Sprite* getSprite() = 0;
 	virtual sf::Sprite getDrawSprite() = 0;

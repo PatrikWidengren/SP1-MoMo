@@ -10,6 +10,8 @@ static const string filename = "Resource Files/Sprites/cat.png";
 CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
 	mArrayY(arrY),
+	mLastX(arrX),
+	mLastY(arrY),
 	mStartPos{ arrX, arrY },
 	mSpeed(moveLength),
 	mDirLock(lockDir),
@@ -46,6 +48,7 @@ intVector CharRand::move(){
 			movement.push_back(rand()%9+1);
 		}
 	}
+	mMoveTime = 1.0f / movement.size();
 	return movement;
 }
 
@@ -81,11 +84,21 @@ int CharRand::getY(){
 	return mArrayY;
 }
 
+int CharRand::getLastX() {
+	return mLastX;
+}
+
+int CharRand::getLastY() {
+	return mLastY;
+}
+
 void CharRand::setX(int x){
+	mLastX = mArrayX;
 	mArrayX = x;
 }
 
 void CharRand::setY(int y){
+	mLastY = mArrayY;
 	mArrayY = y;
 }
 
@@ -127,4 +140,8 @@ void CharRand::initialize(){
 void CharRand::finalize(){
 	textureCat.~Texture();
 	imageCat.~Image();
+}
+
+float CharRand::getMoveTime() {
+	return mMoveTime;
 }

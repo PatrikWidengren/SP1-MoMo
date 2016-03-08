@@ -64,6 +64,7 @@ Player::~Player(){
 }
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
+	mMoveTime = 1.0 / movement.size();
 	return movement;
 }
 
@@ -96,11 +97,21 @@ int Player::getY(){
 	return mArrayY;
 }
 
+int Player::getLastX() {
+	return mLastX;
+}
+
+int Player::getLastY() {
+	return mLastY;
+}
+
 void Player::setX(int x){
+	mLastX = mArrayX;
 	mArrayX = x;
 }
 
 void Player::setY(int y){
+	mLastY = mArrayY;
 	mArrayY = y;
 }
 
@@ -180,9 +191,12 @@ void Player::playPlayer() {
 	}
 	else {
 		animatorMeep.animate(mSpriteIdleSheet);
-	}
+}
 }
 
+float Player::getMoveTime() {
+	return mMoveTime;
+}
 sf::Sprite* Player::getSpriteSheet() {
 	if (walking) {
 		return &mSpriteWalkSheet;
