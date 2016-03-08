@@ -89,6 +89,7 @@
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
     <ClCompile Include="Managers\AnimeManager.cpp" />
+    <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />

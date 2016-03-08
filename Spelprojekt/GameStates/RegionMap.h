@@ -61,6 +61,7 @@ protected:
 	static int const mNumberOfSelections = 7;
 
 private:
+	int k;
 	int selectedMow;
 	int selectedHedgeCutter;
 	sf::IntRect *mRects[mNumberOfSelections];

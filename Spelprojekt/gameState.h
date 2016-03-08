@@ -11,6 +11,7 @@
 #include "GameStates/Menu/SoundMenu.h"
 #include "GameStates/Menu/KeyboardOptionMenu.h"
 
+#include "Managers\DialogManager.h"
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
@@ -64,7 +65,7 @@ private:
 	WorldMap *mWorldMap01;
 	RegionMap *mRegionMap01;
 	Map1 *mMap01;
-	
+	DialogManager *mDialogManager;
 	void loadMap();
 	int mCurMower = 0;
 	int mCurHedgeTool = 0;
