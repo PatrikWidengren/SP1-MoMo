@@ -711,17 +711,17 @@
     <Image Include="Resource Files\Sprites\Mowers\mow2.png">
       <Filter>Resource Files\Sprites\Mowers</Filter>
     </Image>
-    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png">
       <Filter>Resource Files\Sprites\Hedgecutters</Filter>
     </Image>
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png">
       <Filter>Resource Files\Sprites\Hedgecutters</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

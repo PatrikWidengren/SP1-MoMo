@@ -2,6 +2,7 @@
 #define INCLUDED_PLAYER
 #include "..\Tools\Lawnmower\BaseMower.h"
 #include "SFML\Graphics.hpp"
+#include "Thor\Animations.hpp"
 #include "..\Tools\Hedge Cutter\BaseShears.h"
 
 class Player{
@@ -47,11 +48,17 @@ public:
 	//void updPos(float x, float y);
 	//void update();
 	//void render();
-	static void initialize();
-	static void finalize();
-	sf::Sprite* getSprite();
-	sf::Sprite getDrawSprite();
+	void changeAnimation(std::string name);
+	void playPlayer();
+	sf::Sprite* getSpriteSheet();
+	bool walking;
 private:
+	sf::Clock clock;
+	thor::Animator<sf::Sprite, std::string> animatorMeep;
+	sf::Texture mTextureSheet;
+	sf::Sprite mSpriteIdleSheet;
+	sf::Sprite mSpriteWalkSheet;
+	sf::IntRect *mRect;
 	/*equipped lawnmower*/
 	Mower *mLawnMower, *mAntiLeakMower;
 	Shears *mHedgeTool, *mAntiLeakHedgeTool;

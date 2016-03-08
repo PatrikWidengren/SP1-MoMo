@@ -3,23 +3,51 @@
 
 using namespace std;
 
-sf::Texture texturePlayer;
-sf::Image imagePlayer;
+static int spriteWidth = 256;
+static int spriteHeight = 256;
 static const string filename = "Resource Files/Sprites/meep02.png";
+static const string meep_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
+static const string meep_walk = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
 
 Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
-	mLawnMower(m),
-	mAntiLeakMower(m),
-	mHedgeTool(c),
-	mAntiLeakHedgeTool(c),
-	mBaseType(5.0f){
+	mLawnMower(m), mAntiLeakMower(m), mHedgeTool(c), 
+	mAntiLeakHedgeTool(c), mBaseType(5.0f){
+	walking = false;
 	//mPosX = posX;
 	//mPosY = posY
 	//mPlayerSprite.setPosition(posX, posY);
 	mType = 5.1f;
 	//Temporär lösning. Bör fixas snarast
 	mLast = 2.1f;
-	mPlayerSprite.setTexture(texturePlayer);
+	//mPlayerSprite.setTexture(texturePlayer);
+	mTextureSheet.loadFromFile(meep_idle);
+	mSpriteIdleSheet.setTexture(mTextureSheet);
+
+	for (int j = 0; j < 8; j++) {
+		thor::FrameAnimation frame;
+		for (int i = 0; i < 7; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
+			frame.addFrame(0.4f, *mRect);
+		}
+		std::ostringstream tempName;
+		tempName << "idle" << j + 1;
+		animatorMeep.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+	}
+	animatorMeep.playAnimation("idle3", true);
+
+	mTextureSheet.loadFromFile(meep_walk);
+	mSpriteWalkSheet.setTexture(mTextureSheet);
+
+	for (int j = 0; j < 8; j++) {
+		thor::FrameAnimation frame;
+		for (int i = 0; i < 8; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
+			frame.addFrame(0.4f, *mRect);
+		}
+		std::ostringstream tempName;
+		tempName << "walk" << j + 1;
+		animatorMeep.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+	}
 }
 
 /*void Player::updPos(float x, float y){
@@ -74,13 +102,6 @@ void Player::setX(int x){
 
 void Player::setY(int y){
 	mArrayY = y;
-}
-sf::Sprite* Player::getSprite(){
-	return &mPlayerSprite;
-}
-
-sf::Sprite Player::getDrawSprite(){
-	return mPlayerSprite;
 }
 
 float Player::getType(){
@@ -145,15 +166,28 @@ void Player::setLast(float l){
 	mLast = l;
 	mType = mBaseType + (mLast - 2);
 }
-void Player::initialize(){
-	imagePlayer.loadFromFile(filename);
-	imagePlayer.createMaskFromColor(sf::Color::White);
-	texturePlayer.loadFromImage(imagePlayer);
-}
-void Player::finalize(){
-	texturePlayer.~Texture();
-	imagePlayer.~Image();
-}
 /*void Player::update(){
 
 }*/
+void Player::changeAnimation(std::string name) {
+	animatorMeep.playAnimation(name, true);
+}
+
+void Player::playPlayer() {
+	animatorMeep.update(clock.restart());
+	if (walking) {
+		animatorMeep.animate(mSpriteWalkSheet);
+	}
+	else {
+		animatorMeep.animate(mSpriteIdleSheet);
+	}
+}
+
+sf::Sprite* Player::getSpriteSheet() {
+	if (walking) {
+		return &mSpriteWalkSheet;
+	}
+	else {
+		return &mSpriteIdleSheet;
+	}
+}
