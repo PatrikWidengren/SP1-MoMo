@@ -332,6 +332,9 @@
     <ClInclude Include="Managers\AnimeManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Managers\DialogManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Release\Spelprojekt.pdb">
@@ -714,26 +717,17 @@
     <Image Include="Resource Files\Sprites\Mowers\mow2.png">
       <Filter>Resource Files\Sprites\Mowers</Filter>
     </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png">
       <Filter>Resource Files\Sprites\Hedgecutters</Filter>
     </Image>
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png">
       <Filter>Resource Files\Sprites\Hedgecutters</Filter>
-    </Image>
-    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
-      <Filter>Resource Files\SpriteSheets</Filter>
-    </Image>
-    <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
-      <Filter>Resource Files\SpriteSheets</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_03.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_04.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_05.png">
-      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
