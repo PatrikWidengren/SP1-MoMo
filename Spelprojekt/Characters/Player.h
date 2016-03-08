@@ -61,7 +61,8 @@ public:
 private:
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> animatorMeep;
-	sf::Texture mTextureSheet;
+	sf::Texture mTextureIdleSheet;
+	sf::Texture mTextureWalkSheet;
 	sf::Sprite mSpriteIdleSheet;
 	sf::Sprite mSpriteWalkSheet;
 	sf::IntRect *mRect;

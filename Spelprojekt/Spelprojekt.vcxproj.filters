@@ -216,6 +216,9 @@
     <ClCompile Include="Managers\AnimeManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\DialogManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -327,6 +330,9 @@
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Managers\AnimeManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\DialogManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -717,20 +723,20 @@
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png">
       <Filter>Resource Files\Sprites\Hedgecutters</Filter>
     </Image>
-    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+    <Image Include="Resource Files\SpriteSheets\FWD_L.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\FWD_L_IDLE.png">
       <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
     <Image Include="Resource Files\SpriteSheets\Meep_Walk_Pushmower1.png">
       <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_03.png">
-      <Filter>Resource Files\Backgrounds</Filter>
+    <Image Include="Resource Files\SpriteSheets\Meep_Idle_Pushmower1.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_04.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Garden_05.png">
-      <Filter>Resource Files\Backgrounds</Filter>
+    <Image Include="Resource Files\SpriteSheets\DOG_IDLE.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

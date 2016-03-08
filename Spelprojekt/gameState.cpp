@@ -29,6 +29,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mWorldMap01 = new WorldMap(window.getSize().x, window.getSize().y);
 	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
 
+	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2,1,1,1,20));
 	mLawnMowers.push_back(new LawnMower(3,1,1,2,20));

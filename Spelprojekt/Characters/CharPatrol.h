@@ -26,11 +26,12 @@ public:
 	//Get the time to spend animating each tiles movement
 	virtual float getMoveTime();
 
-	virtual void render();
+	virtual void playAnimation();
+	virtual void changeAnimation(std::string name);
+
 	static void initialize();
 	static void finalize();
-	virtual sf::Sprite* getSprite();
-	virtual sf::Sprite getDrawSprite();
+	virtual sf::Sprite* getSpriteSheet();
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide();
 private:
@@ -44,7 +45,17 @@ private:
 	//Single turn's worth of movement to retry in case of collision
 	int *retryPath;
 	int mTurnNo;
+
 	sf::Sprite mCharSprite;
+
+	sf::Clock clock;
+	thor::Animator<sf::Sprite, std::string> dogAnimator;
+	sf::Texture mTextureSheet_dogWalk;
+	sf::Texture mTextureSheet_dogIdle;
+	sf::Sprite mDogIdleSheet;
+	sf::Sprite mDogWalkSheet;
+	sf::IntRect *mRect;
+
 };
 
 #endif

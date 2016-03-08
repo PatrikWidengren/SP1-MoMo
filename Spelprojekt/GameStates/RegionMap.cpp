@@ -71,7 +71,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	switch (mInternalState) {
 	case 0: //nothing visible, yet
-		std::cout << "Case 0";
 
 		//if (spriteShop.getPosition().y >= 1080 * bg01.getScale().y)
 
@@ -93,7 +92,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		break;
 
 	case 1: //Level select visible
-		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
 		if (spriteShop.getPosition().y < window.getSize().y)
 		{
@@ -119,7 +117,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 	case 2: //Shop visible
-		std::cout << "Case 1   " << spriteShop.getPosition().y << std::endl;
 
 		if (spriteShop.getPosition().y >= window.getSize().y - spriteShop.getGlobalBounds().height)
 		{
@@ -286,7 +283,6 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 		{
 			mDown = true;
-		std::cout << "bbbbbbbbbbbbbb" << std::endl;
 
 			//RegionMap::moveDown();
 			

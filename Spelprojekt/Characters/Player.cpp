@@ -20,8 +20,8 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	//Temporär lösning. Bör fixas snarast
 	mLast = 2.1f;
 	//mPlayerSprite.setTexture(texturePlayer);
-	mTextureSheet.loadFromFile(meep_idle);
-	mSpriteIdleSheet.setTexture(mTextureSheet);
+	mTextureIdleSheet.loadFromFile(meep_idle);
+	mSpriteIdleSheet.setTexture(mTextureIdleSheet);
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -35,18 +35,18 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	}
 	animatorMeep.playAnimation("idle3", true);
 
-	mTextureSheet.loadFromFile(meep_walk);
-	mSpriteWalkSheet.setTexture(mTextureSheet);
+	mTextureWalkSheet.loadFromFile(meep_walk);
+	mSpriteWalkSheet.setTexture(mTextureWalkSheet);
 
 	for (int j = 0; j < 8; j++) {
-		thor::FrameAnimation frame;
+		thor::FrameAnimation frame2;
 		for (int i = 0; i < 8; i++) {
 			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
-			frame.addFrame(0.4f, *mRect);
+			frame2.addFrame(0.4f, *mRect);
 		}
 		std::ostringstream tempName;
 		tempName << "walk" << j + 1;
-		animatorMeep.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+		animatorMeep.addAnimation(tempName.str(), frame2, sf::seconds(1.1f));
 	}
 }
 
@@ -62,6 +62,7 @@ Player::~Player(){
 	delete mAntiLeakHedgeTool;
 	delete mAntiLeakMower;
 }
+
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
 	mMoveTime = 1.0 / movement.size();
@@ -185,11 +186,12 @@ void Player::changeAnimation(std::string name) {
 }
 
 void Player::playPlayer() {
-	animatorMeep.update(clock.restart());
 	if (walking) {
+		animatorMeep.update(clock.restart());
 		animatorMeep.animate(mSpriteWalkSheet);
 	}
 	else {
+		animatorMeep.update(clock.restart());
 		animatorMeep.animate(mSpriteIdleSheet);
 	}
 }
@@ -197,6 +199,7 @@ void Player::playPlayer() {
 float Player::getMoveTime() {
 	return mMoveTime;
 }
+
 sf::Sprite* Player::getSpriteSheet() {
 	if (walking) {
 		return &mSpriteWalkSheet;
