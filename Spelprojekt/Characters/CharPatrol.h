@@ -27,7 +27,7 @@ public:
 	virtual float getMoveTime();
 
 	virtual void playAnimation();
-	virtual void changeAnimation(std::string name);
+	virtual void changeAnimation(int nr);
 
 	static void initialize();
 	static void finalize();

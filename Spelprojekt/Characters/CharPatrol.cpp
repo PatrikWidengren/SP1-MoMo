@@ -112,9 +112,8 @@ intVector CharPatrol::move(){
 			else {
 				//test += path[mTurnNo][i];
 				//test *= mMoveCount;
-				if (path[mTurnNo][i] == 4) {
-					changeAnimation("idle3");
-				}
+
+				changeAnimation(path[mTurnNo][i]);
 				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
@@ -210,8 +209,32 @@ void CharPatrol::playAnimation() {
 	dogAnimator.update(clock.restart());
 	dogAnimator.animate(mDogIdleSheet);
 }
-void CharPatrol::changeAnimation(std::string name) {
-	dogAnimator.playAnimation(name, true);
+void CharPatrol::changeAnimation(int nr) {
+	if (nr == 1) {
+		dogAnimator.playAnimation("idle2", true);
+	}
+	if (nr == 2) {
+		dogAnimator.playAnimation("idle1", true);
+	}
+	if (nr == 3) {
+		dogAnimator.playAnimation("idle8", true);
+	}
+	if (nr == 4) {
+		dogAnimator.playAnimation("idle3", true);
+	}
+	if (nr == 6) {
+		dogAnimator.playAnimation("idle7", true);
+	}
+	if (nr == 7) {
+		dogAnimator.playAnimation("idle4", true);
+	}
+	if (nr == 8) {
+		dogAnimator.playAnimation("idle5", true);
+	}
+	if (nr == 9) {
+		dogAnimator.playAnimation("idle6", true);
+	}
+
 }
 sf::Sprite* CharPatrol::getSpriteSheet() {
 	return &mDogIdleSheet;

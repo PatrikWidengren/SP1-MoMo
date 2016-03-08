@@ -6,10 +6,10 @@ using namespace std;
 sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
-static const string cat_idle = "Resource Files/SpriteSheets/FWD_L_IDLE.png";
+static const string cat_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
 static const string cat_walk = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
-static const int spriteWidth = 64;
-static const int spriteHeight = 64;
+static const int spriteWidth = 256;
+static const int spriteHeight = 256;
 
 CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
@@ -34,23 +34,46 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	//mTextureSheet.loadFromFile(cat_walk);
 	//mCatWalkSheet.setTexture(mTextureSheet);
 
-	//for (int j = 0; j < 8; j++) {
+	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
-		for (int i = 0; i < 8; i++) {
-			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * 0), sf::Vector2i(spriteWidth, spriteHeight));
+		for (int i = 0; i < 7; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
 			frame.addFrame(0.4f, *mRect);
 		}
 		std::ostringstream tempName;
-		tempName << "idle1";// << 1 + 1;
+		tempName << "idle" << j + 1;
 		catAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
-	//}
+	}
 	catAnimator.playAnimation("idle1", true);
 }
 
 CharRand::~CharRand(){
 }
-void CharRand::changeAnimation(std::string name) {
-	catAnimator.playAnimation(name, true);
+void CharRand::changeAnimation(int nr) {
+	if (nr == 1) {
+		catAnimator.playAnimation("idle2", true);
+	}
+	if (nr == 2) {
+		catAnimator.playAnimation("idle1", true);
+	}
+	if (nr == 3) {
+		catAnimator.playAnimation("idle8", true);
+	}
+	if (nr == 4) {
+		catAnimator.playAnimation("idle3", true);
+	}
+	if (nr == 6) {
+		catAnimator.playAnimation("idle7", true);
+	}
+	if (nr == 7) {
+		catAnimator.playAnimation("idle4", true);
+	}
+	if (nr == 8) {
+		catAnimator.playAnimation("idle5", true);
+	}
+	if (nr == 9) {
+		catAnimator.playAnimation("idle6", true);
+	}
 }
 void CharRand::playAnimation() {
 	catAnimator.update(clock.restart());
@@ -67,12 +90,15 @@ intVector CharRand::move(){
 	if (mDirLock){
 		int dir = rand()%9+1;
 		for (int i = 0; i < mSpeed; i++){
+			changeAnimation(dir);
 			movement.push_back(dir);
 		}
 	}
 	else {
 		for (int i = 0; i < mSpeed; i++){
-			movement.push_back(rand()%9+1);
+			int dir = rand() % 9 + 1;
+			changeAnimation(dir);
+			movement.push_back(dir);
 		}
 	}
 	mMoveTime = 1.0f / movement.size();

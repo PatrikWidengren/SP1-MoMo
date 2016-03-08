@@ -33,7 +33,7 @@ public:
 	static void initialize();
 	static void finalize();
 	virtual sf::Sprite* getSpriteSheet();
-	virtual void changeAnimation(std::string name);
+	virtual void changeAnimation(int nr);
 	virtual void playAnimation();
 
 	//Treat this as running into and colliding with things?
