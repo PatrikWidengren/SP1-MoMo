@@ -191,7 +191,7 @@ void Player::playPlayer() {
 	}
 	else {
 		animatorMeep.animate(mSpriteIdleSheet);
-}
+	}
 }
 
 float Player::getMoveTime() {
