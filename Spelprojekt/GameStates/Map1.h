@@ -32,6 +32,9 @@ public:
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
 	void virtual render(sf::RenderWindow &window, AnimeManager &anime);
+	//gör mer eller mindra vad takeTurn brukade göra
+	void update(SoundManager &sound);
+	void beginTurn(int dir);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
 	//Returnerar objekten, detta behövs till main
@@ -59,6 +62,8 @@ private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
+	bool mOngoingTurn = false;
+
 	int mWidth, mHeight;
 	int mBronzeGrass, mBronzeHedge, mBronzeDandelion;
 	int mSilverGrass, mSilverHedge, mSilverDandelion;
@@ -85,6 +90,9 @@ private:
 	Player* mPlayer;
 	//Mower* lawnMower;
 
+	intVector mCurrentMove;
+	int mPlaceInMove = 0, mNpcNo = 0;
+	bool mMeepMoving = false, mNpcsMoving = false, mBreakMove;
 };
 
 

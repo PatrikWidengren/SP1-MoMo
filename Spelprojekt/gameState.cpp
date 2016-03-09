@@ -281,7 +281,8 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		//anime.setHeightPosition(meepHeightAnimation);
 		
 		mMap01->getPlayer()->changeAnimation(meepHeightAnimation);
-		mMap01->takeTurn(moveMeep, sound);
+		//mMap01->takeTurn(moveMeep, sound);
+		mMap01->beginTurn(moveMeep);
 		moveMeep = 0;
 		keyPressed = false;
 	}
@@ -289,8 +290,8 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 		space = false;
 	}
+	mMap01->update(sound);
 	mMap01->render(window, anime);
-
 }
 
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Game State Handler

@@ -59,6 +59,7 @@ public:
 	sf::Sprite* getSpriteSheet();
 	bool walking;
 private:
+	sf::Clock moveClock;
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> animatorMeep;
 	sf::Texture mTextureIdleSheet;

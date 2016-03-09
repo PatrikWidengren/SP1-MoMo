@@ -32,6 +32,7 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	CharPatrol::initialize();
 	Fountain::initialize();
 }
+
 Map1::~Map1() {
 	Stone::finalize();
 	Grass::finalize();
@@ -155,6 +156,7 @@ int** Map1::getPatrolPath(int &skipLines) {
 	}
 	return patrolPath;
 }
+
 void Map1::spawnObjects() {
 	
 	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
@@ -228,6 +230,11 @@ void Map1::spawnObjects() {
 			else if (mGrid[j][i] >= 7.0f && mGrid[j][i] < 8.0f) {
 				coords c = { i, j };
 				mNpcs[c] = new CharPatrol(i, j, getPatrolPath(mSkipLines));
+			}
+			else if (mGrid[j][i] >= 5.0f && mGrid[j][i] < 6.0f) {
+				mPlayer->setLast(2.0f+(mGrid[j][i]-5));
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 		}
 	}
@@ -530,8 +537,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				//window.draw(*anime.getSpriteSheet());
 				//mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
 					//window.draw(mPlayer->getDrawSprite());
-					mPlayer->setX(i);
-					mPlayer->setY(j);
+					//mPlayer->setX(i);
+					//mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
 				mPlayer->playPlayer();
@@ -545,6 +552,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				mPlayer->setLast(2.1f);
 				mPlayer->setX(i);
 				mPlayer->setY(j);
+
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				mPlayer->playPlayer();
@@ -671,6 +679,125 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			}
 		}
 	}
+}
+
+void Map1::beginTurn(int dir) {
+	mCurrentMove.clear();
+	mCurrentMove = mPlayer->move(dir);
+	mPlaceInMove = 0;
+	mNpcNo = 0;
+	mOngoingTurn = true;
+	mMeepMoving = true;
+	mNpcsMoving = false; 
+	mNpcVector.clear();
+	//Cleanup note: Not sure if mNpcCoords actually ever does anything or if it just sits there. 
+	//I do recall needing it for testing at one point, not sure if it became obsolete.
+	mNpcCoords.clear();
+	for (int j = 0; j < mHeight; j++) {
+		for (int i = 0; i < mWidth; i++) {
+			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
+				coords at = { i, j };
+				mNpcVector.push_back(mNpcs[at]);
+			}
+		}
+	}
+}
+
+void Map1::update(SoundManager &sound) {
+	if (mPlaceInMove == mCurrentMove.size()) {
+		if (mMeepMoving) {
+			mMeepMoving = false;
+			mPlaceInMove = 0;
+			mNpcsMoving = true;
+		}
+		else if (mNpcsMoving) {
+			if (mNpcNo < mNpcVector.size()-1){
+				mNpcNo++;
+				mPlaceInMove = 0;
+			}
+			else {
+				mNpcsMoving = false;
+			}
+		}
+	}
+
+	if (!mMeepMoving && mNpcsMoving) {
+		if (mCurrentMove.empty()) {
+			mCurrentMove = mNpcVector[mNpcNo]->move();
+		}
+		//0 means end of movement. Needed for patrols. 
+		//Breakmove means that the entire movement for this character
+		//is over for the turn
+		if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
+			mBreakMove = true;
+			//mBreakMove = false;
+			//break;
+			//mNpcs[i]->swapDoneMoving();
+		}
+
+		//the movement functions returns a bool. True if they moved, 
+		//false in case of collision
+
+		if (!mBreakMove){
+
+			bool moved = moveNpc(mCurrentMove.at(mPlaceInMove), mNpcNo, sound);
+			//if the NPC collided: do the following
+			if (!moved) {
+
+				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+				//get a new series of moves to attempt
+				intVector tryMove;
+				tryMove = mNpcVector[mNpcNo]->collide(mCurrentMove, mPlaceInMove);
+				//try out the new list of steps
+				for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+					//again, break if 0, breakMove is made true so that
+					//the entire turn will end for the current character
+					//if there is no movement after collision
+					if (tryMove.at(k) == 0) {
+						mBreakMove = true;
+						break;
+					}
+					//check every move. If one of them works, return to standard
+					//movement pattern
+					bool retryMoved = moveNpc(tryMove.at(k), mNpcNo, sound);
+					if (retryMoved) {
+						break;
+					}
+				}
+			}
+			else {
+				//Not sure what point this "else" has. Cleaning?
+				//cout << "Moved " << npcMove.at(j) << endl;
+			}
+		}
+		else {
+			mPlaceInMove = mCurrentMove.size();
+		}
+
+	}
+
+
+	if (mMeepMoving) {
+		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
+		if (!moved) {
+			mPlayer->collide(mCurrentMove, mPlaceInMove);
+			mMeepMoving = false;
+			mCurrentMove.clear();
+			mNpcsMoving = true;
+		}
+	}
+
+	if (!mMeepMoving && !mNpcsMoving && mOngoingTurn) {
+		mTurnCount++;
+		std::cout << "That was turn " << mTurnCount << "." << endl;
+		if (mTurnCount >= 50) {
+			std::cout << "GAME OVER" << endl;
+		}
+		std::cout << endl;
+		mOngoingTurn = false;
+	}
+
+	mPlaceInMove++;
 }
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
@@ -1042,6 +1169,7 @@ void Map1::getMapInfo(){
 vector<StaticObjects*> Map1::getObjects() {
 	return mObjects;
 }
+
 Player* Map1::getPlayer() {
 	return mPlayer;
 }
@@ -1053,6 +1181,7 @@ float** Map1::getGrid() {
 Maps::NpcMap Map1::getNpcs() {
 	return mNpcs;
 }
+
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
 }
