@@ -160,9 +160,6 @@ void SoundManager::playSound(float id){
 	}
 	if (temp >= 105 && temp <= 106) {
 		mSoundList[temp]->play();
-		while (mSoundList[temp]->getStatus() != mSoundList[0]->getStatus()){
-			std::cout << "Starter motorn!!!!" << endl;
-		}
 	}
 	if (temp >= 104 && temp <= 104) {
 		mSoundList[temp]->setLoop(true);
