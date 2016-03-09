@@ -56,6 +56,7 @@ public:
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
 	int mWinRounds = 40;
+	std::string mSavefile/*, mPatrolPath*/;
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
@@ -75,7 +76,6 @@ private:
 	float cutDandelions = 0;
 	int meepSpawnDirection;
 	int specialFeature;
-	std::string mSavefile/*, mPatrolPath*/;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;

@@ -37,19 +37,20 @@ public:
 	void drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime);
-	
-	bool checkStartState(int lowerState);
-	bool checkStartOptionState(int lowerState);
-	bool checkStartRegionState(int lowerState);
 	void resetMap();
 	optionMenu *mOptionMenu01;
 
 	~gameState();
-	int mState; //Witch state the game curently are in
-	int mOptionMenuState;
+
+	bool checkStartState(int lowerState);
+	bool checkStartOptionState(int lowerState);
+	bool checkStartRegionState(int lowerState);
 	bool mStartState;
 	bool mStartOptionState;
 	bool mStartRegionState;
+
+	int mState; //Witch state the game curently are in
+	int mOptionMenuState;
 	int mRegionState;
 	int mRegionMusic;
 
@@ -67,16 +68,23 @@ private:
 	RegionMap *mRegionMap01;
 	Map1 *mMap01;
 	DialogManager *mDialogManager;
-	void loadMap();
-	int mCurMower = 0;
-	int mCurHedgeTool = 0;
+
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;
 	std::vector<Shears*> mHedgeTools;
+
 	int moveMeep = 0;
+	int mCurMower = 0;
+	int mCurHedgeTool = 0;
+	int mDialogSwitch = 0;
+
+	bool mBeforeDialouge = false;
+	bool mAfterDialouge = false;
 	bool keyPressed = false;
 	bool space = false;
 	bool swap5 = false;
+	void loadMap();
+
 };
 
 #endif

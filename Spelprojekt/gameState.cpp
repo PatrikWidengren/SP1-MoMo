@@ -192,113 +192,153 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 }*/
 #pragma endregion
 
-
 	window.clear();
 
 
+	mBeforeDialouge = mDialogManager->checkBeforeDialouge(mMap01->mSavefile);
+	mAfterDialouge = mDialogManager->checkAfterDialouge(mMap01->mSavefile);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){
-		swap5 = true;
-		std::cout << "swapping" << std::endl;
-		/*std::cout << "Swapped to ";
-		if (mMap01->getPlayer()->getMowerEquipped()){
-			std::cout << "lawnmower" << std::endl;
+
+#pragma region Check if there is Dialouge
+	if (mBeforeDialouge)
+	{
+		mDialogSwitch = 0;
+	}
+	else if (mAfterDialouge)
+	{
+		mDialogSwitch = 2;
+	}
+	else
+	{
+		mDialogSwitch = 1;
+	}
+#pragma endregion
+
+
+
+	switch (mDialogSwitch)
+	{
+		case 0: //Before, Dialogue
+		{
+			mDialogManager->playBeforeDialouge(mMap01->mSavefile, window);
+			break;
 		}
-		else {
-			std::cout << "hedge cutter" << std::endl;
-		}*/
-		mMap01->getPlayer()->swapEquipped();
-	}
+		case 1:
+		{
+			#pragma region Structure
 
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5){
-		swap5 = false;
-	}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5) {
+				swap5 = true;
+				std::cout << "swapping" << std::endl;
+				/*std::cout << "Swapped to ";
+				if (mMap01->getPlayer()->getMowerEquipped()){
+				std::cout << "lawnmower" << std::endl;
+				}
+				else {
+				std::cout << "hedge cutter" << std::endl;
+				}*/
+				mMap01->getPlayer()->swapEquipped();
+			}
+
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5) {
+				swap5 = false;
+			}
 
 
 
-	if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
-		moveMeep = 1;
-		meepHeightAnimation = "idle2";
-		std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
-		moveMeep = 3;
-		meepHeightAnimation = "idle8";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
-		moveMeep = 7;
-		meepHeightAnimation = "idle4";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
-		moveMeep = 9;
-		meepHeightAnimation = "idle6";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
+			if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))) {
+				moveMeep = 1;
+				meepHeightAnimation = "idle2";
+				std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))) {
+				moveMeep = 3;
+				meepHeightAnimation = "idle8";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))) {
+				moveMeep = 7;
+				meepHeightAnimation = "idle4";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))) {
+				moveMeep = 9;
+				meepHeightAnimation = "idle6";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
 
-	if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
-		moveMeep = 2;
-		meepHeightAnimation = "idle1";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
-		moveMeep = 4;
-		meepHeightAnimation = "idle3";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
-		moveMeep = 6;
-		meepHeightAnimation = "idle7";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
-		moveMeep = 8;
-		meepHeightAnimation = "idle5";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
-		space = true;
-		//std::cout << "confirm dir " << moveMeep << std::endl;
-		//anime.setHeightPosition(meepHeightAnimation);
-		
-		mMap01->getPlayer()->changeAnimation(meepHeightAnimation);
-		mMap01->takeTurn(moveMeep, sound);
-		moveMeep = 0;
-		keyPressed = false;
-	}
+			if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))) {
+				moveMeep = 2;
+				meepHeightAnimation = "idle1";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))) {
+				moveMeep = 4;
+				meepHeightAnimation = "idle3";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))) {
+				moveMeep = 6;
+				meepHeightAnimation = "idle7";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))) {
+				moveMeep = 8;
+				meepHeightAnimation = "idle5";
+				//std::cout << "movdir " << moveMeep << std::endl;
+				keyPressed = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed) {
+				space = true;
+				//std::cout << "confirm dir " << moveMeep << std::endl;
+				//anime.setHeightPosition(meepHeightAnimation);
 
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
-		space = false;
+				mMap01->getPlayer()->changeAnimation(meepHeightAnimation);
+				mMap01->takeTurn(moveMeep, sound);
+				moveMeep = 0;
+				keyPressed = false;
+			}
+
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space) {
+				space = false;
+			}
+			mStartState = checkStartState(mMap01->checkState());
+#pragma endregion
+
+			break;
+		}
+		case 2: //After, Dialogue
+		{
+			mDialogManager->playAfterDialouge(mMap01->mSavefile, window);
+			break;
+		}
+
 	}
-	mStartState = checkStartState(mMap01->checkState());
 
 	mMap01->render(window, anime);
-
 
 }
 
