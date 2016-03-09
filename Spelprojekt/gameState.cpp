@@ -175,20 +175,24 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Draw and Update Ingame
 {
+#pragma region Outdate
 	/*
-	//Ritar ut objekten
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		window.draw(mObjects[i]->getSprite());
-		//mObjects[i]->render();
-	}
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
-		window.draw(mNpcs[i]->getSprite());
-	}
-	window.draw(mPlayer->getSprite());
-	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
-		window.draw(mLongObjects[i]->getSprite());
-		//mObjects[i]->render();
-	}*/
+//Ritar ut objekten
+for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+	window.draw(mObjects[i]->getSprite());
+	//mObjects[i]->render();
+}
+for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+	window.draw(mNpcs[i]->getSprite());
+}
+window.draw(mPlayer->getSprite());
+for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+	window.draw(mLongObjects[i]->getSprite());
+	//mObjects[i]->render();
+}*/
+#pragma endregion
+
+
 	window.clear();
 
 
