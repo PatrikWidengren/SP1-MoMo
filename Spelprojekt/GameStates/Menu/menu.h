@@ -1,6 +1,7 @@
 #ifndef INCLUDED_MENU
 #define INCLUDED_MENU
 #include <SFML\Graphics.hpp>
+#include "../../Managers/SoundManager.h"
 #include <string>
 #include <iostream>
 

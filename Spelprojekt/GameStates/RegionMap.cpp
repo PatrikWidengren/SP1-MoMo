@@ -488,6 +488,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	*/
 
 	spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteHedgecutter.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteGrassMower.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow01.setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow02.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);

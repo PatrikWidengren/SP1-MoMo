@@ -35,7 +35,7 @@ startMenu::~startMenu()
 
 }
 
-void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
+void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound)
 {
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
@@ -47,6 +47,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			mClick = false;
 			mState = 7;
+			sound.playSound(10.3f);
 		}
 	}
 	else
@@ -59,6 +60,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			mClick = false;
 			mState = 4;
+			sound.playSound(10.3f);
 		}
 	}
 	else
@@ -70,6 +72,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
+			sound.playSound(10.1f);
 			window.close();
 		}
 	}
@@ -83,6 +86,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			mClick = false;
 			mState = 1;
+			sound.playSound(10.3f);
 		}
 	}
 	else
@@ -95,6 +99,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 		{
 			mClick = false;
 			//mState = 1; Credits
+			sound.playSound(10.3f);
 		}
 	}
 	else
