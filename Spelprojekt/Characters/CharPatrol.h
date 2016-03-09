@@ -45,8 +45,7 @@ private:
 	//Single turn's worth of movement to retry in case of collision
 	int *retryPath;
 	int mTurnNo;
-
-	sf::Sprite mCharSprite;
+	bool walking = false;
 
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> dogAnimator;
