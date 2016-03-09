@@ -3,7 +3,7 @@
 #include <math.h>
 #include <cstdlib>
 
-const int numberOfSounds = 104;
+const int numberOfSounds = 107;
 
 using namespace std;
 int asd;
@@ -111,7 +111,10 @@ static const string nameArray[numberOfSounds] = {
 	"Resource Files/Sound/collision_vase.flac",		//100
 	"Resource Files/Sound/Meny_Close.flac",			//101
 	"Resource Files/Sound/Meny_GoBack.flac",		//102
-	"Resource Files/Sound/Meny_Open.flac"			//103
+	"Resource Files/Sound/Meny_Open.flac",			//103
+	"Resource Files/Sound/Lawnmower_Loop.flac",		//104
+	"Resource Files/Sound/Lawnmower_Start.flac",	//105
+	"Resource Files/Sound/Lawnmower_Stop.flac"		//106
 };
 
 SoundManager::SoundManager(){
@@ -130,14 +133,14 @@ SoundManager::SoundManager(){
 SoundManager::~SoundManager() {
 	int i = numberOfSounds-1;
 	while (!mSoundList.empty()) {
-		mSoundList[i]->stop();
-		mSoundList[i]->~Sound();
+		//mSoundList[i]->stop();
+		delete mSoundList[i];
 		mSoundList.pop_back();
 		i--;
 	}
 	i = numberOfSounds-1;
 	while (!mSoundBufferList.empty()) {
-		mSoundBufferList[i]->~SoundBuffer();
+		delete mSoundBufferList[i];
 		mSoundBufferList.pop_back();
 		i--;
 	}
@@ -155,6 +158,22 @@ void SoundManager::playSound(float id){
 	if (temp >= 0 && temp <= numberOfSounds) {
 		mSoundList[temp]->play();
 	}
+	if (temp >= 105 && temp <= 106) {
+		mSoundList[temp]->play();
+		while (mSoundList[temp]->getStatus() != mSoundList[0]->getStatus()){
+			std::cout << "Starter motorn!!!!" << endl;
+		}
+	}
+	if (temp >= 104 && temp <= 104) {
+		mSoundList[temp]->setLoop(true);
+		mSoundList[temp]->play();
+	}
+}
+
+void SoundManager::stopSound(float id) {
+	float tempTest = id * 10;
+	int temp = (int)tempTest;
+	mSoundList[temp]->stop();
 }
 
 void SoundManager::setVolume(int volume){

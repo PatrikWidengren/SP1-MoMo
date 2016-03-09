@@ -9,7 +9,8 @@ class SoundManager{
 public:
 	SoundManager();
 	virtual ~SoundManager();
-	virtual void playSound(float id);
+	void playSound(float id);
+	void stopSound(float id);
 	void setVolume(int volume);
 	int getVolume();
 private:

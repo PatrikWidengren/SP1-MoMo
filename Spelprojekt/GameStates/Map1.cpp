@@ -700,6 +700,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
 void Map1::takeTurn(int dir, SoundManager &sound) {
+
+	//sound.playSound(10.4f);
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/

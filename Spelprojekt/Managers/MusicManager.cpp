@@ -9,7 +9,7 @@ static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg"
 "Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg" };
 
 MusicManager::MusicManager(int id) {
-	mVolume = 25;
+	mVolume = 50;
 	for (int i = 0; i < numberOfSongs; i++) {
 		mSongList.push_back(new sf::Music);
 		while (!mSongList[i]->openFromFile(nameArray[i])) {
@@ -25,8 +25,8 @@ MusicManager::MusicManager(int id) {
 MusicManager::~MusicManager(){
 	int i = numberOfSongs - 1;
 	while (!mSongList.empty()) {
-		mSongList[i]->stop();
-		mSongList[i]->~Music();
+		//mSongList[i]->stop();
+		delete mSongList[i];
 		mSongList.pop_back();
 		i--;
 	}
