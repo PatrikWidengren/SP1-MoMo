@@ -864,6 +864,24 @@
     <Image Include="Resource Files\Dialogue\Before01a01 2.png">
       <Filter>Resource Files\Dialogue</Filter>
     </Image>
+    <Image Include="Resource Files\SpriteSheets\Cat_Black_Idle.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Cat_Black_Walk.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Cat_Orange_Idle.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Cat_Orange_Walk.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Dog_Walk.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Asfalt.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

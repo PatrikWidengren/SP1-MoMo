@@ -46,6 +46,7 @@ int main(){
 			if (event.type == sf::Event::Closed){
 				mSoundManager.~SoundManager();
 				mMusicManager.~MusicManager();
+				theGame.~gameState();
 				window.close();
 			}
 			else if (event.type == sf::Event::Resized)
