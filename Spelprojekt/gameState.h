@@ -51,6 +51,7 @@ public:
 	bool mStartOptionState;
 	bool mStartRegionState;
 	int mRegionState;
+	int mRegionMusic;
 
 
 private:

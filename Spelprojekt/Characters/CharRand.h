@@ -2,6 +2,7 @@
 #define INCLUDED_NPCRANDOM
 #include "Character.h"
 
+
 class CharRand : public Character{
 public:
 	/*Most of this is identical to the Player class. However, random movement
@@ -29,11 +30,12 @@ public:
 	virtual float getMoveTime();
 
 
-	virtual void render();
 	static void initialize();
 	static void finalize();
-	virtual sf::Sprite* getSprite();
-	virtual sf::Sprite getDrawSprite();
+	virtual sf::Sprite* getSpriteSheet();
+	virtual void changeAnimation(int nr);
+	virtual void playAnimation();
+
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide();
 private:
@@ -43,7 +45,13 @@ private:
 	const float mBaseType, mOrigLast;
 	float mType, mLast, mMoveTime;
 	bool mDirLock;
-	sf::Sprite mCharSprite;
+
+	sf::Clock clock;
+	thor::Animator<sf::Sprite, std::string> catAnimator;
+	sf::Texture mTextureSheet;
+	sf::Sprite mCatIdleSheet;
+	sf::Sprite mCatWalkSheet;
+	sf::IntRect *mRect;
 };
 
 #endif

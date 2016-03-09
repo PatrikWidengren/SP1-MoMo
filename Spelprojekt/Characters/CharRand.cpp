@@ -6,6 +6,10 @@ using namespace std;
 sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
+static const string cat_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
+static const string cat_walk = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
+static const int spriteWidth = 256;
+static const int spriteHeight = 256;
 
 CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
@@ -23,12 +27,58 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mType = 6.0f;
 	//dåligt tilfällig lösning. Fixa snart.
 	mLast = 2.0f;
-	render();
+
+
+	mTextureSheet.loadFromFile(cat_idle);
+	mCatIdleSheet.setTexture(mTextureSheet);
+	//mTextureSheet.loadFromFile(cat_walk);
+	//mCatWalkSheet.setTexture(mTextureSheet);
+
+	for (int j = 0; j < 8; j++) {
+		thor::FrameAnimation frame;
+		for (int i = 0; i < 7; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
+			frame.addFrame(0.4f, *mRect);
+		}
+		std::ostringstream tempName;
+		tempName << "idle" << j + 1;
+		catAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+	}
+	catAnimator.playAnimation("idle1", true);
 }
 
 CharRand::~CharRand(){
 }
-
+void CharRand::changeAnimation(int nr) {
+	if (nr == 1) {
+		catAnimator.playAnimation("idle2", true);
+	}
+	if (nr == 2) {
+		catAnimator.playAnimation("idle1", true);
+	}
+	if (nr == 3) {
+		catAnimator.playAnimation("idle8", true);
+	}
+	if (nr == 4) {
+		catAnimator.playAnimation("idle3", true);
+	}
+	if (nr == 6) {
+		catAnimator.playAnimation("idle7", true);
+	}
+	if (nr == 7) {
+		catAnimator.playAnimation("idle4", true);
+	}
+	if (nr == 8) {
+		catAnimator.playAnimation("idle5", true);
+	}
+	if (nr == 9) {
+		catAnimator.playAnimation("idle6", true);
+	}
+}
+void CharRand::playAnimation() {
+	catAnimator.update(clock.restart());
+	catAnimator.animate(mCatIdleSheet);
+}
 void CharRand::reset() {
 	mArrayX = mStartPos[0];
 	mArrayY = mStartPos[1];
@@ -40,12 +90,15 @@ intVector CharRand::move(){
 	if (mDirLock){
 		int dir = rand()%9+1;
 		for (int i = 0; i < mSpeed; i++){
+			changeAnimation(dir);
 			movement.push_back(dir);
 		}
 	}
 	else {
 		for (int i = 0; i < mSpeed; i++){
-			movement.push_back(rand()%9+1);
+			int dir = rand() % 9 + 1;
+			changeAnimation(dir);
+			movement.push_back(dir);
 		}
 	}
 	mMoveTime = 1.0f / movement.size();
@@ -67,8 +120,7 @@ intVector CharRand::collide(intVector moves, int atPos){
 		if (m == 5){
 			m++;
 		}
-		if (m>9
-			){
+		if (m>9){
 			m = (m % 9);
 		}
 		movement.push_back(m);
@@ -118,23 +170,10 @@ float CharRand::getType(){
 bool CharRand::getCollide(){
 	return false;
 }
-
-void CharRand::render(){
-	mCharSprite.setTexture(textureCat);
+sf::Sprite* CharRand::getSpriteSheet(){
+	return &mCatIdleSheet;
 }
-
-sf::Sprite* CharRand::getSprite(){
-	return &mCharSprite;
-}
-
-sf::Sprite CharRand::getDrawSprite(){
-	return mCharSprite;
-}
-
 void CharRand::initialize(){
-	imageCat.loadFromFile(filename);
-	imageCat.createMaskFromColor(sf::Color::White);
-	textureCat.loadFromImage(imageCat);
 }
 
 void CharRand::finalize(){

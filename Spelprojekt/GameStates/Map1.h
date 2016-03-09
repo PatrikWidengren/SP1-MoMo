@@ -38,6 +38,7 @@ public:
 	virtual std::vector<StaticObjects*> getObjects();
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
+	int checkState();
 
 	float** getGrid();
 	//Returnerar npcs, detta behövs till main
@@ -64,6 +65,7 @@ private:
 	int mSilverGrass, mSilverHedge, mSilverDandelion;
 	int mGoldGrass, mGoldHedge, mGoldDandelion;
 	int mSkipLines = 0;
+	int mState;
 	float totalAmountOfGrass = 0;
 	float totalAmountOfHedges = 0;
 	float totalAmountOfDandelions = 0;

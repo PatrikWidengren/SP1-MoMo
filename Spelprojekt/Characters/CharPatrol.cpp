@@ -6,6 +6,10 @@ using namespace std;
 sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "Resource Files/Sprites/deputy.png";
+static const string dog_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
+static const string dog_walk = "Resource Files/SpriteSheets/DOG_WALK.png";
+static const int spriteWidth = 256;
+static const int spriteHeight = 256;
 
 CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int moveCount*/): 
 	
@@ -53,7 +57,28 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	mType = 7.0f;
 	//temporary fix. update asap.
 	mLast = 2.0f;
-	render();
+	mCharSprite.setTexture(textureGuard);
+
+
+
+
+	mTextureSheet_dogIdle.loadFromFile(dog_idle);
+	mDogIdleSheet.setTexture(mTextureSheet_dogIdle);
+
+	mTextureSheet_dogWalk.loadFromFile(dog_walk);
+	mDogWalkSheet.setTexture(mTextureSheet_dogWalk);
+
+	for (int j = 0; j < 8; j++) {
+		thor::FrameAnimation frame;
+		for (int i = 0; i < 7; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
+			frame.addFrame(0.4f, *mRect);
+		}
+		std::ostringstream tempName;
+		tempName << "idle" << j + 1;
+		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+	}
+	dogAnimator.playAnimation("idle1", true);
 }
 
 CharPatrol::~CharPatrol(){
@@ -87,6 +112,8 @@ intVector CharPatrol::move(){
 			else {
 				//test += path[mTurnNo][i];
 				//test *= mMoveCount;
+
+				changeAnimation(path[mTurnNo][i]);
 				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
@@ -178,17 +205,39 @@ float CharPatrol::getType(){
 bool CharPatrol::getCollide(){
 	return true;
 }
-
-void CharPatrol::render(){
-	mCharSprite.setTexture(textureGuard);
+void CharPatrol::playAnimation() {
+	dogAnimator.update(clock.restart());
+	dogAnimator.animate(mDogIdleSheet);
 }
+void CharPatrol::changeAnimation(int nr) {
+	if (nr == 1) {
+		dogAnimator.playAnimation("idle2", true);
+	}
+	if (nr == 2) {
+		dogAnimator.playAnimation("idle1", true);
+	}
+	if (nr == 3) {
+		dogAnimator.playAnimation("idle8", true);
+	}
+	if (nr == 4) {
+		dogAnimator.playAnimation("idle3", true);
+	}
+	if (nr == 6) {
+		dogAnimator.playAnimation("idle7", true);
+	}
+	if (nr == 7) {
+		dogAnimator.playAnimation("idle4", true);
+	}
+	if (nr == 8) {
+		dogAnimator.playAnimation("idle5", true);
+	}
+	if (nr == 9) {
+		dogAnimator.playAnimation("idle6", true);
+	}
 
-sf::Sprite* CharPatrol::getSprite(){
-	return &mCharSprite;
 }
-
-sf::Sprite CharPatrol::getDrawSprite(){
-	return mCharSprite;
+sf::Sprite* CharPatrol::getSpriteSheet() {
+	return &mDogIdleSheet;
 }
 
 void CharPatrol::initialize(){

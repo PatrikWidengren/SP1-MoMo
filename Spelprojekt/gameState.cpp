@@ -31,9 +31,11 @@ gameState::gameState(sf::RenderWindow &window)
 
 	mDialogManager = new DialogManager(window);
 
-	mLawnMowers.push_back(new LawnMower(2,1,1,1,20));
-	mLawnMowers.push_back(new LawnMower(3,1,1,2,20));
-	mLawnMowers.push_back(new LawnMower (4,2,2,2,30));
+	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 100));
+	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 20));
+	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 30));
+	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 30));
+	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 30));
 	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 
@@ -78,7 +80,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 
 void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
 {
-	mStartMenu01->updateStartMenu(window, mouse);
+	mStartMenu01->updateStartMenu(window, mouse, sound);
 	window.clear();
 	mStartMenu01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mStartMenu01->checkState());
@@ -293,7 +295,10 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
 		space = false;
 	}
+	mStartState = checkStartState(mMap01->checkState());
+
 	mMap01->render(window, anime);
+
 
 }
 
@@ -305,17 +310,45 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{ //Game state 1. in game. 
 
 		if (mStartState) {
-			music.setMusic(1);
+			if (mRegionMusic == 1) {
+				music.setMusic(3);
+			}
+			else if (mRegionMusic == 2) {
+				music.setMusic(4);
+			}
+			else if (mRegionMusic == 3) {
+				music.setMusic(5);
+			}
+			else if (mRegionMusic == 4) {
+				music.setMusic(7);
+			}
+			else if (mRegionMusic == 5) {
+				music.setMusic(8);
+			}
 			//mMap01->scale(window);
 			mStartState = false;
 			//Startar musik osv
 		}
 		drawInGame(window, mouse, music, sound, anime);
+		if (mMap01->mTurnCount >= 50) {
+			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
+			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+			if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
+				mState = 5;
+				mStartState = true;
+			}
+
+			//For now, just testing phase of Winning screen. Need Winning condition for the map.
+			if (mMap01->mTurnCount >= mMap01->mWinRounds) {
+				mState = 6;
+				mStartState = true;
+			}
+		}
 		break;
 	}
 	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(6);
 			mInGameMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -339,7 +372,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: { //state 1. Option.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				music.setMusic(6);
 				mOptionMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -350,7 +383,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
-				music.setMusic(1);
+				music.setMusic(6);
 				mSoundmenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -361,7 +394,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				music.setMusic(6);
 				mKeyboardMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -378,7 +411,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 5: { //state 5. GameOver.
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(8);
 			mGameOverMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -388,7 +421,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 6: { //state 6. WinMenu.
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(0);
 			mWinMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -415,6 +448,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 1;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -426,6 +460,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 2:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 2;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -437,6 +472,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 3:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 3;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -449,6 +485,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 4:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 4;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -461,6 +498,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 5:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 5;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -551,20 +589,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 0;
 	}*/
 
-	if (mMap01->mTurnCount >= 50) {
-		//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
-		//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-		if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
-			mState = 5;
-			mStartState = true;
-		}
-
-		//For now, just testing phase of Winning screen. Need Winning condition for the map.
-		if (mMap01->mTurnCount >= mMap01->mWinRounds) {
-			mState = 6;
-			mStartState = true;
-		}
-	}
+	
 }
 
 void gameState::resetMap(){
@@ -612,7 +637,8 @@ bool gameState::checkStartRegionState(int lowerState) {
 }
 
 void gameState::loadMap() {
-	delete mMap01;
+	mMap01->~Map1();
+	//delete mMap01;
 	
 	std::string levelToLoad = mRegionMap01->loadLevel();
 

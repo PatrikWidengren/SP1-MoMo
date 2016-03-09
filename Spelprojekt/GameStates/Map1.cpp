@@ -12,8 +12,8 @@ static int heightTile = 52;
 static int pushGrassX = -32;
 static int pushGrassY = -76;
 static int pushFenceY = -76;
-static int pushMeepX = -100;
-static int pushMeepY = -110;
+static int pushMeepX = -96;
+static int pushMeepY = -116;
 
 Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	mPlayer = p;
@@ -81,7 +81,7 @@ void Map1::resetGrid(){
 //Skapar array
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
-	string saveFilePath = "Maps/" + mSavefile;
+	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
@@ -91,7 +91,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < width; i++) {
 			array2d[i] = new float[height];
 			for (int j = 0; j < height; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -101,7 +103,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < height; i++) {
 			array2d[i] = new float[width];
 			for (int j = 0; j < width; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -109,7 +113,9 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			array2d[i][j] = tempValue;
+			//cout << tempValue << endl;
+
+			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
 	return array2d;
@@ -319,7 +325,7 @@ void Map1::spawnObjects() {
 }
 
 void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
-
+	mState = 1;
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {
@@ -588,74 +594,84 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.2f) { //Rand Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 6.3f) { //Rand Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.4f) { //Rand Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
 			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.2f) { //Patrull Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
 			}
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 7.4f) { //Patrull Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
-					mNpcs[c]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
-					window.draw(mNpcs[c]->getDrawSprite());
+					mNpcs[c]->playAnimation();
+					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
 			}
@@ -967,10 +983,9 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		return true;
 	}
 	else {
-		/*if (mNpcs.at(atPos)->getCollide()){
-			//sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
-		}*/
-		sound.playSound(mGrid[tempY][tempX]);
+		if (mNpcVector.at(atPos)->getCollide()){
+			sound.playSound(mGrid[tempY][tempX]);
+		}
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
@@ -1045,4 +1060,8 @@ Maps::NpcMap Map1::getNpcs() {
 }
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
+}
+
+int Map1::checkState() {
+	return mState;
 }
