@@ -203,6 +203,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
+	mMap01->render(window, anime);
 
 
 	switch (mDialogSwitch)
@@ -327,7 +328,6 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	}
 
-	mMap01->render(window, anime);
 
 }
 
