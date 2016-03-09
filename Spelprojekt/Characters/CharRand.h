@@ -45,10 +45,12 @@ private:
 	const float mBaseType, mOrigLast;
 	float mType, mLast, mMoveTime;
 	bool mDirLock;
+	bool walking = true;
 
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> catAnimator;
-	sf::Texture mTextureSheet;
+	sf::Texture mTextureSheet_catIdle;
+	sf::Texture mTextureSheet_catWalk;
 	sf::Sprite mCatIdleSheet;
 	sf::Sprite mCatWalkSheet;
 	sf::IntRect *mRect;
