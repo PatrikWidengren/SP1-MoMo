@@ -119,6 +119,20 @@ float** Map1::createGrid(int width, int height) {
 		}
 	}
 	return array2d;
+	
+
+	/*if (width > height) {
+		for (int i = 0; i < width; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}
+	else {
+		for (int i = 0; i < height; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}*/
 }
 
 //Loopar igenom array och spawnar alla objekt
