@@ -97,6 +97,12 @@
     <Filter Include="Resource Files\Sprites\Hedgecutters">
       <UniqueIdentifier>{ec2c6f38-1eb0-49f0-a40c-37112842ef49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menus\Shop_UI">
+      <UniqueIdentifier>{999350c1-7d60-424b-a322-d863285e8282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Dialogue">
+      <UniqueIdentifier>{39d49156-5712-428b-a6c9-a0ed192393cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -737,6 +743,126 @@
     </Image>
     <Image Include="Resource Files\SpriteSheets\DOG_IDLE.png">
       <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Arrow.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Arrow_Click.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Box_Big_Items.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Box_Items.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Decline.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Decline_Box.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Decline_Highlight.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Hedgecutter_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Hedgecutter_Poster.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Hedgecutter_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Miyoda.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_1_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_1_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_2_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_2_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_3_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_3_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_4_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_4_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_5_Big.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Mower_5_Small.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Plank_Items.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Plank_Repairs.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Hedgecutter.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Mower_1.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Mower_2.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Mower_3.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Mower_4.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Poster_Mower_5.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Wood.png">
+      <Filter>Resource Files\Menus\Shop_UI</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\error.jpg">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_03.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_04.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Garden_05.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Background.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Menus\Shop_UI\Background_Dimmed.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 0.png">
+      <Filter>Resource Files\Dialogue</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 1.png">
+      <Filter>Resource Files\Dialogue</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 2.png">
+      <Filter>Resource Files\Dialogue</Filter>
     </Image>
     <Image Include="Resource Files\SpriteSheets\Cat_Black_Idle.png">
       <Filter>Resource Files\SpriteSheets</Filter>
