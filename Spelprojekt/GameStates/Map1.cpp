@@ -16,6 +16,8 @@ static const int pushMeepX = -96;
 static const int pushMeepY = -116;
 static const int pushMapX = 0;
 static const int pushMapY = 0;
+static const int pushNpcX = 0;
+static const int pushNpcY = -20;
 
 Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	mPlayer = p;
@@ -611,7 +613,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -619,7 +621,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -627,7 +629,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -636,7 +638,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -644,7 +646,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -653,7 +655,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -661,7 +663,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -669,7 +671,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -678,7 +680,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -686,7 +688,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
