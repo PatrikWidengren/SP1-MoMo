@@ -3,14 +3,18 @@
 #include <string>
 
 using namespace std;
-const int numberOfSongs = 3;
-static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Gardenice.ogg"};
+const int numberOfSongs = 9;
+static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Worldmap.ogg",
+"Resource Files/Music/GardenGeneric1.ogg", "Resource Files/Music/GardenGeneric2.ogg", "Resource Files/Music/GardenGeneric3.ogg",
+"Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg" };
 
 MusicManager::MusicManager(int id) {
-	mVolume = 25;
+	mVolume = 50;
 	for (int i = 0; i < numberOfSongs; i++) {
 		mSongList.push_back(new sf::Music);
-		mSongList[i]->openFromFile(nameArray[i]);
+		while (!mSongList[i]->openFromFile(nameArray[i])) {
+			std::cout << "Song: " << i << " failed to load!" << endl;
+		}
 		mSongList[i]->setVolume(mVolume);
 		mSongList[i]->setLoop(true);
 	}
@@ -19,9 +23,12 @@ MusicManager::MusicManager(int id) {
 }
 
 MusicManager::~MusicManager(){
+	int i = numberOfSongs - 1;
 	while (!mSongList.empty()) {
-		delete mSongList.back();
+		//mSongList[i]->stop();
+		delete mSongList[i];
 		mSongList.pop_back();
+		i--;
 	}
 }
 

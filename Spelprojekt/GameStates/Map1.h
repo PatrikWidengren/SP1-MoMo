@@ -41,6 +41,7 @@ public:
 	virtual std::vector<StaticObjects*> getObjects();
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
+	int checkState();
 
 	float** getGrid();
 	//Returnerar npcs, detta behövs till main
@@ -58,6 +59,7 @@ public:
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
 	int mWinRounds = 40;
+	std::string mSavefile/*, mPatrolPath*/;
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	bool movePlayer(int dir, SoundManager &sound);
@@ -69,6 +71,7 @@ private:
 	int mSilverGrass, mSilverHedge, mSilverDandelion;
 	int mGoldGrass, mGoldHedge, mGoldDandelion;
 	int mSkipLines = 0;
+	int mState;
 	float totalAmountOfGrass = 0;
 	float totalAmountOfHedges = 0;
 	float totalAmountOfDandelions = 0;
@@ -78,7 +81,6 @@ private:
 	float cutDandelions = 0;
 	int meepSpawnDirection;
 	int specialFeature;
-	std::string mSavefile/*, mPatrolPath*/;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;

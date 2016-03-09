@@ -5,15 +5,19 @@
 
 using namespace std;
 
-static float widthOnTile = 64.0f;
-static float heightOnTile = 52.0f;
-static int widthTile = 64;
-static int heightTile = 52;
-static int pushGrassX = -32;
-static int pushGrassY = -76;
-static int pushFenceY = -76;
-static int pushMeepX = -96;
-static int pushMeepY = -116;
+static const float widthOnTile = 64.0f;
+static const float heightOnTile = 52.0f;
+static const int widthTile = 64;
+static const int heightTile = 52;
+static const int pushGrassX = -32;
+static const int pushGrassY = -76;
+static const int pushFenceY = -76;
+static const int pushMeepX = -96;
+static const int pushMeepY = -116;
+static const int pushMapX = 0;
+static const int pushMapY = 0;
+static const int pushNpcX = 0;
+static const int pushNpcY = -20;
 
 Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	mPlayer = p;
@@ -82,7 +86,7 @@ void Map1::resetGrid(){
 //Skapar array
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
-	string saveFilePath = "Maps/" + mSavefile;
+	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
@@ -92,7 +96,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < width; i++) {
 			array2d[i] = new float[height];
 			for (int j = 0; j < height; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -102,7 +108,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < height; i++) {
 			array2d[i] = new float[width];
 			for (int j = 0; j < width; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -110,10 +118,26 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			array2d[i][j] = tempValue;
+			//cout << tempValue << endl;
+
+			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
 	return array2d;
+	
+
+	/*if (width > height) {
+		for (int i = 0; i < width; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}
+	else {
+		for (int i = 0; i < height; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}*/
 }
 
 //Loopar igenom array och spawnar alla objekt
@@ -326,149 +350,149 @@ void Map1::spawnObjects() {
 }
 
 void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
-
+	mState = 1;
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition(( + pushMapXi * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}*/
 			if (mGrid[j][i] == 1.1f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.2f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.3f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.4f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.5f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.6f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.7f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.8f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.9f) {
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.0f) { //Gräs
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.1f) { //Klippt gräs
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.2f) { //Maskros
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.3f) { //Klippt Maskros
-				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[4]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 2.4f) { //Grusväg
-				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[5]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
 				window.draw(mObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 3.0f) { //Sten
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
-				mObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 15); //Sätter positionen enligt grid
+				mObjects[2]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 15); //Sätter positionen enligt grid
 				window.draw(mObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 4.0f) { //Träd
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare klippt Gräs, temp innan animation
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
-				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[4]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
-				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[5]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
 				window.draw(mObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc på Gräs, temp innan animation
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc på Klippt Gräs, temp innan animation
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 6.2f) { //Rand Npc på maskros, temp innan animation
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 6.3f) { //Rand Npc på Klippt maskros, temp innan animation
-				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[4]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 6.4f) { //Rand Npc på grusväg, temp innan animation
-				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[5]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
 				window.draw(mObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc på Gräs, temp innan animation
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc på Klippt Gräs, temp innan animation
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 7.2f) { //Patrull Npc på maskros, temp innan animation
-				mObjects[3]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[3]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc på Klippt maskros, temp innan animation
-				mObjects[4]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[4]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 7.4f) { //Patrull Npc på grusväg, temp innan animation
-				mObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+				mObjects[5]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile)); //Sätter positionen enligt grid
 				window.draw(mObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.0f) { //Häck
-				mObjects[0]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
-				mObjects[1]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
+				mObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY); //Sätter positionen enligt grid
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 10.0f) { //Fontän
-				mObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushGrassY / 2); //Sätter positionen enligt grid
+				mObjects[6]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushGrassY / 2); //Sätter positionen enligt grid
 				window.draw(mObjects[6]->getDrawSprite());
 			}
 		}
@@ -477,43 +501,43 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 1.1f) {
-				mLongObjects[1]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[1]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.3f) {
-				mLongObjects[3]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[3]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[3]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.4f) {
-				mLongObjects[4]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[4]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[4]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.5f) {
-				mLongObjects[5]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[5]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[5]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.6f) {
-				mLongObjects[6]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[6]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[6]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.7f) {
-				mLongObjects[7]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[7]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[7]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.8f) {
-				mLongObjects[8]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[8]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[8]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.9f) {
-				mLongObjects[9]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[9]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[9]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.0f) { //Häck
-				mLongObjects[10]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY - 12); //Sätter positionen enligt grid
+				mLongObjects[10]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY - 12); //Sätter positionen enligt grid
 				window.draw(mLongObjects[10]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
-				mLongObjects[11]->getSprite()->setPosition((i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY - 22); //Sätter positionen enligt grid
+				mLongObjects[11]->getSprite()->setPosition((pushMapX + i * widthOnTile) + pushGrassX, pushMapY + (j * heightOnTile) + pushGrassY - 22); //Sätter positionen enligt grid
 				window.draw(mLongObjects[11]->getDrawSprite());
 			}
 		}
@@ -521,33 +545,33 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 4.0f) { //Träd
-				mLongObjects[0]->getSprite()->setPosition((i * widthOnTile) - 31, (j * heightOnTile) - 200); //Sätter positionen enligt grid
+				mLongObjects[0]->getSprite()->setPosition((pushMapX + i * widthOnTile) - 31, pushMapY + (j * heightOnTile) - 200); //Sätter positionen enligt grid
 				window.draw(mLongObjects[0]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 1.2f) {
-				mLongObjects[2]->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
+				mLongObjects[2]->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) + pushFenceY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[2]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				//anime.playTest();
-				//anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				//anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				//window.draw(*anime.getSpriteSheet());
-				//mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				//mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					//window.draw(mPlayer->getDrawSprite());
 					//mPlayer->setX(i);
 					//mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
-				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
-					/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+					/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.1f);
 				mPlayer->setX(i);
@@ -556,12 +580,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
-				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
-				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.2f);
 				mPlayer->setX(i);
@@ -569,12 +593,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
-				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
-				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 				mPlayer->setLast(2.3f);
 				mPlayer->setX(i);
@@ -582,22 +606,22 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
-				anime.getSpriteSheet()->setPosition((i * widthOnTile) + pushMeepX, (j * heightOnTile) + pushMeepY);
+				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
 				mPlayer->setLast(2.4f);
 				mPlayer->setX(i);
 				mPlayer->setY(j);
-				/*mPlayer->getSprite()->setPosition((i * widthOnTile), (j * heightOnTile) - 75);
+				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 			}
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -605,7 +629,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -613,7 +637,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -622,7 +646,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -630,7 +654,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -639,7 +663,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -647,7 +671,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -655,7 +679,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -664,7 +688,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -672,7 +696,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((i * widthOnTile), (j * heightOnTile)); //Sätter positionen enligt grid
+					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -803,6 +827,8 @@ void Map1::update(SoundManager &sound) {
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
 void Map1::takeTurn(int dir, SoundManager &sound) {
+
+	//sound.playSound(10.4f);
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
@@ -1104,10 +1130,9 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		return true;
 	}
 	else {
-		/*if (mNpcs.at(atPos)->getCollide()){
-			//sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
-		}*/
-		sound.playSound(mGrid[tempY][tempX]);
+		if (mNpcVector.at(atPos)->getCollide()){
+			sound.playSound(mGrid[tempY][tempX]);
+		}
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
@@ -1184,4 +1209,8 @@ Maps::NpcMap Map1::getNpcs() {
 
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
+}
+
+int Map1::checkState() {
+	return mState;
 }

@@ -19,13 +19,14 @@ int main(){
 	sf::Texture titleTexture;
 	sf::Sprite titleScreen;
 	titleTexture.loadFromFile("Resource Files/Backgrounds/Background_Title.png");
+	titleTexture.setSmooth(true);
 	titleScreen.setTexture(titleTexture);
 
 	sf::RenderWindow window(sf::VideoMode
 		(sf::VideoMode::getDesktopMode().width, 
 			sf::VideoMode::getDesktopMode().height, 
 			sf::VideoMode::getDesktopMode().bitsPerPixel), 
-		"garden"/*, sf::Style::Fullscreen*/);
+		"Mow Flow"/*, sf::Style::Fullscreen*/);
 
 	titleScreen.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	
@@ -43,8 +44,9 @@ int main(){
 		window.setFramerateLimit(60);
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
-			//delete &theGame;
-			//delete &mMusicManager;
+				mSoundManager.~SoundManager();
+				mMusicManager.~MusicManager();
+				theGame.~gameState();
 				window.close();
 			}
 			else if (event.type == sf::Event::Resized)

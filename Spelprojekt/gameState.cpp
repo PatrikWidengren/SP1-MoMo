@@ -31,9 +31,11 @@ gameState::gameState(sf::RenderWindow &window)
 
 	mDialogManager = new DialogManager(window);
 
-	mLawnMowers.push_back(new LawnMower(2,1,1,1,20));
-	mLawnMowers.push_back(new LawnMower(3,1,1,2,20));
-	mLawnMowers.push_back(new LawnMower (4,2,2,2,30));
+	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 100));
+	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 20));
+	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 30));
+	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 30));
+	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 30));
 	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 
@@ -69,7 +71,6 @@ gameState::~gameState()
 void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw In Game Menu
 {
 	mInGameMenu01->updateInGameMenu(window, mouse);
-	window.clear();
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -78,8 +79,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 
 void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
 {
-	mStartMenu01->updateStartMenu(window, mouse);
-	window.clear();
+	mStartMenu01->updateStartMenu(window, mouse, sound);
 	mStartMenu01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mStartMenu01->checkState());
 	mState = mStartMenu01->checkState();
@@ -89,7 +89,6 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
 {
 	mSoundmenu01->updateSoundMenu(window, mouse);
-	window.clear();
 	mSoundmenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mSoundmenu01->checkOptionState());
 	mOptionMenuState = mSoundmenu01->checkOptionState();
@@ -98,7 +97,6 @@ void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Option Menu
 {
 	mOptionMenu01->updateoptionMenu(window, mouse); 
-	window.clear();
 	mOptionMenu01->displayMenu01(window);
 	mStartOptionState = checkStartState(mOptionMenu01->checkState());
 	mStartState = checkStartState(mOptionMenu01->checkState());
@@ -112,7 +110,6 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Tool Select Menu
 {
 	mToolSelectMenu01->updateToolSelectMenu(window, mouse);
-	window.clear();
 	mToolSelectMenu01->displayMenu01(window);
 	mStartState = checkStartState(mToolSelectMenu01->checkState());
 	mState = mToolSelectMenu01->checkState();
@@ -121,7 +118,6 @@ void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse
 void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Game Over Menu
 {
 	mGameOverMenu01->updateGameOverMenu(window, mouse);
-	window.clear();
 	mGameOverMenu01->displayMenu01(window);
 	mStartState = checkStartState(mGameOverMenu01->checkState());
 	mState = mGameOverMenu01->checkState();
@@ -130,7 +126,6 @@ void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Win Menu
 {
 	mWinMenu01->updateWinMenu(window, mouse);
-	window.clear();
 	mWinMenu01->displayMenu01(window);
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
@@ -139,7 +134,6 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
 {
 	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse);
-	window.clear();
 	mKeyboardMenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mKeyboardMenu01->checkOptionState());
 	mOptionMenuState = mKeyboardMenu01->checkOptionState();
@@ -148,7 +142,6 @@ void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw World Map
 {
 	mWorldMap01->updateWorldMap(window, mouse);
-	window.clear();
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mWorldMap01->checkState();
@@ -161,7 +154,6 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Region Map
 {
 	mRegionMap01->updateRegionMap(window, mouse);
-	window.clear();
 	mRegionMap01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mRegionMap01->checkState();
@@ -173,6 +165,7 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Draw and Update Ingame
 {
+#pragma region Outdate
 	/*
 	//Ritar ut objekten
 	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
@@ -187,11 +180,44 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		window.draw(mLongObjects[i]->getSprite());
 		//mObjects[i]->render();
 	}*/
-	window.clear();
+#pragma endregion
 
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5){
+	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
+	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
+
+
+#pragma region Check if there is Dialogue
+	if (mBeforeDialogue)
+	{
+		mDialogSwitch = 0;
+	}
+	else if (mAfterDialogue)
+	{
+		mDialogSwitch = 2;
+	}
+	else
+	{
+		mDialogSwitch = 1;
+	}
+#pragma endregion
+
+	mMap01->update(sound);
+	mMap01->render(window, anime);
+
+	switch (mDialogSwitch)
+	{
+		case 0: //Before, Dialogue
+		{
+			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+			break;
+		}
+		case 1:
+		{
+			#pragma region Structure
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5) {
 		swap5 = true;
 		std::cout << "swapping" << std::endl;
 		/*std::cout << "Swapped to ";
@@ -204,7 +230,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		mMap01->getPlayer()->swapEquipped();
 	}
 
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5){
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5) {
 		swap5 = false;
 	}
 
@@ -212,7 +238,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 
 	if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))) {
 		moveMeep = 1;
 		meepHeightAnimation = "idle2";
 		std::cout << "movdir " << moveMeep << std::endl;
@@ -220,7 +246,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))) {
 		moveMeep = 3;
 		meepHeightAnimation = "idle8";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -228,7 +254,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))) {
 		moveMeep = 7;
 		meepHeightAnimation = "idle4";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -236,7 +262,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))) {
 		moveMeep = 9;
 		meepHeightAnimation = "idle6";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -245,7 +271,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 
 	if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))) {
 		moveMeep = 2;
 		meepHeightAnimation = "idle1";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -253,7 +279,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))) {
 		moveMeep = 4;
 		meepHeightAnimation = "idle3";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -261,7 +287,7 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))) {
 		moveMeep = 6;
 		meepHeightAnimation = "idle7";
 		//std::cout << "movdir " << moveMeep << std::endl;
@@ -269,13 +295,13 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 	if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))){
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))) {
 		moveMeep = 8;
 		meepHeightAnimation = "idle5";
 		//std::cout << "movdir " << moveMeep << std::endl;
 		keyPressed = true;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed){
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed) {
 		space = true;
 		//std::cout << "confirm dir " << moveMeep << std::endl;
 		//anime.setHeightPosition(meepHeightAnimation);
@@ -287,11 +313,23 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 		keyPressed = false;
 	}
 
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space){
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space) {
 		space = false;
 	}
-	mMap01->update(sound);
-	mMap01->render(window, anime);
+			mStartState = checkStartState(mMap01->checkState());
+#pragma endregion
+
+			break;
+}
+		case 2: //After, Dialogue
+		{
+			mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
+			break;
+		}
+
+	}
+
+
 }
 
 void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Game State Handler
@@ -300,21 +338,53 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 	case 1: 
 	{ //Game state 1. in game. 
-
+		drawInGame(window, mouse, music, sound, anime);
 		if (mStartState) {
-			music.setMusic(1);
+			if (mRegionMusic == 1) {
+				music.setMusic(3);
+			}
+			else if (mRegionMusic == 2) {
+				music.setMusic(4);
+			}
+			else if (mRegionMusic == 3) {
+				music.setMusic(5);
+			}
+			else if (mRegionMusic == 4) {
+				music.setMusic(7);
+			}
+			else if (mRegionMusic == 5) {
+				music.setMusic(8);
+			}
+			sound.playSound(10.5f);
+			sound.playSound(10.4f);
 			//mMap01->scale(window);
 			mStartState = false;
 			//Startar musik osv
 		}
 		drawInGame(window, mouse, music, sound, anime);
+		if (mMap01->mTurnCount >= 50) {
+			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
+			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+			if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
+				mState = 5;
+				mStartState = true;
+			}
+
+			//For now, just testing phase of Winning screen. Need Winning condition for the map.
+			if (mMap01->mTurnCount >= mMap01->mWinRounds) {
+				mState = 6;
+				mStartState = true;
+			}
+		}
 		break;
 	}
 	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(6);
 			mInGameMenu01->scale(window);
 			mStartState = false;
+			sound.stopSound(10.4f);
+			sound.playSound(10.6f);
 			//Starta musik osv
 		}
 		drawInGameMenu(window, mouse, music, sound);
@@ -336,7 +406,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: { //state 1. Option.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				music.setMusic(6);
 				mOptionMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -347,7 +417,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
-				music.setMusic(1);
+				music.setMusic(6);
 				mSoundmenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -358,7 +428,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
-				music.setMusic(2);
+				music.setMusic(6);
 				mKeyboardMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -375,7 +445,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 5: { //state 5. GameOver.
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(8);
 			mGameOverMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -385,7 +455,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 6: { //state 6. WinMenu.
 		if (mStartState) {
-			music.setMusic(1);
+			music.setMusic(0);
 			mWinMenu01->scale(window);
 			mStartState = false;
 			//Starta musik osv
@@ -412,6 +482,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 1;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -423,6 +494,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 2:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 2;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -434,6 +506,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 3:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 3;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -446,6 +519,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 4:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 4;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -458,6 +532,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 5:
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
+				mRegionMusic = 5;
 				mRegionMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -548,20 +623,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 0;
 	}*/
 
-	if (mMap01->mTurnCount >= 50) {
-		//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
-		//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-		if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
-			mState = 5;
-			mStartState = true;
-		}
 
-		//For now, just testing phase of Winning screen. Need Winning condition for the map.
-		if (mMap01->mTurnCount >= mMap01->mWinRounds) {
-			mState = 6;
-			mStartState = true;
-		}
-	}
 }
 
 void gameState::resetMap(){
@@ -609,7 +671,8 @@ bool gameState::checkStartRegionState(int lowerState) {
 }
 
 void gameState::loadMap() {
-	delete mMap01;
+	mMap01->~Map1();
+	//delete mMap01;
 	
 	std::string levelToLoad = mRegionMap01->loadLevel();
 
