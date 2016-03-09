@@ -6,10 +6,10 @@ using namespace std;
 sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
-static const string cat_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
-static const string cat_walk = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
-static const int spriteWidth = 256;
-static const int spriteHeight = 256;
+static const string cat_idle = "Resource Files/SpriteSheets/Cat_Orange_Idle.png";
+static const string cat_walk = "Resource Files/SpriteSheets/Cat_Orange_Walk.png";
+static const int spriteWidth = 64;
+static const int spriteHeight = 64;
 
 CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mArrayX(arrX),
@@ -36,7 +36,7 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 8; i++) {
 			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
 			frame.addFrame(0.4f, *mRect);
 		}
