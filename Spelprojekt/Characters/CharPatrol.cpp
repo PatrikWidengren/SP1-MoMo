@@ -6,10 +6,10 @@ using namespace std;
 sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "Resource Files/Sprites/deputy.png";
-static const string dog_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
-static const string dog_walk = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
-static const int spriteWidth = 256;
-static const int spriteHeight = 256;
+static const string dog_idle = "Resource Files/SpriteSheets/DOG_IDLE.png";
+static const string dog_walk = "Resource Files/SpriteSheets/Dog_Walk.png";
+static const int spriteWidth = 64;
+static const int spriteHeight = 64;
 
 CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int moveCount*/): 
 	
@@ -37,21 +37,6 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	mTurnNo = -1;
 	//fill up path with the move array
 
-	// Not needed
-	/*path = new int*[mTurnCount];
-	for (int i = 0; i < mTurnCount; i++) {
-		path[i] = new int[mMoveCount];
-		for (int j = 0; j < mMoveCount; j++) {
-			path[i][j] = 0;
-		}
-	}
-
-	for (int i = 0; i < mTurnCount; i++){
-		for (int j = 0; j < mMoveCount; j++) {
-			path[i][j] = moves[i][j];
-		}
-	}*/
-
 	path = moves;
 	//I assume guard is 7
 	mType = 7.0f;
@@ -66,30 +51,15 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
-		for (int i = 0; i < 7; i++) {
-			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
-			frame.addFrame(0.4f, *mRect);
-		}
-		std::ostringstream tempName;
-		tempName << "idle" << j + 1;
-		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
-	}
-	for (int j = 0; j < 8; j++) {
-		thor::FrameAnimation frame;
 		for (int i = 0; i < 8; i++) {
 			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
 			frame.addFrame(0.4f, *mRect);
 		}
 		std::ostringstream tempName;
-		tempName << "walk" << j + 1;
+		tempName << "animation" << j + 1;
 		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
 	}
-	if (walking) {
-		dogAnimator.playAnimation("walk7", true);
-	}
-	else {
-		dogAnimator.playAnimation("idle7", true);
-	}
+	dogAnimator.playAnimation("animation7", true);
 }
 
 CharPatrol::~CharPatrol(){
@@ -172,8 +142,6 @@ intVector CharPatrol::collide(intVector moves, int atPos){
 	return col;
 }
 
-
-
 int CharPatrol::getX(){
 	return mArrayX;
 }
@@ -226,57 +194,29 @@ void CharPatrol::playAnimation() {
 	}
 }
 void CharPatrol::changeAnimation(int nr) {
-	if (!walking) {
-		if (nr == 1) {
-			dogAnimator.playAnimation("idle2", true);
-		}
-		if (nr == 2) {
-			dogAnimator.playAnimation("idle1", true);
-		}
-		if (nr == 3) {
-			dogAnimator.playAnimation("idle8", true);
-		}
-		if (nr == 4) {
-			dogAnimator.playAnimation("idle3", true);
-		}
-		if (nr == 6) {
-			dogAnimator.playAnimation("idle7", true);
-		}
-		if (nr == 7) {
-			dogAnimator.playAnimation("idle4", true);
-		}
-		if (nr == 8) {
-			dogAnimator.playAnimation("idle5", true);
-		}
-		if (nr == 9) {
-			dogAnimator.playAnimation("idle6", true);
-		}
+	if (nr == 1) {
+		dogAnimator.playAnimation("animation2", true);
 	}
-	else {
-		if (nr == 1) {
-			dogAnimator.playAnimation("walk2", true);
-		}
-		if (nr == 2) {
-			dogAnimator.playAnimation("walk1", true);
-		}
-		if (nr == 3) {
-			dogAnimator.playAnimation("walk8", true);
-		}
-		if (nr == 4) {
-			dogAnimator.playAnimation("walk3", true);
-		}
-		if (nr == 6) {
-			dogAnimator.playAnimation("walk7", true);
-		}
-		if (nr == 7) {
-			dogAnimator.playAnimation("walk4", true);
-		}
-		if (nr == 8) {
-			dogAnimator.playAnimation("walk5", true);
-		}
-		if (nr == 9) {
-			dogAnimator.playAnimation("walk6", true);
-		}
+	if (nr == 2) {
+		dogAnimator.playAnimation("animation1", true);
+	}
+	if (nr == 3) {
+		dogAnimator.playAnimation("animation8", true);
+	}
+	if (nr == 4) {
+		dogAnimator.playAnimation("animation3", true);
+	}
+	if (nr == 6) {
+		dogAnimator.playAnimation("animation7", true);
+	}
+	if (nr == 7) {
+		dogAnimator.playAnimation("animation4", true);
+	}
+	if (nr == 8) {
+		dogAnimator.playAnimation("animation5", true);
+	}
+	if (nr == 9) {
+		dogAnimator.playAnimation("animation6", true);
 	}
 }
 sf::Sprite* CharPatrol::getSpriteSheet() {
@@ -289,9 +229,9 @@ sf::Sprite* CharPatrol::getSpriteSheet() {
 }
 
 void CharPatrol::initialize(){
-	imageGuard.loadFromFile(filename);
-	imageGuard.createMaskFromColor(sf::Color::White);
-	textureGuard.loadFromImage(imageGuard);
+	//imageGuard.loadFromFile(filename);
+	//imageGuard.createMaskFromColor(sf::Color::White);
+	//textureGuard.loadFromImage(imageGuard);
 }
 
 void CharPatrol::finalize(){
