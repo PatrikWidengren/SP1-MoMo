@@ -49,8 +49,15 @@ void DialogManager::playBeforeDialogue(std::string wichMap, sf::RenderWindow &wi
 
 void DialogManager::drawBeforeDialogue(sf::RenderWindow &window)
 {
+
 	swapDialogueTexture(0);
 	window.draw(spriteDialogs);
+	if (mTimer >= 4 * 60 && j > 0)
+	{
+		spriteDialogs.setColor(sf::Color(255, 255, 255, j));
+		j-=(255/35);
+	}
+
 	//window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
 	//std::cout << "DrawDialog( &window) CHECK " << std::endl;
 

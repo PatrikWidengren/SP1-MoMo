@@ -26,6 +26,7 @@ private:
 	int mTimer;
 	int mCurrentBeforeMapDialogue;
 	int mCurrentAfterMapDialogue;
+	int j = 255;
 
 	typedef std::vector<sf::Texture*> DialogueTextures;
 
