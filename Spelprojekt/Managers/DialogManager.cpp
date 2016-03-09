@@ -2,9 +2,9 @@
 
 DialogManager::DialogManager(sf::RenderWindow &window)
 {
-	int mCurrentMapDialouge = 0;
-	int mCurrentDialouge = 0;
-	//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentMapDialouge][mCurrentDialouge]);
+	int mCurrentMapDialogue = 0;
+	int mCurrentDialogue = 0;
+	//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentMapDialogue][mCurrentDialogue]);
 
 	//	*spriteDialogs
 	//	*textDialogs
@@ -17,20 +17,20 @@ DialogManager::~DialogManager()
 
 
 
-#pragma region Play AfterDialouge
-void DialogManager::playAfterDialouge(std::string wichMap, sf::RenderWindow &window)
+#pragma region Play AfterDialogue
+void DialogManager::playAfterDialogue(std::string wichMap, sf::RenderWindow &window)
 {
-		drawAfterDialouge(window);
+		drawAfterDialogue(window);
 
-	//std::cout << " Play Dialouge CHECK" << std::endl;	
+	//std::cout << " Play Dialogue CHECK" << std::endl;	
 	std::cout << "whichMap?: " << wichMap << std::endl;
 
 }
 
-void DialogManager::drawAfterDialouge(sf::RenderWindow &window)
+void DialogManager::drawAfterDialogue(sf::RenderWindow &window)
 {
-	swapDialougeTexture(1);
-	//window.draw(*spriteDialogs[mCurrentMapDialouge][mCurrentDialouge]);
+	swapDialogueTexture(1);
+	//window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
 	//std::cout << "DrawDialog( &window) CHECK " << std::endl;
 
 }
@@ -42,24 +42,24 @@ void DialogManager::drawAfterDialouge(sf::RenderWindow &window)
 //	mTimer++;
 //	if (time * 60 > mTimer)
 //	{
-//		std::cout << " Play Dialouge GO!: "<< mTimer /60 << "  " << time << std::endl;
+//		std::cout << " Play Dialogue GO!: "<< mTimer /60 << "  " << time << std::endl;
 //	}
 //}
 
-#pragma region Play BeforeDialouge
-void DialogManager::playBeforeDialouge(std::string wichMap, sf::RenderWindow &window)
+#pragma region Play BeforeDialogue
+void DialogManager::playBeforeDialogue(std::string wichMap, sf::RenderWindow &window)
 {
-		drawBeforeDialouge(window);
+		drawBeforeDialogue(window);
 
-	//std::cout << " Play Dialouge CHECK" << std::endl;	
+	//std::cout << " Play Dialogue CHECK" << std::endl;	
 	std::cout << "whichMap?: " << wichMap << std::endl;
 
 }
 
-void DialogManager::drawBeforeDialouge(sf::RenderWindow &window)
+void DialogManager::drawBeforeDialogue(sf::RenderWindow &window)
 {
-	swapDialougeTexture(0);
-	//window.draw(*spriteDialogs[mCurrentMapDialouge][mCurrentDialouge]);
+	swapDialogueTexture(0);
+	//window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
 	//std::cout << "DrawDialog( &window) CHECK " << std::endl;
 
 }
@@ -68,33 +68,33 @@ void DialogManager::drawBeforeDialouge(sf::RenderWindow &window)
 
 
 
-void DialogManager::swapDialougeTexture(int beforeOrAfter)
+void DialogManager::swapDialogueTexture(int beforeOrAfter)
 {
 	if (beforeOrAfter == 0)
 	{
-		//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialouge][mCurrentDialouge]);
+		//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialogue][mCurrentDialogue]);
 	}
 	else
 	{
-		//qwespriteDialogs.setTexture(*textAfterDialogs[mCurrentAfterMapDialouge][mCurrentDialouge]);
+		//qwespriteDialogs.setTexture(*textAfterDialogs[mCurrentAfterMapDialogue][mCurrentDialogue]);
 	}
-	mCurrentDialouge++;
+	mCurrentDialogue++;
 
 }
 
 
-#pragma region Edit Dialouge conditions
-bool DialogManager::checkBeforeDialouge(std::string mapName)
+#pragma region Edit Dialogue conditions
+bool DialogManager::checkBeforeDialogue(std::string mapName)
 {
 	bool i = false;
 	if (mapName == "map01a01" )
 	{
-		mCurrentBeforeMapDialouge = 0;
+		mCurrentBeforeMapDialogue = 0;
 		i = true;
 	}
 	if (mapName == "map01a02")
 	{
-		mCurrentBeforeMapDialouge = 1;
+		mCurrentBeforeMapDialogue = 1;
 
 		i = true;
 
@@ -102,13 +102,12 @@ bool DialogManager::checkBeforeDialouge(std::string mapName)
 	return i;
 }
 
-
-bool DialogManager::checkAfterDialouge(std::string mapName)
+bool DialogManager::checkAfterDialogue(std::string mapName)
 {
 	bool i = false;
 	if (mapName == "map01a02")
 	{
-		mCurrentAfterMapDialouge = 1;
+		mCurrentAfterMapDialogue = 1;
 		i = true;
 	}
 

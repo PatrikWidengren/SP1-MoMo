@@ -215,6 +215,9 @@
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
     <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
+    <Image Include="Resource Files\Dialogue\Before01a01 0.png" />
+    <Image Include="Resource Files\Dialogue\Before01a01 1.png" />
+    <Image Include="Resource Files\Dialogue\Before01a01 2.png" />
     <Image Include="Resource Files\Menus\Audio.png" />
     <Image Include="Resource Files\Menus\Audio_Effects.png" />
     <Image Include="Resource Files\Menus\Audio_Master.png" />

@@ -78,8 +78,8 @@ private:
 	int mCurHedgeTool = 0;
 	int mDialogSwitch = 0;
 
-	bool mBeforeDialouge = false;
-	bool mAfterDialouge = false;
+	bool mBeforeDialogue = false;
+	bool mAfterDialogue = false;
 	bool keyPressed = false;
 	bool space = false;
 	bool swap5 = false;

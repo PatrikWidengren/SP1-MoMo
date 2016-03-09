@@ -195,16 +195,16 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	window.clear();
 
 
-	mBeforeDialouge = mDialogManager->checkBeforeDialouge(mMap01->mSavefile);
-	mAfterDialouge = mDialogManager->checkAfterDialouge(mMap01->mSavefile);
+	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
+	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
 
-#pragma region Check if there is Dialouge
-	if (mBeforeDialouge)
+#pragma region Check if there is Dialogue
+	if (mBeforeDialogue)
 	{
 		mDialogSwitch = 0;
 	}
-	else if (mAfterDialouge)
+	else if (mAfterDialogue)
 	{
 		mDialogSwitch = 2;
 	}
@@ -220,7 +220,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	{
 		case 0: //Before, Dialogue
 		{
-			mDialogManager->playBeforeDialouge(mMap01->mSavefile, window);
+			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
 			break;
 		}
 		case 1:
@@ -332,7 +332,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		}
 		case 2: //After, Dialogue
 		{
-			mDialogManager->playAfterDialouge(mMap01->mSavefile, window);
+			mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
 			break;
 		}
 

@@ -4,28 +4,28 @@
 #include <iostream>
 #include <vector>
 
-//#include "../GameStates/Map1.h" Used for "checkIfBeforeAfterDialouge" Maybe. //Fnatte
+//#include "../GameStates/Map1.h" Used for "checkIfBeforeAfterDialogue" Maybe. //Fnatte
 class DialogManager
 {
 public:
 	DialogManager(sf::RenderWindow &window);
 	~DialogManager();
 	//void playDialog(int dialogID, int time);
-	void playBeforeDialouge(std::string wichMap, sf::RenderWindow &window);
-	void playAfterDialouge(std::string wichMap, sf::RenderWindow &window);
-	void drawBeforeDialouge(sf::RenderWindow &window);
-	void drawAfterDialouge(sf::RenderWindow &window);
-	bool checkBeforeDialouge(std::string mapName);
-	bool checkAfterDialouge(std::string mapName);
-	int mCurrentDialouge;
-	void swapDialougeTexture(int beforeOrAfter);
+	void playBeforeDialogue(std::string wichMap, sf::RenderWindow &window);
+	void playAfterDialogue(std::string wichMap, sf::RenderWindow &window);
+	void drawBeforeDialogue(sf::RenderWindow &window);
+	void drawAfterDialogue(sf::RenderWindow &window);
+	bool checkBeforeDialogue(std::string mapName);
+	bool checkAfterDialogue(std::string mapName);
+	int mCurrentDialogue;
+	void swapDialogueTexture(int beforeOrAfter);
 
 	void setTextures();
 
 private:
 	int mTimer;
-	int mCurrentBeforeMapDialouge;
-	int mCurrentAfterMapDialouge;
+	int mCurrentBeforeMapDialogue;
+	int mCurrentAfterMapDialogue;
 
 	typedef std::vector<sf::Texture*> HouseTextures;
 

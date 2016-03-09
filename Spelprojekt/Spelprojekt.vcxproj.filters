@@ -100,6 +100,9 @@
     <Filter Include="Resource Files\Menus\Shop_UI">
       <UniqueIdentifier>{999350c1-7d60-424b-a322-d863285e8282}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Dialogue">
+      <UniqueIdentifier>{39d49156-5712-428b-a6c9-a0ed192393cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -851,6 +854,15 @@
     </Image>
     <Image Include="Resource Files\Menus\Shop_UI\Background_Dimmed.png">
       <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 0.png">
+      <Filter>Resource Files\Dialogue</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 1.png">
+      <Filter>Resource Files\Dialogue</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\Before01a01 2.png">
+      <Filter>Resource Files\Dialogue</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
