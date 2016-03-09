@@ -81,7 +81,7 @@ void Map1::resetGrid(){
 //Skapar array
 float** Map1::createGrid(int width, int height) {
 	float tempValue;
-	string saveFilePath = "Maps/" + mSavefile;
+	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
@@ -91,7 +91,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < width; i++) {
 			array2d[i] = new float[height];
 			for (int j = 0; j < height; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -101,7 +103,9 @@ float** Map1::createGrid(int width, int height) {
 		for (int i = 0; i < height; i++) {
 			array2d[i] = new float[width];
 			for (int j = 0; j < width; j++) {
-				array2d[i][j] = 0;
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				//array2d[i][j] = 0.0f;
 			}
 		}
 	}
@@ -109,10 +113,26 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			array2d[i][j] = tempValue;
+			//cout << tempValue << endl;
+
+			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
 	return array2d;
+	
+
+	/*if (width > height) {
+		for (int i = 0; i < width; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}
+	else {
+		for (int i = 0; i < height; i++) {
+			delete[] array2d[i];
+		}
+		delete[] array2d;
+	}*/
 }
 
 //Loopar igenom array och spawnar alla objekt
@@ -319,7 +339,7 @@ void Map1::spawnObjects() {
 }
 
 void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
-
+	mState = 1;
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {
@@ -977,10 +997,9 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		return true;
 	}
 	else {
-		/*if (mNpcs.at(atPos)->getCollide()){
-			//sound.playSound((int)floor(mGrid[tempY][tempX]) - 1);
-		}*/
-		sound.playSound(mGrid[tempY][tempX]);
+		if (mNpcVector.at(atPos)->getCollide()){
+			sound.playSound(mGrid[tempY][tempX]);
+		}
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
 			//Krock med Meep
@@ -1055,4 +1074,8 @@ Maps::NpcMap Map1::getNpcs() {
 }
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
+}
+
+int Map1::checkState() {
+	return mState;
 }

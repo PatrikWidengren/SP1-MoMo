@@ -27,7 +27,7 @@ public:
 	virtual float getMoveTime();
 
 	virtual void playAnimation();
-	virtual void changeAnimation(std::string name);
+	virtual void changeAnimation(int nr);
 
 	static void initialize();
 	static void finalize();
@@ -45,8 +45,7 @@ private:
 	//Single turn's worth of movement to retry in case of collision
 	int *retryPath;
 	int mTurnNo;
-
-	sf::Sprite mCharSprite;
+	bool walking = false;
 
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> dogAnimator;

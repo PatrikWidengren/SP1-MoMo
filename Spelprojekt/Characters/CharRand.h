@@ -33,7 +33,7 @@ public:
 	static void initialize();
 	static void finalize();
 	virtual sf::Sprite* getSpriteSheet();
-	virtual void changeAnimation(std::string name);
+	virtual void changeAnimation(int nr);
 	virtual void playAnimation();
 
 	//Treat this as running into and colliding with things?
@@ -45,10 +45,12 @@ private:
 	const float mBaseType, mOrigLast;
 	float mType, mLast, mMoveTime;
 	bool mDirLock;
+	bool walking = true;
 
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string> catAnimator;
-	sf::Texture mTextureSheet;
+	sf::Texture mTextureSheet_catIdle;
+	sf::Texture mTextureSheet_catWalk;
 	sf::Sprite mCatIdleSheet;
 	sf::Sprite mCatWalkSheet;
 	sf::IntRect *mRect;

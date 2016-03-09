@@ -44,8 +44,8 @@ int main(){
 		window.setFramerateLimit(60);
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
-			//delete &theGame;
-			//delete &mMusicManager;
+				mSoundManager.~SoundManager();
+				mMusicManager.~MusicManager();
 				window.close();
 			}
 			else if (event.type == sf::Event::Resized)

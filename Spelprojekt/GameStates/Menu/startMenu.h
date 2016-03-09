@@ -38,7 +38,7 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
+	virtual void updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

@@ -188,7 +188,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
 			std::cout << "It's inside " << i << "!" << std::endl;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-					mLevelToLoad = i + 1;
+				mClick = false;
+				mLevelToLoad = i + 1;
 				mState = 8;
 			}
 		}
@@ -477,6 +478,7 @@ std::string RegionMap::loadLevel() {
 void RegionMap::scale(sf::RenderWindow &window) {
 
 	mState = 7;
+	mInternalState = 0;
 
 	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
@@ -486,6 +488,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	*/
 
 	spriteShop.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteHedgecutter.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteGrassMower.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow01.setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow02.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);

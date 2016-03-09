@@ -28,7 +28,7 @@ public:
 	virtual float getLast() = 0;
 	virtual float getType() = 0;
 	virtual void playAnimation() = 0;
-	virtual void changeAnimation(std::string nr) = 0;
+	virtual void changeAnimation(int nr) = 0;
 	virtual sf::Sprite* getSpriteSheet() = 0;
 	virtual float getMoveTime() = 0;
 

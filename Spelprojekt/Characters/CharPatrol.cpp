@@ -7,7 +7,7 @@ sf::Texture textureGuard;
 sf::Image imageGuard;
 static const string filename = "Resource Files/Sprites/deputy.png";
 static const string dog_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
-static const string dog_walk = "Resource Files/SpriteSheets/DOG_WALK.png";
+static const string dog_walk = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
 static const int spriteWidth = 256;
 static const int spriteHeight = 256;
 
@@ -57,10 +57,6 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	mType = 7.0f;
 	//temporary fix. update asap.
 	mLast = 2.0f;
-	mCharSprite.setTexture(textureGuard);
-
-
-
 
 	mTextureSheet_dogIdle.loadFromFile(dog_idle);
 	mDogIdleSheet.setTexture(mTextureSheet_dogIdle);
@@ -78,7 +74,22 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 		tempName << "idle" << j + 1;
 		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
 	}
-	dogAnimator.playAnimation("idle1", true);
+	for (int j = 0; j < 8; j++) {
+		thor::FrameAnimation frame;
+		for (int i = 0; i < 8; i++) {
+			mRect = new sf::IntRect(sf::Vector2i(0 + spriteWidth * i, spriteHeight * j), sf::Vector2i(spriteWidth, spriteHeight));
+			frame.addFrame(0.4f, *mRect);
+		}
+		std::ostringstream tempName;
+		tempName << "walk" << j + 1;
+		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+	}
+	if (walking) {
+		dogAnimator.playAnimation("walk7", true);
+	}
+	else {
+		dogAnimator.playAnimation("idle7", true);
+	}
 }
 
 CharPatrol::~CharPatrol(){
@@ -112,9 +123,8 @@ intVector CharPatrol::move(){
 			else {
 				//test += path[mTurnNo][i];
 				//test *= mMoveCount;
-				if (path[mTurnNo][i] == 4) {
-					changeAnimation("idle3");
-				}
+
+				changeAnimation(path[mTurnNo][i]);
 				curMove.push_back(path[mTurnNo][i]);
 			}
 		}
@@ -208,13 +218,74 @@ bool CharPatrol::getCollide(){
 }
 void CharPatrol::playAnimation() {
 	dogAnimator.update(clock.restart());
-	dogAnimator.animate(mDogIdleSheet);
+	if (!walking) {
+		dogAnimator.animate(mDogIdleSheet);
+	}
+	else {
+		dogAnimator.animate(mDogWalkSheet);
+	}
 }
-void CharPatrol::changeAnimation(std::string name) {
-	dogAnimator.playAnimation(name, true);
+void CharPatrol::changeAnimation(int nr) {
+	if (!walking) {
+		if (nr == 1) {
+			dogAnimator.playAnimation("idle2", true);
+		}
+		if (nr == 2) {
+			dogAnimator.playAnimation("idle1", true);
+		}
+		if (nr == 3) {
+			dogAnimator.playAnimation("idle8", true);
+		}
+		if (nr == 4) {
+			dogAnimator.playAnimation("idle3", true);
+		}
+		if (nr == 6) {
+			dogAnimator.playAnimation("idle7", true);
+		}
+		if (nr == 7) {
+			dogAnimator.playAnimation("idle4", true);
+		}
+		if (nr == 8) {
+			dogAnimator.playAnimation("idle5", true);
+		}
+		if (nr == 9) {
+			dogAnimator.playAnimation("idle6", true);
+		}
+	}
+	else {
+		if (nr == 1) {
+			dogAnimator.playAnimation("walk2", true);
+		}
+		if (nr == 2) {
+			dogAnimator.playAnimation("walk1", true);
+		}
+		if (nr == 3) {
+			dogAnimator.playAnimation("walk8", true);
+		}
+		if (nr == 4) {
+			dogAnimator.playAnimation("walk3", true);
+		}
+		if (nr == 6) {
+			dogAnimator.playAnimation("walk7", true);
+		}
+		if (nr == 7) {
+			dogAnimator.playAnimation("walk4", true);
+		}
+		if (nr == 8) {
+			dogAnimator.playAnimation("walk5", true);
+		}
+		if (nr == 9) {
+			dogAnimator.playAnimation("walk6", true);
+		}
+	}
 }
 sf::Sprite* CharPatrol::getSpriteSheet() {
-	return &mDogIdleSheet;
+	if (!walking) {
+		return &mDogIdleSheet;
+	}
+	else {
+		return &mDogWalkSheet;
+	}
 }
 
 void CharPatrol::initialize(){
