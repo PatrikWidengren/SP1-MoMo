@@ -2,12 +2,11 @@
 
 DialogManager::DialogManager(sf::RenderWindow &window)
 {
+	mTimer = 0;
 	int mCurrentMapDialogue = 0;
 	int mCurrentDialogue = 0;
-	//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentMapDialogue][mCurrentDialogue]);
-
-	//	*spriteDialogs
-	//	*textDialogs
+	setTextures();
+	spriteDialogs.setPosition(0, window.getSize().y - 309);
 }
 
 DialogManager::~DialogManager()
@@ -37,28 +36,21 @@ void DialogManager::drawAfterDialogue(sf::RenderWindow &window)
 #pragma endregion
 
 
-//void DialogManager::playDialog(int wichMap, int time)
-//{
-//	mTimer++;
-//	if (time * 60 > mTimer)
-//	{
-//		std::cout << " Play Dialogue GO!: "<< mTimer /60 << "  " << time << std::endl;
-//	}
-//}
-
 #pragma region Play BeforeDialogue
 void DialogManager::playBeforeDialogue(std::string wichMap, sf::RenderWindow &window)
 {
+		mTimer++;
 		drawBeforeDialogue(window);
 
 	//std::cout << " Play Dialogue CHECK" << std::endl;	
-	std::cout << "whichMap?: " << wichMap << std::endl;
+	std::cout << "whichMap?: " << wichMap << "   " << mCurrentBeforeMapDialogue << "   " << mTimer << std::endl;
 
 }
 
 void DialogManager::drawBeforeDialogue(sf::RenderWindow &window)
 {
 	swapDialogueTexture(0);
+	window.draw(spriteDialogs);
 	//window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
 	//std::cout << "DrawDialog( &window) CHECK " << std::endl;
 
@@ -72,13 +64,16 @@ void DialogManager::swapDialogueTexture(int beforeOrAfter)
 {
 	if (beforeOrAfter == 0)
 	{
-		//qwespriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialogue][mCurrentDialogue]);
+		//spriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialogue][mCurrentDialogue]);
+		//spriteDialogs.setTexture(*textBeforeDialogstest[mCurrentBeforeMapDialogue][mCurrentDialogue]);
+		spriteDialogs.setTexture(textureMap01a01Dialogue);
+
 	}
 	else
 	{
 		//qwespriteDialogs.setTexture(*textAfterDialogs[mCurrentAfterMapDialogue][mCurrentDialogue]);
 	}
-	mCurrentDialogue++;
+	//mCurrentDialogue++;
 
 }
 
@@ -87,29 +82,33 @@ void DialogManager::swapDialogueTexture(int beforeOrAfter)
 bool DialogManager::checkBeforeDialogue(std::string mapName)
 {
 	bool i = false;
-	if (mapName == "map01a01" )
+	if (mapName == "map01a01.txt" )
 	{
 		mCurrentBeforeMapDialogue = 0;
-		i = true;
-	}
-	if (mapName == "map01a02")
-	{
-		mCurrentBeforeMapDialogue = 1;
 
 		i = true;
-
 	}
+	//if (mapName == "map01a02.txt" )
+	//{
+	//	mCurrentBeforeMapDialogue = 1;
+
+	//	i = true;
+
+	//}
+	if (mTimer >= 5 * 60)
+		i = false;
+
 	return i;
 }
 
 bool DialogManager::checkAfterDialogue(std::string mapName)
 {
 	bool i = false;
-	if (mapName == "map01a02")
-	{
-		mCurrentAfterMapDialogue = 1;
-		i = true;
-	}
+	//if (mapName == "map01a02.txt" )
+	//{
+	//	mCurrentAfterMapDialogue = 1;
+	//	i = true;
+	//}
 
 	return i;
 }
@@ -117,13 +116,14 @@ bool DialogManager::checkAfterDialogue(std::string mapName)
 
 void DialogManager::setTextures()
 {
-	////map01a01
-	//			//Beforetexture
-				//textBeforeDialogs[0][0]->loadFromFile();
-				//textBeforeDialogs[0][1]->loadFromFile();
-				//textBeforeDialogs[0][2]->loadFromFile();
+	//map01a01
+				//Beforetexture
+				textureMap01a01Dialogue.loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
+				//textBeforeDialogstest[0][0]->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
+				//textBeforeDialogs[0][1]->loadFromFile("Resource Files/Dialogue/Before01a01 1.png");
+				//textBeforeDialogs[0][2]->loadFromFile("Resource Files/Dialogue/Before01a01 2.png");
 
-				////Aftertexture
+				//Aftertexture
 
 
 	////map01a02

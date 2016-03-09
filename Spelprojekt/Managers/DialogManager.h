@@ -2,7 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include <string>
 #include <iostream>
-#include <vector>
+#include <list>
 
 //#include "../GameStates/Map1.h" Used for "checkIfBeforeAfterDialogue" Maybe. //Fnatte
 class DialogManager
@@ -27,9 +27,11 @@ private:
 	int mCurrentBeforeMapDialogue;
 	int mCurrentAfterMapDialogue;
 
-	typedef std::vector<sf::Texture*> HouseTextures;
+	typedef std::vector<sf::Texture*> DialogueTextures;
 
+	//sf::Texture* **textBeforeDialogstest;
+	sf::Texture textureMap01a01Dialogue;
 	sf::Sprite spriteDialogs;
-	//qweHouseTextures *textBeforeDialogs;
-	//qweHouseTextures *textAfterDialogs;
+	//DialogueTextures *textBeforeDialogs;
+	//DialogueTextures *textAfterDialogs;
 };
