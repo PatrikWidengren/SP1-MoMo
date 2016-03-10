@@ -14,8 +14,8 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 64 - 64;
-static const int pushMapY = 52 - 52;
+static const int pushMapX = 100 - 64;
+static const int pushMapY = 100 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -65,6 +65,7 @@ Map1::~Map1() {
 }
 
 void Map1::resetGrid(){
+	cout << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << endl;
 	std::vector<coords> startPosList;
 	NpcVector npcList;
 	for (int j = 0; j < mHeight; j++) {
@@ -93,25 +94,14 @@ void Map1::resetGrid(){
 
 //Skapar array
 float** Map1::createGrid(int width, int height) {
+	getMapInfo();
 	float tempValue;
 	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
 	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
-	if (width > height) {
-		array2d = new float*[width];
-		for (int i = 0; i < width; i++) {
-			array2d[i] = new float[height];
-			for (int j = 0; j < height; j++) {
-				//file >> tempValue;
-				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
-				//array2d[i][j] = 0.0f;
-			}
-		}
-	}
-	//Skapar grid på annat sätt om height är större än width
-	else {
+//	if (width > height) {
 		array2d = new float*[height];
 		for (int i = 0; i < height; i++) {
 			array2d[i] = new float[width];
@@ -121,7 +111,19 @@ float** Map1::createGrid(int width, int height) {
 				//array2d[i][j] = 0.0f;
 			}
 		}
-	}
+//	}
+	//Skapar grid på annat sätt om height är större än width
+	/*else {
+		array2d = new float*[height];
+		for (int i = 0; i < height; i++) {
+			array2d[i] = new float[width];
+			for (int j = 0; j < width; j++) {
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				array2d[i][j] = 0.0f;
+			}
+		}
+	}*/
 
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
@@ -131,21 +133,19 @@ float** Map1::createGrid(int width, int height) {
 			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
-	return array2d;
-	
 
-	/*if (width > height) {
-		for (int i = 0; i < width; i++) {
-			delete[] array2d[i];
+	cout << "Height=" << mHeight << endl;
+	cout << "Width=" << mWidth << endl;
+	for (int i = 0; i < mHeight; i++) {
+		for (int j = 0; j < mWidth; j++) {
+			cout << array2d[i][j] << " ";
 		}
-		delete[] array2d;
+		cout << endl;
 	}
-	else {
-		for (int i = 0; i < height; i++) {
-			delete[] array2d[i];
-		}
-		delete[] array2d;
-	}*/
+
+
+	return array2d;
+
 }
 
 //Loopar igenom array och spawnar alla objekt
@@ -232,6 +232,15 @@ void Map1::spawnObjects() {
 
 	mGrid = createGrid(mWidth, mHeight);
 	
+	/*for (int i = 0; i < mHeight; i++) {
+		for (int j = 0; j < mWidth; j++) {
+			cout << mGrid[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+
+
+	cout << endl << endl << endl;
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 2.0f) {
