@@ -24,7 +24,7 @@ KeyboardOptionMenu::~KeyboardOptionMenu()
 
 }
 
-void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
+void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound)
 {
 
 	mMouse.x = mouse.x;
@@ -38,6 +38,7 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 			mClick = false;
 			//Back
 			mOptionMenuState = 1;
+			sound.playSound(10.1f);
 		}
 	}
 	else

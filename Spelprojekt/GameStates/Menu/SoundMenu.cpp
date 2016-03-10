@@ -41,7 +41,7 @@ SoundMenu::~SoundMenu()
 
 }
 
-void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
+void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound)
 {
 
 	mMouse.x = mouse.x;
@@ -60,6 +60,7 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 			//Back
 			mClick = false;
 			mOptionMenuState = 1;
+			sound.playSound(10.1);
 		}
 	}
 	else

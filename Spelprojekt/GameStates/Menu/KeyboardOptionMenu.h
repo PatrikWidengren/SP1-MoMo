@@ -7,7 +7,6 @@ class KeyboardOptionMenu : public Menu
 {
 public:
 	KeyboardOptionMenu(float width, float height);
-	KeyboardOptionMenu();
 	~KeyboardOptionMenu();
 
 	// Load a backgrounds to show for the menu
@@ -24,7 +23,7 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
+	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

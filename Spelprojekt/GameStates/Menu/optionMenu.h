@@ -36,7 +36,7 @@ public:
 
 
 	virtual int checkState();
-	virtual void updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
+	virtual void updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

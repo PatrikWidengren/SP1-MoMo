@@ -8,7 +8,6 @@ class inGameMenu :
 {
 public:
 	inGameMenu(float width, float height);
-	inGameMenu();
 	~inGameMenu();
 
 	// Load a backgrounds to show for the menu
@@ -31,7 +30,7 @@ public:
 	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
+	virtual void updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();
