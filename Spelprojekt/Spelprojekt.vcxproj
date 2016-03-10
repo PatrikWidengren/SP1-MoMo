@@ -221,6 +221,7 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Backgrounds\World_Map.png" />
+    <Image Include="Resource Files\Backgrounds\World_Map_pins.png" />
     <Image Include="Resource Files\Dialogue\Before01a01 0.png" />
     <Image Include="Resource Files\Dialogue\Before01a01 1.png" />
     <Image Include="Resource Files\Dialogue\Before01a01 2.png" />

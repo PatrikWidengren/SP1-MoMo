@@ -903,6 +903,9 @@
     <Image Include="Resource Files\Sprites\Knapp-on.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\World_Map_pins.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">
