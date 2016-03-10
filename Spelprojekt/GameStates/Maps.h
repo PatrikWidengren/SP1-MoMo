@@ -13,7 +13,7 @@ class Maps{
 public:
 	Maps();
 	virtual ~Maps();
-	void virtual render(sf::RenderWindow &window, AnimeManager &anime) = 0;
+	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) = 0;
 	void virtual spawnObjects() = 0;
 	void virtual getMapInfo() = 0;
 	virtual std::vector<StaticObjects*> getObjects() = 0;

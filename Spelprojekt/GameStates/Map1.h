@@ -31,7 +31,7 @@ public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
-	void virtual render(sf::RenderWindow &window, AnimeManager &anime);
+	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
 	//Returnerar objekten, detta behövs till main
@@ -59,6 +59,9 @@ public:
 	std::string mSavefile/*, mPatrolPath*/;
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
+	sf::IntRect *mRects[1];
+	bool mClick = true;
+
 	bool movePlayer(int dir, SoundManager &sound);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
 	int mWidth, mHeight;
