@@ -228,6 +228,9 @@
     <ClCompile Include="InGameBackground.cpp">
       <Filter>Source Files\GameStates\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Managers\TextureManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="InGameBackground.h">
       <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\TextureManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

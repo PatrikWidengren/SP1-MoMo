@@ -2,16 +2,17 @@
 
 using namespace std;
 
-static const string filename_Grass_Uncut = "Resource Files/Sprites/Grass01_Uncut.png";
-static const string filename_Grass_Cut = "Resource Files/Sprites/Grass01_Cut.png";
-sf::Texture* textureGrass = new sf::Texture();
-sf::Texture* textureCutGrass = new sf::Texture();
+static const string filename_Grass_Uncut = "Grass_Uncut";
+static const string filename_Grass_Cut = "Grass_Cut";
 
-Grass::Grass(int arrayX, int arrayY, float posX, float posY){
+
+Grass::Grass(int arrayX, int arrayY, float posX, float posY, TextureManager &holder) 
+	: textureGrass(holder.getTexture(filename_Grass_Uncut)), textureCutGrass(holder.getTexture(filename_Grass_Cut)){
 	mArrayX = arrayX;
 	mArrayY = arrayY;
 	mPosX = posX;
 	mPosY = posY;
+
 	mSprite->setPosition(mPosX, mPosY);
 }
 Grass::~Grass(){
@@ -19,10 +20,10 @@ Grass::~Grass(){
 }
 void Grass::render(){
 	if (!isCut){
-		mSprite->setTexture(*textureGrass);
+		mSprite->setTexture(textureGrass);
 	}
 	else{
-		mSprite->setTexture(*textureCutGrass);
+		mSprite->setTexture(textureCutGrass);
 	}
 }
 float Grass::getPosX(){
@@ -50,10 +51,10 @@ bool Grass::getCut(){
 	return isCut;
 }
 void Grass::initialize(){
-	textureGrass->loadFromFile(filename_Grass_Uncut);
-	textureCutGrass->loadFromFile(filename_Grass_Cut);
+	/*textureGrass->loadFromFile(filename_Grass_Uncut);
+	textureCutGrass->loadFromFile(filename_Grass_Cut);*/
 }
 void Grass::finalize(){
-	textureGrass->~Texture();
-	textureCutGrass->~Texture();
+	/*textureGrass->~Texture();
+	textureCutGrass->~Texture();*/
 }

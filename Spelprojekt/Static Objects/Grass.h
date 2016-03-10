@@ -2,11 +2,12 @@
 #define INCLUDED_GRASS
 
 #include "StaticObjects.h"
+#include "..\Managers\TextureManager.h"
 
 //Underklass till "StaticObjects"
 class Grass : public StaticObjects{
 public:
-	Grass(int arrayX, int arrayY, float posX, float posY);
+	Grass(int arrayX, int arrayY, float posX, float posY, TextureManager &holder);
 	virtual ~Grass();
 	virtual void render();
 	virtual float getPosX();
@@ -25,6 +26,8 @@ private:
 	float mPosX, mPosY;
 	int mArrayX, mArrayY;
 	sf::Sprite* mSprite = new sf::Sprite;
+	sf::Texture& textureGrass;
+	sf::Texture& textureCutGrass;
 };
 
 #endif

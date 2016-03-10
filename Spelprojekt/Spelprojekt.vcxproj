@@ -94,6 +94,7 @@
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Managers\TextureManager.cpp" />
     <ClCompile Include="Static Objects\Dandelion.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
     <ClCompile Include="Static Objects\Fountain.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Managers\DialogManager.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
+    <ClInclude Include="Managers\TextureManager.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />
     <ClInclude Include="Static Objects\Fence.h" />
     <ClInclude Include="Static Objects\Fountain.h" />
