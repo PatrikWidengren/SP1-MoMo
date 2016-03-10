@@ -9,30 +9,30 @@ public:
 	optionMenu();
 	~optionMenu();
 	// Load a backgrounds to show for the menu
-	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
+	sf::Texture* highlighttextBg01 = new sf::Texture(); //the highlightTexture for displaying.
 	sf::Texture* textBg01 = new sf::Texture(); //hold the texture
 
-	sf::Texture sliderTextuer01; //hold the texture
+	sf::Texture* sliderTextuer01 = new sf::Texture(); //hold the texture
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
-	sf::Sprite slider01;
+	sf::Sprite* slider01 = new sf::Sprite();
 
-	sf::Texture textControl;
-	sf::Texture textVideo;
-	sf::Texture textAudio;
-	sf::Texture textBack;
+	sf::Texture* textControl = new sf::Texture();
+	sf::Texture* textVideo = new sf::Texture();
+	sf::Texture* textAudio = new sf::Texture();
+	sf::Texture* textBack = new sf::Texture();
 
-	sf::Texture textHighlightControl;
-	sf::Texture textHighlightVideo;
-	sf::Texture textHighlightAudio;
-	sf::Texture textHighlightBack;
+	sf::Texture* textHighlightControl = new sf::Texture();
+	sf::Texture* textHighlightVideo = new sf::Texture();
+	sf::Texture* textHighlightAudio = new sf::Texture();
+	sf::Texture* textHighlightBack = new sf::Texture();
 
-	sf::Sprite spriteControl;
-	sf::Sprite spriteVideo;
-	sf::Sprite spriteAudio;
-	sf::Sprite spriteBack;
+	sf::Sprite* spriteControl = new sf::Sprite();
+	sf::Sprite* spriteVideo = new sf::Sprite();
+	sf::Sprite* spriteAudio = new sf::Sprite();
+	sf::Sprite* spriteBack = new sf::Sprite();
 
 
 	virtual int checkState();
