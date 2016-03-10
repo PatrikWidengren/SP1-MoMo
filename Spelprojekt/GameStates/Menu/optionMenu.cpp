@@ -12,9 +12,9 @@ optionMenu::optionMenu(float width, float height)
 
 	slider01->setPosition(1400, 718);
 
-	spriteControl->setPosition(745, 660);
-	spriteVideo->setPosition(786, 780);
-	spriteAudio->setPosition(786, 900);
+	spriteControl->setPosition(745, 650);
+	spriteVideo->setPosition(800, 750);
+	spriteAudio->setPosition(800, 850);
 	spriteBack->setPosition(1385, 515);
 
 	/*
@@ -36,8 +36,8 @@ optionMenu::optionMenu(float width, float height)
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
-	mRects[1] = new sf::IntRect(sf::Vector2i(730, 770), sf::Vector2i(360, 75));
-	mRects[2] = new sf::IntRect(sf::Vector2i(730, 890), sf::Vector2i(360, 75));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730, 750), sf::Vector2i(360, 75));
+	mRects[2] = new sf::IntRect(sf::Vector2i(730, 850), sf::Vector2i(360, 75));
 	mRects[3] = new sf::IntRect(sf::Vector2i(1375, 504), sf::Vector2i(113, 91));
 
 }
@@ -293,14 +293,14 @@ void optionMenu::scale(sf::RenderWindow &window) {
 	spriteAudio->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteBack->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(745 * bg01->getScale().x, 660 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(786 * bg01->getScale().x, 780 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
-	mRects[2] = new sf::IntRect(sf::Vector2i(786 * bg01->getScale().x, 900 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 650 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 750 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 850 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
 	mRects[3] = new sf::IntRect(sf::Vector2i(1385 * bg01->getScale().x, 515 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
-	spriteControl->setPosition(745 * bg01->getScale().x, 660 * bg01->getScale().y);
-	spriteVideo->setPosition(786 * bg01->getScale().x, 780 * bg01->getScale().y);
-	spriteAudio->setPosition(786 * bg01->getScale().x, 900 * bg01->getScale().y);
+	spriteControl->setPosition(745 * bg01->getScale().x, 650 * bg01->getScale().y);
+	spriteVideo->setPosition(800 * bg01->getScale().x, 750 * bg01->getScale().y);
+	spriteAudio->setPosition(800 * bg01->getScale().x, 850 * bg01->getScale().y);
 	spriteBack->setPosition(1385 * bg01->getScale().x, 515 * bg01->getScale().y);
 
 

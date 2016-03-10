@@ -33,6 +33,7 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	CharRand::initialize();
 	CharPatrol::initialize();
 	Fountain::initialize();
+	mRects[0] = new sf::IntRect(sf::Vector2i(1630, 17), sf::Vector2i(265, 90));
 }
 Map1::~Map1() {
 	Stone::finalize();
@@ -357,8 +358,25 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
+void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) {
 	mState = 1;
+
+	if (mRects[0]->contains(sf::Vector2i(mouse.x, mouse.y))){ // temp lösning för ingame meny
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick){
+			mClick = false;
+			mState = 2;
+			//sound.playSound(10.3f);
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mClick){
+		mClick = false;
+		mState = 2;
+		//sound.playSound(10.3f);
+	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {

@@ -166,7 +166,7 @@ void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	mRegionMap01->updateRegionMap(window, mouse);
 	window.clear();
 	mRegionMap01->displayMenu01(window); //Update mouse in update...
-	mStartState = checkStartState(mWorldMap01->checkState());
+	mStartState = checkStartState(mRegionMap01->checkState());
 	mState = mRegionMap01->checkState();
 	mStartRegionState = checkStartRegionState(mRegionMap01->checkRegionState());
 	mRegionState = mRegionMap01->checkRegionState();
@@ -216,7 +216,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 #pragma endregion
 
 	mInGameBackground->drawBackgroundTop(window);
-	mMap01->render(window, anime);
+	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
 
 	switch (mDialogSwitch)
@@ -329,6 +329,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				space = false;
 			}
 			mStartState = checkStartState(mMap01->checkState());
+			mState = mMap01->checkState();
 #pragma endregion
 
 			break;
@@ -396,6 +397,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mInGameMenu01->scale(window);
 			mStartState = false;
 			sound.stopSound(10.4f);
+			sound.stopSound(10.5f);
 			sound.playSound(10.6f);
 			//Starta musik osv
 		}
@@ -460,6 +462,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			music.setMusic(8);
 			mGameOverMenu01->scale(window);
 			mStartState = false;
+			sound.stopSound(10.4f);
+			sound.playSound(10.6f);
 			//Starta musik osv
 		}
 		drawGameOverMenu(window, mouse, music, sound);
@@ -470,6 +474,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			music.setMusic(0);
 			mWinMenu01->scale(window);
 			mStartState = false;
+			sound.stopSound(10.4f);
+			sound.playSound(10.6f);
 			//Starta musik osv
 		}
 		drawWinMenu(window, mouse, music, sound);
@@ -597,7 +603,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 
 	//Outside the gamestates, check if the user changes the gamestate.
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		mState = 1;
 		mStartState = true;
@@ -619,7 +625,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 		mState = 4;
 		mStartState = true;
-	}
+	}*/
 
 
 	if (mStartMenu01->reset == true || mWinMenu01->reset == true)
