@@ -33,10 +33,10 @@ gameState::gameState(sf::RenderWindow &window)
 	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 100));
-	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 20));
-	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 30));
 	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 30));
 	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 30));
+	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 20));
+	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 30));
 	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 

@@ -8,12 +8,12 @@ WorldMap::WorldMap(float width, float height)
 	setFonts();
 	setTextures();
 	
-	mRects[0] = new sf::IntRect(sf::Vector2i(900, 335), sf::Vector2i(75, 25));
-	mRects[1] = new sf::IntRect(sf::Vector2i(1170, 290), sf::Vector2i(75, 25));
-	mRects[2] = new sf::IntRect(sf::Vector2i(355, 405), sf::Vector2i(145, 25));
-	mRects[3] = new sf::IntRect(sf::Vector2i(590, 730), sf::Vector2i(145, 30));
-	mRects[4] = new sf::IntRect(sf::Vector2i(990, 545), sf::Vector2i(75, 25));
-	mRects[5] = new sf::IntRect(sf::Vector2i(1635, 780), sf::Vector2i(95, 25));
+	mRects[0] = new sf::IntRect(sf::Vector2i(940, 280), sf::Vector2i(75, 25));
+	mRects[1] = new sf::IntRect(sf::Vector2i(980, 380), sf::Vector2i(75, 25));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1700, 480), sf::Vector2i(145, 25));
+	mRects[3] = new sf::IntRect(sf::Vector2i(1890, 840), sf::Vector2i(145, 30));
+	mRects[4] = new sf::IntRect(sf::Vector2i(9900, 535), sf::Vector2i(75, 25));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1020, 180), sf::Vector2i(95, 25));
 	//Test
 }
 
@@ -210,7 +210,7 @@ void WorldMap::displayMenu01(sf::RenderWindow &window)
 void WorldMap::setTextures()
 {
 
-	if (!texture01->loadFromFile("Resource Files/Backgrounds/worldMap_temp.jpg")) //try to load the texture. if its wrong, give error
+	if (!texture01->loadFromFile("Resource Files/Backgrounds/World_Map_pins.png")) //try to load the texture. if its wrong, give error
 		texture01->loadFromFile("error.jpg");
 
 	//if (!highlightTexture01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
@@ -263,12 +263,12 @@ void WorldMap::scale(sf::RenderWindow &window) {
 
 	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(900 * bg01->getScale().x, 335 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(1170 * bg01->getScale().x, 290 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
-	mRects[2] = new sf::IntRect(sf::Vector2i(355 * bg01->getScale().x, 405 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 25 * bg01->getScale().y));
-	mRects[3] = new sf::IntRect(sf::Vector2i(590 * bg01->getScale().x, 730 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 30 * bg01->getScale().y));
-	mRects[4] = new sf::IntRect(sf::Vector2i(990 * bg01->getScale().x, 545 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
-	mRects[5] = new sf::IntRect(sf::Vector2i(1635 * bg01->getScale().x, 780 * bg01->getScale().y), sf::Vector2i(95 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(940 * bg01->getScale().x, 280 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(980 * bg01->getScale().x, 380 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(18900 * bg01->getScale().x, 840 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[3] = new sf::IntRect(sf::Vector2i(1700 * bg01->getScale().x, 480 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 30 * bg01->getScale().y));
+	mRects[4] = new sf::IntRect(sf::Vector2i(1890 * bg01->getScale().x, 840 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1020 * bg01->getScale().x, 180 * bg01->getScale().y), sf::Vector2i(95 * bg01->getScale().x, 25 * bg01->getScale().y));
 
 }
 
