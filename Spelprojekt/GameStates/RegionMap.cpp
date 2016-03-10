@@ -94,8 +94,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 		spriteArrow01->setPosition(950 * bg01->getScale().x, 1120 * bg01->getScale().y);
 		spriteArrow02->setPosition(1343 * bg01->getScale().x, 1120 * bg01->getScale().y);
-		spriteArrow03->setPosition(950 * bg01->getScale().x, 727 * bg01->getScale().y);
-		spriteArrow04->setPosition(1343 * bg01->getScale().x, 727 * bg01->getScale().y);
+		spriteArrow03->setPosition(950 * bg01->getScale().x, 1513 * bg01->getScale().y);
+		spriteArrow04->setPosition(1343 * bg01->getScale().x, 1513 * bg01->getScale().y);
 
 		spriteGrassMower->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		spriteHedgecutter->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);

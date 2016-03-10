@@ -897,6 +897,12 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\World_Map.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Knapp-on.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">
