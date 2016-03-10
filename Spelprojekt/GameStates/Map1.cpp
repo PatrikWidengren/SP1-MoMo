@@ -37,6 +37,62 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	Fountain::initialize();
 }
 Map1::~Map1() {
+
+	/*	for (int j = 0; j < mHeight; j++) {
+		StaticObjects** temp1dGround = new StaticObjects*[mWidth];
+		for (int i = 0; i < mWidth; i++) {
+*/
+
+	/*for (int j = 0; j < mHeight; j++) {
+		for (int i = 0; i < mWidth; i++) {
+			std::cout << "deleting: " << j << " " << i << std::endl;
+			if (mGroundGrid[j][i] == 0) {
+				std::cout << "No ground at: " << j << " " << i << std::endl;
+			}
+			else {
+				std::cout << "maybe deleting: " << j << " " << i << std::endl;
+				delete mGroundGrid[j][i];
+			}
+			if (mObjectGrid[j][i] == 0) {
+				std::cout << "No object at: " << j << " " << i << std::endl;
+			}
+			else {
+				delete mObjectGrid[j][i];
+			}
+			std::cout << "deleted: " << j << " " << i << std::endl;
+		}
+		std::cout << "deleting: " << j << std::endl;
+		if (mGroundGrid[j] == 0) {
+			std::cout << "No ground array at: " << j << std::endl;
+		}
+		else {
+			delete[] mGroundGrid[j];
+		}
+		if (mObjectGrid[j] == 0) {
+			std::cout << "No object array array at: " << j << std::endl;
+		}
+		else {
+			delete[] mObjectGrid[j];
+		}
+		std::cout << "deleted: " << j << std::endl;
+	}
+	std::cout << "deleting" << std::endl;
+	if (mGroundGrid == 0) {
+		std::cout << "No ground array array" << std::endl;
+	}
+	else {
+		delete[] mGroundGrid;
+	}
+	if (mObjectGrid == 0) {
+		std::cout << "No object array array" << std::endl;
+	}
+	else {
+		delete[] mObjectGrid;
+
+	}
+	std::cout << "deleted" << std::endl;
+	*/
+
 	Stone::finalize();
 	Grass::finalize();
 	Fence::finalize();
@@ -230,8 +286,54 @@ void Map1::spawnObjects() {
 	}
 	//mPlayer->render();
 
+
+
+
 	mGrid = createGrid(mWidth, mHeight);
 	
+	StaticObjects*** temp2dGround = new StaticObjects**[mHeight];
+	for (int j = 0; j < mHeight; j++) {
+		StaticObjects** temp1dGround = new StaticObjects*[mWidth];
+		for (int i = 0; i < mWidth; i++) {
+			if (mGrid[j][i] == 2.2) {
+				temp1dGround[i] = new Dandelion(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY);
+			}
+			else if (mGrid[j][i] == 2.4) {
+				temp1dGround[i] = new Gravel(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY);
+			}
+			else if (mGrid[j][i] == 0.0) {
+				temp1dGround[i] = 0;
+			}
+			else {
+				temp1dGround[i] = new Grass(i, j, (i * widthOnTile) + pushGrassX, (j * heightOnTile) + pushGrassY);
+			}
+		}
+	}
+
+	mGroundGrid = temp2dGround;
+
+	StaticObjects*** temp2dObject = new StaticObjects**[mHeight];
+	for (int j = 0; j < mHeight; j++) {
+		StaticObjects** temp1dObject = new StaticObjects*[mWidth];
+		for (int i = 0; i < mWidth; i++) {
+			if (mGrid[j][i] == 3.0f) { //Sten
+				temp1dObject[i] == new Stone(i, j, (i * widthOnTile), (j * heightOnTile));
+			}
+			else if (mGrid[j][i] == 4.0f) { //Tree
+				temp1dObject[i] == new Tree(i, j, (i * widthOnTile), (j * heightOnTile));
+			}
+			else if (mGrid[j][i]==10.0f) { //fountain
+				temp1dObject[i] == new Fountain(i, j, (i * widthOnTile), (j * heightOnTile));
+			}
+			else if (mGrid[j][i] == 9.0f) { //Hedge
+				temp1dObject[i] == new Hedge(i, j, (i * widthOnTile), (j * heightOnTile));
+			}
+		}
+	}
+
+	mObjectGrid = temp2dObject;
+
+
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 2.0f) {
