@@ -77,6 +77,8 @@ private:
 	int meepSpawnDirection;
 	int specialFeature;
 	float** mGrid;
+	StaticObjects*** mGroundGrid;
+	StaticObjects*** mObjectGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
 	ObjectsVector mLongObjects;
