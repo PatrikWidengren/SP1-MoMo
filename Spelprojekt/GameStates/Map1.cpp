@@ -74,6 +74,28 @@ void Map1::resetGrid(){
 	for (NpcVector::size_type i = 0; i < npcList.size(); i++) {
 		mNpcs[startPosList[i]] = npcList[i];
 	}
+
+	/*if (mWidth > mHeight) {
+		for (int i = 0; i < mWidth; i++) {
+			delete[] mGrid[i];
+			std::cout << "AAAAAAAAAAAAAAAAA" << std::endl;
+		}
+		delete[] mGrid;
+		std::cout << "BBBBBBBBBBBBBBBBBBBB" << std::endl;
+
+	}
+	else {
+		for (int i = 0; i < mHeight; i++) {
+			delete[] mGrid[i];
+			std::cout << "CCCCCCCCCCCCCCCCCCC" << std::endl;
+
+		}
+		delete[] mGrid;
+		std::cout << "DDDDDDDDDDDDDDD" << std::endl;
+
+	}*/
+
+
 	mGrid = createGrid(mWidth, mHeight);
 	turnsLeft = 50;
 	cutGrass = 0;
@@ -126,7 +148,7 @@ float** Map1::createGrid(int width, int height) {
 	return array2d;
 	
 
-	/*if (width > height) {
+	if (width > height) {
 		for (int i = 0; i < width; i++) {
 			delete[] array2d[i];
 		}
@@ -137,7 +159,7 @@ float** Map1::createGrid(int width, int height) {
 			delete[] array2d[i];
 		}
 		delete[] array2d;
-	}*/
+	}
 }
 
 //Loopar igenom array och spawnar alla objekt
@@ -733,10 +755,12 @@ void Map1::update(SoundManager &sound) {
 			mMeepMoving = false;
 			mPlaceInMove = 0;
 			mNpcsMoving = true;
+			mCurrentMove.clear();
 		}
 		else if (mNpcsMoving) {
 			if (mNpcNo < mNpcVector.size()-1){
 				mNpcNo++;
+				mCurrentMove.clear();
 				mPlaceInMove = 0;
 			}
 			else {
@@ -746,58 +770,64 @@ void Map1::update(SoundManager &sound) {
 	}
 
 	if (!mMeepMoving && mNpcsMoving) {
-		if (mCurrentMove.empty()) {
-			mCurrentMove = mNpcVector[mNpcNo]->move();
-		}
-		//0 means end of movement. Needed for patrols. 
-		//Breakmove means that the entire movement for this character
-		//is over for the turn
-		if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
-			mBreakMove = true;
-			//mBreakMove = false;
-			//break;
-			//mNpcs[i]->swapDoneMoving();
-		}
+		if (mNpcNo < mNpcVector.size()) {
 
-		//the movement functions returns a bool. True if they moved, 
-		//false in case of collision
+			if (mCurrentMove.empty()) {
+				mCurrentMove = mNpcVector[mNpcNo]->move();
+			}
 
-		if (!mBreakMove){
+			if (mPlaceInMove < mCurrentMove.size()) {
 
-			bool moved = moveNpc(mCurrentMove.at(mPlaceInMove), mNpcNo, sound);
-			//if the NPC collided: do the following
-			if (!moved) {
+				//0 means end of movement. Needed for patrols. 
+				//Breakmove means that the entire movement for this character
+				//is over for the turn
+				if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
+					mBreakMove = true;
+					//mBreakMove = false;
+					//break;
+					//mNpcs[i]->swapDoneMoving();
+				}
 
-				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
-				//get a new series of moves to attempt
-				intVector tryMove;
-				tryMove = mNpcVector[mNpcNo]->collide(mCurrentMove, mPlaceInMove);
-				//try out the new list of steps
-				for (intVector::size_type k = 0; k < tryMove.size(); k++) {
-					//again, break if 0, breakMove is made true so that
-					//the entire turn will end for the current character
-					//if there is no movement after collision
-					if (tryMove.at(k) == 0) {
-						mBreakMove = true;
-						break;
+				//the movement functions returns a bool. True if they moved, 
+				//false in case of collision
+
+				if (!mBreakMove) {
+
+					bool moved = moveNpc(mCurrentMove.at(mPlaceInMove), mNpcNo, sound);
+					//if the NPC collided: do the following
+					if (!moved) {
+
+						//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+						//get a new series of moves to attempt
+						intVector tryMove;
+						tryMove = mNpcVector[mNpcNo]->collide(mCurrentMove, mPlaceInMove);
+						//try out the new list of steps
+						for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+							//again, break if 0, breakMove is made true so that
+							//the entire turn will end for the current character
+							//if there is no movement after collision
+							if (tryMove.at(k) == 0) {
+								mBreakMove = true;
+								break;
+							}
+							//check every move. If one of them works, return to standard
+							//movement pattern
+							bool retryMoved = moveNpc(tryMove.at(k), mNpcNo, sound);
+							if (retryMoved) {
+								break;
+							}
+						}
 					}
-					//check every move. If one of them works, return to standard
-					//movement pattern
-					bool retryMoved = moveNpc(tryMove.at(k), mNpcNo, sound);
-					if (retryMoved) {
-						break;
+					else {
+						//Not sure what point this "else" has. Cleaning?
+						//cout << "Moved " << npcMove.at(j) << endl;
 					}
 				}
-			}
-			else {
-				//Not sure what point this "else" has. Cleaning?
-				//cout << "Moved " << npcMove.at(j) << endl;
+				else {
+					mPlaceInMove = mCurrentMove.size();
+				}
 			}
 		}
-		else {
-			mPlaceInMove = mCurrentMove.size();
-		}
-
 	}
 
 
