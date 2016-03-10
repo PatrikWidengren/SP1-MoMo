@@ -23,13 +23,13 @@ MusicManager::MusicManager(int id) {
 }
 
 MusicManager::~MusicManager(){
-	int i = numberOfSongs - 1;
+/*	int i = numberOfSongs - 1;
 	while (!mSongList.empty()) {
 		//mSongList[i]->stop();
 		delete mSongList[i];
 		mSongList.pop_back();
 		i--;
-	}
+	}*/
 }
 
 sf::Music* MusicManager::getMusic(){

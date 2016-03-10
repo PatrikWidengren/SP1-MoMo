@@ -195,7 +195,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	window.clear();
 
-	mInGameBackground->setMapname(mRegionMap01->loadLevel());
+	mInGameBackground->setMapname(mMap01->mSavefile);
 	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
 	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
@@ -643,6 +643,8 @@ void gameState::resetMap(){
 		mLawnMowers[i]->resetStats();
 	}
 	//mMap01->deleteContent();
+	std::cout << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset";
+
 	mMap01->resetGrid();
 	//mMap01->spawnObjects();
 	//mObjects = mMap01->getObjects();
@@ -683,8 +685,8 @@ bool gameState::checkStartRegionState(int lowerState) {
 }
 
 void gameState::loadMap() {
-	mMap01->~Map1();
-	//delete mMap01;
+	//mMap01->~Map1();
+	delete mMap01;
 	
 	std::string levelToLoad = mRegionMap01->loadLevel();
 

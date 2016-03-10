@@ -14,8 +14,8 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 512 - 64;
-static const int pushMapY = 456 - 52;
+static const int pushMapX = 64 - 64;
+static const int pushMapY = 52 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -47,12 +47,21 @@ Map1::~Map1() {
 	CharRand::finalize();
 	CharPatrol::finalize();
 	Fountain::finalize();
-
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++) {
+		delete mObjects.back();
+		mObjects.pop_back();
+	}
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++) {
+		delete mLongObjects.back();
+		mLongObjects.pop_back();
+	}
+	//delete mPlayer;
+	delete mGrid;
 	mNpcs.clear();
-	/*while (!mNpcVector.empty()) {
+	while (!mNpcVector.empty()) {
 		delete mNpcVector[0];
 		mNpcVector.erase(mNpcVector.begin());
-	}*/
+	}
 }
 
 void Map1::resetGrid(){
@@ -73,7 +82,7 @@ void Map1::resetGrid(){
 	for (NpcVector::size_type i = 0; i < npcList.size(); i++) {
 		mNpcs[startPosList[i]] = npcList[i];
 	}
-	mGrid = createGrid(mWidth, mHeight);
+	//mGrid = createGrid(mWidth, mHeight);
 	turnsLeft = 50;
 	cutGrass = 0;
 	cutHedges = 0;
@@ -1044,7 +1053,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	}
 }
 
-void Map1::deleteContent()
+/*void Map1::deleteContent()
 {
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
@@ -1055,7 +1064,7 @@ void Map1::deleteContent()
 			}
 		}
 	}
-}
+}*/
 
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;

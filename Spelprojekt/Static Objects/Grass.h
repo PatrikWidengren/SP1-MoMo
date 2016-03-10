@@ -24,7 +24,7 @@ private:
 	bool isCut = false;
 	float mPosX, mPosY;
 	int mArrayX, mArrayY;
-	sf::Sprite mSprite;
+	sf::Sprite* mSprite = new sf::Sprite;
 };
 
 #endif

@@ -139,8 +139,8 @@ void SoundMenu::displayMenu01(sf::RenderWindow &window)
 void SoundMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
-	textBg01.loadFromFile("error.jpg");
+	if (!textBg01->loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
+	textBg01->loadFromFile("error.jpg");
 
 	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
 	highlighttextBg01.loadFromFile("error.jpg");
@@ -154,7 +154,7 @@ void SoundMenu::setTextures()
 
 
 	spriteBack.setTexture(textBack);
-	bg01.setTexture(textBg01);
+	bg01.setTexture(*textBg01);
 	highlightSprite01.setTexture(highlighttextBg01);
 	
 }

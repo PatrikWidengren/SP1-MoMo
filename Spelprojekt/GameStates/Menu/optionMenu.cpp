@@ -192,8 +192,8 @@ void optionMenu::displayMenu01(sf::RenderWindow &window)
 void optionMenu::setTextures()
 {
 
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_OptionsMain.png")) //try to load the texture. if its wrong, give error
-		textBg01.loadFromFile("error.jpg");
+	if (!textBg01->loadFromFile("Resource Files/Backgrounds/Background_OptionsMain.png")) //try to load the texture. if its wrong, give error
+		textBg01->loadFromFile("error.jpg");
 
 	if (!textControl.loadFromFile("Resource Files/Menus/Controls_Small.png"))
 		textControl.loadFromFile("error.jpg");
@@ -219,7 +219,7 @@ void optionMenu::setTextures()
 	spriteVideo.setTexture(textVideo);
 	spriteBack.setTexture(textBack);
 
-	bg01.setTexture(textBg01);
+	bg01.setTexture(*textBg01);
 
 
 }
