@@ -14,8 +14,6 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 100 - 64;
-static const int pushMapY = 268 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -98,7 +96,7 @@ float** Map1::createGrid(int width, int height) {
 	float tempValue;
 	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
 //	if (width > height) {
@@ -1077,7 +1075,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;
 	ifstream file(saveFilePath);
-	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
+	file >> mWidth >> mHeight >> pushMapX >> pushMapY >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 
 //Funktion för att returnera objekten

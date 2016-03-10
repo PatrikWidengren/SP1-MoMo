@@ -76,6 +76,7 @@ private:
 	float cutDandelions = 0;
 	int meepSpawnDirection;
 	int specialFeature;
+	int pushMapX, pushMapY;
 	float** mGrid;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;

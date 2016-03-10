@@ -14,8 +14,16 @@ public:
 	void setTextures();
 	void setMapname(std::string mapname);
 private:
-	sf::Texture* texture_backgroundTop = new sf::Texture();
-	sf::Texture* texture_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01_backgroundTop = new sf::Texture();
+	sf::Texture* texture01_backgroundBottom = new sf::Texture();
+	sf::Texture* texture02_backgroundTop = new sf::Texture();
+	sf::Texture* texture02_backgroundBottom = new sf::Texture();
+	sf::Texture* texture03_backgroundTop = new sf::Texture();
+	sf::Texture* texture03_backgroundBottom = new sf::Texture();
+	sf::Texture* texture04_backgroundTop = new sf::Texture();
+	sf::Texture* texture04_backgroundBottom = new sf::Texture();
+	sf::Texture* texture05_backgroundTop = new sf::Texture();
+	sf::Texture* texture05_backgroundBottom = new sf::Texture();
 	sf::Texture* texture_inGameHud = new sf::Texture();
 	sf::Sprite* backgroundTop = new sf::Sprite();
 	sf::Sprite* backgroundBottom = new sf::Sprite();
