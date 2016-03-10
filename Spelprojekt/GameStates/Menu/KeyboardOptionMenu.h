@@ -10,17 +10,17 @@ public:
 	~KeyboardOptionMenu();
 
 	// Load a backgrounds to show for the menu
-	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
-	sf::Texture textBg01; //hold the texture
+	sf::Texture* highlighttextBg01 = new sf::Texture(); //the highlightTexture for displaying.
+	sf::Texture* textBg01 = new sf::Texture(); //hold the texture
 
-	sf::Texture textBack;
+	sf::Texture* textBack = new sf::Texture();
 
-	sf::Texture textHighlightBack;
+	sf::Texture* textHighlightBack = new sf::Texture();
 
-	sf::Sprite spriteBack;
+	sf::Sprite* spriteBack = new sf::Sprite();
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
 	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);

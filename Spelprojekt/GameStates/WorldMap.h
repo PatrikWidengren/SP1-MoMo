@@ -12,11 +12,11 @@ public:
 	bool reset = false;
 
 	// Load a backgrounds to show for the menu
-	sf::Texture highlightTexture01; //the highlightTexture for displaying.
-	sf::Texture texture01; //hold the texture
+	sf::Texture* highlightTexture01 = new sf::Texture(); //the highlightTexture for displaying.
+	sf::Texture* texture01 = new sf::Texture(); //hold the texture
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
 	int getRegion();
