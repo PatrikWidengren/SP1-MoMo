@@ -15,7 +15,7 @@ static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
 static const int pushMapX = 100 - 64;
-static const int pushMapY = 100 - 52;
+static const int pushMapY = 268 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -128,8 +128,6 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			//cout << tempValue << endl;
-
 			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
@@ -163,29 +161,30 @@ int** Map1::getPatrolPath(int &skipLines) {
 		file >> tempValue;
 	}
 
-	file >> patrolPathWidth >> patrolPathHeight;
+	file >> patrolPathHeight >> patrolPathWidth;
 	skipLines += 2;
 
-	//patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad, dvs vi skapar en extra nollrad här
+	//patrolPathHeight + 1 och patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nolla, dvs vi skapar en extra nollor här
 	//här sparas bara nollor i hela arrayen
 	int** patrolPath;
-	patrolPath = new int*[patrolPathWidth + 1];
-	for (int i = 0; i < patrolPathWidth + 1; i++) {
-		patrolPath[i] = new int[patrolPathHeight];
-		for (int j = 0; j < patrolPathHeight; j++) {
+	patrolPath = new int*[patrolPathHeight + 1];
+	for (int i = 0; i < patrolPathHeight + 1; i++) {
+		patrolPath[i] = new int[patrolPathWidth + 1];
+		for (int j = 0; j < patrolPathWidth + 1; j++) {
 			//file >> tempValue;
 			patrolPath[i][j] = 0;
 		}
 	}
 
 	//här sätts värdena till patrolPath från .txt fil
-	for (int i = 0; i < patrolPathWidth; i++) {
-		for (int j = 0; j < patrolPathHeight; j++) {
+	for (int i = 0; i < patrolPathHeight; i++) {
+		for (int j = 0; j < patrolPathWidth; j++) {
 			file >> tempValue;
 			patrolPath[i][j] = tempValue;
 			skipLines++;
 		}
 	}
+
 	return patrolPath;
 }
 void Map1::spawnObjects() {
