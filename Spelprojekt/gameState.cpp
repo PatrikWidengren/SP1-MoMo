@@ -28,6 +28,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 	mWorldMap01 = new WorldMap(window.getSize().x, window.getSize().y);
 	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
+	mInGameBackground = new InGameBackground();
 
 	mDialogManager = new DialogManager(window);
 
@@ -194,7 +195,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	window.clear();
 
-
+	mInGameBackground->setMapname(mRegionMap01->loadLevel());
 	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
 	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
@@ -214,7 +215,9 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-
+	mInGameBackground->drawBackgroundTop(window);
+	mMap01->render(window, anime);
+	mInGameBackground->drawBackgroundBottom(window);
 
 	switch (mDialogSwitch)
 	{
@@ -338,7 +341,6 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	}
 
-	mMap01->render(window, anime);
 
 }
 

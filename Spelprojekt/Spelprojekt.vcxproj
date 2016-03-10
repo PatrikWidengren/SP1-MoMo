@@ -88,6 +88,7 @@
     <ClCompile Include="GameStates\Menu\WinMenu.cpp" />
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
+    <ClCompile Include="InGameBackground.cpp" />
     <ClCompile Include="Managers\AnimeManager.cpp" />
     <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="GameStates\Menu\WinMenu.h" />
     <ClInclude Include="GameStates\RegionMap.h" />
     <ClInclude Include="GameStates\WorldMap.h" />
+    <ClInclude Include="InGameBackground.h" />
     <ClInclude Include="Managers\AnimeManager.h" />
     <ClInclude Include="Managers\DialogManager.h" />
     <ClInclude Include="Managers\MusicManager.h" />
@@ -210,10 +212,13 @@
     <Image Include="Resource Files\Backgrounds\Garden_03.png" />
     <Image Include="Resource Files\Backgrounds\Garden_04.png" />
     <Image Include="Resource Files\Backgrounds\Garden_05.png" />
+    <Image Include="Resource Files\Backgrounds\In-game UI.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Confirm.png" />
     <Image Include="Resource Files\Backgrounds\InGame_ESC.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
     <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Dialogue\Before01a01 0.png" />
     <Image Include="Resource Files\Dialogue\Before01a01 1.png" />

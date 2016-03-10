@@ -10,7 +10,7 @@
 #include "GameStates/RegionMap.h"
 #include "GameStates/Menu/SoundMenu.h"
 #include "GameStates/Menu/KeyboardOptionMenu.h"
-
+#include "InGameBackground.h"
 #include "Managers\DialogManager.h"
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
@@ -68,6 +68,7 @@ private:
 	RegionMap *mRegionMap01;
 	Map1 *mMap01;
 	DialogManager *mDialogManager;
+	InGameBackground *mInGameBackground;
 
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;

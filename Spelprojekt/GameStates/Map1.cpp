@@ -14,8 +14,8 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 0;
-static const int pushMapY = 0;
+static const int pushMapX = 512 - 64;
+static const int pushMapY = 456 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 

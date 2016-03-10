@@ -225,6 +225,9 @@
     <ClCompile Include="Managers\DialogManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="InGameBackground.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="Managers\DialogManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameBackground.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -881,6 +887,15 @@
     </Image>
     <Image Include="Resource Files\Sprites\Asfalt.png">
       <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\In-game UI.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
