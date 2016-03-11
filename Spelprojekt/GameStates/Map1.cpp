@@ -14,8 +14,6 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 100 - 64;
-static const int pushMapY = 100 - 52;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -35,6 +33,7 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	CharRand::initialize();
 	CharPatrol::initialize();
 	Fountain::initialize();
+	mRects[0] = new sf::IntRect(sf::Vector2i(1630, 17), sf::Vector2i(265, 90));
 }
 Map1::~Map1() {
 	Stone::finalize();
@@ -98,7 +97,7 @@ float** Map1::createGrid(int width, int height) {
 	float tempValue;
 	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
 //	if (width > height) {
@@ -128,8 +127,6 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			//cout << tempValue << endl;
-
 			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
@@ -163,29 +160,30 @@ int** Map1::getPatrolPath(int &skipLines) {
 		file >> tempValue;
 	}
 
-	file >> patrolPathWidth >> patrolPathHeight;
+	file >> patrolPathHeight >> patrolPathWidth;
 	skipLines += 2;
 
-	//patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad, dvs vi skapar en extra nollrad här
+	//patrolPathHeight + 1 och patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nolla, dvs vi skapar en extra nollor här
 	//här sparas bara nollor i hela arrayen
 	int** patrolPath;
-	patrolPath = new int*[patrolPathWidth + 1];
-	for (int i = 0; i < patrolPathWidth + 1; i++) {
-		patrolPath[i] = new int[patrolPathHeight];
-		for (int j = 0; j < patrolPathHeight; j++) {
+	patrolPath = new int*[patrolPathHeight + 1];
+	for (int i = 0; i < patrolPathHeight + 1; i++) {
+		patrolPath[i] = new int[patrolPathWidth + 1];
+		for (int j = 0; j < patrolPathWidth + 1; j++) {
 			//file >> tempValue;
 			patrolPath[i][j] = 0;
 		}
 	}
 
 	//här sätts värdena till patrolPath från .txt fil
-	for (int i = 0; i < patrolPathWidth; i++) {
-		for (int j = 0; j < patrolPathHeight; j++) {
+	for (int i = 0; i < patrolPathHeight; i++) {
+		for (int j = 0; j < patrolPathWidth; j++) {
 			file >> tempValue;
 			patrolPath[i][j] = tempValue;
 			skipLines++;
 		}
 	}
+
 	return patrolPath;
 }
 void Map1::spawnObjects() {
@@ -360,8 +358,25 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
+void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) {
 	mState = 1;
+
+	if (mRects[0]->contains(sf::Vector2i(mouse.x, mouse.y))){ // temp lösning för ingame meny
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick){
+			mClick = false;
+			mState = 2;
+			//sound.playSound(10.3f);
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mClick){
+		mClick = false;
+		mState = 2;
+		//sound.playSound(10.3f);
+	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {
@@ -1078,7 +1093,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;
 	ifstream file(saveFilePath);
-	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
+	file >> mWidth >> mHeight >> pushMapX >> pushMapY >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 
 //Funktion för att returnera objekten

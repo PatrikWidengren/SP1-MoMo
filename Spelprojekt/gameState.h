@@ -81,10 +81,21 @@ private:
 
 	bool mBeforeDialogue = false;
 	bool mAfterDialogue = false;
-	bool keyPressed = false;
-	bool space = false;
-	bool swap5 = false;
 	void loadMap();
+	
+	int mControlScheme=0;
+	bool flagUp = false;
+	bool flagUpRight = false;
+	bool flagRight = false;
+	bool flagDownRight = false;
+	bool flagDown = false;
+	bool flagDownLeft = false;
+	bool flagLeft = false;
+	bool flagUpLeft = false;
+	bool flagSwap = false;
+	bool flagConfirm = false;
+	bool flagKeyPressed = true;
+
 
 };
 

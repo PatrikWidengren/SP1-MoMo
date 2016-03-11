@@ -484,6 +484,15 @@
     <None Include="Resource Files\Music\Worldmap.ogg">
       <Filter>Resource Files\Music</Filter>
     </None>
+    <None Include="Resource Files\Sound\Lawnmower_Loop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png">
@@ -904,6 +913,30 @@
       <Filter>Resource Files\Sprites</Filter>
     </Image>
     <Image Include="Resource Files\Backgrounds\World_Map_pins.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>

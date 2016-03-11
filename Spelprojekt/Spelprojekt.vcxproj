@@ -188,6 +188,9 @@
     <None Include="Resource Files\Sound\hedgecutter.flac" />
     <None Include="Resource Files\Sound\Katt.flac" />
     <None Include="Resource Files\Sound\lawmower_break.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Loop_lowVolume.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac" />
     <None Include="Resource Files\Sound\MeepTest_Hello.flac" />
     <None Include="Resource Files\Sound\Meny_Close.flac" />
     <None Include="Resource Files\Sound\Meny_GoBack.flac" />
@@ -219,6 +222,14 @@
     <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_BG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_FG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_BG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_FG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_BG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_FG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_BG.png" />
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Backgrounds\World_Map.png" />
     <Image Include="Resource Files\Backgrounds\World_Map_pins.png" />

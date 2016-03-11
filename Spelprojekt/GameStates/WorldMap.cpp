@@ -121,7 +121,8 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			window.close();
+			mState = 3;
+			//window.close();
 			reset = true;
 		}
 	}
