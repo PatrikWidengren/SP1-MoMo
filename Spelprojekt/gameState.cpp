@@ -37,8 +37,8 @@ gameState::gameState(sf::RenderWindow &window)
 	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
 	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
-	mHedgeTools.push_back(new HedgeCutter(0, 0));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
+	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
 	mMap01 = new Map1("map04a02.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
@@ -203,11 +203,13 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 #pragma region Check if there is Dialogue
 	if (mBeforeDialogue)
 	{
-		mDialogSwitch = 0;
+		//mDialogSwitch = 0;
+		mDialogSwitch = 1;
 	}
 	else if (mAfterDialogue)
 	{
-		mDialogSwitch = 2;
+		//mDialogSwitch = 2;
+		mDialogSwitch = 1;
 	}
 	else
 	{
@@ -223,8 +225,8 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	{
 		case 0: //Before, Dialogue
 		{
-			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
-			break;
+			/*mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+			break;*/
 		}
 		case 1:
 		{
