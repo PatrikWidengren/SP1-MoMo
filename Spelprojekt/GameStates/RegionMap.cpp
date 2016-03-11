@@ -11,7 +11,7 @@ RegionMap::RegionMap(float width, float height)
 	mInternalState = 0;
 	mRegionState = 0;
 
-	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Background_Shop.png";
+	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Garden_01.png";
 	mRegions[1].levelCount = 5;
 
 	mRegions[2].BackgroundName = "Resource Files/Backgrounds/Garden_02.png";
@@ -134,6 +134,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	case 2: //Shop visible
 
+		std::cout << mMouse.x << mMouse.y << std::endl;
+
 		if (spriteShop->getPosition().y >= window.getSize().y - spriteShop->getGlobalBounds().height)
 		{
 			spriteShop->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
@@ -148,9 +150,9 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 
 		}
-		mRects[3] = new sf::IntRect(sf::Vector2i(3 + 582 * bg01->getScale().x, 830 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 173 * bg01->getScale().y));
-		mRects[4] = new sf::IntRect(sf::Vector2i(285 + 582 * bg01->getScale().x, 830 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 180 * bg01->getScale().y));
-		mRects[5] = new sf::IntRect(sf::Vector2i(493 + 582 * bg01->getScale().x, 830 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 173 * bg01->getScale().y));
+		mRects[3] = new sf::IntRect(sf::Vector2i(880 * bg01->getScale().x, 730 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 173 * bg01->getScale().y));
+		mRects[4] = new sf::IntRect(sf::Vector2i(1330  * bg01->getScale().x, 720 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 180 * bg01->getScale().y));
+		mRects[5] = new sf::IntRect(sf::Vector2i(1330  * bg01->getScale().x, 720 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 173 * bg01->getScale().y));
 		mRects[6] = new sf::IntRect(sf::Vector2i(775 + 582 * bg01->getScale().x, 830 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 180 * bg01->getScale().y));
 
 
