@@ -11,7 +11,7 @@ RegionMap::RegionMap(float width, float height)
 	mInternalState = 0;
 	mRegionState = 0;
 
-	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Background_Shop.png";
+	mRegions[1].BackgroundName = "Resource Files/Backgrounds/Garden_01.png";
 	mRegions[1].levelCount = 5;
 
 	mRegions[2].BackgroundName = "Resource Files/Backgrounds/Garden_02.png";
