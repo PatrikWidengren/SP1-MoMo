@@ -188,6 +188,9 @@
     <None Include="Resource Files\Sound\hedgecutter.flac" />
     <None Include="Resource Files\Sound\Katt.flac" />
     <None Include="Resource Files\Sound\lawmower_break.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Loop_lowVolume.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac" />
+    <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac" />
     <None Include="Resource Files\Sound\MeepTest_Hello.flac" />
     <None Include="Resource Files\Sound\Meny_Close.flac" />
     <None Include="Resource Files\Sound\Meny_GoBack.flac" />

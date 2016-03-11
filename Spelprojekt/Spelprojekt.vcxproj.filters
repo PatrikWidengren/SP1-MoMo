@@ -484,6 +484,15 @@
     <None Include="Resource Files\Music\Worldmap.ogg">
       <Filter>Resource Files\Music</Filter>
     </None>
+    <None Include="Resource Files\Sound\Lawnmower_Loop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Sprites\3D_0000_tree.png">
