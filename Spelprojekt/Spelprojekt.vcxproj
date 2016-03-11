@@ -220,6 +220,9 @@
     <Image Include="Resource Files\Backgrounds\InGame_ESC.png" />
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
     <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Gold.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Silver.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane02_BG.png" />

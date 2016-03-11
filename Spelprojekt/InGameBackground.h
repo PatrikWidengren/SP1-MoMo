@@ -31,9 +31,14 @@ private:
 	sf::Texture* texture05_backgroundTop = new sf::Texture();
 	sf::Texture* texture05_backgroundBottom = new sf::Texture();
 	sf::Texture* texture_inGameHud = new sf::Texture();
+	sf::Texture* texture_bronzeMedal = new sf::Texture();
+	sf::Texture* texture_silverMedal = new sf::Texture();
+	sf::Texture* texture_goldMedal = new sf::Texture();
+
 	sf::Sprite* backgroundTop = new sf::Sprite();
 	sf::Sprite* backgroundBottom = new sf::Sprite();
 	sf::Sprite* inGameHud = new sf::Sprite();
+	sf::Sprite* sprite_medal = new sf::Sprite();
 	std::string mMapName;
 	sf::Text* mTurns = new sf::Text; //(writeTurns(int turns), font, 20);
 	sf::Text* mProgress = new sf::Text;

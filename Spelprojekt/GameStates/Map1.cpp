@@ -247,6 +247,12 @@ void Map1::spawnObjects() {
 			if (mGrid[j][i] == 2.2f) {
 				totalAmountOfDandelions++;
 			}
+			if (mGrid[j][i] == 6.2f) {
+				totalAmountOfDandelions++;
+			}
+			if (mGrid[j][i] == 7.2f) {
+				totalAmountOfDandelions++;
+			}
 			if (mGrid[j][i] == 6.0f) {
 				totalAmountOfGrass++;
 			}

@@ -13,6 +13,9 @@ static const string m01a04_backGroundBottom = "Resource Files/Backgrounds/World0
 static const string m01a05_backGroundTop = "Resource Files/Backgrounds/World01_Lane05_BG.png";
 static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World01_Lane05_FG.png";
 static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
+static const string bronze_medal = "Resource Files/Backgrounds/Medal_Bronze.png";
+static const string silver_medal = "Resource Files/Backgrounds/Medal_Silver.png";
+static const string gold_medal = "Resource Files/Backgrounds/Medal_Gold.png";
 
 InGameBackground::InGameBackground() {
 	setTextures();
@@ -20,6 +23,7 @@ InGameBackground::InGameBackground() {
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf")) {
 		cout << "Error loading arial.ttf" << endl;
 	}
+	sprite_medal->setPosition(594, 26);
 }
 InGameBackground::~InGameBackground() 
 {
@@ -34,10 +38,14 @@ InGameBackground::~InGameBackground()
 	delete texture05_backgroundTop;
 	delete texture05_backgroundBottom;
 	delete texture_inGameHud;
+	delete texture_bronzeMedal;
+	delete texture_silverMedal;
+	delete texture_goldMedal;
 
 	delete backgroundTop;
 	delete backgroundBottom;
 	delete inGameHud;
+	delete sprite_medal;
 
 	delete mTurns;
 	delete mProgress;
@@ -70,7 +78,7 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 		window.draw(*backgroundTop);
 	}
 	window.draw(*inGameHud);
-
+	window.draw(*sprite_medal);
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
@@ -102,6 +110,12 @@ void InGameBackground::setTextures() {
 		cout << "backgroundBottom gick ej." << endl;
 	if (!texture_inGameHud->loadFromFile(filename_inGameHud)) //try to load the texture. if its wrong, give error
 		cout << "ingamehud gick ej." << endl;
+	if (!texture_bronzeMedal->loadFromFile(bronze_medal)) //try to load the texture. if its wrong, give error
+		cout << "medalj gick ej." << endl;
+	if (!texture_silverMedal->loadFromFile(silver_medal)) //try to load the texture. if its wrong, give error
+		cout << "medalj gick ej." << endl;
+	if (!texture_goldMedal->loadFromFile(gold_medal)) //try to load the texture. if its wrong, give error
+		cout << "medalj gick ej." << endl;
 }
 string InGameBackground::writeTurns(int turnss) {
 	ostringstream o;
@@ -111,6 +125,7 @@ string InGameBackground::writeTurns(int turnss) {
 string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdandelions, vector<int>* goals) {
 	ostringstream o;
 	if (cutgrass >= goals->at(1) && cuthedges >= goals->at(4) && cutdandelions >= goals->at(7)) {
+		sprite_medal->setTexture(*texture_goldMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for gold medal: " << goals->at(2) << endl;
 		}
@@ -122,6 +137,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 		}
 	}
 	else if (cutgrass >= goals->at(0) && cuthedges >= goals->at(3) && cutdandelions >= goals->at(6)) {
+		sprite_medal->setTexture(*texture_silverMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for silver medal: " << goals->at(1) << endl;
 		}
@@ -133,7 +149,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 		}
 	}
 	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
-
+		sprite_medal->setTexture(*texture_bronzeMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
 		}
