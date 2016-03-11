@@ -964,7 +964,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 		return false;
 	}
 }
-
+string Map1::getGrass() {
+	stringstream o;
+	o << "Cut grass: " << (cutGrass / totalAmountOfGrass) * 100;
+	return o.str();
+}
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	int tempX = mNpcVector.at(atPos)->getX();
 	int tempY = mNpcVector.at(atPos)->getY();

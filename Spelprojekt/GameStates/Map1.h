@@ -57,6 +57,7 @@ public:
 	int mLoseRounds = 50;
 	int mWinRounds = 40;
 	std::string mSavefile/*, mPatrolPath*/;
+	std::string getGrass();
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	sf::IntRect *mRects[1];
