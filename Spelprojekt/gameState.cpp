@@ -217,7 +217,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-	mInGameBackground->write(mMap01->mTurnCount);
+	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 	mInGameBackground->drawBackgroundTop(window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
@@ -276,6 +276,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft /*&& !flagKeyPressed*/) {
 					flagLeft = false;
+//					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
 					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle3");
 					mMap01->takeTurn(4, sound);
@@ -467,7 +468,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//Startar musik osv
 		}
 		drawInGame(window, mouse, music, sound, anime);
-		if (mMap01->mTurnCount >= 50) {
+		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 			if (mMap01->mTurnCount >= mMap01->mLoseRounds) {

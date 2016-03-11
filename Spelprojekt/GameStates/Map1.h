@@ -53,11 +53,17 @@ public:
 	int** getPatrolPath(int &skipLines);
 	float** createGrid(int width, int height);
 	//Added turn count
+	int getTurnCount();
+	int getMaxTurns();
+	int getGrass();
+	int getHedges();
+	int getDandelions();
+	std::vector<int> *getGoals();
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
 	int mWinRounds = 40;
 	std::string mSavefile/*, mPatrolPath*/;
-	std::string getGrass();
+	//std::string getGrass();
 private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	sf::IntRect *mRects[1];
@@ -74,7 +80,7 @@ private:
 	float totalAmountOfGrass = 0;
 	float totalAmountOfHedges = 0;
 	float totalAmountOfDandelions = 0;
-	int turnsLeft = 50;
+	int turnsLeft = 200;
 	float cutGrass = 0;
 	float cutHedges = 0;
 	float cutDandelions = 0;

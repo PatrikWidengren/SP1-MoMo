@@ -14,10 +14,11 @@ public:
 	void setTextures();
 	void setMapname(std::string mapname);
 	std::string writeTurns(int turns);
+	std::string writeProgress(int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	int getTurns();
-	void write(int turncount);
+	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 private:
-	int mIntTurns;
+	//int mIntTurns;
 	sf::Font font;
 	sf::Texture* texture01_backgroundTop = new sf::Texture();
 	sf::Texture* texture01_backgroundBottom = new sf::Texture();
@@ -34,7 +35,9 @@ private:
 	sf::Sprite* backgroundBottom = new sf::Sprite();
 	sf::Sprite* inGameHud = new sf::Sprite();
 	std::string mMapName;
-	sf::Text mTurns; //(writeTurns(int turns), font, 20);
+	sf::Text* mTurns = new sf::Text; //(writeTurns(int turns), font, 20);
+	sf::Text* mProgress = new sf::Text;
+	std::vector<int>* mGoals;
 };
 
 

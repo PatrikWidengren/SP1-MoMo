@@ -964,11 +964,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 		return false;
 	}
 }
-string Map1::getGrass() {
+/*string Map1::getGrass() {
 	stringstream o;
 	o << "Cut grass: " << (cutGrass / totalAmountOfGrass) * 100;
 	return o.str();
-}
+}*/
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	int tempX = mNpcVector.at(atPos)->getX();
 	int tempY = mNpcVector.at(atPos)->getY();
@@ -1121,4 +1121,47 @@ vector<StaticObjects*> Map1::getLongObjects() {
 
 int Map1::checkState() {
 	return mState;
+}
+int Map1::getTurnCount() {
+	return mTurnCount;
+}
+int Map1::getMaxTurns() {
+	return turnsLeft;
+}
+int Map1::getGrass() {
+	if (totalAmountOfGrass > 0) {
+		return (cutGrass / totalAmountOfGrass) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+int Map1::getHedges() {
+	if (totalAmountOfHedges > 0) {
+		return (cutHedges / totalAmountOfHedges) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+int Map1::getDandelions() {
+	if (totalAmountOfDandelions > 0) {
+		return (cutDandelions / totalAmountOfDandelions) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+vector<int>* Map1::getGoals() {
+	vector<int> *getgoals = new vector<int>;
+	getgoals->push_back(mBronzeGrass);
+	getgoals->push_back(mSilverGrass);
+	getgoals->push_back(mGoldGrass);
+	getgoals->push_back(mBronzeHedge);
+	getgoals->push_back(mSilverHedge);
+	getgoals->push_back(mGoldHedge);
+	getgoals->push_back(mBronzeDandelion);
+	getgoals->push_back(mSilverDandelion);
+	getgoals->push_back(mGoldDandelion);
+	return getgoals;
 }

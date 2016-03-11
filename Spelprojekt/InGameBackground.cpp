@@ -15,18 +15,11 @@ static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World0
 static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
 
 InGameBackground::InGameBackground() {
-	sf::Text turns(writeTurns(mIntTurns), font, 20);
-	mTurns = turns;
 	setTextures();
-	//backgroundTop->setTexture(*texture01_backgroundTop);
-	//backgroundBottom->setTexture(*texture01_backgroundBottom);
 	inGameHud->setTexture(*texture_inGameHud);
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf")) {
 		cout << "Error loading arial.ttf" << endl;
 	}
-	mTurns.setColor(sf::Color::White);
-	mTurns.setPosition(1700, 150);
-
 }
 InGameBackground::~InGameBackground() 
 {
@@ -45,6 +38,9 @@ InGameBackground::~InGameBackground()
 	delete backgroundTop;
 	delete backgroundBottom;
 	delete inGameHud;
+
+	delete mTurns;
+	delete mProgress;
 }
 void InGameBackground::setMapname(string mapname) {
 	mMapName = mapname;
@@ -80,7 +76,8 @@ void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
 		window.draw(*backgroundBottom);
 	}
-	window.draw(mTurns);
+	window.draw(*mTurns);
+	window.draw(*mProgress);
 }
 void InGameBackground::setTextures() {
 	if (!texture01_backgroundTop->loadFromFile(m01a01_backGroundTop)) //try to load the texture. if its wrong, give error
@@ -108,16 +105,55 @@ void InGameBackground::setTextures() {
 }
 string InGameBackground::writeTurns(int turnss) {
 	ostringstream o;
-	mIntTurns = turnss;
-	o << "Turn: " << mIntTurns;
-	//sf::Text turns(writeTurns(5), font, 20);
-	//mTurns = turns;
+	o << "Turn: " << turnss;
 	return o.str();
 }
-void InGameBackground::write(int turncount) {
+string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdandelions, vector<int>* goals) {
+	ostringstream o;
+	if (cutgrass >= goals->at(1) && cuthedges >= goals->at(4) && cutdandelions >= goals->at(7)) {
+		if (goals->at(0) != 0) {
+			o << "Grass (%): " << cutgrass << "\t Goal for gold medal: " << goals->at(2) << endl;
+		}
+		if (goals->at(3) != 0) {
+			o << "Hedges (%): " << cuthedges << "\t Goal for gold medal: " << goals->at(5) << endl;
+		}
+		if (goals->at(6) != 0) {
+			o << "Dandylions (%): " << cutdandelions << "\t Goal for gold medal: " << goals->at(8);
+		}
+	}
+	else if (cutgrass >= goals->at(0) && cuthedges >= goals->at(3) && cutdandelions >= goals->at(6)) {
+		if (goals->at(0) != 0) {
+			o << "Grass (%): " << cutgrass << "\t Goal for silver medal: " << goals->at(1) << endl;
+		}
+		if (goals->at(3) != 0) {
+			o << "Hedges (%): " << cuthedges << "\t Goal for silver medal: " << goals->at(4) << endl;
+		}
+		if (goals->at(6) != 0) {
+			o << "Dandylions (%): " << cutdandelions << "\t Goal for silver medal: " << goals->at(7);
+		}
+	}
+	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
+
+		if (goals->at(0) != 0) {
+			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
+		}
+		if (goals->at(3) != 0) {
+			o << "Hedges (%): " << cuthedges << "\t Goal for bronze medal: " << goals->at(3) << endl;
+		}
+		if (goals->at(6) != 0) {
+			o << "Dandylions (%): " << cutdandelions << "\t Goal for bronze medal: " << goals->at(6);
+		}
+	}
+	
+	return o.str();
+}
+void InGameBackground::write(int turncount, int cutgrass, int cuthedges, int cutdandelions, vector<int>* goals) {
 	writeTurns(turncount);
-	sf::Text turns(writeTurns(mIntTurns), font, 30);
+	sf::Text* turns = new sf::Text(writeTurns(turncount), font, 20);
 	mTurns = turns;
-	mTurns.setPosition(1700, 150);
+	sf::Text* tempProgress = new sf::Text(writeProgress(cutgrass, cuthedges, cutdandelions, goals), font, 20);
+	mProgress = tempProgress;
+	mProgress->setPosition(50, 50);
+	mTurns->setPosition(1700, 150);
 }
 
