@@ -15,10 +15,18 @@ static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World0
 static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
 
 InGameBackground::InGameBackground() {
+	sf::Text turns(writeTurns(mIntTurns), font, 20);
+	mTurns = turns;
 	setTextures();
 	//backgroundTop->setTexture(*texture01_backgroundTop);
 	//backgroundBottom->setTexture(*texture01_backgroundBottom);
 	inGameHud->setTexture(*texture_inGameHud);
+	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf")) {
+		cout << "Error loading arial.ttf" << endl;
+	}
+	mTurns.setColor(sf::Color::White);
+	mTurns.setPosition(1700, 150);
+
 }
 InGameBackground::~InGameBackground() 
 {
@@ -62,12 +70,17 @@ void InGameBackground::setMapname(string mapname) {
 	}
 }
 void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
-	window.draw(*backgroundTop);
+	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
+		window.draw(*backgroundTop);
+	}
 	window.draw(*inGameHud);
 
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
-	window.draw(*backgroundBottom);
+	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
+		window.draw(*backgroundBottom);
+	}
+	window.draw(mTurns);
 }
 void InGameBackground::setTextures() {
 	if (!texture01_backgroundTop->loadFromFile(m01a01_backGroundTop)) //try to load the texture. if its wrong, give error
@@ -92,5 +105,19 @@ void InGameBackground::setTextures() {
 		cout << "backgroundBottom gick ej." << endl;
 	if (!texture_inGameHud->loadFromFile(filename_inGameHud)) //try to load the texture. if its wrong, give error
 		cout << "ingamehud gick ej." << endl;
+}
+string InGameBackground::writeTurns(int turnss) {
+	ostringstream o;
+	mIntTurns = turnss;
+	o << "Turn: " << mIntTurns;
+	//sf::Text turns(writeTurns(5), font, 20);
+	//mTurns = turns;
+	return o.str();
+}
+void InGameBackground::write(int turncount) {
+	writeTurns(turncount);
+	sf::Text turns(writeTurns(mIntTurns), font, 30);
+	mTurns = turns;
+	mTurns.setPosition(1700, 150);
 }
 
