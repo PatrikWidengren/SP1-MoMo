@@ -6,12 +6,14 @@ DialogManager::DialogManager(sf::RenderWindow &window)
 	int mCurrentMapDialogue = 0;
 	int mCurrentDialogue = 0;
 	setTextures();
-	spriteDialogs.setPosition(0, window.getSize().y - 309);
+	spriteDialogs->setPosition(0, window.getSize().y - 309);
 }
 
 DialogManager::~DialogManager()
 {
+	delete textureMap01a01Dialogue;
 
+	delete spriteDialogs;
 }
 
 
@@ -51,10 +53,10 @@ void DialogManager::drawBeforeDialogue(sf::RenderWindow &window)
 {
 
 	swapDialogueTexture(0);
-	window.draw(spriteDialogs);
+	window.draw(*spriteDialogs);
 	if (mTimer >= 4 * 60 && j > 0)
 	{
-		spriteDialogs.setColor(sf::Color(255, 255, 255, j));
+		spriteDialogs->setColor(sf::Color(255, 255, 255, j));
 		j-=(255/35);
 	}
 
@@ -73,7 +75,7 @@ void DialogManager::swapDialogueTexture(int beforeOrAfter)
 	{
 		//spriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialogue][mCurrentDialogue]);
 		//spriteDialogs.setTexture(*textBeforeDialogstest[mCurrentBeforeMapDialogue][mCurrentDialogue]);
-		spriteDialogs.setTexture(textureMap01a01Dialogue);
+		spriteDialogs->setTexture(*textureMap01a01Dialogue);
 
 	}
 	else
@@ -125,7 +127,7 @@ void DialogManager::setTextures()
 {
 	//map01a01
 				//Beforetexture
-				textureMap01a01Dialogue.loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
+				textureMap01a01Dialogue->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
 				//textBeforeDialogstest[0][0]->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
 				//textBeforeDialogs[0][1]->loadFromFile("Resource Files/Dialogue/Before01a01 1.png");
 				//textBeforeDialogs[0][2]->loadFromFile("Resource Files/Dialogue/Before01a01 2.png");

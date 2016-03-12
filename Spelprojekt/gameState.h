@@ -10,7 +10,7 @@
 #include "GameStates/RegionMap.h"
 #include "GameStates/Menu/SoundMenu.h"
 #include "GameStates/Menu/KeyboardOptionMenu.h"
-
+#include "InGameBackground.h"
 #include "Managers\DialogManager.h"
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
@@ -68,6 +68,7 @@ private:
 	RegionMap *mRegionMap01;
 	Map1 *mMap01;
 	DialogManager *mDialogManager;
+	InGameBackground *mInGameBackground;
 
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;
@@ -80,10 +81,21 @@ private:
 
 	bool mBeforeDialogue = false;
 	bool mAfterDialogue = false;
-	bool keyPressed = false;
-	bool space = false;
-	bool swap5 = false;
 	void loadMap();
+	
+	int mControlScheme = 1;
+	bool flagUp = false;
+	bool flagUpRight = false;
+	bool flagRight = false;
+	bool flagDownRight = false;
+	bool flagDown = false;
+	bool flagDownLeft = false;
+	bool flagLeft = false;
+	bool flagUpLeft = false;
+	bool flagSwap = false;
+	bool flagConfirm = false;
+	bool flagKeyPressed = true;
+
 
 };
 

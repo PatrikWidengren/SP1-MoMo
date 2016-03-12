@@ -2,8 +2,8 @@
 
 GameOverMenu::GameOverMenu(float width, float height)
 {
-	highlightSprite01.setPosition(10, 235);
-	bg01.scale(33, 33);
+	highlightSprite01->setPosition(10, 235);
+	bg01->scale(33, 33);
 	mTimer = 0;
 	mState = 5;
 	setFonts();
@@ -23,6 +23,12 @@ GameOverMenu::GameOverMenu(float width, float height)
 
 GameOverMenu::~GameOverMenu()
 {
+
+	delete highlighttextBg01;
+	delete textBg01;
+
+	delete bg01;
+	delete highlightSprite01;
 }
 
 void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
@@ -48,7 +54,7 @@ void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mo
 void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 {
 
-	window.draw(bg01);
+	window.draw(*bg01);
 	window.draw(gameOver);
 
 }
@@ -56,10 +62,10 @@ void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 void GameOverMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("Resource Files/Menus/Decline.png")) //try to load the texture. if its wrong, give error
-		textBg01.loadFromFile("error.jpg");
+	if (!textBg01->loadFromFile("Resource Files/Menus/Decline.png")) //try to load the texture. if its wrong, give error
+		textBg01->loadFromFile("error.jpg");
 
-	bg01.setTexture(textBg01);	
+	bg01->setTexture(*textBg01);	
 }
 
 void GameOverMenu::setFonts()
@@ -89,9 +95,9 @@ void GameOverMenu::scale(sf::RenderWindow &window) {
 
 	mState = 5;
 	
-	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	
-	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01.getScale().x, 546 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 546 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 
 
 }

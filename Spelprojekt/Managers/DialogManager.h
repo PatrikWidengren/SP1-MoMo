@@ -31,8 +31,8 @@ private:
 	typedef std::vector<sf::Texture*> DialogueTextures;
 
 	//sf::Texture* **textBeforeDialogstest;
-	sf::Texture textureMap01a01Dialogue;
-	sf::Sprite spriteDialogs;
+	sf::Texture* textureMap01a01Dialogue = new sf::Texture();
+	sf::Sprite* spriteDialogs = new sf::Sprite();
 	//DialogueTextures *textBeforeDialogs;
 	//DialogueTextures *textAfterDialogs;
 };

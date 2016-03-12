@@ -12,30 +12,30 @@ public:
 	bool reset = false;
 
 	// Load a backgrounds to show for the menu
-	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
-	sf::Texture textBg01; //hold the texture
+	sf::Texture* highlighttextBg01 = new sf::Texture(); //the highlightTexture for displaying.
+	sf::Texture* textBg01 = new sf::Texture(); //hold the texture
 
-	sf::Texture textContinue;
-	sf::Texture textNewgame;
-	sf::Texture textOption;
-	sf::Texture textCredits;
-	sf::Texture textExit;
+	sf::Texture* textContinue = new sf::Texture();
+	sf::Texture* textNewgame = new sf::Texture();
+	sf::Texture* textOption = new sf::Texture();
+	sf::Texture* textCredits = new sf::Texture();
+	sf::Texture* textExit = new sf::Texture();
 
-	sf::Texture textHighlightContinue;
-	sf::Texture textHighlightNewgame;
-	sf::Texture textHighlightOption;
-	sf::Texture textHighlightCredits;
-	sf::Texture textHighlightExit;
+	sf::Texture* textHighlightContinue = new sf::Texture();
+	sf::Texture* textHighlightNewgame = new sf::Texture();
+	sf::Texture* textHighlightOption = new sf::Texture();
+	sf::Texture* textHighlightCredits = new sf::Texture();
+	sf::Texture* textHighlightExit = new sf::Texture();
 
-	sf::Sprite spriteContinue;
-	sf::Sprite spriteNewgame;
-	sf::Sprite spriteOption;
-	sf::Sprite spriteCredits;
-	sf::Sprite spriteExit;
+	sf::Sprite* spriteContinue = new sf::Sprite();
+	sf::Sprite* spriteNewgame = new sf::Sprite();
+	sf::Sprite* spriteOption = new sf::Sprite();
+	sf::Sprite* spriteCredits = new sf::Sprite();
+	sf::Sprite* spriteExit = new sf::Sprite();
 
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
 	virtual void updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);

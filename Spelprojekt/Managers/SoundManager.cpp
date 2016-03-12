@@ -112,13 +112,13 @@ static const string nameArray[numberOfSounds] = {
 	"Resource Files/Sound/Meny_Close.flac",			//101
 	"Resource Files/Sound/Meny_GoBack.flac",		//102
 	"Resource Files/Sound/Meny_Open.flac",			//103
-	"Resource Files/Sound/Lawnmower_Loop.flac",		//104
-	"Resource Files/Sound/Lawnmower_Start.flac",	//105
-	"Resource Files/Sound/Lawnmower_Stop.flac"		//106
+	"Resource Files/Sound/Lawnmower_Loop_lowVolume.flac",		//104
+	"Resource Files/Sound/Lawnmower_Start_lowVolume.flac",		//105
+	"Resource Files/Sound/Lawnmower_Stop_lowVolume.flac"		//106
 };
 
 SoundManager::SoundManager(){
-	mVolume = 50;
+	mVolume = 35;
 	for (int i = 0; i < numberOfSounds; i++){
 		mSoundBufferList.push_back(new sf::SoundBuffer);
 		while (!mSoundBufferList[i]->loadFromFile(nameArray[i])) {
@@ -160,9 +160,6 @@ void SoundManager::playSound(float id){
 	}
 	if (temp >= 105 && temp <= 106) {
 		mSoundList[temp]->play();
-		while (mSoundList[temp]->getStatus() != mSoundList[0]->getStatus()){
-			std::cout << "Starter motorn!!!!" << endl;
-		}
 	}
 	if (temp >= 104 && temp <= 104) {
 		mSoundList[temp]->setLoop(true);

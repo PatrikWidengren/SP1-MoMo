@@ -14,8 +14,6 @@ static const int pushGrassY = -76;
 static const int pushFenceY = -76;
 static const int pushMeepX = -96;
 static const int pushMeepY = -116;
-static const int pushMapX = 0;
-static const int pushMapY = 0;
 static const int pushNpcX = 0;
 static const int pushNpcY = -20;
 
@@ -35,6 +33,7 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	CharRand::initialize();
 	CharPatrol::initialize();
 	Fountain::initialize();
+	mRects[0] = new sf::IntRect(sf::Vector2i(1630, 17), sf::Vector2i(265, 90));
 }
 
 Map1::~Map1() {
@@ -48,15 +47,25 @@ Map1::~Map1() {
 	CharRand::finalize();
 	CharPatrol::finalize();
 	Fountain::finalize();
-
+	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++) {
+		delete mObjects.back();
+		mObjects.pop_back();
+	}
+	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++) {
+		delete mLongObjects.back();
+		mLongObjects.pop_back();
+	}
+	//delete mPlayer;
+	delete mGrid;
 	mNpcs.clear();
-	/*while (!mNpcVector.empty()) {
+	while (!mNpcVector.empty()) {
 		delete mNpcVector[0];
 		mNpcVector.erase(mNpcVector.begin());
-	}*/
+}
 }
 
 void Map1::resetGrid(){
+	cout << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << "reset " << endl;
 	std::vector<coords> startPosList;
 	NpcVector npcList;
 	for (int j = 0; j < mHeight; j++) {
@@ -74,29 +83,7 @@ void Map1::resetGrid(){
 	for (NpcVector::size_type i = 0; i < npcList.size(); i++) {
 		mNpcs[startPosList[i]] = npcList[i];
 	}
-
-	/*if (mWidth > mHeight) {
-		for (int i = 0; i < mWidth; i++) {
-			delete[] mGrid[i];
-			std::cout << "AAAAAAAAAAAAAAAAA" << std::endl;
-		}
-		delete[] mGrid;
-		std::cout << "BBBBBBBBBBBBBBBBBBBB" << std::endl;
-
-	}
-	else {
-		for (int i = 0; i < mHeight; i++) {
-			delete[] mGrid[i];
-			std::cout << "CCCCCCCCCCCCCCCCCCC" << std::endl;
-
-		}
-		delete[] mGrid;
-		std::cout << "DDDDDDDDDDDDDDD" << std::endl;
-
-	}*/
-
-
-	mGrid = createGrid(mWidth, mHeight);
+	//mGrid = createGrid(mWidth, mHeight);
 	turnsLeft = 50;
 	cutGrass = 0;
 	cutHedges = 0;
@@ -107,25 +94,14 @@ void Map1::resetGrid(){
 
 //Skapar array
 float** Map1::createGrid(int width, int height) {
+	getMapInfo();
 	float tempValue;
 	const string saveFilePath = "Maps/" + mSavefile;
 	ifstream file(saveFilePath);
-	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
+	file >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue >> tempValue;
 
 	float** array2d;
-	if (width > height) {
-		array2d = new float*[width];
-		for (int i = 0; i < width; i++) {
-			array2d[i] = new float[height];
-			for (int j = 0; j < height; j++) {
-				//file >> tempValue;
-				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
-				//array2d[i][j] = 0.0f;
-			}
-		}
-	}
-	//Skapar grid på annat sätt om height är större än width
-	else {
+//	if (width > height) {
 		array2d = new float*[height];
 		for (int i = 0; i < height; i++) {
 			array2d[i] = new float[width];
@@ -135,31 +111,39 @@ float** Map1::createGrid(int width, int height) {
 				//array2d[i][j] = 0.0f;
 			}
 		}
-	}
+//	}
+	//Skapar grid på annat sätt om height är större än width
+	/*else {
+		array2d = new float*[height];
+		for (int i = 0; i < height; i++) {
+			array2d[i] = new float[width];
+			for (int j = 0; j < width; j++) {
+				//file >> tempValue;
+				//array2d[i][j] = tempValue; //används de här så blir det ingen breakpoint(inte efter typ 20 försök iallafall)
+				array2d[i][j] = 0.0f;
+			}
+		}
+	}*/
 
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			file >> tempValue;
-			//cout << tempValue << endl;
-
 			array2d[i][j] = tempValue; //Det är här som det blir något fel i heapen + titta uvan för mer info
 		}
 	}
-	return array2d;
-	
 
-	if (width > height) {
-		for (int i = 0; i < width; i++) {
-			delete[] array2d[i];
-		}
-		delete[] array2d;
+	cout << "Height=" << mHeight << endl;
+	cout << "Width=" << mWidth << endl;
+	for (int i = 0; i < mHeight; i++) {
+		for (int j = 0; j < mWidth; j++) {
+			cout << array2d[i][j] << " ";
 	}
-	else {
-		for (int i = 0; i < height; i++) {
-			delete[] array2d[i];
+		cout << endl;
 		}
-		delete[] array2d;
-	}
+
+
+	return array2d;
+
 }
 
 //Loopar igenom array och spawnar alla objekt
@@ -177,29 +161,30 @@ int** Map1::getPatrolPath(int &skipLines) {
 		file >> tempValue;
 	}
 
-	file >> patrolPathWidth >> patrolPathHeight;
+	file >> patrolPathHeight >> patrolPathWidth;
 	skipLines += 2;
 
-	//patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nollrad, dvs vi skapar en extra nollrad här
+	//patrolPathHeight + 1 och patrolPathWidth + 1, eftersom mapeditorn inte sparar en extra nolla, dvs vi skapar en extra nollor här
 	//här sparas bara nollor i hela arrayen
 	int** patrolPath;
-	patrolPath = new int*[patrolPathWidth + 1];
-	for (int i = 0; i < patrolPathWidth + 1; i++) {
-		patrolPath[i] = new int[patrolPathHeight];
-		for (int j = 0; j < patrolPathHeight; j++) {
+	patrolPath = new int*[patrolPathHeight + 1];
+	for (int i = 0; i < patrolPathHeight + 1; i++) {
+		patrolPath[i] = new int[patrolPathWidth + 1];
+		for (int j = 0; j < patrolPathWidth + 1; j++) {
 			//file >> tempValue;
 			patrolPath[i][j] = 0;
 		}
 	}
 
 	//här sätts värdena till patrolPath från .txt fil
-	for (int i = 0; i < patrolPathWidth; i++) {
-		for (int j = 0; j < patrolPathHeight; j++) {
+	for (int i = 0; i < patrolPathHeight; i++) {
+		for (int j = 0; j < patrolPathWidth; j++) {
 			file >> tempValue;
 			patrolPath[i][j] = tempValue;
 			skipLines++;
 		}
 	}
+
 	return patrolPath;
 }
 
@@ -247,12 +232,27 @@ void Map1::spawnObjects() {
 
 	mGrid = createGrid(mWidth, mHeight);
 	
+	/*for (int i = 0; i < mHeight; i++) {
+		for (int j = 0; j < mWidth; j++) {
+			cout << mGrid[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+
+
+	cout << endl << endl << endl;
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 2.0f) {
 				totalAmountOfGrass++;
 			}
 			if (mGrid[j][i] == 2.2f) {
+				totalAmountOfDandelions++;
+			}
+			if (mGrid[j][i] == 6.2f) {
+				totalAmountOfDandelions++;
+			}
+			if (mGrid[j][i] == 7.2f) {
 				totalAmountOfDandelions++;
 			}
 			if (mGrid[j][i] == 6.0f) {
@@ -371,8 +371,25 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window, AnimeManager &anime) {
+void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) {
 	mState = 1;
+
+	if (mRects[0]->contains(sf::Vector2i(mouse.x, mouse.y))){ // temp lösning för ingame meny
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick){
+			mClick = false;
+			mState = 2;
+			//sound.playSound(10.3f);
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && mClick){
+		mClick = false;
+		mState = 2;
+		//sound.playSound(10.3f);
+	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
+
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			/*if (mGrid[j][i] == 0.1f) {
@@ -765,8 +782,8 @@ void Map1::update(SoundManager &sound) {
 			}
 			else {
 				mNpcsMoving = false;
-			}
-		}
+	}
+}
 	}
 
 	if (!mMeepMoving && mNpcsMoving) {
@@ -1088,7 +1105,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 		return false;
 	}
 }
-
+/*string Map1::getGrass() {
+	stringstream o;
+	o << "Cut grass: " << (cutGrass / totalAmountOfGrass) * 100;
+	return o.str();
+}*/
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	int tempX = mNpcVector.at(atPos)->getX();
 	int tempY = mNpcVector.at(atPos)->getY();
@@ -1201,7 +1222,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	}
 }
 
-void Map1::deleteContent()
+/*void Map1::deleteContent()
 {
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
@@ -1212,12 +1233,12 @@ void Map1::deleteContent()
 			}
 		}
 	}
-}
+}*/
 
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;
 	ifstream file(saveFilePath);
-	file >> mWidth >> mHeight >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
+	file >> mWidth >> mHeight >> pushMapX >> pushMapY >> mBronzeGrass >> mSilverGrass >> mGoldGrass >> mBronzeHedge  >> mSilverHedge  >> mGoldHedge >> mBronzeDandelion >> mSilverDandelion >> mGoldDandelion >> specialFeature >> meepSpawnDirection;
 }
 
 //Funktion för att returnera objekten
@@ -1243,4 +1264,47 @@ vector<StaticObjects*> Map1::getLongObjects() {
 
 int Map1::checkState() {
 	return mState;
+}
+int Map1::getTurnCount() {
+	return mTurnCount;
+}
+int Map1::getMaxTurns() {
+	return turnsLeft;
+}
+int Map1::getGrass() {
+	if (totalAmountOfGrass > 0) {
+		return (cutGrass / totalAmountOfGrass) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+int Map1::getHedges() {
+	if (totalAmountOfHedges > 0) {
+		return (cutHedges / totalAmountOfHedges) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+int Map1::getDandelions() {
+	if (totalAmountOfDandelions > 0) {
+		return (cutDandelions / totalAmountOfDandelions) * 100;
+	}
+	else {
+		return 9999;
+	}
+}
+vector<int>* Map1::getGoals() {
+	vector<int> *getgoals = new vector<int>;
+	getgoals->push_back(mBronzeGrass);
+	getgoals->push_back(mSilverGrass);
+	getgoals->push_back(mGoldGrass);
+	getgoals->push_back(mBronzeHedge);
+	getgoals->push_back(mSilverHedge);
+	getgoals->push_back(mGoldHedge);
+	getgoals->push_back(mBronzeDandelion);
+	getgoals->push_back(mSilverDandelion);
+	getgoals->push_back(mGoldDandelion);
+	return getgoals;
 }

@@ -8,30 +8,29 @@ class inGameMenu :
 {
 public:
 	inGameMenu(float width, float height);
-	inGameMenu();
 	~inGameMenu();
 
 	// Load a backgrounds to show for the menu
-	sf::Texture highlighttextBg01; //the highlightTexture for displaying.
-	sf::Texture textBg01; //hold the texture
+	sf::Texture* highlighttextBg01 = new sf::Texture(); //the highlightTexture for displaying.
+	sf::Texture* textBg01 = new sf::Texture(); //hold the texture
 
-	sf::Texture textResume;
-	sf::Texture textOption;
-	sf::Texture textQuit;
+	sf::Texture* textResume = new sf::Texture();
+	sf::Texture* textOption = new sf::Texture();
+	sf::Texture* textQuit = new sf::Texture();
 
-	sf::Texture textHighlightResume;
-	sf::Texture textHighlightOption;
-	sf::Texture textHighlightQuit;
+	sf::Texture* textHighlightResume = new sf::Texture();
+	sf::Texture* textHighlightOption = new sf::Texture();
+	sf::Texture* textHighlightQuit = new sf::Texture();
 
-	sf::Sprite spriteResume;
-	sf::Sprite spriteOption;
-	sf::Sprite spriteQuit;
+	sf::Sprite* spriteResume = new sf::Sprite();
+	sf::Sprite* spriteOption = new sf::Sprite();
+	sf::Sprite* spriteQuit = new sf::Sprite();
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
-	sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse);
+	virtual void updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

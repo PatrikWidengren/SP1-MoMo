@@ -225,6 +225,9 @@
     <ClCompile Include="Managers\DialogManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="InGameBackground.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="Managers\DialogManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameBackground.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -477,6 +483,15 @@
     </None>
     <None Include="Resource Files\Music\Worldmap.ogg">
       <Filter>Resource Files\Music</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Loop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -881,6 +896,57 @@
     </Image>
     <Image Include="Resource Files\Sprites\Asfalt.png">
       <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\In-game UI.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World_Map.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Knapp-on.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World_Map_pins.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane02_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane03_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane04_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Gold.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

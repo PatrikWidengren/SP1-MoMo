@@ -28,19 +28,20 @@ gameState::gameState(sf::RenderWindow &window)
 	mWinMenu01 = new WinMenu(window.getSize().x, window.getSize().y);
 	mWorldMap01 = new WorldMap(window.getSize().x, window.getSize().y);
 	mRegionMap01 = new RegionMap(window.getSize().x, window.getSize().y);
+	mInGameBackground = new InGameBackground();
 
 	mDialogManager = new DialogManager(window);
 
-	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 100));
-	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 20));
-	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 30));
-	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 30));
-	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 30));
-	mHedgeTools.push_back(new HedgeCutter(0, 0));
+	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 10000));
+	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 3000));
+	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
+	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
+	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
+	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map01a01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("map04a02.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -70,7 +71,8 @@ gameState::~gameState()
 
 void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw In Game Menu
 {
-	mInGameMenu01->updateInGameMenu(window, mouse);
+	mInGameMenu01->updateInGameMenu(window, mouse, sound);
+	window.clear();
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -80,6 +82,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
 {
 	mStartMenu01->updateStartMenu(window, mouse, sound);
+	window.clear();
 	mStartMenu01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mStartMenu01->checkState());
 	mState = mStartMenu01->checkState();
@@ -88,7 +91,8 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
 {
-	mSoundmenu01->updateSoundMenu(window, mouse);
+	mSoundmenu01->updateSoundMenu(window, mouse, sound);
+	window.clear();
 	mSoundmenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mSoundmenu01->checkOptionState());
 	mOptionMenuState = mSoundmenu01->checkOptionState();
@@ -96,7 +100,8 @@ void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Option Menu
 {
-	mOptionMenu01->updateoptionMenu(window, mouse); 
+	mOptionMenu01->updateoptionMenu(window, mouse, sound);
+	window.clear();
 	mOptionMenu01->displayMenu01(window);
 	mStartOptionState = checkStartState(mOptionMenu01->checkState());
 	mStartState = checkStartState(mOptionMenu01->checkState());
@@ -110,6 +115,7 @@ void gameState::drawOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Tool Select Menu
 {
 	mToolSelectMenu01->updateToolSelectMenu(window, mouse);
+	window.clear();
 	mToolSelectMenu01->displayMenu01(window);
 	mStartState = checkStartState(mToolSelectMenu01->checkState());
 	mState = mToolSelectMenu01->checkState();
@@ -118,6 +124,7 @@ void gameState::drawToolSelectMenu(sf::RenderWindow &window, sf::Vector2i &mouse
 void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Game Over Menu
 {
 	mGameOverMenu01->updateGameOverMenu(window, mouse);
+	window.clear();
 	mGameOverMenu01->displayMenu01(window);
 	mStartState = checkStartState(mGameOverMenu01->checkState());
 	mState = mGameOverMenu01->checkState();
@@ -126,6 +133,7 @@ void gameState::drawGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Win Menu
 {
 	mWinMenu01->updateWinMenu(window, mouse);
+	window.clear();
 	mWinMenu01->displayMenu01(window);
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
@@ -133,7 +141,8 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 
 void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
 {
-	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse);
+	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse, sound);
+	window.clear();
 	mKeyboardMenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mKeyboardMenu01->checkOptionState());
 	mOptionMenuState = mKeyboardMenu01->checkOptionState();
@@ -142,6 +151,7 @@ void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw World Map
 {
 	mWorldMap01->updateWorldMap(window, mouse);
+	window.clear();
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mWorldMap01->checkState());
 	mState = mWorldMap01->checkState();
@@ -154,8 +164,9 @@ void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, Musi
 void gameState::drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Region Map
 {
 	mRegionMap01->updateRegionMap(window, mouse);
+	window.clear();
 	mRegionMap01->displayMenu01(window); //Update mouse in update...
-	mStartState = checkStartState(mWorldMap01->checkState());
+	mStartState = checkStartState(mRegionMap01->checkState());
 	mState = mRegionMap01->checkState();
 	mStartRegionState = checkStartRegionState(mRegionMap01->checkRegionState());
 	mRegionState = mRegionMap01->checkRegionState();
@@ -167,23 +178,24 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 {
 #pragma region Outdate
 	/*
-	//Ritar ut objekten
-	for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		window.draw(mObjects[i]->getSprite());
-		//mObjects[i]->render();
-	}
-	for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
-		window.draw(mNpcs[i]->getSprite());
-	}
-	window.draw(mPlayer->getSprite());
-	for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
-		window.draw(mLongObjects[i]->getSprite());
-		//mObjects[i]->render();
-	}*/
+//Ritar ut objekten
+for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
+	window.draw(mObjects[i]->getSprite());
+	//mObjects[i]->render();
+}
+for (NpcVector::size_type i = 0; i < mNpcs.size(); i++){
+	window.draw(mNpcs[i]->getSprite());
+}
+window.draw(mPlayer->getSprite());
+for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
+	window.draw(mLongObjects[i]->getSprite());
+	//mObjects[i]->render();
+}*/
 #pragma endregion
 
+	window.clear();
 
-
+	mInGameBackground->setMapname(mMap01->mSavefile);
 	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
 	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
@@ -191,11 +203,13 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 #pragma region Check if there is Dialogue
 	if (mBeforeDialogue)
 	{
-		mDialogSwitch = 0;
+		//mDialogSwitch = 0;
+		mDialogSwitch = 1;
 	}
 	else if (mAfterDialogue)
 	{
-		mDialogSwitch = 2;
+		//mDialogSwitch = 2;
+		mDialogSwitch = 1;
 	}
 	else
 	{
@@ -203,124 +217,218 @@ void gameState::drawInGame(sf::RenderWindow &window, sf::Vector2i &mouse, MusicM
 	}
 #pragma endregion
 
+	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+	mInGameBackground->drawBackgroundTop(window);
 	mMap01->update(sound);
-	mMap01->render(window, anime);
+	mMap01->render(window, anime, mouse);
+	mInGameBackground->drawBackgroundBottom(window);
+
 
 	switch (mDialogSwitch)
 	{
 		case 0: //Before, Dialogue
 		{
-			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
-			break;
+			/*mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+			break;*/
 		}
 		case 1:
 		{
 			#pragma region Structure
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && !swap5) {
-		swap5 = true;
-		std::cout << "swapping" << std::endl;
-		/*std::cout << "Swapped to ";
-		if (mMap01->getPlayer()->getMowerEquipped()){
-			std::cout << "lawnmower" << std::endl;
-		}
-		else {
-			std::cout << "hedge cutter" << std::endl;
-		}*/
-		mMap01->getPlayer()->swapEquipped();
-	}
+			if (mControlScheme == 0) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
+					flagSwap = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->swapEquipped();
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !flagSwap) {
+					flagSwap = true;
+				}
 
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad5) && swap5) {
-		swap5 = false;
-	}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft /*&& !flagKeyPressed*/) {
+					flagDownLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle2");
+					mMap01->takeTurn(1, sound);
+
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && !flagDownLeft /*&& flagKeyPressed*/) {
+					flagDownLeft = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown /*&& !flagKeyPressed*/) {
+					flagDown = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle1");
+					mMap01->takeTurn(2, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown /*&& flagKeyPressed*/) {
+					flagDown = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight /*&& !flagKeyPressed*/) {
+					flagDownRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle8");
+					mMap01->takeTurn(3, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight /*&& flagKeyPressed*/) {
+					flagDownRight = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft /*&& !flagKeyPressed*/) {
+					flagLeft = false;
+//					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle3");
+					mMap01->takeTurn(4, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft /*&& flagKeyPressed*/) {
+					flagLeft = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight /*&& !flagKeyPressed*/) {
+					flagRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle7");
+					mMap01->takeTurn(6, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight /*&& flagKeyPressed*/) {
+					flagRight = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft /*&& !flagKeyPressed*/) {
+					flagUpLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle4");
+					mMap01->takeTurn(7, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft /*&& flagKeyPressed*/) {
+					flagUpLeft = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp /*&& !flagKeyPressed*/) {
+					flagUp = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle5");
+					mMap01->takeTurn(8, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp /*&& flagKeyPressed*/) {
+					flagUp = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight /*&& !flagKeyPressed*/) {
+					flagUpRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle6");
+					mMap01->takeTurn(9, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight /*&& flagKeyPressed*/) {
+					flagUpRight = true;
+				}
+
+				}
+
+			if (mControlScheme == 1) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && flagSwap) {
+					flagSwap = false;
+					//flagKeyPressed = true;
+				mMap01->getPlayer()->swapEquipped();
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !flagSwap) {
+					flagSwap = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft /*&& !flagKeyPressed*/) {
+					flagDownLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle2");
+					mMap01->takeTurn(1, sound);
+
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft /*&& flagKeyPressed*/) {
+					flagDownLeft = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown /*&& !flagKeyPressed*/) {
+					flagDown = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle1");
+					mMap01->takeTurn(2, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown /*&& flagKeyPressed*/) {
+					flagDown = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight /*&& !flagKeyPressed*/) {
+					flagDownRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle8");
+					mMap01->takeTurn(3, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight /*&& flagKeyPressed*/) {
+					flagDownRight = true;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft /*&& !flagKeyPressed*/) {
+					flagLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle3");
+					mMap01->takeTurn(4, sound);
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
+					flagLeft = true;
+			}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
+					flagRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle7");
+					mMap01->takeTurn(6, sound);
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
+					flagRight = true;
+			}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
+					flagUpLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle4");
+					mMap01->takeTurn(7, sound);
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
+					flagUpLeft = true;
+			}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
+					flagUp = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle5");
+					mMap01->takeTurn(8, sound);
+			}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
+					flagUp = true;
+			}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
+					flagUpRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle6");
+					mMap01->takeTurn(9, sound);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
+					flagUpRight = true;
+			}
+
+			}
 
 
-
-	if (moveMeep != 1 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1))) {
-		moveMeep = 1;
-		meepHeightAnimation = "idle2";
-		std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 3 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3))) {
-		moveMeep = 3;
-		meepHeightAnimation = "idle8";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 7 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7))) {
-		moveMeep = 7;
-		meepHeightAnimation = "idle4";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 9 && ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))) {
-		moveMeep = 9;
-		meepHeightAnimation = "idle6";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-
-	if (moveMeep != 2 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2))) {
-		moveMeep = 2;
-		meepHeightAnimation = "idle1";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 4 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4))) {
-		moveMeep = 4;
-		meepHeightAnimation = "idle3";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 6 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6))) {
-		moveMeep = 6;
-		meepHeightAnimation = "idle7";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-	if (moveMeep != 8 && ((!sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) &&
-		sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8))) {
-		moveMeep = 8;
-		meepHeightAnimation = "idle5";
-		//std::cout << "movdir " << moveMeep << std::endl;
-		keyPressed = true;
-	}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !space && keyPressed) {
-		space = true;
-		//std::cout << "confirm dir " << moveMeep << std::endl;
-		//anime.setHeightPosition(meepHeightAnimation);
-		
-		mMap01->getPlayer()->changeAnimation(meepHeightAnimation);
-		//mMap01->takeTurn(moveMeep, sound);
-		mMap01->beginTurn(moveMeep);
-		moveMeep = 0;
-		keyPressed = false;
-	}
-
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && space) {
-		space = false;
-	}
 			mStartState = checkStartState(mMap01->checkState());
+			mState = mMap01->checkState();
 #pragma endregion
 
 			break;
-}
+		}
 		case 2: //After, Dialogue
 		{
 			mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
@@ -338,7 +446,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 	case 1: 
 	{ //Game state 1. in game. 
-		drawInGame(window, mouse, music, sound, anime);
+
 		if (mStartState) {
 			if (mRegionMusic == 1) {
 				music.setMusic(3);
@@ -362,7 +470,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//Startar musik osv
 		}
 		drawInGame(window, mouse, music, sound, anime);
-		if (mMap01->mTurnCount >= 50) {
+		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 			if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
@@ -384,6 +492,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mInGameMenu01->scale(window);
 			mStartState = false;
 			sound.stopSound(10.4f);
+			sound.stopSound(10.5f);
 			sound.playSound(10.6f);
 			//Starta musik osv
 		}
@@ -448,6 +557,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			music.setMusic(8);
 			mGameOverMenu01->scale(window);
 			mStartState = false;
+			sound.stopSound(10.4f);
+			sound.playSound(10.6f);
 			//Starta musik osv
 		}
 		drawGameOverMenu(window, mouse, music, sound);
@@ -458,6 +569,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			music.setMusic(0);
 			mWinMenu01->scale(window);
 			mStartState = false;
+			sound.stopSound(10.4f);
+			sound.playSound(10.6f);
 			//Starta musik osv
 		}
 		drawWinMenu(window, mouse, music, sound);
@@ -579,13 +692,13 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawToolSelectMenu(window, mouse, music, sound);
 		break;*/
 
-	default:
+	/*default:
 		std::cout << "default gamestate";
 		break;
-	}
+	}*/
 
 	//Outside the gamestates, check if the user changes the gamestate.
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		mState = 1;
 		mStartState = true;
@@ -607,7 +720,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{
 		mState = 4;
 		mStartState = true;
-	}
+	}*/
 
 
 	if (mStartMenu01->reset == true || mWinMenu01->reset == true)
@@ -623,7 +736,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 0;
 	}*/
 
-
+	
 }
 
 void gameState::resetMap(){
@@ -631,6 +744,8 @@ void gameState::resetMap(){
 		mLawnMowers[i]->resetStats();
 	}
 	//mMap01->deleteContent();
+	std::cout << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset";
+
 	mMap01->resetGrid();
 	//mMap01->spawnObjects();
 	//mObjects = mMap01->getObjects();
@@ -671,8 +786,8 @@ bool gameState::checkStartRegionState(int lowerState) {
 }
 
 void gameState::loadMap() {
-	mMap01->~Map1();
-	//delete mMap01;
+	//mMap01->~Map1();
+	delete mMap01;
 	
 	std::string levelToLoad = mRegionMap01->loadLevel();
 

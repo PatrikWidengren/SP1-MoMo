@@ -2,14 +2,14 @@
 
 SoundMenu::SoundMenu(float width, float height)
 {
-	highlightSprite01.setPosition(10, 235);
+	highlightSprite01->setPosition(10, 235);
 	mTimer = 0;
 	mState = 4;
 	mOptionMenuState = 2;
 	setFonts();
 	setTextures();
 
-	spriteBack.setPosition(1385, 515);
+	spriteBack->setPosition(1385, 515);
 
 
 	menu[0].setFont(font);
@@ -41,7 +41,7 @@ SoundMenu::~SoundMenu()
 
 }
 
-void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
+void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound)
 {
 
 	mMouse.x = mouse.x;
@@ -54,16 +54,17 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-		spriteBack.setTexture(textHighlightBack);
+		spriteBack->setTexture(*textHighlightBack);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			//Back
 			mClick = false;
 			mOptionMenuState = 1;
+			sound.playSound(10.1);
 		}
 	}
 	else
-		spriteBack.setTexture(textBack);
+		spriteBack->setTexture(*textBack);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
@@ -118,8 +119,8 @@ void SoundMenu::displayMenu01(sf::RenderWindow &window)
 		window.draw(menu[i]);
 	}
 
-	window.draw(bg01);
-	window.draw(spriteBack);
+	window.draw(*bg01);
+	window.draw(*spriteBack);
 
 	//std::cout << mMouse.x << ": 1 :" << mMouse.y << std::endl;
 	//std::cout << highlightSprite01.getPosition().x << ": SoundMenu :" << highlightSprite01.getPosition().y << std::endl;
@@ -128,33 +129,33 @@ void SoundMenu::displayMenu01(sf::RenderWindow &window)
 	{
 		window.close();
 	}
-	if (mMouse.x > highlightSprite01.getPosition().x * highlightSprite01.getScale().x && mMouse.x < highlightSprite01.getPosition().y - 35 && mMouse.y > highlightSprite01.getPosition().y && mMouse.y < highlightSprite01.getPosition().y + 30)
+	if (mMouse.x > highlightSprite01->getPosition().x * highlightSprite01->getScale().x && mMouse.x < highlightSprite01->getPosition().y - 35 && mMouse.y > highlightSprite01->getPosition().y && mMouse.y < highlightSprite01->getPosition().y + 30)
 	{
-		highlightSprite01.setPosition(10, 235);
-		window.draw(highlightSprite01);
+		highlightSprite01->setPosition(10, 235);
+		window.draw(*highlightSprite01);
 	}
 }
 
 void SoundMenu::setTextures()
 {
 	
-	if (!textBg01.loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
-	textBg01.loadFromFile("error.jpg");
+	if (!textBg01->loadFromFile("Resource Files/Backgrounds/Background_Options.png")) //try to load the texture. if its wrong, give error
+	textBg01->loadFromFile("error.jpg");
 
-	if (!highlighttextBg01.loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
-	highlighttextBg01.loadFromFile("error.jpg");
+	if (!highlighttextBg01->loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
+	highlighttextBg01->loadFromFile("error.jpg");
 
-	if (!textBack.loadFromFile("Resource Files/Menus/BackArrow.png"))
-		textBack.loadFromFile("error.jpg");
+	if (!textBack->loadFromFile("Resource Files/Menus/BackArrow.png"))
+		textBack->loadFromFile("error.jpg");
 
-	if (!textHighlightBack.loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
-		textHighlightBack.loadFromFile("error.jpg");
+	if (!textHighlightBack->loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
+		textHighlightBack->loadFromFile("error.jpg");
 
 
 
-	spriteBack.setTexture(textBack);
-	bg01.setTexture(textBg01);
-	highlightSprite01.setTexture(highlighttextBg01);
+	spriteBack->setTexture(*textBack);
+	bg01->setTexture(*textBg01);
+	highlightSprite01->setTexture(*highlighttextBg01);
 	
 }
 
@@ -202,15 +203,15 @@ void SoundMenu::scale(sf::RenderWindow &window) {
 	mState = 4;
 	mOptionMenuState = 2;
 
-	bg01.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	spriteBack.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteBack->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 640 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01.getScale().x, 740 * bg01.getScale().y), sf::Vector2i(550 * bg01.getScale().x, 100 * bg01.getScale().y));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1385 * bg01.getScale().x, 515 * bg01.getScale().y), sf::Vector2i(113 * bg01.getScale().x, 91 * bg01.getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 640 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 740 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1385 * bg01->getScale().x, 515 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
-	spriteBack.setPosition(1385 * bg01.getScale().x, 515 * bg01.getScale().y);
+	spriteBack->setPosition(1385 * bg01->getScale().x, 515 * bg01->getScale().y);
 
 }
 

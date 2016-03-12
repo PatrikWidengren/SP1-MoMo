@@ -21,26 +21,26 @@ public:
 	
 	sf::Texture textBackgrounds[mMaxRegions];
 
-	sf::Texture textureShop;
-	sf::Texture textArrow01;
-	sf::Texture textHighlightArrow01;
+	sf::Texture* textureShop = new sf::Texture();
+	sf::Texture* textArrow01 = new sf::Texture();
+	sf::Texture* textHighlightArrow01 = new sf::Texture();
 	sf::Texture textMowers[3];
 	sf::Texture textHedgecutters[2];
 
-	sf::Sprite spriteGrassMower;
-	sf::Sprite spriteHedgecutter;
+	sf::Sprite* spriteGrassMower = new sf::Sprite();
+	sf::Sprite* spriteHedgecutter = new sf::Sprite();
 
-	sf::Sprite spriteArrow01;
-	sf::Sprite spriteArrow02;
-	sf::Sprite spriteArrow03;
-	sf::Sprite spriteArrow04;
+	sf::Sprite* spriteArrow01 = new sf::Sprite();
+	sf::Sprite* spriteArrow02 = new sf::Sprite();
+	sf::Sprite* spriteArrow03 = new sf::Sprite();
+	sf::Sprite* spriteArrow04 = new sf::Sprite();
 
-	sf::Sprite spriteShop;
+	sf::Sprite* spriteShop = new sf::Sprite();
 
 	sf::Sprite *spriteLevels;
-	sf::Texture textLevels;
+	sf::Texture* textLevels = new sf::Texture();
 
-	sf::Sprite bg01; //Drawable sprite wich gets a texture later. Bg stands for background
+	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
 	//sf::Sprite highlightSprite01; //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
