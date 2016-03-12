@@ -745,22 +745,27 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 }
 
 void Map1::beginTurn(int dir) {
-	mCurrentMove.clear();
-	mCurrentMove = mPlayer->move(dir);
-	mPlaceInMove = 0;
-	mNpcNo = 0;
-	mOngoingTurn = true;
-	mMeepMoving = true;
-	mNpcsMoving = false; 
-	mNpcVector.clear();
-	//Cleanup note: Not sure if mNpcCoords actually ever does anything or if it just sits there. 
-	//I do recall needing it for testing at one point, not sure if it became obsolete.
-	mNpcCoords.clear();
-	for (int j = 0; j < mHeight; j++) {
-		for (int i = 0; i < mWidth; i++) {
-			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
-				coords at = { i, j };
-				mNpcVector.push_back(mNpcs[at]);
+	if (!mOngoingTurn)
+	{
+		mTurnClock.restart();
+		mPlayerMoveTime.restart();
+		mCurrentMove.clear();
+		mCurrentMove = mPlayer->move(dir);
+		mPlaceInMove = 0;
+		mNpcNo = 0;
+		mOngoingTurn = true;
+		mMeepMoving = true;
+		mNpcsMoving = false;
+		mNpcVector.clear();
+		//Cleanup note: Not sure if mNpcCoords actually ever does anything or if it just sits there. 
+		//I do recall needing it for testing at one point, not sure if it became obsolete.
+		mNpcCoords.clear();
+		for (int j = 0; j < mHeight; j++) {
+			for (int i = 0; i < mWidth; i++) {
+				if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
+					coords at = { i, j };
+					mNpcVector.push_back(mNpcs[at]);
+				}
 			}
 		}
 	}
@@ -786,15 +791,21 @@ void Map1::update(SoundManager &sound) {
 }
 	}
 
+	if (mNpcVector.empty()) {
+		mNpcsMoving = false;
+	}
 	if (!mMeepMoving && mNpcsMoving) {
 		if (mNpcNo < mNpcVector.size()) {
 
 			if (mCurrentMove.empty()) {
 				mCurrentMove = mNpcVector[mNpcNo]->move();
+				mPlaceInMove = 0;
+				mNpcMoveTime=0.1f/mCurrentMove.size();
+				mNpcMoveTimer.restart();
 			}
 
-			if (mPlaceInMove < mCurrentMove.size()) {
-
+			if (mPlaceInMove < mCurrentMove.size() && mNpcMoveTimer.getElapsedTime().asSeconds()>=mNpcMoveTime) {
+				mNpcMoveTimer.restart();
 				//0 means end of movement. Needed for patrols. 
 				//Breakmove means that the entire movement for this character
 				//is over for the turn
@@ -841,14 +852,18 @@ void Map1::update(SoundManager &sound) {
 					}
 				}
 				else {
-					mPlaceInMove = mCurrentMove.size();
+					mCurrentMove.clear();
 				}
+				mPlaceInMove++;
 			}
 		}
 	}
 
 
-	if (mMeepMoving) {
+
+	std::cout << mPlayerMoveTime.getElapsedTime().asSeconds() << ">" << mPlayer->getMoveTime() << std::endl;
+	if (mMeepMoving && mPlayerMoveTime.getElapsedTime().asSeconds() >= mPlayer->getMoveTime()) {
+		mPlayerMoveTime.restart();
 		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
 		if (!moved) {
 			mPlayer->collide(mCurrentMove, mPlaceInMove);
@@ -856,6 +871,7 @@ void Map1::update(SoundManager &sound) {
 			mCurrentMove.clear();
 			mNpcsMoving = true;
 		}
+		mPlaceInMove++;
 	}
 
 	if (!mMeepMoving && !mNpcsMoving && mOngoingTurn) {
@@ -868,7 +884,16 @@ void Map1::update(SoundManager &sound) {
 		mOngoingTurn = false;
 	}
 
-	mPlaceInMove++;
+	if (mTurnClock.getElapsedTime().asSeconds() >= 2.0 && mOngoingTurn) {
+		mTurnCount++;
+		std::cout << "That was turn " << mTurnCount << "." << endl;
+		if (mTurnCount >= 50) {
+			std::cout << "GAME OVER" << endl;
+		}
+		std::cout << endl;
+		mOngoingTurn = false;
+	}
+
 }
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
@@ -1269,7 +1294,7 @@ int Map1::getTurnCount() {
 	return mTurnCount;
 }
 int Map1::getMaxTurns() {
-	return turnsLeft;
+	return mWinRounds;
 }
 int Map1::getGrass() {
 	if (totalAmountOfGrass > 0) {

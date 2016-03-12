@@ -64,7 +64,7 @@ public:
 	std::vector<int> *getGoals();
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
-	int mWinRounds = 40;
+	int mWinRounds = 50;
 	std::string mSavefile/*, mPatrolPath*/;
 	//std::string getGrass();
 private:
@@ -106,6 +106,8 @@ private:
 	intVector mCurrentMove;
 	int mPlaceInMove = 0, mNpcNo = 0;
 	bool mMeepMoving = false, mNpcsMoving = false, mBreakMove;
+	sf::Clock mTurnClock, mPlayerMoveTime, mNpcMoveTimer;
+	float mNpcMoveTime;
 };
 
 
