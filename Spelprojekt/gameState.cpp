@@ -690,10 +690,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawToolSelectMenu(window, mouse, music, sound);
 		break;*/
 
-	default:
+	/*default:
 		std::cout << "default gamestate";
 		break;
-	}
+	}*/
 
 	//Outside the gamestates, check if the user changes the gamestate.
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
