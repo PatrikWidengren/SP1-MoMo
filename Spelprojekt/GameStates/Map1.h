@@ -31,6 +31,9 @@ public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
+	//gör mer eller mindra vad takeTurn brukade göra
+	void update(SoundManager &sound);
+	void beginTurn(int dir);
 	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
@@ -61,7 +64,7 @@ public:
 	std::vector<int> *getGoals();
 	int mTurnCount = 0;
 	int mLoseRounds = 50;
-	int mWinRounds = 40;
+	int mWinRounds = 50;
 	std::string mSavefile/*, mPatrolPath*/;
 	//std::string getGrass();
 private:
@@ -71,6 +74,8 @@ private:
 
 	bool movePlayer(int dir, SoundManager &sound);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
+	bool mOngoingTurn = false;
+
 	int mWidth, mHeight;
 	int mBronzeGrass, mBronzeHedge, mBronzeDandelion;
 	int mSilverGrass, mSilverHedge, mSilverDandelion;
@@ -98,6 +103,12 @@ private:
 	Player* mPlayer;
 	//Mower* lawnMower;
 
+	intVector mCurrentMove;
+	int mPlaceInMove = 0, mNpcNo = 0;
+	bool mMeepMoving = false, mNpcsMoving = false, mBreakMove;
+	sf::Clock mTurnClock, mPlayerMoveTime, mNpcMoveTimer;
+	float mNpcMoveTime;
+	int mNextX, mNextY;
 };
 
 

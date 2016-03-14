@@ -35,6 +35,7 @@ Map1::Map1(string savefile, Player *p /*, string patrolpath*/) {
 	Fountain::initialize();
 	mRects[0] = new sf::IntRect(sf::Vector2i(1630, 17), sf::Vector2i(265, 90));
 }
+
 Map1::~Map1() {
 	Stone::finalize();
 	Grass::finalize();
@@ -60,7 +61,7 @@ Map1::~Map1() {
 	while (!mNpcVector.empty()) {
 		delete mNpcVector[0];
 		mNpcVector.erase(mNpcVector.begin());
-	}
+}
 }
 
 void Map1::resetGrid(){
@@ -136,9 +137,9 @@ float** Map1::createGrid(int width, int height) {
 	for (int i = 0; i < mHeight; i++) {
 		for (int j = 0; j < mWidth; j++) {
 			cout << array2d[i][j] << " ";
-		}
-		cout << endl;
 	}
+		cout << endl;
+		}
 
 
 	return array2d;
@@ -186,6 +187,7 @@ int** Map1::getPatrolPath(int &skipLines) {
 
 	return patrolPath;
 }
+
 void Map1::spawnObjects() {
 	
 	//mPlayer = new Player(new LawnMower(), new HedgeCutter(2, 1));
@@ -274,6 +276,11 @@ void Map1::spawnObjects() {
 			else if (mGrid[j][i] >= 7.0f && mGrid[j][i] < 8.0f) {
 				coords c = { i, j };
 				mNpcs[c] = new CharPatrol(i, j, getPatrolPath(mSkipLines));
+			}
+			else if (mGrid[j][i] >= 5.0f && mGrid[j][i] < 6.0f) {
+				mPlayer->setLast(2.0f+(mGrid[j][i]-5));
+				mPlayer->setX(i);
+				mPlayer->setY(j);
 			}
 		}
 	}
@@ -586,65 +593,72 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
+				if (!mMeepMoving)
+					mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
+
 				//anime.playTest();
 				//anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				//window.draw(*anime.getSpriteSheet());
 				//mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					//window.draw(mPlayer->getDrawSprite());
-					mPlayer->setX(i);
-					mPlayer->setY(j);
+					//mPlayer->setX(i);
+					//mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
+				if (!mMeepMoving)
+					mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
 					/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
-				mPlayer->setLast(2.1f);
-				mPlayer->setX(i);
-				mPlayer->setY(j);
+				//mPlayer->setLast(2.1f);
+				//mPlayer->setX(i);
+				//mPlayer->setY(j);
+
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
+				if (!mMeepMoving)
+					mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
 				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
-				mPlayer->setLast(2.2f);
-				mPlayer->setX(i);
-				mPlayer->setY(j);
+				//mPlayer->setLast(2.2f);
+				//mPlayer->setX(i);
+				//mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
+				if (!mMeepMoving)
+					mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
 				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
-				mPlayer->setLast(2.3f);
-				mPlayer->setX(i);
-				mPlayer->setY(j);
+				//mPlayer->setLast(2.3f);
+				//mPlayer->setX(i);
+				//mPlayer->setY(j);
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
 				mPlayer->playPlayer();
-				mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
+				if(!mMeepMoving)
+					mPlayer->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
 				window.draw(*anime.getSpriteSheet());*/
-				mPlayer->setLast(2.4f);
-				mPlayer->setX(i);
-				mPlayer->setY(j);
+				//mPlayer->setLast(2.4f);
+				//mPlayer->setX(i);
+				//mPlayer->setY(j);
 				/*mPlayer->getSprite()->setPosition((pushMapX + i * widthOnTile), pushMapY + (j * heightOnTile) - 75);
 					window.draw(mPlayer->getDrawSprite());*/
 			}
@@ -652,7 +666,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if(!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -660,7 +675,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -668,7 +684,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -677,7 +694,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -685,7 +703,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -694,7 +713,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -702,7 +722,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -710,7 +731,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -719,7 +741,8 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -727,13 +750,306 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
+					if (!mNpcsMoving)
+						mNpcs[c]->getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushNpcX, pushMapY + (j * heightOnTile) + pushNpcY); //Sätter positionen enligt grid
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
 			}
 		}
 	}
+}
+
+void Map1::beginTurn(int dir) {
+	if (!mOngoingTurn)
+	{
+		mTurnClock.restart();
+		mPlayerMoveTime.restart();
+		mCurrentMove.clear();
+		mCurrentMove = mPlayer->move(dir);
+		mPlaceInMove = 0;
+		mNpcNo = 0;
+		mOngoingTurn = true;
+		mMeepMoving = true;
+		mNpcsMoving = false;
+		mNpcVector.clear();
+		//Cleanup note: Not sure if mNpcCoords actually ever does anything or if it just sits there. 
+		//I do recall needing it for testing at one point, not sure if it became obsolete.
+		mNpcCoords.clear();
+		for (int j = 0; j < mHeight; j++) {
+			for (int i = 0; i < mWidth; i++) {
+				if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
+					coords at = { i, j };
+					mNpcVector.push_back(mNpcs[at]);
+				}
+			}
+		}
+	}
+}
+
+void Map1::update(SoundManager &sound) {
+	if (mPlaceInMove == mCurrentMove.size()) {
+		if (mMeepMoving) {
+			mMeepMoving = false;
+			mPlaceInMove = 0;
+			mNpcsMoving = true;
+			mCurrentMove.clear();
+		}
+		else if (mNpcsMoving) {
+			if (mNpcNo < mNpcVector.size()-1){
+				mNpcNo++;
+				mCurrentMove.clear();
+				mPlaceInMove = 0;
+			}
+			else {
+				mNpcsMoving = false;
+	}
+}
+	}
+
+	if (mNpcVector.empty()) {
+		mNpcsMoving = false;
+	}
+
+	if (mNpcsMoving) {
+		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())
+		//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mNpcMoveTime) * widthOnTile), ((mPlayerMoveTime.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+		float tempPosX = pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX;
+		float tempPosY = pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY;
+
+		switch (mCurrentMove[mPlaceInMove]) {
+		case 8:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
+				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(0,
+			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		case 9:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds()/mNpcMoveTime) * widthOnTile),
+			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		case 6:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY + 0);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
+			//	0);	
+			break;
+		case 3:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
+			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		case 2:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
+				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(0,
+			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		case 1:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
+			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		case 4:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY + 0);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
+			//	0 );
+			break;
+		case 7:
+			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+
+			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
+			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
+			break;
+		}
+	}
+
+
+	if (!mMeepMoving && mNpcsMoving) {
+		if (mNpcNo < mNpcVector.size()) {
+
+			if (mCurrentMove.empty()) {
+				mCurrentMove = mNpcVector[mNpcNo]->move();
+				mPlaceInMove = 0;
+				mNpcMoveTime=0.2f/mCurrentMove.size();
+				mNpcMoveTimer.restart();
+			}
+
+			if (mPlaceInMove < mCurrentMove.size() && mNpcMoveTimer.getElapsedTime().asSeconds()>=mNpcMoveTime) {
+				mNpcMoveTimer.restart();
+				//0 means end of movement. Needed for patrols. 
+				//Breakmove means that the entire movement for this character
+				//is over for the turn
+				if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
+					mBreakMove = true;
+					//mBreakMove = false;
+					//break;
+					//mNpcs[i]->swapDoneMoving();
+				}
+
+				//the movement functions returns a bool. True if they moved, 
+				//false in case of collision
+
+				if (!mBreakMove) {
+
+					bool moved = moveNpc(mCurrentMove.at(mPlaceInMove), mNpcNo, sound);
+					//if the NPC collided: do the following
+					if (!moved) {
+
+						//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+						//get a new series of moves to attempt
+						intVector tryMove;
+						tryMove = mNpcVector[mNpcNo]->collide(mCurrentMove, mPlaceInMove);
+						//try out the new list of steps
+						for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+							//again, break if 0, breakMove is made true so that
+							//the entire turn will end for the current character
+							//if there is no movement after collision
+							if (tryMove.at(k) == 0) {
+								mBreakMove = true;
+								break;
+							}
+							//check every move. If one of them works, return to standard
+							//movement pattern
+							bool retryMoved = moveNpc(tryMove.at(k), mNpcNo, sound);
+							if (retryMoved) {
+								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+								break;
+							}
+							else {
+								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+							}
+						}
+					}
+					else {
+						mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+					}
+				}
+				else {
+					mCurrentMove.clear();
+				}
+				mPlaceInMove++;
+			}
+		}
+	}
+
+
+
+	if (mMeepMoving) {
+		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())
+		//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime()) * widthOnTile), ((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+		float tempPosX = pushMapX + (mPlayer->getX() * widthOnTile) + pushMeepX;
+		float tempPosY = pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY;
+
+		switch (mCurrentMove[mPlaceInMove]) {
+		case 8:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0,
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(0,
+			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		case 9:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime()) * widthOnTile),
+			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		case 6:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY + 0 );
+
+			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
+			//	0);	
+			break;
+		case 3:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
+			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		case 2:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0,
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(0,
+			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		case 1:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
+			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		case 4:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY + 0);
+
+			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
+			//	0 );
+			break;
+		case 7:
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+
+			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
+			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
+			break;
+		}
+	}
+
+	if (mMeepMoving && mPlayerMoveTime.getElapsedTime().asSeconds() >= mPlayer->getMoveTime()) {
+		mPlayerMoveTime.restart();
+		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
+		if (!moved) {
+			mPlayer->collide(mCurrentMove, mPlaceInMove);
+			mPlayer->getSpriteSheet()->setPosition((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX, pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY);
+			mMeepMoving = false;
+			mCurrentMove.clear();
+			mNpcsMoving = true;
+		}
+		else {
+			mPlayer->getSpriteSheet()->setPosition((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX, pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY);
+		}
+		mPlaceInMove++;
+	}
+
+	if (!mMeepMoving && !mNpcsMoving && mOngoingTurn) {
+		mTurnCount++;
+		std::cout << "That was turn " << mTurnCount << "." << endl;
+		if (mTurnCount >= 50) {
+			std::cout << "GAME OVER" << endl;
+		}
+		std::cout << endl;
+		mOngoingTurn = false;
+	}
+
+	if (mTurnClock.getElapsedTime().asSeconds() >= 2.0 && mOngoingTurn) {
+		mTurnCount++;
+		std::cout << "That was turn " << mTurnCount << "." << endl;
+		if (mTurnCount >= 50) {
+			std::cout << "GAME OVER" << endl;
+		}
+		std::cout << endl;
+		mOngoingTurn = false;
+	}
+
 }
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
@@ -1030,6 +1346,10 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f) {
+		
+		mNextX = tempX;
+		mNextY = tempY;
+
 		mGrid[mNpcVector.at(atPos)->getY()][mNpcVector.at(atPos)->getX()] = mNpcVector.at(atPos)->getLast();
 		coords tempCoords = { mNpcVector.at(atPos)->getX(), mNpcVector.at(atPos)->getY() };
 		mNpcs.erase(tempCoords);
@@ -1042,6 +1362,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 		mNpcVector.at(atPos)->setX(tempX);
 		mNpcVector.at(atPos)->setY(tempY);
+
 		//cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 	}
@@ -1110,6 +1431,7 @@ void Map1::getMapInfo(){
 vector<StaticObjects*> Map1::getObjects() {
 	return mObjects;
 }
+
 Player* Map1::getPlayer() {
 	return mPlayer;
 }
@@ -1121,6 +1443,7 @@ float** Map1::getGrid() {
 Maps::NpcMap Map1::getNpcs() {
 	return mNpcs;
 }
+
 vector<StaticObjects*> Map1::getLongObjects() {
 	return mLongObjects;
 }
@@ -1132,7 +1455,7 @@ int Map1::getTurnCount() {
 	return mTurnCount;
 }
 int Map1::getMaxTurns() {
-	return turnsLeft;
+	return mWinRounds;
 }
 int Map1::getGrass() {
 	if (totalAmountOfGrass > 0) {
