@@ -70,10 +70,11 @@ gameState::~gameState()
 	}
 }
 
-void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw In Game Menu
+void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime) // Draw In Game Menu
 {
 	mInGameMenu01->updateInGameMenu(window, mouse, sound);
 	window.clear();
+	mMap01->render(window, anime, mouse);
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -507,7 +508,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			sound.playSound(10.6f);
 			//Starta musik osv
 		}
-		drawInGameMenu(window, mouse, music, sound);
+		drawInGameMenu(window, mouse, music, sound, anime);
 		break;
 	}
 	case 3:
