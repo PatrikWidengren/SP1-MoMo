@@ -34,7 +34,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 10000));
-	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 3000));
+	mLawnMowers.push_back(new RoyceMower(new LawnMower(10, 10, 1, 1, 3000)));
 	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
 	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
@@ -42,8 +42,8 @@ gameState::gameState(sf::RenderWindow &window)
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map04a02.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
-
+	mMap01 = new Map1("stormaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
 	//mObjects = mMap01->getObjects();
@@ -240,7 +240,6 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		case 1:
 		{
 			#pragma region Structure
-
 			if (mControlScheme == 0) {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
 					flagSwap = false;
@@ -339,8 +338,8 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && flagSwap) {
 					flagSwap = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->swapEquipped();
-				}
+				mMap01->getPlayer()->swapEquipped();
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !flagSwap) {
 					flagSwap = true;
 				}
@@ -351,7 +350,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 					mMap01->beginTurn(1);
 					mMap01->getPlayer()->changeAnimation(2);
 
-				}
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft /*&& flagKeyPressed*/) {
 					flagDownLeft = true;
 				}
@@ -381,40 +380,40 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 					//flagKeyPressed = true;
 					mMap01->beginTurn(4);
 					mMap01->getPlayer()->changeAnimation(3);
-				}
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
 					flagLeft = true;
-				}
+			}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
 					flagRight = false;
 					//flagKeyPressed = true;
 					mMap01->beginTurn(6);
 					mMap01->getPlayer()->changeAnimation(7);
-				}
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
 					flagRight = true;
-				}
+			}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
 					flagUpLeft = false;
 					//flagKeyPressed = true;
 					mMap01->beginTurn(7);
 					mMap01->getPlayer()->changeAnimation(4);
-				}
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
 					flagUpLeft = true;
-				}
+			}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
 					flagUp = false;
 					//flagKeyPressed = true;
 					mMap01->beginTurn(8);
 					mMap01->getPlayer()->changeAnimation(5);
-				}
+			}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
 					flagUp = true;
-				}
+			}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
 					flagUpRight = false;
@@ -424,7 +423,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
 					flagUpRight = true;
-				}
+			}
 
 			}
 
@@ -450,7 +449,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 {
 	switch (mState) //switch that hold the states of the game
 	{
-	case 1: 
+	case 1:
 	{ //Game state 1. in game. 
 
 		if (mStartState) {
@@ -620,8 +619,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartRegionState = false;
 				//Starta musik osv
 			}
-		drawWorldMap(window, mouse, music, sound);
-		break;
+			drawWorldMap(window, mouse, music, sound);
+			break;
 		}
 		case 1:
 		{
@@ -709,52 +708,69 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;*/
 
 
-	}
+		}
 		break;
 	}
 	case 8:
 	{
 		mRegionState = 0;
-		loadMap();
+		loadMap(window);
 		mState = 1;
 		break;
 	}
-	/*case 8:
-		mPlayer->setMower(mLawnMowers.at(mCurMower));
-		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
-		mCurMower++;
-		mCurMower = mCurMower%mLawnMowers.size();
-		mState = 0;
-		break;
+		/*case 8:
+			mPlayer->setMower(mLawnMowers.at(mCurMower));
+			std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+			mCurMower++;
+			mCurMower = mCurMower%mLawnMowers.size();
+			mState = 0;
+			break;
 
-	case 9:
-		mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
-		std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
-		mCurHedgeTool++;
-		mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
-		mState = 0;
-		break;
+		case 9:
+			mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+			std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
+			mCurHedgeTool++;
+			mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
+			mState = 0;
+			break;
 
-	case 0: //The illustrious state 0. Swap out equipment
-		drawToolSelectMenu(window, mouse, music, sound);
-		break;*/
+		case 0: //The illustrious state 0. Swap out equipment
+			drawToolSelectMenu(window, mouse, music, sound);
+			break;*/
 
 			/*default:
-		std::cout << "default gamestate";
-		break;
+				std::cout << "default gamestate";
+				break;
 			}*/
 
-	}
+			//Outside the gamestates, check if the user changes the gamestate.
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			{
+				mState = 1;
+				mStartState = true;
+			}
+			/*
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				mState = 2;
+				mStartState = true;
+			}
 
-	if (mStartMenu01->reset == true || mWinMenu01->reset == true)
-	{
-		mWinMenu01->reset = false;
-		mStartMenu01->reset = false;
-		resetMap();
-	}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+			{
+				mState = 3;
+				mStartState = true;
+			}
+
+		if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+		{
+			mWinMenu01->reset = false;
+			mStartMenu01->reset = false;
+			resetMap();
+		}
 }
 void gameState::resetMap()
-	{
+		{
 	for (std::vector<Mower*>::size_type i = 0; i < mLawnMowers.size(); i++) {
 		mLawnMowers[i]->resetStats();
 	}
@@ -800,7 +816,7 @@ bool gameState::checkStartRegionState(int lowerState) {
 	}
 }
 
-void gameState::loadMap() {
+void gameState::loadMap(sf::RenderWindow &window) {
 	//mMap01->~Map1();
 	delete mMap01;
 	
