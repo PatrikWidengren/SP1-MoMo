@@ -11,14 +11,12 @@
 #include <iomanip>
 
 using namespace std;
-//static int const windowWidth = 1920;
-//static int const windowHeigth = 1080;
 
 int main(){
 
 	sf::Texture titleTexture;
 	sf::Sprite titleScreen;
-	titleTexture.loadFromFile("Resource Files/Backgrounds/Background_Title.png");
+	titleTexture.loadFromFile("Resource Files/Backgrounds/Loading_Screen.png");
 	titleTexture.setSmooth(true);
 	titleScreen.setTexture(titleTexture);
 
