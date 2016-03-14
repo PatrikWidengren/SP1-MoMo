@@ -181,8 +181,13 @@ void Player::setLast(float l){
 /*void Player::update(){
 
 }*/
-void Player::changeAnimation(std::string name) {
-	animatorMeep.playAnimation(name, true);
+void Player::changeAnimation(int nr) {
+	if (walking) {
+		animatorMeep.playAnimation(("walk" + nr), true);
+	}
+	else {
+		animatorMeep.playAnimation(("idle" + nr), true);
+	}
 }
 
 void Player::playPlayer() {

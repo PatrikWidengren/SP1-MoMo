@@ -50,11 +50,7 @@ public:
 	void setMower(Mower *m);
 	void setHedgeTool(Shears *s);
 	cutVector getCuts();
-	/*update the position of the sprite by +x, +y*/
-	//void updPos(float x, float y);
-	//void update();
-	//void render();
-	void changeAnimation(std::string name);
+	void changeAnimation(int nr);
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
 	bool walking;

@@ -246,7 +246,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft /*&& !flagKeyPressed*/) {
 					flagDownLeft = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle2");
+					mMap01->getPlayer()->changeAnimation(2);
 					mMap01->takeTurn(1, sound);
 
 				}
@@ -257,7 +257,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown /*&& !flagKeyPressed*/) {
 					flagDown = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle1");
+					mMap01->getPlayer()->changeAnimation(1);
 					mMap01->takeTurn(2, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown /*&& flagKeyPressed*/) {
@@ -267,7 +267,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight /*&& !flagKeyPressed*/) {
 					flagDownRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle8");
+					mMap01->getPlayer()->changeAnimation(8);
 					mMap01->takeTurn(3, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight /*&& flagKeyPressed*/) {
@@ -278,7 +278,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 					flagLeft = false;
 //					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle3");
+					mMap01->getPlayer()->changeAnimation(3);
 					mMap01->takeTurn(4, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft /*&& flagKeyPressed*/) {
@@ -288,7 +288,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight /*&& !flagKeyPressed*/) {
 					flagRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle7");
+					mMap01->getPlayer()->changeAnimation(7);
 					mMap01->takeTurn(6, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight /*&& flagKeyPressed*/) {
@@ -298,7 +298,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft /*&& !flagKeyPressed*/) {
 					flagUpLeft = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle4");
+					mMap01->getPlayer()->changeAnimation(4);
 					mMap01->takeTurn(7, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft /*&& flagKeyPressed*/) {
@@ -308,7 +308,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp /*&& !flagKeyPressed*/) {
 					flagUp = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle5");
+					mMap01->getPlayer()->changeAnimation(5);
 					mMap01->takeTurn(8, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp /*&& flagKeyPressed*/) {
@@ -318,7 +318,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight /*&& !flagKeyPressed*/) {
 					flagUpRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle6");
+					mMap01->getPlayer()->changeAnimation(6);
 					mMap01->takeTurn(9, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight /*&& flagKeyPressed*/) {
@@ -340,7 +340,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft /*&& !flagKeyPressed*/) {
 					flagDownLeft = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle2");
+					mMap01->getPlayer()->changeAnimation(2);
 					mMap01->takeTurn(1, sound);
 
 				}
@@ -351,7 +351,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown /*&& !flagKeyPressed*/) {
 					flagDown = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle1");
+					mMap01->getPlayer()->changeAnimation(1);
 					mMap01->takeTurn(2, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown /*&& flagKeyPressed*/) {
@@ -361,7 +361,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight /*&& !flagKeyPressed*/) {
 					flagDownRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle8");
+					mMap01->getPlayer()->changeAnimation(8);
 					mMap01->takeTurn(3, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight /*&& flagKeyPressed*/) {
@@ -371,7 +371,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft /*&& !flagKeyPressed*/) {
 					flagLeft = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle3");
+					mMap01->getPlayer()->changeAnimation(3);
 					mMap01->takeTurn(4, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
@@ -381,7 +381,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
 					flagRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle7");
+					mMap01->getPlayer()->changeAnimation(7);
 					mMap01->takeTurn(6, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
@@ -391,7 +391,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
 					flagUpLeft = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle4");
+					mMap01->getPlayer()->changeAnimation(4);
 					mMap01->takeTurn(7, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
@@ -401,7 +401,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
 					flagUp = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle5");
+					mMap01->getPlayer()->changeAnimation(5);
 					mMap01->takeTurn(8, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
@@ -411,7 +411,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
 					flagUpRight = false;
 					//flagKeyPressed = true;
-					mMap01->getPlayer()->changeAnimation("idle6");
+					mMap01->getPlayer()->changeAnimation(6);
 					mMap01->takeTurn(9, sound);
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
