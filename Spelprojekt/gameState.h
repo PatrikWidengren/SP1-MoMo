@@ -56,7 +56,8 @@ public:
 	int mOptionMenuState;
 	int mRegionState;
 	int mRegionMusic;
-
+	void setControlScheme(int controlscheme);
+	int getControlScheme();
 
 private:
 

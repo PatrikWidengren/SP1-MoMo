@@ -957,6 +957,12 @@
     <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Sprites\control_numpad.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\control_wasd.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

@@ -119,6 +119,7 @@ static const string nameArray[numberOfSounds] = {
 
 SoundManager::SoundManager(){
 	mVolume = 35;
+	mMowerVolume = 70;
 	for (int i = 0; i < numberOfSounds; i++){
 		mSoundBufferList.push_back(new sf::SoundBuffer);
 		while (!mSoundBufferList[i]->loadFromFile(nameArray[i])) {
@@ -126,7 +127,12 @@ SoundManager::SoundManager(){
 		}
 		mSoundList.push_back(new sf::Sound);
 		mSoundList[i]->setBuffer(*mSoundBufferList[i]);
-		mSoundList[i]->setVolume(mVolume);
+		if (i >=104 && i <= 106) {
+			mSoundList[i]->setVolume(mMowerVolume * (mVolume / 100));
+		}
+		else {
+			mSoundList[i]->setVolume(mVolume);
+		}
 	}
 }
 
@@ -176,8 +182,20 @@ void SoundManager::stopSound(float id) {
 void SoundManager::setVolume(int volume){
 	mVolume = volume;
 	for (int i = 0; i < numberOfSounds; i++){
-		mSoundList[i]->setVolume(mVolume);
+		if (i >= 104 && i <= 106) {
+			mSoundList[i]->setVolume(mMowerVolume * (mVolume/100));
+		}
+		else {
+			mSoundList[i]->setVolume(mVolume);
+		}
 	}
+}
+
+void SoundManager::setMowerVolume(int mowerVolume) {
+	mMowerVolume = mowerVolume;
+	mSoundList[104]->setVolume(mMowerVolume * (mVolume / 100));
+	mSoundList[105]->setVolume(mMowerVolume * (mVolume / 100));
+	mSoundList[106]->setVolume(mMowerVolume * (mVolume / 100));
 }
 
 int SoundManager::getVolume() {

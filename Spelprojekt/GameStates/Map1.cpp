@@ -770,6 +770,7 @@ void Map1::beginTurn(int dir) {
 		mPlaceInMove = 0;
 		mNpcNo = 0;
 		mOngoingTurn = true;
+		mPlayer->setWalking(true);
 		mMeepMoving = true;
 		mNpcsMoving = false;
 		mNpcVector.clear();
@@ -790,6 +791,7 @@ void Map1::beginTurn(int dir) {
 void Map1::update(SoundManager &sound) {
 	if (mPlaceInMove == mCurrentMove.size()) {
 		if (mMeepMoving) {
+			mPlayer->setWalking(false);
 			mMeepMoving = false;
 			mPlaceInMove = 0;
 			mNpcsMoving = true;
@@ -999,6 +1001,7 @@ void Map1::update(SoundManager &sound) {
 		if (!moved) {
 			mPlayer->collide(mCurrentMove, mPlaceInMove);
 			mPlayer->getSpriteSheet()->setPosition((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX, pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY);
+			mPlayer->setWalking(false);
 			mMeepMoving = false;
 			mCurrentMove.clear();
 			mNpcsMoving = true;

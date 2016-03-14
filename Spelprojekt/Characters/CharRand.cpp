@@ -6,8 +6,8 @@ using namespace std;
 sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
-static const string cat_idle = "Resource Files/SpriteSheets/Cat_Orange_Idle.png";
-static const string cat_walk = "Resource Files/SpriteSheets/Cat_Orange_Walk.png";
+static const string cat_idle = "Resource Files/SpriteSheets/Cat_Black_Idle.png";
+static const string cat_walk = "Resource Files/SpriteSheets/Cat_Black_Walk.png";
 static const int spriteWidth = 64;
 static const int spriteHeight = 64;
 
@@ -68,13 +68,13 @@ CharRand::~CharRand(){
 void CharRand::changeAnimation(int nr) {
 	if (!walking) {
 		if (nr == 1) {
-			catAnimator.playAnimation("idle2", true);
+			catAnimator.playAnimation("idle3", true);
 		}
 		if (nr == 2) {
 			catAnimator.playAnimation("idle1", true);
 		}
 		if (nr == 3) {
-			catAnimator.playAnimation("idle8", true);
+			catAnimator.playAnimation("idle7", true);
 		}
 		if (nr == 4) {
 			catAnimator.playAnimation("idle3", true);
@@ -83,13 +83,13 @@ void CharRand::changeAnimation(int nr) {
 			catAnimator.playAnimation("idle7", true);
 		}
 		if (nr == 7) {
-			catAnimator.playAnimation("idle4", true);
+			catAnimator.playAnimation("idle3", true);
 		}
 		if (nr == 8) {
 			catAnimator.playAnimation("idle5", true);
 		}
 		if (nr == 9) {
-			catAnimator.playAnimation("idle6", true);
+			catAnimator.playAnimation("idle7", true);
 		}
 	}
 	else {
