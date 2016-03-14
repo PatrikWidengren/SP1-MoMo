@@ -7,6 +7,8 @@ class VideoOptionMenu : public Menu
 public:
 	VideoOptionMenu(float width, float height);
 	~VideoOptionMenu();
+	bool getFullscreen();
+	bool getSwap();
 
 	// Load a backgrounds to show for the menu
 	sf::Texture* textCheckBox = new sf::Texture; 
@@ -37,7 +39,8 @@ public:
 
 protected:
 	static int const mNumberOfSelections = 3;
-
+	bool mFullscreen = false;
+	bool mSwap = false;
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
 	int mOptionMenuState;
@@ -52,5 +55,4 @@ private:
 	bool mReturn = false;
 	bool mDown = false;
 	bool mUp = false;
-	bool mFullscreen = false;
 };
