@@ -238,3 +238,11 @@ void CharRand::finalize(){
 float CharRand::getMoveTime() {
 	return mMoveTime;
 }
+
+void CharRand::setWalking(bool walk) {
+	walking = !walking;
+}
+
+bool CharRand::getWalking() {
+	return walking;
+}
