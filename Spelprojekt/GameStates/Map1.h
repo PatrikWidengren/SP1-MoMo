@@ -108,6 +108,7 @@ private:
 	bool mMeepMoving = false, mNpcsMoving = false, mBreakMove;
 	sf::Clock mTurnClock, mPlayerMoveTime, mNpcMoveTimer;
 	float mNpcMoveTime;
+	int mNextX, mNextY;
 };
 
 

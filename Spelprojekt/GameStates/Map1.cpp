@@ -946,6 +946,8 @@ void Map1::update(SoundManager &sound) {
 		}
 	}
 
+
+
 	if (mMeepMoving) {
 		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())
 		//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime()) * widthOnTile), ((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
@@ -1344,6 +1346,10 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 	//cout << "Cat trying to move to: " << tempX << ", " << tempY << " which has value " << mGrid[tempY][tempX] << endl;
 	if (mGrid[tempY][tempX] >= 2.0f && mGrid[tempY][tempX] < 3.0f) {
+		
+		mNextX = tempX;
+		mNextY = tempY;
+
 		mGrid[mNpcVector.at(atPos)->getY()][mNpcVector.at(atPos)->getX()] = mNpcVector.at(atPos)->getLast();
 		coords tempCoords = { mNpcVector.at(atPos)->getX(), mNpcVector.at(atPos)->getY() };
 		mNpcs.erase(tempCoords);
@@ -1356,6 +1362,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 
 		mNpcVector.at(atPos)->setX(tempX);
 		mNpcVector.at(atPos)->setY(tempY);
+
 		//cout << "Cat moved to: " << tempX << ", " << tempY << " which now has value " << mGrid[tempY][tempX] << endl;
 		return true;
 	}
