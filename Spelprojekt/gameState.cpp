@@ -138,10 +138,15 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
 }
-
+int gameState::getControlScheme() {
+	return mControlScheme;
+}
+void gameState::setControlScheme(int controlscheme) {
+	mControlScheme = controlscheme;
+}
 void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
 {
-	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse, sound);
+	mKeyboardMenu01->updateKeyboardOptionMenu(window, mouse, sound, mControlScheme);
 	window.clear();
 	mKeyboardMenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mKeyboardMenu01->checkOptionState());

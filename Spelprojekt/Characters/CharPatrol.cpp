@@ -111,6 +111,7 @@ intVector CharPatrol::move(){
 			else{ 
 				//test += retryPath[i];
 				//test *= mMoveCount;
+				changeAnimation(retryPath[i]);
 				curMove.push_back(retryPath[i]);
 			}
 		}

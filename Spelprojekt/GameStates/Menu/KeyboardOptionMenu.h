@@ -15,15 +15,21 @@ public:
 
 	sf::Texture* textBack = new sf::Texture();
 
+	sf::Texture* texture_control_numpad = new sf::Texture();
+	sf::Texture* texture_control_wasd = new sf::Texture();
+
 	sf::Texture* textHighlightBack = new sf::Texture();
 
 	sf::Sprite* spriteBack = new sf::Sprite();
+
+	sf::Sprite* sprite_numpad = new sf::Sprite();
+	sf::Sprite* sprite_wasd = new sf::Sprite();
 
 	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
 
 	virtual int checkState();
-	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound);
+	virtual void updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound, int &controlscheme);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();
 	virtual void moveDown();

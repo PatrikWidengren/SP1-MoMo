@@ -10,11 +10,13 @@ KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 	setTextures();
 
 	spriteBack->setPosition(1385, 515);
+	sprite_numpad->setPosition(800, 650);
+	sprite_wasd->setPosition(800, 775);
 
 	selectedIndex = 0;
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
-	mRects[1] = new sf::IntRect(sf::Vector2i(500, 740), sf::Vector2i(550, 100));
+	mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730, 750), sf::Vector2i(360, 75));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1385, 515), sf::Vector2i(113, 91));
 
 }
@@ -32,12 +34,35 @@ KeyboardOptionMenu::~KeyboardOptionMenu()
 	delete highlightSprite01;
 }
 
-void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound)
+void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound, int &controlscheme)
 {
 
 	mMouse.x = mouse.x;
 	mMouse.y = mouse.y;
 
+	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+
+		//spriteControl->setTexture(*textHighlightControl);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			controlscheme = 0;
+			sound.playSound(10.2f);
+			//Control Option
+		}
+	}
+	if (mRects[1]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		//spriteControl->setTexture(*textHighlightControl);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			controlscheme = 1;
+			sound.playSound(10.2f);
+			//Control Option
+		}
+	}
 	if (mRects[2]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
 		spriteBack->setTexture(*textHighlightBack);
@@ -103,6 +128,8 @@ void KeyboardOptionMenu::displayMenu01(sf::RenderWindow &window)
 	window.draw(mText01);
 	window.draw(*bg01);
 	window.draw(*spriteBack);
+	window.draw(*sprite_numpad);
+	window.draw(*sprite_wasd);
 
 }
 
@@ -118,9 +145,16 @@ void KeyboardOptionMenu::setTextures()
 	if (!textHighlightBack->loadFromFile("Resource Files/Menus/BackArrow_Highlight.png"))
 		textHighlightBack->loadFromFile("error.jpg");
 
+	if (!texture_control_numpad->loadFromFile("Resource Files/Sprites/control_numpad.png"))
+		texture_control_numpad->loadFromFile("error.jpg");
+
+	if (!texture_control_wasd->loadFromFile("Resource Files/Sprites/control_wasd.png"))
+		texture_control_wasd->loadFromFile("error.jpg");
+
 
 	spriteBack->setTexture(*textBack);
-
+	sprite_numpad->setTexture(*texture_control_numpad);
+	sprite_wasd->setTexture(*texture_control_wasd);
 	bg01->setTexture(*textBg01);
 	
 }
@@ -162,8 +196,8 @@ void KeyboardOptionMenu::scale(sf::RenderWindow &window) {
 
 	spriteBack->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 640 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 740 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 650 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 750 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1385 * bg01->getScale().x, 515 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
 	spriteBack->setPosition(1385 * bg01->getScale().x, 515 * bg01->getScale().y);
