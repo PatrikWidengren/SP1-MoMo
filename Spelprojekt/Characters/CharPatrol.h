@@ -17,6 +17,9 @@ public:
 	virtual int getLastX();
 	virtual int getLastY();
 
+	virtual void setWalking(bool walk);
+	virtual bool getWalking();
+
 	//Set X and Y in the array
 	virtual void setX(int x);
 	virtual void setY(int Y);

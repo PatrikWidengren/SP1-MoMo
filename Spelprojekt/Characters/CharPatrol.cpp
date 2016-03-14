@@ -242,3 +242,11 @@ void CharPatrol::finalize(){
 float CharPatrol::getMoveTime() {
 	return mMoveTime;
 }
+
+void CharPatrol::setWalking(bool walk) {
+	walking = !walking;
+}
+
+bool CharPatrol::getWalking() {
+	return walking;
+}
