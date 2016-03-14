@@ -83,7 +83,7 @@ private:
 	bool mAfterDialogue = false;
 	void loadMap();
 	
-	int mControlScheme = 1;
+	int mControlScheme = 0;
 	bool flagUp = false;
 	bool flagUpRight = false;
 	bool flagRight = false;
