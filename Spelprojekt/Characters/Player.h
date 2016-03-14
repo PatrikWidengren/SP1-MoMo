@@ -18,6 +18,8 @@ public:
 	void collide(intVector moves, int atPos);
 	void collideWith(int dmg);
 
+	virtual void setWalking(bool walk);
+	virtual bool getWalking();
 	//Get array position
 	int getX();
 	int getY();
@@ -50,14 +52,10 @@ public:
 	void setMower(Mower *m);
 	void setHedgeTool(Shears *s);
 	cutVector getCuts();
-	/*update the position of the sprite by +x, +y*/
-	//void updPos(float x, float y);
-	//void update();
-	//void render();
-	void changeAnimation(std::string name);
+	void changeAnimation(int nr);
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
-	bool walking;
+	
 private:
 	sf::Clock moveClock;
 	sf::Clock clock;
@@ -72,6 +70,7 @@ private:
 	Shears *mHedgeTool, *mAntiLeakHedgeTool;
 	//When hedge cutter is equipped, this value is false
 	bool mMowerEquipped = true;
+	bool walking = false;;
 	/*x and y in the array*/
 	int mArrayX = 0, mArrayY = 0, mLastX = 0, mLastY = 0;
 	/*important values for the array*/

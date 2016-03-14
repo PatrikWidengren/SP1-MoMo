@@ -178,26 +178,36 @@ void Player::setLast(float l){
 	mLast = l;
 	mType = mBaseType + (mLast - 2);
 }
-/*void Player::update(){
 
-}*/
-void Player::changeAnimation(std::string name) {
-	animatorMeep.playAnimation(name, true);
+void Player::changeAnimation(int nr) {
+	stringstream blubb;
+	if (walking) {
+		blubb << "walk" << nr;
+		animatorMeep.playAnimation(blubb.str(), true);
+	}
+	else {
+		blubb << "idle" << nr;
+		animatorMeep.playAnimation(blubb.str(), true);
+	}
 }
 
 void Player::playPlayer() {
-//	if (walking) {
-		/*if (moveClock.getElapsedTime() >= sf::seconds(mMoveTime)) {
-			moveClock.restart();
-			mPlayerSprite.move(100, 100);
-		}*/
-//		animatorMeep.update(clock.restart());
-//		animatorMeep.animate(mSpriteWalkSheet);
-//	}
-//	else {
+	if (walking) {
+		animatorMeep.update(clock.restart());
+		animatorMeep.animate(mSpriteWalkSheet);
+	}
+	else {
 		animatorMeep.update(clock.restart());
 		animatorMeep.animate(mSpriteIdleSheet);
-//	}
+	}
+}
+
+void Player::setWalking(bool walk) {
+	walking = walk;
+}
+
+bool Player::getWalking() {
+	return walking;
 }
 
 float Player::getMoveTime() {
