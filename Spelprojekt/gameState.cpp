@@ -91,7 +91,7 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 
 void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
 {
-	mSoundmenu01->updateSoundMenu(window, mouse, sound);
+	mSoundmenu01->updateSoundMenu(window, mouse, sound, music);
 	window.clear();
 	mSoundmenu01->displayMenu01(window);
 	mStartOptionState = checkStartOptionState(mSoundmenu01->checkOptionState());

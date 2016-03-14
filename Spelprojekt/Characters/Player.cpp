@@ -178,9 +178,7 @@ void Player::setLast(float l){
 	mLast = l;
 	mType = mBaseType + (mLast - 2);
 }
-/*void Player::update(){
 
-}*/
 void Player::changeAnimation(int nr) {
 	stringstream blubb;
 	if (walking) {
