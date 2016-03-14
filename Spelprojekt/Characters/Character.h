@@ -21,6 +21,8 @@ public:
 	virtual int getLastX() = 0;
 	virtual int getLastY() = 0;
 
+	virtual void setWalking(bool walk) = 0;
+	virtual bool getWalking() = 0;
 
 	virtual void setX(int x) = 0;
 	virtual void setY(int Y) = 0;
