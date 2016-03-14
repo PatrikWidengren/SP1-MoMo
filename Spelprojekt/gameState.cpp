@@ -479,8 +479,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 
-				mState = 6;
-				mStartState = true;
+			mState = 6;
+			mStartState = true;
 
 
 			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
@@ -570,10 +570,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartOptionState = false;
 				mStartState = false;
 				//Starta musik osv
-		}
+			}
 			drawVideoOptionMenu(window, mouse, music, sound);
-		break;
-	}
+			break;
+		}
 		}
 		break;
 	}
@@ -698,76 +698,81 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 
 
-			/*		case 1:
-			mRegionMap01->setRegionState(mRegionState);
-			drawRegionMap(window, mouse, music, sound);
-			break;
-		case 2:
-			mRegionMap01->setRegionState(mRegionState);
-			drawRegionMap(window, mouse, music, sound);
-			break;*/
-
-
-		}
+		/*		case 1:
+		mRegionMap01->setRegionState(mRegionState);
+		drawRegionMap(window, mouse, music, sound);
 		break;
-	}
-	case 8:
-	{
-		mRegionState = 0;
-		loadMap(window);
-		mState = 1;
-		break;
-	}
-		/*case 8:
-			mPlayer->setMower(mLawnMowers.at(mCurMower));
-			std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
-			mCurMower++;
-			mCurMower = mCurMower%mLawnMowers.size();
-			mState = 0;
-			break;
+	case 2:
+		mRegionMap01->setRegionState(mRegionState);
+		drawRegionMap(window, mouse, music, sound);
+		break;*/
 
-		case 9:
-			mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
-			std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
-			mCurHedgeTool++;
-			mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
-			mState = 0;
-			break;
 
-		case 0: //The illustrious state 0. Swap out equipment
-			drawToolSelectMenu(window, mouse, music, sound);
-			break;*/
 
-			/*default:
-				std::cout << "default gamestate";
-				break;
-			}*/
 
-			//Outside the gamestates, check if the user changes the gamestate.
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-			{
-				mState = 1;
-				mStartState = true;
-			}
-			/*
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				mState = 2;
-				mStartState = true;
-			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-			{
-				mState = 3;
-				mStartState = true;
-			}
 
-		if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+		case 8:
 		{
-			mWinMenu01->reset = false;
-			mStartMenu01->reset = false;
-			resetMap();
+			mRegionState = 0;
+			loadMap(window);
+			mState = 1;
+			break;
 		}
+		}
+		break;
+	}
+
+	/*case 8:
+		mPlayer->setMower(mLawnMowers.at(mCurMower));
+		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+		mCurMower++;
+		mCurMower = mCurMower%mLawnMowers.size();
+		mState = 0;
+		break;
+
+	case 9:
+		mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+		std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
+		mCurHedgeTool++;
+		mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
+		mState = 0;
+		break;
+
+	case 0: //The illustrious state 0. Swap out equipment
+		drawToolSelectMenu(window, mouse, music, sound);
+		break;*/
+
+		/*default:
+			std::cout << "default gamestate";
+			break;
+		}*/
+
+		//Outside the gamestates, check if the user changes the gamestate.
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		mState = 1;
+		mStartState = true;
+	}
+	/*
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		mState = 2;
+		mStartState = true;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		mState = 3;
+		mStartState = true;
+	}
+
+if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+{
+	mWinMenu01->reset = false;
+	mStartMenu01->reset = false;
+	resetMap();
+}
 }
 void gameState::resetMap()
 		{
@@ -787,6 +792,8 @@ void gameState::resetMap()
 	/*for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
 		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
 	}*/
+
+	}
 }
 
 bool gameState::checkStartState(int lowerState){
