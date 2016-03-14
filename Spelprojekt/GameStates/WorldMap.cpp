@@ -234,22 +234,11 @@ void WorldMap::setFonts()
 
 void WorldMap::moveUp()
 {
-	/*if (selectedIndex - 1 >= 0)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}*/
+
 }
 
 void WorldMap::moveDown()
 {
-	/*if (selectedIndex + 1 < mNumberOfSelections)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}*/
 
 }
 

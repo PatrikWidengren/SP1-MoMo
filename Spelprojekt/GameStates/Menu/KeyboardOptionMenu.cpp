@@ -15,9 +15,9 @@ KeyboardOptionMenu::KeyboardOptionMenu(float width, float height)
 
 	selectedIndex = 0;
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
-	mRects[1] = new sf::IntRect(sf::Vector2i(730, 750), sf::Vector2i(360, 75));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1385, 515), sf::Vector2i(113, 91));
+	/*mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730, 770), sf::Vector2i(360, 75));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1385, 515), sf::Vector2i(113, 91));*/
 
 }
 
@@ -195,11 +195,15 @@ void KeyboardOptionMenu::scale(sf::RenderWindow &window) {
 	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
 	spriteBack->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	sprite_numpad->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	sprite_wasd->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 650 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 750 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(730 * bg01->getScale().x, 765 * bg01->getScale().y), sf::Vector2i(360 * bg01->getScale().x, 75 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1385 * bg01->getScale().x, 515 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
 	spriteBack->setPosition(1385 * bg01->getScale().x, 515 * bg01->getScale().y);
+	sprite_numpad->setPosition(800 * bg01->getScale().x, 650 * bg01->getScale().y);
+	sprite_wasd->setPosition(800 * bg01->getScale().x, 775 * bg01->getScale().y);
 
 }

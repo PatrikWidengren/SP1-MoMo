@@ -85,6 +85,7 @@
     <ClCompile Include="GameStates\Menu\SoundMenu.cpp" />
     <ClCompile Include="GameStates\Menu\startMenu.cpp" />
     <ClCompile Include="GameStates\Menu\ToolSelectMenu.cpp" />
+    <ClCompile Include="GameStates\Menu\VideoOptionMenu.cpp" />
     <ClCompile Include="GameStates\Menu\WinMenu.cpp" />
     <ClCompile Include="GameStates\RegionMap.cpp" />
     <ClCompile Include="GameStates\WorldMap.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="GameStates\Menu\SoundMenu.h" />
     <ClInclude Include="GameStates\Menu\startMenu.h" />
     <ClInclude Include="GameStates\Menu\ToolSelectMenu.h" />
+    <ClInclude Include="GameStates\Menu\VideoOptionMenu.h" />
     <ClInclude Include="GameStates\Menu\WinMenu.h" />
     <ClInclude Include="GameStates\RegionMap.h" />
     <ClInclude Include="GameStates\WorldMap.h" />
@@ -192,6 +194,7 @@
     <None Include="Resource Files\Sound\Lawnmower_Start_lowVolume.flac" />
     <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac" />
     <None Include="Resource Files\Sound\MeepTest_Hello.flac" />
+    <None Include="Resource Files\Sound\Meny+Scroll.flac" />
     <None Include="Resource Files\Sound\Meny_Close.flac" />
     <None Include="Resource Files\Sound\Meny_GoBack.flac" />
     <None Include="Resource Files\Sound\Meny_Open.flac" />
@@ -407,6 +410,7 @@
     <Text Include="Maps\patrols\Patrols_patroltest.txt" />
     <Text Include="Maps\patrols\Patrols_testing.txt" />
     <Text Include="Maps\patroltest.txt" />
+    <Text Include="Maps\stormaptest.txt" />
     <Text Include="Maps\testing.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
