@@ -42,7 +42,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
 	mMap01 = new Map1("map04a02.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
-	
+
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
 	//mObjects = mMap01->getObjects();
@@ -203,13 +203,13 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 #pragma region Check if there is Dialogue
 	if (mBeforeDialogue)
 	{
-		//mDialogSwitch = 0;
-		mDialogSwitch = 1;
+		mDialogSwitch = 0;
+		//mDialogSwitch = 1;
 	}
 	else if (mAfterDialogue)
 	{
-		//mDialogSwitch = 2;
-		mDialogSwitch = 1;
+		mDialogSwitch = 2;
+		//mDialogSwitch = 1;
 	}
 	else
 	{
@@ -217,232 +217,209 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-	mInGameBackground->write(mMap01->mTurnCount);
+	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 	mInGameBackground->drawBackgroundTop(window);
+	mMap01->update(sound);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
+
 
 	switch (mDialogSwitch)
 	{
 		case 0: //Before, Dialogue
 		{
-			/*mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
-			break;*/
+			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+			break;
 		}
 		case 1:
 		{
 			#pragma region Structure
 
 			if (mControlScheme == 0) {
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
-				flagSwap = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->swapEquipped();
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !flagSwap) {
-				flagSwap = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
+					flagSwap = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->swapEquipped();
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !flagSwap) {
+					flagSwap = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft && !flagKeyPressed) {
-				flagDownLeft = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle2");
-				mMap01->takeTurn(1, sound);
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft /*&& !flagKeyPressed*/) {
+					flagDownLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle2");
+					mMap01->beginTurn(1);
 
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && !flagDownLeft && flagKeyPressed) {
-				flagDownLeft = true;
-			}
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && !flagDownLeft /*&& flagKeyPressed*/) {
+					flagDownLeft = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown && !flagKeyPressed) {
-				flagDown = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle1");
-				mMap01->takeTurn(2, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown && flagKeyPressed) {
-				flagDown = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown /*&& !flagKeyPressed*/) {
+					flagDown = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle1");
+					mMap01->beginTurn(2);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown /*&& flagKeyPressed*/) {
+					flagDown = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight && !flagKeyPressed) {
-				flagDownRight = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle8");
-				mMap01->takeTurn(3, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight && flagKeyPressed) {
-				flagDownRight = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight /*&& !flagKeyPressed*/) {
+					flagDownRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle8");
+					mMap01->beginTurn(3);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight /*&& flagKeyPressed*/) {
+					flagDownRight = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft && !flagKeyPressed) {
-				flagLeft = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle3");
-				mMap01->takeTurn(4, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft && flagKeyPressed) {
-				flagLeft = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft /*&& !flagKeyPressed*/) {
+					flagLeft = false;
+//					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle3");
+					mMap01->beginTurn(4);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft /*&& flagKeyPressed*/) {
+					flagLeft = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight && !flagKeyPressed) {
-				flagRight = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle7");
-				mMap01->takeTurn(6, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight && flagKeyPressed) {
-				flagRight = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight /*&& !flagKeyPressed*/) {
+					flagRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle7");
+					mMap01->beginTurn(6);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight /*&& flagKeyPressed*/) {
+					flagRight = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft && !flagKeyPressed) {
-				flagUpLeft = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle4");
-				mMap01->takeTurn(7, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft && flagKeyPressed) {
-				flagUpLeft = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft /*&& !flagKeyPressed*/) {
+					flagUpLeft = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle4");
+					mMap01->beginTurn(7);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft /*&& flagKeyPressed*/) {
+					flagUpLeft = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp && !flagKeyPressed) {
-				flagUp = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle5");
-				mMap01->takeTurn(8, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp && flagKeyPressed) {
-				flagUp = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp /*&& !flagKeyPressed*/) {
+					flagUp = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle5");
+					mMap01->beginTurn(8);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp /*&& flagKeyPressed*/) {
+					flagUp = true;
+				}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight && !flagKeyPressed) {
-				flagUpRight = false;
-				flagKeyPressed = true;
-				mMap01->getPlayer()->changeAnimation("idle6");
-				mMap01->takeTurn(9, sound);
-			}
-			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight && flagKeyPressed) {
-				flagUpRight = true;
-			}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight /*&& !flagKeyPressed*/) {
+					flagUpRight = false;
+					//flagKeyPressed = true;
+					mMap01->getPlayer()->changeAnimation("idle6");
+					mMap01->beginTurn(9);
+				}
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight /*&& flagKeyPressed*/) {
+					flagUpRight = true;
+				}
 
-
-			if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) &&
-				!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9)) &&
-				flagKeyPressed) {
-				flagKeyPressed = false;
-			}
-			}
+				}
 
 			if (mControlScheme == 1) {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && flagSwap) {
 					flagSwap = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->swapEquipped();
 				}
 				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !flagSwap) {
 					flagSwap = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft /*&& !flagKeyPressed*/) {
 					flagDownLeft = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle2");
-					mMap01->takeTurn(1, sound);
+					mMap01->beginTurn(1);
 
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft /*&& flagKeyPressed*/) {
 					flagDownLeft = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown /*&& !flagKeyPressed*/) {
 					flagDown = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle1");
-					mMap01->takeTurn(2, sound);
+					mMap01->beginTurn(2);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown /*&& flagKeyPressed*/) {
 					flagDown = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight /*&& !flagKeyPressed*/) {
 					flagDownRight = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle8");
-					mMap01->takeTurn(3, sound);
+					mMap01->beginTurn(3);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight /*&& flagKeyPressed*/) {
 					flagDownRight = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft /*&& !flagKeyPressed*/) {
 					flagLeft = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle3");
-					mMap01->takeTurn(4, sound);
+					mMap01->beginTurn(4);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
 					flagLeft = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
 					flagRight = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle7");
-					mMap01->takeTurn(6, sound);
+					mMap01->beginTurn(6);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
 					flagRight = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
 					flagUpLeft = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle4");
-					mMap01->takeTurn(7, sound);
+					mMap01->beginTurn(7);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
 					flagUpLeft = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
 					flagUp = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle5");
-					mMap01->takeTurn(8, sound);
+					mMap01->beginTurn(8);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
 					flagUp = true;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight && !flagKeyPressed) {
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
 					flagUpRight = false;
-					flagKeyPressed = true;
+					//flagKeyPressed = true;
 					mMap01->getPlayer()->changeAnimation("idle6");
-					mMap01->takeTurn(9, sound);
+					mMap01->beginTurn(9);
 				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight && flagKeyPressed) {
+				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
 					flagUpRight = true;
 				}
 
-
-				if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::S) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::X) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::A) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::D) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::W) &&
-					!sf::Keyboard::isKeyPressed(sf::Keyboard::E)) &&
-					flagKeyPressed) {
-					flagKeyPressed = false;
-				}
 			}
 
 
@@ -493,19 +470,24 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//Startar musik osv
 		}
 		drawInGame(window, mouse, music, sound, anime);
-		if (mMap01->mTurnCount >= 50) {
+		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-			if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
-				mState = 5;
-				mStartState = true;
-			}
 
-			//For now, just testing phase of Winning screen. Need Winning condition for the map.
-			if (mMap01->mTurnCount >= mMap01->mWinRounds) {
 				mState = 6;
 				mStartState = true;
-			}
+
+
+			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
+			//	mState = 5;
+			//	mStartState = true;
+			//}
+
+			////For now, just testing phase of Winning screen. Need Winning condition for the map.
+			//if (mMap01->mTurnCount >= mMap01->mWinRounds) {
+			//	mState = 6;
+			//	mStartState = true;
+			//}
 		}
 		break;
 	}
@@ -715,10 +697,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawToolSelectMenu(window, mouse, music, sound);
 		break;*/
 
-	default:
+			/*default:
 		std::cout << "default gamestate";
 		break;
-	}
+			}*/
 
 	//Outside the gamestates, check if the user changes the gamestate.
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
@@ -760,6 +742,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}*/
 
 	
+}
 }
 
 void gameState::resetMap(){

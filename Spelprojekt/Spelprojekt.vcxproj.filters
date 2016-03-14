@@ -939,6 +939,15 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Gold.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

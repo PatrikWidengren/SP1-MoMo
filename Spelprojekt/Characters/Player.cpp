@@ -65,7 +65,7 @@ Player::~Player(){
 
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
-	mMoveTime = 1.0 / movement.size();
+	mMoveTime = 1.0f / movement.size();
 	return movement;
 }
 
@@ -186,14 +186,18 @@ void Player::changeAnimation(std::string name) {
 }
 
 void Player::playPlayer() {
-	if (walking) {
-		animatorMeep.update(clock.restart());
-		animatorMeep.animate(mSpriteWalkSheet);
-	}
-	else {
+//	if (walking) {
+		/*if (moveClock.getElapsedTime() >= sf::seconds(mMoveTime)) {
+			moveClock.restart();
+			mPlayerSprite.move(100, 100);
+		}*/
+//		animatorMeep.update(clock.restart());
+//		animatorMeep.animate(mSpriteWalkSheet);
+//	}
+//	else {
 		animatorMeep.update(clock.restart());
 		animatorMeep.animate(mSpriteIdleSheet);
-	}
+//	}
 }
 
 float Player::getMoveTime() {
