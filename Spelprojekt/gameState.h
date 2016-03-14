@@ -5,6 +5,7 @@
 #include "GameStates/Menu/optionMenu.h"
 #include "GameStates/Menu/GameOverMenu.h"
 #include "GameStates/Menu/WinMenu.h"
+#include "GameStates/Menu/VideoOptionMenu.h"
 #include "GameStates/Menu/ToolSelectMenu.h"
 #include "GameStates/WorldMap.h"
 #include "GameStates/RegionMap.h"
@@ -35,6 +36,8 @@ public:
 	void drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+	void drawVideoOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
+
 
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime);
 	void resetMap();
@@ -69,6 +72,7 @@ private:
 	Map1 *mMap01;
 	DialogManager *mDialogManager;
 	InGameBackground *mInGameBackground;
+	VideoOptionMenu *mVideoOptionMenu;
 
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;

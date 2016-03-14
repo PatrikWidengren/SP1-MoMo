@@ -205,22 +205,11 @@ void startMenu::setFonts()
 
 void startMenu::moveUp()
 {
-	if (selectedIndex - 1 >= 0)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+
 }
 
 void startMenu::moveDown()
 {
-	if (selectedIndex + 1 < mNumberOfSelections)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
 
 }
 

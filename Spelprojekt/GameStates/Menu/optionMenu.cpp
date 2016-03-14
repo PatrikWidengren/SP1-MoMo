@@ -17,22 +17,6 @@ optionMenu::optionMenu(float width, float height)
 	spriteAudio->setPosition(800, 850);
 	spriteBack->setPosition(1385, 515);
 
-	/*
-	menu[0].setFont(font);
-	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Sound settings");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
-
-	menu[1].setFont(font);
-	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Keyboard settings");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
-
-	menu[2].setFont(font);
-	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Back");
-	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
-	*/
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(730, 650), sf::Vector2i(360, 75));
@@ -96,7 +80,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			sound.playSound(10.3f);
-			//Video Option
+			mOptionMenuState = 4;//Video Option
 		}
 	}
 	else
@@ -251,22 +235,11 @@ void optionMenu::setFonts()
 
 void optionMenu::moveUp()
 {
-	if (selectedIndex - 1 >= 0)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+
 }
 
 void optionMenu::moveDown()
 {
-	if (selectedIndex + 1 < mNumberOfSelections)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
 
 }
 

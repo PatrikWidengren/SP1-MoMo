@@ -7,20 +7,6 @@ ToolSelectMenu::ToolSelectMenu(float width, float height)
 	mState = 0;
 	setFonts();
 	setTextures();
-	menu[0].setFont(font);
-	menu[0].setColor(sf::Color::Red);
-	menu[0].setString("Next Lawnmower");
-	menu[0].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 1));
-
-	menu[1].setFont(font);
-	menu[1].setColor(sf::Color::White);
-	menu[1].setString("Next Hedge cutter");
-	menu[1].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 2));
-
-	menu[2].setFont(font);
-	menu[2].setColor(sf::Color::White);
-	menu[2].setString("Resume");
-	menu[2].setPosition(sf::Vector2f(width / 2, height / (mNumberOfSelections + 1) * 3));
 
 	selectedIndex = 0;
 
@@ -129,22 +115,11 @@ void ToolSelectMenu::setFonts()
 
 void ToolSelectMenu::moveUp()
 {
-	if (selectedIndex - 1 >= 0)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+
 }
 
 void ToolSelectMenu::moveDown()
 {
-	if (selectedIndex + 1 < mNumberOfSelections)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
 
 }
 

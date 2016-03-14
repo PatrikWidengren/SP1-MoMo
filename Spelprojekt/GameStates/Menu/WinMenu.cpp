@@ -107,22 +107,11 @@ void WinMenu::setFonts()
 
 void WinMenu::moveUp()
 {
-	if (selectedIndex - 1 >= 0)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex--;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
+
 }
 
 void WinMenu::moveDown()
 {
-	if (selectedIndex + 1 < mNumberOfSelections)
-	{
-		menu[selectedIndex].setColor(sf::Color::White);
-		selectedIndex++;
-		menu[selectedIndex].setColor(sf::Color::Red);
-	}
 
 }
 

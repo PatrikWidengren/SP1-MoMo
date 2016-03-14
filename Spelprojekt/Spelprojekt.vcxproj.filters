@@ -228,6 +228,9 @@
     <ClCompile Include="InGameBackground.cpp">
       <Filter>Source Files\GameStates\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="GameStates\Menu\VideoOptionMenu.cpp">
+      <Filter>Source Files\GameStates\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters\CharPatrol.h">
@@ -345,6 +348,9 @@
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="InGameBackground.h">
+      <Filter>Header Files\GameStates\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\Menu\VideoOptionMenu.h">
       <Filter>Header Files\GameStates\Menu</Filter>
     </ClInclude>
   </ItemGroup>
@@ -491,6 +497,9 @@
       <Filter>Resource Files\Sound</Filter>
     </None>
     <None Include="Resource Files\Sound\Lawnmower_Stop_lowVolume.flac">
+      <Filter>Resource Files\Sound</Filter>
+    </None>
+    <None Include="Resource Files\Sound\Meny+Scroll.flac">
       <Filter>Resource Files\Sound</Filter>
     </None>
   </ItemGroup>
