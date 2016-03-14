@@ -182,27 +182,34 @@ void Player::setLast(float l){
 
 }*/
 void Player::changeAnimation(int nr) {
+	stringstream blubb;
 	if (walking) {
-		animatorMeep.playAnimation(("walk" + nr), true);
+		blubb << "walk" << nr;
+		animatorMeep.playAnimation(blubb.str(), true);
 	}
 	else {
-		animatorMeep.playAnimation(("idle" + nr), true);
+		blubb << "idle" << nr;
+		animatorMeep.playAnimation(blubb.str(), true);
 	}
 }
 
 void Player::playPlayer() {
-//	if (walking) {
-		/*if (moveClock.getElapsedTime() >= sf::seconds(mMoveTime)) {
-			moveClock.restart();
-			mPlayerSprite.move(100, 100);
-		}*/
-//		animatorMeep.update(clock.restart());
-//		animatorMeep.animate(mSpriteWalkSheet);
-//	}
-//	else {
+	if (walking) {
+		animatorMeep.update(clock.restart());
+		animatorMeep.animate(mSpriteWalkSheet);
+	}
+	else {
 		animatorMeep.update(clock.restart());
 		animatorMeep.animate(mSpriteIdleSheet);
-//	}
+	}
+}
+
+void Player::setWalking(bool walk) {
+	walking = walk;
+}
+
+bool Player::getWalking() {
+	return walking;
 }
 
 float Player::getMoveTime() {
