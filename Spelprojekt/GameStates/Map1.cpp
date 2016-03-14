@@ -797,6 +797,7 @@ void Map1::update(SoundManager &sound) {
 		}
 		else if (mNpcsMoving) {
 			if (mNpcNo < mNpcVector.size()-1){
+				mNpcVector[mNpcNo]->setWalking(false);
 				mNpcNo++;
 				mCurrentMove.clear();
 				mPlaceInMove = 0;
@@ -812,79 +813,55 @@ void Map1::update(SoundManager &sound) {
 	}
 
 	if (mNpcsMoving) {
-		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())
-		//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mNpcMoveTime) * widthOnTile), ((mPlayerMoveTime.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
 		float tempPosX = pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX;
 		float tempPosY = pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY;
-
-		switch (mCurrentMove[mPlaceInMove]) {
-		case 8:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
-				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(0,
-			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
-		case 9:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds()/mNpcMoveTime) * widthOnTile),
-			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
-		case 6:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY + 0);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
-			//	0);	
-			break;
-		case 3:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
-			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
-		case 2:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
-				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(0,
-			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
-		case 1:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
-			//	((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
-		case 4:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY + 0);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
-			//	0 );
-			break;
-		case 7:
-			mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
-				tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
-
-			//mNpcVector[mNpcNo]->getSpriteSheet()->move(-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * widthOnTile),
-			//	-((mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile));
-			break;
+		if (mCurrentMove.size()>mPlaceInMove){
+			switch (mCurrentMove[mPlaceInMove]) {
+			case 8:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
+					tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			case 9:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			case 6:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY + 0);
+				break;
+			case 3:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			case 2:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX + 0,
+					tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			case 1:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY + (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			case 4:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY + 0);
+				break;
+			case 7:
+				mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(tempPosX - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime * widthOnTile),
+					tempPosY - (mNpcMoveTimer.getElapsedTime().asSeconds() / mNpcMoveTime) * heightOnTile);
+				break;
+			}
 		}
 	}
 
 
 	if (!mMeepMoving && mNpcsMoving) {
 		if (mNpcNo < mNpcVector.size()) {
+			mNpcVector[mNpcNo]->setWalking(true);
 
 			if (mCurrentMove.empty()) {
 				mCurrentMove = mNpcVector[mNpcNo]->move();
 				mPlaceInMove = 0;
-				mNpcMoveTime=0.2f/mCurrentMove.size();
+				mNpcMoveTime=1.0f/mCurrentMove.size();
 				mNpcMoveTimer.restart();
 			}
 
@@ -895,6 +872,7 @@ void Map1::update(SoundManager &sound) {
 				//is over for the turn
 				if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
 					mBreakMove = true;
+					mNpcVector[mNpcNo]->setWalking(false);
 					//mBreakMove = false;
 					//break;
 					//mNpcs[i]->swapDoneMoving();
@@ -920,6 +898,7 @@ void Map1::update(SoundManager &sound) {
 							//if there is no movement after collision
 							if (tryMove.at(k) == 0) {
 								mBreakMove = true;
+								mNpcVector[mNpcNo]->setWalking(false);
 								break;
 							}
 							//check every move. If one of them works, return to standard
@@ -1040,7 +1019,7 @@ void Map1::update(SoundManager &sound) {
 		mOngoingTurn = false;
 	}
 
-	if (mTurnClock.getElapsedTime().asSeconds() >= 2.0 && mOngoingTurn) {
+	if (mTurnClock.getElapsedTime().asSeconds() >= 20.0 && mOngoingTurn) {
 		mTurnCount++;
 		std::cout << "That was turn " << mTurnCount << "." << endl;
 		if (mTurnCount >= 50) {
