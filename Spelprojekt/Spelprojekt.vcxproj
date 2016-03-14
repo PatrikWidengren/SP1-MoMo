@@ -406,6 +406,7 @@
     <Text Include="Maps\patrols\Patrols_patroltest.txt" />
     <Text Include="Maps\patrols\Patrols_testing.txt" />
     <Text Include="Maps\patroltest.txt" />
+    <Text Include="Maps\stormaptest.txt" />
     <Text Include="Maps\testing.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

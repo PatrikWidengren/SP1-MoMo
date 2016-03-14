@@ -1099,5 +1099,8 @@
     <Text Include="Maps\patrols\patrols_map05a02.txt">
       <Filter>Maps\patrols</Filter>
     </Text>
+    <Text Include="Maps\stormaptest.txt">
+      <Filter>Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

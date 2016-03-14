@@ -82,7 +82,7 @@ private:
 
 	bool mBeforeDialogue = false;
 	bool mAfterDialogue = false;
-	void loadMap();
+	void loadMap(sf::RenderWindow &window);
 	
 	int mControlScheme = 1;
 	bool flagUp = false;

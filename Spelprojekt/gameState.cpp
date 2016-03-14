@@ -33,7 +33,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 10000));
-	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 3000));
+	mLawnMowers.push_back(new RoyceMower(new LawnMower(10, 10, 1, 1, 3000)));
 	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
 	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
@@ -41,7 +41,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map04a02.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("stormaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -239,7 +239,6 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 		case 1:
 		{
 			#pragma region Structure
-
 			if (mControlScheme == 0) {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
 					flagSwap = false;
@@ -679,7 +678,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 	case 8:
 		mRegionState = 0;
-		loadMap();
+		loadMap(window);
 		mState = 1;
 		break;
 		/*case 8:
@@ -708,12 +707,12 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			}*/
 
 			//Outside the gamestates, check if the user changes the gamestate.
-			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
 				mState = 1;
 				mStartState = true;
 			}
-
+			/*
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				mState = 2;
@@ -796,7 +795,7 @@ bool gameState::checkStartRegionState(int lowerState) {
 	}
 }
 
-void gameState::loadMap() {
+void gameState::loadMap(sf::RenderWindow &window) {
 	//mMap01->~Map1();
 	delete mMap01;
 	

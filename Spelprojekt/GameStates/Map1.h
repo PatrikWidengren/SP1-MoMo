@@ -23,10 +23,13 @@
 #include <array>
 #include <iomanip>
 #include <vector>
+#include "../Static Objects/StaticObjects.h"
+#include "../Characters/Character.h"
+#include <map>
 
 //Underklass till "Maps"
 //Level 1
-class Map1 : public Maps{
+class Map1{
 public:
 	//Konstruktor som tar emot namnet på sparfilen till arrayen
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
@@ -45,6 +48,7 @@ public:
 
 	float** getGrid();
 	//Returnerar npcs, detta behövs till main
+	typedef std::map<coords, Character*> NpcMap;
 	virtual NpcMap getNpcs();
 	//Returnerar långa objekt, detta behövs till main
 	virtual std::vector<StaticObjects*> getLongObjects();
