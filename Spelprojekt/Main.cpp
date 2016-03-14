@@ -54,28 +54,31 @@ int main(){
 		mouse = sf::Mouse::getPosition(window);
 		window.clear();
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
+#pragma region Fullscreen or Windowed
 		if (theGame.mVideoOptionMenu->getFullscreen() && !theGame.mVideoOptionMenu->getSwap())
 		{
-			//window.clear();
-			//window.close();
-			//window.create(sf::VideoMode
-			//	(sf::VideoMode::getDesktopMode().width,
-			//		sf::VideoMode::getDesktopMode().height,
-			//		sf::VideoMode::getDesktopMode().bitsPerPixel),
-			//	"Mow Flow", sf::Style::Fullscreen);
-			cout << " HEJ ";
+			window.clear();
+			window.close();
+			window.create(sf::VideoMode
+				(sf::VideoMode::getDesktopMode().width,
+					sf::VideoMode::getDesktopMode().height,
+					sf::VideoMode::getDesktopMode().bitsPerPixel),
+				"Mow Flow", sf::Style::Fullscreen);
+			cout << " Fullscreen ";
 		}
-		else if(!theGame.mVideoOptionMenu->getFullscreen() && theGame.mVideoOptionMenu->getSwap())
+		else if (!theGame.mVideoOptionMenu->getFullscreen() && theGame.mVideoOptionMenu->getSwap())
 		{
-			//window.clear();
-			//window.close();
-			//window.create(sf::VideoMode
-			//	(sf::VideoMode::getDesktopMode().width,
-			//		sf::VideoMode::getDesktopMode().height,
-			//		sf::VideoMode::getDesktopMode().bitsPerPixel),
-			//	"Mow Flow");
-			cout << " HEJDÅ ";
+			window.clear();
+			window.close();
+			window.create(sf::VideoMode
+				(sf::VideoMode::getDesktopMode().width,
+					sf::VideoMode::getDesktopMode().height,
+					sf::VideoMode::getDesktopMode().bitsPerPixel),
+				"Mow Flow");
+			cout << " Windowed ";
 		}
+#pragma endregion
+
 		//(fullscreen ? Style::Fullscreen : Style::Resize | Style::Close)
 		window.display();
 	}

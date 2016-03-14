@@ -479,8 +479,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 
-			mState = 6;
-			mStartState = true;
+				mState = 6;
+				mStartState = true;
 
 
 			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
@@ -496,8 +496,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		break;
 	}
-	case 2:
-	{ //Case 2, Draw ingame menu
+	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
 			music.setMusic(6);
 			mInGameMenu01->scale(window);
@@ -510,8 +509,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawInGameMenu(window, mouse, music, sound);
 		break;
 	}
-	case 3:
-	{ //State 3. Start menu.
+	case 3: { //State 3. Start menu.
 		if (mStartState) {
 			music.setMusic(0);
 			mStartMenu01->scale(window);
@@ -521,13 +519,11 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawStartMenu(window, mouse, music, sound);
 		break;
 	}
-	case 4:
-	{ //state 4. option.
+	case 4: { //state 4. option.
 
 		switch (mOptionMenuState)
 		{
-		case 1:
-		{ //state 1. Option.
+		case 1: { //state 1. Option.
 			if (mStartOptionState) {
 				music.setMusic(6);
 				mOptionMenu01->scale(window);
@@ -538,8 +534,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawOptionMenu(window, mouse, music, sound);
 			break;
 		}
-		case 2:
-		{ //state 2. SoundMenu.
+		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
 				music.setMusic(6);
 				mSoundmenu01->scale(window);
@@ -550,8 +545,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawSoundMenu(window, mouse, music, sound);
 			break;
 		}
-		case 3:
-		{ //state 3. KeyboardSettings.
+		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
 				music.setMusic(6);
 				mKeyboardMenu01->scale(window);
@@ -574,10 +568,12 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawVideoOptionMenu(window, mouse, music, sound);
 			break;
 		}
+
 		}
+
+		break;
 	}
-	case 5:
-	{ //state 5. GameOver.
+	case 5: { //state 5. GameOver.
 		if (mStartState) {
 			music.setMusic(8);
 			mGameOverMenu01->scale(window);
@@ -589,8 +585,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawGameOverMenu(window, mouse, music, sound);
 		break;
 	}
-	case 6:
-	{ //state 6. WinMenu.
+	case 6: { //state 6. WinMenu.
 		if (mStartState) {
 			music.setMusic(0);
 			mWinMenu01->scale(window);
@@ -602,15 +597,12 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		drawWinMenu(window, mouse, music, sound);
 		break;
 	}
-	case 7: //State 7. World Map
-	{
+	case 7: { //State 7. World Map
 		mPlayer->setMower(mLawnMowers.at(mRegionMap01->getMower()));
 		mPlayer->setHedgeTool(mHedgeTools.at(mRegionMap01->getHedgeCutter()));
 
-		switch (mRegionState)
-		{
+		switch (mRegionState) {
 		case 0:
-		{
 			if (mStartRegionState || mStartState) {
 				music.setMusic(2);
 				mWorldMap01->scale(window);
@@ -620,9 +612,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			}
 			drawWorldMap(window, mouse, music, sound);
 			break;
-		}
 		case 1:
-		{
 			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
@@ -635,9 +625,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(1);
 			drawRegionMap(window, mouse, music, sound);
 			break;
-		}
 		case 2:
-		{
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 2;
@@ -649,9 +637,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
-		}
 		case 3:
-		{
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 3;
@@ -663,10 +649,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(3);
 			drawRegionMap(window, mouse, music, sound);
 			break;
-		}
 
 		case 4:
-		{
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 4;
@@ -678,12 +662,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(4);
 			drawRegionMap(window, mouse, music, sound);
 			break;
-		}
 
 		case 5:
-		{
-			if (mStartRegionState || mStartState)
-			{
+			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 5;
 				mRegionMap01->scale(window);
@@ -694,123 +675,99 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mRegionMap01->setRegionState(5);
 			drawRegionMap(window, mouse, music, sound);
 			break;
+
+			//testinggg
+			/*		case 1:
+			mRegionMap01->setRegionState(mRegionState);
+			drawRegionMap(window, mouse, music, sound);
+			break;
+		case 2:
+			mRegionMap01->setRegionState(mRegionState);
+			drawRegionMap(window, mouse, music, sound);
+			break;*/
 		}
-
-
-		/*		case 1:
-		mRegionMap01->setRegionState(mRegionState);
-		drawRegionMap(window, mouse, music, sound);
 		break;
-	case 2:
-		mRegionMap01->setRegionState(mRegionState);
-		drawRegionMap(window, mouse, music, sound);
-		break;*/
-
-
-
-
-		}
 	}
-				
-		case 8:
+	case 8: {
+		mRegionState = 0;
+		loadMap(window);
+		mState = 1;
+		break;
+	}
+		/*case 8:
+			mPlayer->setMower(mLawnMowers.at(mCurMower));
+			std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+			mCurMower++;
+			mCurMower = mCurMower%mLawnMowers.size();
+			mState = 0;
+			break;
+
+		case 9:
+			mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+			std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
+			mCurHedgeTool++;
+			mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
+			mState = 0;
+			break;
+
+		case 0: //The illustrious state 0. Swap out equipment
+			drawToolSelectMenu(window, mouse, music, sound);
+			break;*/
+
+			/*default:
+				std::cout << "default gamestate";
+				break;
+			}*/
+
+			//Outside the gamestates, check if the user changes the gamestate.
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+			{
+				mState = 1;
+				mStartState = true;
+			}
+			/*
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				mState = 2;
+				mStartState = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+			{
+				mState = 3;
+				mStartState = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+			{
+				mState = 4;
+				mStartState = true;
+			}*/
+
+
+		//if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+		//{
+		//	mWinMenu01->reset = false;
+		//	mStartMenu01->reset = false;
+		//	resetMap();
+		//}
+
+
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 		{
-			mRegionState = 0;
-			loadMap(window);
-			mState = 1;
-			break;
-		}
-		
-	
-
-	/*case 8:
-		mPlayer->setMower(mLawnMowers.at(mCurMower));
-		std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
-		mCurMower++;
-		mCurMower = mCurMower%mLawnMowers.size();
-		mState = 0;
-		break;
-
-	case 9:
-		mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
-		std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
-		mCurHedgeTool++;
-		mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
-		mState = 0;
-		break;
-
-	case 0: //The illustrious state 0. Swap out equipment
-		drawToolSelectMenu(window, mouse, music, sound);
-		break;*/
-
-		/*default:
-			std::cout << "default gamestate";
-			break;
+			mState = 0;
 		}*/
 
-		//Outside the gamestates, check if the user changes the gamestate.
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-	{
-		mState = 1;
-		mStartState = true;
-	}
-	/*
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		mState = 2;
-		mStartState = true;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-	{
-		mState = 3;
-		mStartState = true;
-	}
-
-if (mStartMenu01->reset == true || mWinMenu01->reset == true)
-{
-	mWinMenu01->reset = false;
-	mStartMenu01->reset = false;
-	resetMap();
-}
-}
-void gameState::resetMap()
-		{
-	for (std::vector<Mower*>::size_type i = 0; i < mLawnMowers.size(); i++) {
-		mLawnMowers[i]->resetStats();
-	}
-	//mMap01->deleteContent();
-	std::cout << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset" << "" << "reset";
-
-	mMap01->resetGrid();
-	//mMap01->spawnObjects();
-	//mObjects = mMap01->getObjects();
-	//mPlayer = mMap01->getPlayer();
-	//mNpcs = mMap01->getNpcs();
-	//mLongObjects = mMap01->getLongObjects();
-	// Skriver ut position för alla object
-	/*for (ObjectsVector::size_type i = 0; i < mObjects.size(); i++){
-		std::cout << mObjects[i]->getPosX() << " " << mObjects[i]->getPosY() << std::endl;
-	}*/
 
 	}
 }
+
 
 bool gameState::checkStartState(int lowerState){
 	if (mState == lowerState) {
 		return false;
 	}
-			//case 4:
-			//{ //state 3. VideoSettings.
-			//	if (mStartOptionState) {
-			//		music.setMusic(6);
-			//		mVideoOptionMenu->scale(window);
-			//		mStartOptionState = false;
-			//		mStartState = false;
-			//		//Starta musik osv
-			//	}
-			//	drawVideoOptionMenu(window, mouse, music, sound);
-			//	break;
-			//}
+
 	else {
 		return true;
 	}
