@@ -575,7 +575,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		}
 		}
-		break;
 	}
 	case 5:
 	{ //state 5. GameOver.
@@ -710,8 +709,9 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 
 
-
-
+		}
+	}
+				
 		case 8:
 		{
 			mRegionState = 0;
@@ -719,9 +719,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mState = 1;
 			break;
 		}
-		}
-		break;
-	}
+		
+	
 
 	/*case 8:
 		mPlayer->setMower(mLawnMowers.at(mCurMower));
@@ -800,6 +799,18 @@ bool gameState::checkStartState(int lowerState){
 	if (mState == lowerState) {
 		return false;
 	}
+			//case 4:
+			//{ //state 3. VideoSettings.
+			//	if (mStartOptionState) {
+			//		music.setMusic(6);
+			//		mVideoOptionMenu->scale(window);
+			//		mStartOptionState = false;
+			//		mStartState = false;
+			//		//Starta musik osv
+			//	}
+			//	drawVideoOptionMenu(window, mouse, music, sound);
+			//	break;
+			//}
 	else {
 		return true;
 	}

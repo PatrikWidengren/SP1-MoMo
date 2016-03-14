@@ -51,11 +51,14 @@ void VideoOptionMenu::updateVideoOptionMenu(sf::RenderWindow &window, sf::Vector
 	{
 		spriteCheckbox01->setColor(sf::Color(255, 255, 255, 255));
 		spriteCheckbox02->setColor(sf::Color(155, 155, 155, 100));
+		mSwap = true;
 	}
 	else if (!mFullscreen)
 	{
 		spriteCheckbox02->setColor(sf::Color(255, 255, 255, 255));
 		spriteCheckbox01->setColor(sf::Color(155, 155, 155, 100));
+		mSwap = false;
+
 	
 	}
 
@@ -186,13 +189,14 @@ void VideoOptionMenu::scale(sf::RenderWindow &window) {
 
 	spriteCheckbox01->setPosition(200 * bg01->getScale().x, 600 * bg01->getScale().y);
 	spriteCheckbox02->setPosition(200 * bg01->getScale().x, 800 * bg01->getScale().y);
-
-
-
-	selectedIndex = 0;
-
-
-
-
 }
 
+bool VideoOptionMenu::getFullscreen()
+{
+	return mFullscreen;
+}
+
+bool VideoOptionMenu::getSwap()
+{
+	return mSwap;
+}

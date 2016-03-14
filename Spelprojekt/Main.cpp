@@ -19,7 +19,6 @@ int main(){
 	titleTexture.loadFromFile("Resource Files/Backgrounds/Loading_Screen.png");
 	titleTexture.setSmooth(true);
 	titleScreen.setTexture(titleTexture);
-
 	sf::RenderWindow window(sf::VideoMode
 		(sf::VideoMode::getDesktopMode().width, 
 			sf::VideoMode::getDesktopMode().height, 
@@ -55,6 +54,29 @@ int main(){
 		mouse = sf::Mouse::getPosition(window);
 		window.clear();
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
+		if (theGame.mVideoOptionMenu->getFullscreen() && !theGame.mVideoOptionMenu->getSwap())
+		{
+			//window.clear();
+			//window.close();
+			//window.create(sf::VideoMode
+			//	(sf::VideoMode::getDesktopMode().width,
+			//		sf::VideoMode::getDesktopMode().height,
+			//		sf::VideoMode::getDesktopMode().bitsPerPixel),
+			//	"Mow Flow", sf::Style::Fullscreen);
+			cout << " HEJ ";
+		}
+		else if(!theGame.mVideoOptionMenu->getFullscreen() && theGame.mVideoOptionMenu->getSwap())
+		{
+			//window.clear();
+			//window.close();
+			//window.create(sf::VideoMode
+			//	(sf::VideoMode::getDesktopMode().width,
+			//		sf::VideoMode::getDesktopMode().height,
+			//		sf::VideoMode::getDesktopMode().bitsPerPixel),
+			//	"Mow Flow");
+			cout << " HEJDÅ ";
+		}
+		//(fullscreen ? Style::Fullscreen : Style::Resize | Style::Close)
 		window.display();
 	}
 	return 0;

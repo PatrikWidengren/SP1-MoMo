@@ -38,10 +38,10 @@ public:
 	void drawRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 	void drawVideoOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound);
 
-
 	void gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound, AnimeManager &anime);
 	void resetMap();
 	optionMenu *mOptionMenu01;
+	VideoOptionMenu *mVideoOptionMenu;
 
 	~gameState();
 
@@ -73,7 +73,6 @@ private:
 	Map1 *mMap01;
 	DialogManager *mDialogManager;
 	InGameBackground *mInGameBackground;
-	VideoOptionMenu *mVideoOptionMenu;
 
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;
