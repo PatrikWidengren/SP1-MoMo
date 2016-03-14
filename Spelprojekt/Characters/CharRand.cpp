@@ -6,8 +6,8 @@ using namespace std;
 sf::Texture textureCat;
 sf::Image imageCat;
 static const string filename = "Resource Files/Sprites/cat.png";
-static const string cat_idle = "Resource Files/SpriteSheets/Cat_Orange_Idle.png";
-static const string cat_walk = "Resource Files/SpriteSheets/Cat_Orange_Walk.png";
+static const string cat_idle = "Resource Files/SpriteSheets/Cat_Black_Idle.png";
+static const string cat_walk = "Resource Files/SpriteSheets/Cat_Black_Walk.png";
 static const int spriteWidth = 64;
 static const int spriteHeight = 64;
 
