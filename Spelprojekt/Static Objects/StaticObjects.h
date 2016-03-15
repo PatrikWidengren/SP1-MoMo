@@ -20,6 +20,7 @@ public:
 	virtual bool getCut() = 0;
 	virtual sf::Sprite* getSprite() = 0;
 	virtual sf::Sprite getDrawSprite() = 0;
+	virtual void playAnimation() = 0;
 
 
 };

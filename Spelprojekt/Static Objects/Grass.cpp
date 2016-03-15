@@ -17,6 +17,8 @@ Grass::Grass(int arrayX, int arrayY, float posX, float posY){
 Grass::~Grass(){
 
 }
+void Grass::playAnimation() {
+}
 void Grass::render(){
 	if (!isCut){
 		mSprite->setTexture(*textureGrass);

@@ -35,6 +35,8 @@ Fence::Fence(int arrayX, int arrayY, float posX, float posY, int whatFence){
 Fence::~Fence(){
 
 }
+void Fence::playAnimation() {
+}
 void Fence::render(){
 	if (mWhatFence == 1){
 		mSprite.setTexture(textureFenceTop);

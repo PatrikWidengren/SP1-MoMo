@@ -17,6 +17,8 @@ public:
 	virtual sf::Sprite getDrawSprite();
 	virtual void setCut();
 	virtual bool getCut();
+	virtual void playAnimation();
+
 	static void initialize();
 	static void finalize();
 private:

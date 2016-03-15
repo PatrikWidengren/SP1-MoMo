@@ -19,6 +19,7 @@ public:
 	virtual void changeWalkable();
 	virtual void setCut();
 	virtual bool getCut();
+	virtual void playAnimation();
 
 	static void initialize();
 	static void finalize();

@@ -17,6 +17,8 @@ Stone::Stone(int arrayX, int arrayY, float posX, float posY){
 Stone::~Stone(){
 
 }
+void Stone::playAnimation() {
+}
 void Stone::render(){
 	mSprite.setTexture(textureStone);
 }

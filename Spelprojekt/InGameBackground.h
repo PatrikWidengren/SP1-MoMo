@@ -17,6 +17,7 @@ public:
 	std::string writeProgress(int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	int getTurns();
 	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
+	void scale(sf::RenderWindow &window);
 private:
 	//int mIntTurns;
 	sf::Font font;

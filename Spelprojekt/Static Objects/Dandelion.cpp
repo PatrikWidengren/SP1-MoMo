@@ -25,6 +25,8 @@ void Dandelion::render() {
 		mSprite.setTexture(textureCutDandelion);
 	}
 }
+void Dandelion::playAnimation() {
+}
 float Dandelion::getPosX() {
 	return mPosX;
 }

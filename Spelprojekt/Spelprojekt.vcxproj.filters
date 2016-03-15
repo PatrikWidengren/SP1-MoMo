@@ -969,6 +969,15 @@
     <Image Include="Resource Files\Backgrounds\Options_Video.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Sprites\StandardTree1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Tree_Oak.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\SpriteSheets\Fontän_3x3_Spritesheet_Nearest.png">
+      <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

@@ -15,6 +15,8 @@ Gravel::Gravel(int arrayX, int arrayY, float posX, float posY) {
 Gravel::~Gravel() {
 
 }
+void Gravel::playAnimation() {
+}
 void Gravel::render() {
 	mSprite.setTexture(textureGravel);
 }

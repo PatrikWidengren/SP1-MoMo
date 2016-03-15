@@ -2,7 +2,7 @@
 
 using namespace std;
 
-static const string filename = "Resource Files/Sprites/Tree.png";
+static const string filename = "Resource Files/Sprites/Tree_Oak.png";
 sf::Texture textureTree;
 sf::Image imageTree;
 
@@ -15,6 +15,8 @@ Tree::Tree(int arrayX, int arrayY, float posX, float posY){
 }
 Tree::~Tree(){
 
+}
+void Tree::playAnimation() {
 }
 void Tree::render(){
 	spr.setTexture(textureTree);

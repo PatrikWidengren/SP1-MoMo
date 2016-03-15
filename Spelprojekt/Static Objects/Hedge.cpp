@@ -18,6 +18,8 @@ Hedge::Hedge(int arrayX, int arrayY, float posX, float posY){
 Hedge::~Hedge(){
 
 }
+void Hedge::playAnimation() {
+}
 void Hedge::render(){
 	if (!isCut){
 		mSprite.setTexture(textureHedge);

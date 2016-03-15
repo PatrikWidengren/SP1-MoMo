@@ -198,7 +198,6 @@ void Map1::spawnObjects() {
 	mObjects.push_back(new Dandelion(0, 0, widthOnTile, heightOnTile));
 	mObjects[4]->setCut();
 	mObjects.push_back(new Gravel(0, 0, widthOnTile, heightOnTile));
-	mObjects.push_back(new Fountain(0, 0, widthOnTile, heightOnTile));
 
 	mLongObjects.push_back(new Tree(0, 0, (widthOnTile)-31, (heightOnTile)-200)); //Träd: plats 0
 	mLongObjects.push_back(new Fence(0, 0, (widthOnTile), (heightOnTile)+pushFenceY, 1));
@@ -213,6 +212,7 @@ void Map1::spawnObjects() {
 	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heightOnTile)));
 	mLongObjects.push_back(new Hedge(0, 0, (widthOnTile), (heightOnTile)));
 	mLongObjects[11]->setCut();
+	mLongObjects.push_back(new Fountain(0, 0, widthOnTile, heightOnTile));
 	//mNpcs.push_back(new CharRand(0, 0, (widthOnTile), (heightOnTile), 1, true));
 	//mNpcs.push_back(new CharPatrol(0, 0, (widthOnTile), (heightOnTile), patrolPath));
 
@@ -383,7 +383,6 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 	mObjects[3]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mObjects[4]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mObjects[5]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
-	mObjects[6]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 
 	mLongObjects[0]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mLongObjects[1]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
@@ -397,6 +396,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 	mLongObjects[9]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mLongObjects[10]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mLongObjects[11]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
+	mLongObjects[12]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 
 	
 
@@ -557,8 +557,12 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 10.0f) { //Fontän
-				mObjects[6]->getSprite()->setPosition((pushMapX + i * widthOnTile) * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY / 2) * scaleY); //Sätter positionen enligt grid
-				window.draw(mObjects[6]->getDrawSprite());
+				for (int k = 0; k < 3; k++) {
+					for (int l = 0; l < 3; l++) {
+						mObjects[5]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + l * widthOnTile) * scaleX, (pushMapY + (j * heightOnTile) + k * heightOnTile) * scaleY); //Sätter positionen enligt grid
+						window.draw(mObjects[5]->getDrawSprite());
+					}
+				}
 			}
 		}
 	}
@@ -610,8 +614,13 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 4.0f) { //Träd
-				mLongObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) - 31) * scaleX, pushMapY + ((j * heightOnTile) - 200) * scaleY); //Sätter positionen enligt grid
+				mLongObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) - 31) * scaleX, pushMapY + ((j * heightOnTile) - 148) * scaleY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[0]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 10.0f) { //Fontän
+				mLongObjects[12]->playAnimation();
+				mLongObjects[12]->getSprite()->setPosition((pushMapX + 3 + i * widthOnTile) * scaleX, (pushMapY - 45 + (j * heightOnTile) + pushGrassY / 2) * scaleY); //Sätter positionen enligt grid
+				window.draw(*mLongObjects[12]->getSprite());
 			}
 			else if (mGrid[j][i] == 1.2f) {
 				mLongObjects[2]->getSprite()->setPosition((pushMapX + i * widthOnTile) * scaleX, (pushMapY + (j * heightOnTile) + pushFenceY) * scaleY); //Sätter positionen enligt grid
@@ -789,6 +798,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 void Map1::beginTurn(int dir) {
 	if (!mOngoingTurn)
 	{
+		mPlayer->changeAnimation(dir);
 		mTurnClock.restart();
 		mPlayerMoveTime.restart();
 		mCurrentMove.clear();
@@ -1019,6 +1029,7 @@ void Map1::update(SoundManager &sound) {
 			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		}
+		//Asd
 	}
 
 	if (mMeepMoving && mPlayerMoveTime.getElapsedTime().asSeconds() >= mPlayer->getMoveTime()) {
@@ -1200,7 +1211,6 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			//tempPosX += -64;
 			break;
 		}
-
 		/*Make sure we don't give meep a faulty position*/
 		/*if (tempX >= mPlayer->getPosX()){
 			tempX = mPlayer->getPosX - 1;

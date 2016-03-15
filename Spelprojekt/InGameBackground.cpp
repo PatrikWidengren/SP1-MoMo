@@ -172,4 +172,18 @@ void InGameBackground::write(int turncount, int cutgrass, int cuthedges, int cut
 	mProgress->setPosition(50, 50);
 	mTurns->setPosition(1700, 150);
 }
+void InGameBackground::scale(sf::RenderWindow &window) {
+	float scaleX = (float)window.getSize().x / 1920;
+	float scaleY = (float)window.getSize().y / 1080;
+
+	backgroundBottom->setScale(scaleX, scaleY);
+	backgroundTop->setScale(scaleX, scaleY);
+	inGameHud->setScale(scaleX, scaleY);
+	sprite_medal->setScale(scaleX, scaleY);
+
+	sprite_medal->setPosition(594 * scaleX, 26 * scaleY);
+	/*backgroundBottom->setPosition();
+	backgroundTop->setPosition();
+	inGameHud->setPosition();*/
+}
 
