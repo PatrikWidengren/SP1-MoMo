@@ -246,7 +246,7 @@ float CharRand::getMoveTime() {
 }
 
 void CharRand::setWalking(bool walk) {
-	walking = !walking;
+	walking = walk;
 }
 
 bool CharRand::getWalking() {

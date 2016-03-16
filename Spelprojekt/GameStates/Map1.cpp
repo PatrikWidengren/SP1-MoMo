@@ -602,11 +602,11 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				window.draw(mLongObjects[9]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.0f) { //Häck
-				mLongObjects[10]->getSprite()->setPosition((pushMapX + i * widthOnTile) * scaleX + pushGrassX, (pushMapY + (j * heightOnTile) + pushGrassY - 12) * scaleY); //Sätter positionen enligt grid
+				mLongObjects[10]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX)  * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY - 12) * scaleY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[10]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 9.1f) { //Klippt Häck
-				mLongObjects[11]->getSprite()->setPosition((pushMapX + i * widthOnTile) * scaleX + pushGrassX, (pushMapY + (j * heightOnTile) + pushGrassY - 22) * scaleY); //Sätter positionen enligt grid
+				mLongObjects[11]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX)  * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY - 22) * scaleY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[11]->getDrawSprite());
 			}
 		}
@@ -710,6 +710,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 6.0f) { //Rand Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -720,6 +721,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 6.1f) { //Rand Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -730,6 +732,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 6.2f) { //Rand Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -741,6 +744,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 6.3f) { //Rand Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -763,6 +767,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 7.0f) { //Patrull Npc Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -773,6 +778,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 7.1f) { //Patrull Npc Klippt Gräs, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -783,6 +789,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 7.2f) { //Patrull Npc maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -794,6 +801,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 7.3f) { //Patrull Npc Klippt maskros, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -804,6 +812,7 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			else if (mGrid[j][i] == 7.4f) { //Patrull Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
 					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
@@ -874,8 +883,8 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 	}
 
 	if (mNpcsMoving) {
-		float tempPosX = pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX;
-		float tempPosY = pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY;
+		float tempPosX = (pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX;
+		float tempPosY = (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY;
 		if (mCurrentMove.size()>mPlaceInMove){
 			switch (mCurrentMove[mPlaceInMove]) {
 			case 8:
@@ -922,7 +931,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 			if (mCurrentMove.empty()) {
 				mCurrentMove = mNpcVector[mNpcNo]->move();
 				mPlaceInMove = 0;
-				mNpcMoveTime=0.1f/mCurrentMove.size();
+				mNpcMoveTime = 0.1f/mCurrentMove.size();
 				mNpcMoveTimer.restart();
 			}
 
@@ -966,16 +975,16 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 							//movement pattern
 							bool retryMoved = moveNpc(tryMove.at(k), mNpcNo, sound);
 							if (retryMoved) {
-								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY);
 								break;
 							}
 							else {
-								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+								mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY);
 							}
 						}
 					}
 					else {
-						mNpcVector[mNpcNo]->getSpriteSheet()->setPosition((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX, pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY);
+						mNpcVector[mNpcNo]->getSpriteSheet()->setPosition(((pushMapX + mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY);
 					}
 				}
 				else {
@@ -986,7 +995,9 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 		}
 	}
 
-
+	/*for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+		mNpcVector[i]->setWalking(false);
+	}*/
 
 	if (mMeepMoving) {
 		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())

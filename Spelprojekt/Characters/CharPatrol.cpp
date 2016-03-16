@@ -254,7 +254,7 @@ float CharPatrol::getMoveTime() {
 }
 
 void CharPatrol::setWalking(bool walk) {
-	walking = !walking;
+	walking = walk;
 }
 
 bool CharPatrol::getWalking() {

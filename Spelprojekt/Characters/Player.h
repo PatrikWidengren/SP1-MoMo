@@ -56,6 +56,7 @@ public:
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
 	void scale(sf::RenderWindow &window);
+
 private:
 	sf::Clock moveClock;
 	sf::Clock clock;
