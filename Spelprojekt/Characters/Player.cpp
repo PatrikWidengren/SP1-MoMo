@@ -281,3 +281,6 @@ void Player::scale(sf::RenderWindow &window) {
 	mSpriteIdleSheet->setScale(sf::Vector2f(scaleX, scaleY));
 	mSpriteWalkSheet->setScale(sf::Vector2f(scaleX, scaleY));
 }
+Mower* Player::mower() {
+	return mLawnMower;
+}

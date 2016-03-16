@@ -65,6 +65,12 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 CharPatrol::~CharPatrol(){
 	delete[] path;
 	delete[] retryPath;
+	delete mTextureSheet_dogIdle;
+	delete mTextureSheet_dogWalk;
+	delete mDogIdleSheet;
+	delete mDogWalkSheet;
+	delete dogAnimator;
+	delete mRect;
 }
 
 void CharPatrol::reset() {

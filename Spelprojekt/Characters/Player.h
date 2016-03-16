@@ -56,6 +56,7 @@ public:
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
 	void scale(sf::RenderWindow &window);
+	Mower* mower();
 
 private:
 	sf::Clock moveClock;

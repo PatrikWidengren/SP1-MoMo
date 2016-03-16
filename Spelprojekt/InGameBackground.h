@@ -18,6 +18,8 @@ public:
 	int getTurns();
 	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	void scale(sf::RenderWindow &window);
+	void getMowerStats(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue);
+	void selectMomentumSprite();
 private:
 	//int mIntTurns;
 	sf::Font font;
@@ -56,6 +58,12 @@ private:
 	sf::Text* mTurns = new sf::Text; //(writeTurns(int turns), font, 20);
 	sf::Text* mProgress = new sf::Text;
 	std::vector<int>* mGoals;
+
+	int mMowerMaxMomentum;
+	int mMowerMinMomentum;
+	int mMowerFallValue;
+	int mMowerRiseValue;
+	int mMowerCurrentMomentum;
 };
 
 

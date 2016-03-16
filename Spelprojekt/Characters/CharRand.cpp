@@ -64,6 +64,12 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 }
 
 CharRand::~CharRand(){
+	delete mTextureSheet_catIdle;
+	delete mTextureSheet_catWalk;
+	delete mCatIdleSheet;
+	delete mCatWalkSheet;
+	delete catAnimator;
+	delete mRect;
 }
 void CharRand::changeAnimation(int nr) {
 	if (!walking) {

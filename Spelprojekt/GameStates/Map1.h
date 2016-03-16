@@ -61,6 +61,7 @@ public:
 	float** createGrid(int width, int height);
 	//Added turn count
 	int getTurnCount();
+	int getTurnsLeft();
 	int getMaxTurns();
 	int getGrass();
 	int getHedges();

@@ -1547,3 +1547,6 @@ vector<int>* Map1::getGoals() {
 	getgoals->push_back(mGoldDandelion);
 	return getgoals;
 }
+int Map1::getTurnsLeft() {
+	return mWinRounds - mTurnCount;
+}
