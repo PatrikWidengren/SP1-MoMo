@@ -12,6 +12,19 @@ static const string m01a04_backGroundTop = "Resource Files/Backgrounds/World01_L
 static const string m01a04_backGroundBottom = "Resource Files/Backgrounds/World01_Lane04_FG.png";
 static const string m01a05_backGroundTop = "Resource Files/Backgrounds/World01_Lane05_BG.png";
 static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World01_Lane05_FG.png";
+
+static const string momentum2_01 = "Resource Files/Sprites/Momentum_Mower1_1.png";
+static const string momentum2_02 = "Resource Files/Sprites/Momentum_Mower1_2.png";
+
+static const string momentum3_01 = "Resource Files/Sprites/Momentum_Mower2_1.png";
+static const string momentum3_02 = "Resource Files/Sprites/Momentum_Mower2_2.png";
+static const string momentum3_03 = "Resource Files/Sprites/Momentum_Mower2_3.png";
+
+static const string momentum4_01 = "Resource Files/Sprites/Momentum_Mower3_1.png";
+static const string momentum4_02 = "Resource Files/Sprites/Momentum_Mower3_2.png";
+static const string momentum4_03 = "Resource Files/Sprites/Momentum_Mower3_3.png";
+static const string momentum4_04 = "Resource Files/Sprites/Momentum_Mower3_4.png";
+
 static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
 static const string bronze_medal = "Resource Files/Sprites/Medal_Bronze.png";
 static const string silver_medal = "Resource Files/Sprites/Medal_Silver.png";
@@ -24,6 +37,9 @@ InGameBackground::InGameBackground() {
 		cout << "Error loading arial.ttf" << endl;
 	}
 	sprite_medal->setPosition(594, 26);
+	sprite_momentum->setPosition(800, 50);
+	texture_momentum4_04->loadFromFile(momentum4_04);
+	sprite_momentum->setTexture(*texture_momentum4_04);
 }
 InGameBackground::~InGameBackground() 
 {
@@ -42,6 +58,17 @@ InGameBackground::~InGameBackground()
 	delete texture_silverMedal;
 	delete texture_goldMedal;
 
+	delete texture_momentum2_01;
+	delete texture_momentum2_02;
+	delete texture_momentum3_01;
+	delete texture_momentum3_02;
+	delete texture_momentum3_03;
+	delete texture_momentum4_01;
+	delete texture_momentum4_02;
+	delete texture_momentum4_03;
+	delete texture_momentum4_04;
+
+	delete sprite_momentum;
 	delete backgroundTop;
 	delete backgroundBottom;
 	delete inGameHud;
@@ -79,6 +106,7 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 	}
 	window.draw(*inGameHud);
 	window.draw(*sprite_medal);
+	window.draw(*sprite_momentum);
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {

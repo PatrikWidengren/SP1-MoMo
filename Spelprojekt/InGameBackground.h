@@ -36,6 +36,18 @@ private:
 	sf::Texture* texture_silverMedal = new sf::Texture();
 	sf::Texture* texture_goldMedal = new sf::Texture();
 
+	sf::Texture* texture_momentum2_01 = new sf::Texture();
+	sf::Texture* texture_momentum2_02 = new sf::Texture();
+	sf::Texture* texture_momentum3_01 = new sf::Texture();
+	sf::Texture* texture_momentum3_02 = new sf::Texture();
+	sf::Texture* texture_momentum3_03 = new sf::Texture();
+	sf::Texture* texture_momentum4_01 = new sf::Texture();
+	sf::Texture* texture_momentum4_02 = new sf::Texture();
+	sf::Texture* texture_momentum4_03 = new sf::Texture();
+	sf::Texture* texture_momentum4_04 = new sf::Texture();
+
+
+	sf::Sprite* sprite_momentum = new sf::Sprite();
 	sf::Sprite* backgroundTop = new sf::Sprite();
 	sf::Sprite* backgroundBottom = new sf::Sprite();
 	sf::Sprite* inGameHud = new sf::Sprite();
