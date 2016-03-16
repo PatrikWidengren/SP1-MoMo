@@ -33,7 +33,7 @@ public:
 	virtual void changeAnimation(int nr) = 0;
 	virtual sf::Sprite* getSpriteSheet() = 0;
 	virtual float getMoveTime() = 0;
-
+	virtual void scale(sf::RenderWindow &window) = 0;
 
 
 	//Treat this as running into and colliding with things?

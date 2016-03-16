@@ -35,7 +35,7 @@ public:
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
 	//gör mer eller mindra vad takeTurn brukade göra
-	void update(SoundManager &sound);
+	void update(SoundManager &sound, sf::RenderWindow &window);
 	void beginTurn(int dir);
 	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse);
 	//Spawnar alla objekten, enligt array

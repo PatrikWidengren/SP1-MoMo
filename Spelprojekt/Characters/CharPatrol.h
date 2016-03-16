@@ -31,7 +31,8 @@ public:
 
 	virtual void playAnimation();
 	virtual void changeAnimation(int nr);
-
+	virtual void scale(sf::RenderWindow &window);
+	
 	static void initialize();
 	static void finalize();
 	virtual sf::Sprite* getSpriteSheet();
@@ -51,11 +52,11 @@ private:
 	bool walking = false;
 
 	sf::Clock clock;
-	thor::Animator<sf::Sprite, std::string> dogAnimator;
-	sf::Texture mTextureSheet_dogWalk;
-	sf::Texture mTextureSheet_dogIdle;
-	sf::Sprite mDogIdleSheet;
-	sf::Sprite mDogWalkSheet;
+	thor::Animator<sf::Sprite, std::string>* dogAnimator = new thor::Animator<sf::Sprite, std::string>;
+	sf::Texture* mTextureSheet_dogWalk = new sf::Texture;
+	sf::Texture* mTextureSheet_dogIdle = new sf::Texture;
+	sf::Sprite* mDogIdleSheet = new sf::Sprite;
+	sf::Sprite* mDogWalkSheet = new sf::Sprite;
 	sf::IntRect *mRect;
 
 };

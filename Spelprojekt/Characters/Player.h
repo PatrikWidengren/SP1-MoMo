@@ -55,15 +55,15 @@ public:
 	void changeAnimation(int nr);
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
-	
+	void scale(sf::RenderWindow &window);
 private:
 	sf::Clock moveClock;
 	sf::Clock clock;
-	thor::Animator<sf::Sprite, std::string> animatorMeep;
-	sf::Texture mTextureIdleSheet;
-	sf::Texture mTextureWalkSheet;
-	sf::Sprite mSpriteIdleSheet;
-	sf::Sprite mSpriteWalkSheet;
+	thor::Animator<sf::Sprite, std::string>* animatorMeep = new thor::Animator<sf::Sprite, std::string>;
+	sf::Texture* mTextureIdleSheet = new sf::Texture;
+	sf::Texture* mTextureWalkSheet = new sf::Texture;
+	sf::Sprite* mSpriteIdleSheet = new sf::Sprite;
+	sf::Sprite* mSpriteWalkSheet = new sf::Sprite;
 	sf::IntRect *mRect;
 	/*equipped lawnmower*/
 	Mower *mLawnMower, *mAntiLeakMower;

@@ -38,6 +38,7 @@ public:
 	virtual sf::Sprite* getSpriteSheet();
 	virtual void changeAnimation(int nr);
 	virtual void playAnimation();
+	virtual void scale(sf::RenderWindow &window);
 
 	//Treat this as running into and colliding with things?
 	virtual bool getCollide();
@@ -51,11 +52,11 @@ private:
 	bool walking = false;
 
 	sf::Clock clock;
-	thor::Animator<sf::Sprite, std::string> catAnimator;
-	sf::Texture mTextureSheet_catIdle;
-	sf::Texture mTextureSheet_catWalk;
-	sf::Sprite mCatIdleSheet;
-	sf::Sprite mCatWalkSheet;
+	thor::Animator<sf::Sprite, std::string>* catAnimator = new thor::Animator<sf::Sprite, std::string>;
+	sf::Texture* mTextureSheet_catIdle = new sf::Texture;
+	sf::Texture* mTextureSheet_catWalk = new sf::Texture;
+	sf::Sprite* mCatIdleSheet = new sf::Sprite;
+	sf::Sprite* mCatWalkSheet = new sf::Sprite;
 	sf::IntRect *mRect;
 };
 

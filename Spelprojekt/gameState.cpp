@@ -226,7 +226,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 	mInGameBackground->drawBackgroundTop(window);
-	mMap01->update(sound);
+	mMap01->update(sound, window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
 	mInGameBackground->scale(window);

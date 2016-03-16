@@ -628,8 +628,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
 				mPlayer->playPlayer();
-				if (!mMeepMoving)
+				if (!mMeepMoving) {
 					mPlayer->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (j * heightOnTile) + pushMeepY) * scaleY);
+				}
+				mPlayer->scale(window);
 				window.draw(*mPlayer->getSpriteSheet());
 
 				//anime.playTest();
@@ -642,8 +644,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.1f) { //Spelare Klippt Gräs, temp innan animation
 				mPlayer->playPlayer();
-				if (!mMeepMoving)
+				if (!mMeepMoving) {
 					mPlayer->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (j * heightOnTile) + pushMeepY) * scaleY);
+				}
+				mPlayer->scale(window);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
@@ -657,8 +661,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.2f) { //Spelare maskros, temp innan animation
 				mPlayer->playPlayer();
-				if (!mMeepMoving)
+				if (!mMeepMoving) {
 					mPlayer->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (j * heightOnTile) + pushMeepY) * scaleY);
+				}
+				mPlayer->scale(window);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
@@ -671,8 +677,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.3f) { //Spelare klippt maskros, temp innan animation
 				mPlayer->playPlayer();
-				if (!mMeepMoving)
+				if (!mMeepMoving) {
 					mPlayer->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (j * heightOnTile) + pushMeepY) * scaleY);
+				}
+				mPlayer->scale(window);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
@@ -685,8 +693,10 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 			}
 			else if (mGrid[j][i] == 5.4f) { //Spelare grusväg, temp innan animation
 				mPlayer->playPlayer();
-				if(!mMeepMoving)
+				if (!mMeepMoving) {
 					mPlayer->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (j * heightOnTile) + pushMeepY) * scaleY);
+				}
+				mPlayer->scale(window);
 				window.draw(*mPlayer->getSpriteSheet());
 				/*anime.playTest();
 				anime.getSpriteSheet()->setPosition((pushMapX + i * widthOnTile) + pushMeepX, pushMapY + (j * heightOnTile) + pushMeepY);
@@ -701,8 +711,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if(!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -710,8 +721,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -719,8 +731,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -729,17 +742,20 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
 			else if (mGrid[j][i] == 6.4f) { //Rand Npc grusväg, temp innan animation
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
+					mNpcs[c]->scale(window);
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -748,8 +764,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -757,8 +774,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -766,8 +784,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.2f);
@@ -776,8 +795,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 			}
@@ -785,8 +805,9 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 				coords c = { i, j };
 				if (mNpcs[c] != 0) {
 					mNpcs[c]->playAnimation();
-					if (!mNpcsMoving)
+					if (!mNpcsMoving) {
 						mNpcs[c]->getSpriteSheet()->setPosition(((pushMapX + i * widthOnTile) + pushNpcX) * scaleX, (pushMapY + (j * heightOnTile) + pushNpcY) * scaleY); //Sätter positionen enligt grid
+					}
 					window.draw(*mNpcs[c]->getSpriteSheet());
 				}
 				mNpcs[c]->setLast(2.4f);
@@ -824,7 +845,9 @@ void Map1::beginTurn(int dir) {
 	}
 }
 
-void Map1::update(SoundManager &sound) {
+void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
+	float scaleX = (float)window.getSize().x / 1920;
+	float scaleY = (float)window.getSize().y / 1080;
 	if (mPlaceInMove == mCurrentMove.size()) {
 		if (mMeepMoving) {
 			mPlayer->setWalking(false);
@@ -968,8 +991,9 @@ void Map1::update(SoundManager &sound) {
 	if (mMeepMoving) {
 		//(mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime())
 		//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime()) * widthOnTile), ((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
-		float tempPosX = pushMapX + (mPlayer->getX() * widthOnTile) + pushMeepX;
-		float tempPosY = pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY;
+
+		float tempPosX = (pushMapX + (mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX;
+		float tempPosY = (pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY) * scaleY;
 
 		switch (mCurrentMove[mPlaceInMove]) {
 		case 8:
@@ -1037,14 +1061,14 @@ void Map1::update(SoundManager &sound) {
 		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
 		if (!moved) {
 			mPlayer->collide(mCurrentMove, mPlaceInMove);
-			mPlayer->getSpriteSheet()->setPosition((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX, pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY);
+			mPlayer->getSpriteSheet()->setPosition(((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY) * scaleY);
 			mPlayer->setWalking(false);
 			mMeepMoving = false;
 			mCurrentMove.clear();
 			mNpcsMoving = true;
 		}
 		else {
-			mPlayer->getSpriteSheet()->setPosition((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX, pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY);
+			mPlayer->getSpriteSheet()->setPosition(((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY) * scaleY);
 		}
 		mPlaceInMove++;
 	}
