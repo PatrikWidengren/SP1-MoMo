@@ -948,15 +948,6 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Gold.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
     <Image Include="Resource Files\Sprites\control_numpad.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
@@ -977,6 +968,42 @@
     </Image>
     <Image Include="Resource Files\SpriteSheets\Fontän_3x3_Spritesheet_Nearest.png">
       <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Bronze.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Gold.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Silver.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower1_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower1_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_4.png">
+      <Filter>Resource Files\Sprites</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

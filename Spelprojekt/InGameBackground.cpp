@@ -13,9 +13,9 @@ static const string m01a04_backGroundBottom = "Resource Files/Backgrounds/World0
 static const string m01a05_backGroundTop = "Resource Files/Backgrounds/World01_Lane05_BG.png";
 static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World01_Lane05_FG.png";
 static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
-static const string bronze_medal = "Resource Files/Backgrounds/Medal_Bronze.png";
-static const string silver_medal = "Resource Files/Backgrounds/Medal_Silver.png";
-static const string gold_medal = "Resource Files/Backgrounds/Medal_Gold.png";
+static const string bronze_medal = "Resource Files/Sprites/Medal_Bronze.png";
+static const string silver_medal = "Resource Files/Sprites/Medal_Silver.png";
+static const string gold_medal = "Resource Files/Sprites/Medal_Gold.png";
 
 InGameBackground::InGameBackground() {
 	setTextures();
@@ -124,8 +124,14 @@ string InGameBackground::writeTurns(int turnss) {
 }
 string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdandelions, vector<int>* goals) {
 	ostringstream o;
-	if (cutgrass >= goals->at(1) && cuthedges >= goals->at(4) && cutdandelions >= goals->at(7)) {
+	if (cutgrass >= goals->at(2) && cuthedges >= goals->at(5) && cutdandelions >= goals->at(8)) {
 		sprite_medal->setTexture(*texture_goldMedal);
+		
+		o << "All goals completed. ";
+	
+	}
+	else if (cutgrass >= goals->at(1) && cuthedges >= goals->at(4) && cutdandelions >= goals->at(7)) {
+		sprite_medal->setTexture(*texture_silverMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for gold medal: " << goals->at(2) << endl;
 		}
@@ -137,7 +143,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 		}
 	}
 	else if (cutgrass >= goals->at(0) && cuthedges >= goals->at(3) && cutdandelions >= goals->at(6)) {
-		sprite_medal->setTexture(*texture_silverMedal);
+		sprite_medal->setTexture(*texture_bronzeMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for silver medal: " << goals->at(1) << endl;
 		}
@@ -149,7 +155,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 		}
 	}
 	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
-		sprite_medal->setTexture(*texture_bronzeMedal);
+		//sprite_medal->setTexture(*texture_bronzeMedal);
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
 		}
@@ -182,8 +188,10 @@ void InGameBackground::scale(sf::RenderWindow &window) {
 	sprite_medal->setScale(scaleX, scaleY);
 
 	sprite_medal->setPosition(594 * scaleX, 26 * scaleY);
-	/*backgroundBottom->setPosition();
-	backgroundTop->setPosition();
-	inGameHud->setPosition();*/
+	mTurns->setScale(scaleX, scaleY);
+	mProgress->setScale(scaleX, scaleY);
+
+	mTurns->setPosition(1700 * scaleX, 150 * scaleY);
+	mProgress->setPosition(50 * scaleX, 50 * scaleY);
 }
 
