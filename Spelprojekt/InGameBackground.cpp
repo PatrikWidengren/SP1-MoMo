@@ -355,3 +355,6 @@ void InGameBackground::selectMomentumSprite() {
 		}
 	}
 }
+string InGameBackground::getMedal() {
+	return mMedal;
+}
