@@ -1541,6 +1541,7 @@ int Map1::getDandelions() {
 }
 vector<int>* Map1::getGoals() {
 	vector<int> *getgoals = new vector<int>;
+	
 	getgoals->push_back(mBronzeGrass);
 	getgoals->push_back(mSilverGrass);
 	getgoals->push_back(mGoldGrass);
