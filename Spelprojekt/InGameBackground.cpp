@@ -259,6 +259,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	//Fått brons
 	else if (cutgrass >= goals->at(0) && cuthedges >= goals->at(3) && cutdandelions >= goals->at(6)) {
 		sprite_medal->setTexture(*texture_bronzeMedal);
+		mMedal = "Bronze";
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for silver medal: " << goals->at(1) << endl;
 		}
@@ -272,7 +273,6 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	//Påväg till brons
 	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
 		//sprite_medal->setTexture(*texture_bronzeMedal);
-		mMedal = "Bronze";
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
 		}

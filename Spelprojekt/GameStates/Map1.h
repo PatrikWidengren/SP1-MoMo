@@ -45,7 +45,7 @@ public:
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
 	int checkState();
-
+	int getTurnsLeft();
 	float** getGrid();
 	//Returnerar npcs, detta behövs till main
 	typedef std::map<coords, Character*> NpcMap;

@@ -226,12 +226,14 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals()); 	
+	mInGameBackground->getMowerStats(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal());
+	mInGameBackground->selectMomentumSprite();
+	mInGameBackground->scale(window);
 	mInGameBackground->drawBackgroundTop(window);
 	mMap01->update(sound, window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
-	mInGameBackground->scale(window);
 
 	switch (mDialogSwitch)
 	{
