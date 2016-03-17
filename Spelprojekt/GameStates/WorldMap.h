@@ -45,6 +45,7 @@ public:
 	void resetRegion();
 	int getDemDopies();
 	void setDemDopies(int demDopies);
+	void addDemDopies(int demDopies);
 	virtual void updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse);
 	virtual void displayMenu01(sf::RenderWindow &window);
 	virtual void moveUp();

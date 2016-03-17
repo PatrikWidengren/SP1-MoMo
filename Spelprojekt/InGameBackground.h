@@ -13,12 +13,14 @@ public:
 	void drawBackgroundBottom(sf::RenderWindow &window);
 	void setTextures();
 	void setMapname(std::string mapname);
+	std::string getMedal();
 	std::string writeTurns(int turns);
 	std::string writeProgress(int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	int getTurns();
 	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	void scale(sf::RenderWindow &window);
 private:
+	std::string mMedal;
 	//int mIntTurns;
 	sf::Font font;
 	sf::Texture* texture01_backgroundTop = new sf::Texture();

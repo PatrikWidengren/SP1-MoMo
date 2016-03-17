@@ -409,8 +409,8 @@ void WorldMap::scale(sf::RenderWindow &window) {
 
 	mMapRegions[0].mapRegionText.setPosition(933 * bg01->getScale().x, 223 * bg01->getScale().y);
 	mMapRegions[1].mapRegionText.setPosition(978 * bg01->getScale().x, 323 * bg01->getScale().y);
-	mMapRegions[2].mapRegionText.setPosition(1397 * bg01->getScale().x, 425 * bg01->getScale().y);
-	mMapRegions[3].mapRegionText.setPosition(1383 * bg01->getScale().x, 788 * bg01->getScale().y);
+	mMapRegions[2].mapRegionText.setPosition(1107 * bg01->getScale().x, 425 * bg01->getScale().y);
+	mMapRegions[3].mapRegionText.setPosition(1183 * bg01->getScale().x, 788 * bg01->getScale().y);
 	
 	if(mMapRegions[0].unlock == true)
 	mMapRegions[0].mapRegionText.move(10000, 0);
@@ -441,6 +441,11 @@ void WorldMap::setDemDopies(int demDopies)
 	mDemDupies = demDopies;
 }
 
+void WorldMap::addDemDopies(int demDopies)
+{
+	mDemDupies += demDopies;
+}
+
 int WorldMap::getDemDopies()
 {
 	return mDemDupies;
@@ -459,7 +464,8 @@ std::string WorldMap::WriteRegionCost(int cost)
 	std::ostringstream o;
 	if (getDemDopies() < cost)
 	{
-		e = cost -= getDemDopies();
+		e = cost - getDemDopies();
+
 		o << "This Region Cost: " << cost << ". You Need " << e << " Dopies More!";
 
 	}

@@ -464,9 +464,19 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+			if (mInGameBackground->getMedal() == "Gold")
+				mWorldMap01->addDemDopies(90);
 
-				mState = 6;
-				mStartState = true;
+			if (mInGameBackground->getMedal() == "Silver")
+				mWorldMap01->addDemDopies(60);
+
+			if (mInGameBackground->getMedal() == "Bronze")
+				mWorldMap01->addDemDopies(40);
+
+			std::cout << mWorldMap01->getDemDopies() << std::endl;
+
+			mState = 6;
+			mStartState = true;
 
 
 			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {

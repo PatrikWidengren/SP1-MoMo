@@ -67,7 +67,7 @@ Player::~Player(){
 
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
-	mMoveTime = 1.0f / movement.size();
+	mMoveTime = 0.1f / movement.size();
 	return movement;
 }
 
