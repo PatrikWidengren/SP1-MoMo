@@ -376,6 +376,11 @@ void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &m
 	float scaleY = (float)window.getSize().y / 1080;
 	//float scaleX = 0.1f;
 	//float scaleY = 0.1f;
+	sf::Vector2i mousepos;
+	mousepos.x = mouse.x;
+	mousepos.y = mouse.y;
+
+	cout << mousepos.x << " " << mousepos.y << endl;
 
 	mObjects[0]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mObjects[1]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));

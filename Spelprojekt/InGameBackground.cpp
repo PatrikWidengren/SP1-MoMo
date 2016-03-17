@@ -15,31 +15,83 @@ static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World0
 
 static const string momentum2_01 = "Resource Files/Sprites/Momentum_Mower1_1.png";
 static const string momentum2_02 = "Resource Files/Sprites/Momentum_Mower1_2.png";
-
 static const string momentum3_01 = "Resource Files/Sprites/Momentum_Mower2_1.png";
 static const string momentum3_02 = "Resource Files/Sprites/Momentum_Mower2_2.png";
 static const string momentum3_03 = "Resource Files/Sprites/Momentum_Mower2_3.png";
-
 static const string momentum4_01 = "Resource Files/Sprites/Momentum_Mower3_1.png";
 static const string momentum4_02 = "Resource Files/Sprites/Momentum_Mower3_2.png";
 static const string momentum4_03 = "Resource Files/Sprites/Momentum_Mower3_3.png";
 static const string momentum4_04 = "Resource Files/Sprites/Momentum_Mower3_4.png";
 
-static const string filename_inGameHud = "Resource Files/Backgrounds/In-game UI.png";
+static const string filename_inGameHud = "Resource Files/Sprites/wood.png";
 static const string bronze_medal = "Resource Files/Sprites/Medal_Bronze.png";
 static const string silver_medal = "Resource Files/Sprites/Medal_Silver.png";
 static const string gold_medal = "Resource Files/Sprites/Medal_Gold.png";
 
+static const string filename_arrow = "Resource Files/Sprites/downArrow.png";
+static const string filename_woodMedal = "Resource Files/Sprites/Wood_Medal.png";
+static const string filename_woodMenu = "Resource Files/Sprites/Wood_Menu.png";
+static const string filename_woodMomentum = "Resource Files/Sprites/Wood_Momentum.png";
+static const string filename_woodLawnmower = "Resource Files/Sprites/Wood_Tools.png";
+static const string filename_woodHedgecutter = "Resource Files/Sprites/Wood_Tools_1.png";
+static const string filename_momentumText = "Resource Files/Sprites/MOMENTUM.png";
+static const string filename_menuText = "Resource Files/Sprites/MENU.png";
+
+static const string filename_lawnmower01 = "Resource Files/Sprites/Mower_3.png";
+static const string filename_lawnmower02 = "Resource Files/Sprites/Mower_4.png";
+static const string filename_lawnmower03 = "Resource Files/Sprites/Mower_5.png";
+static const string filename_lawnmower04 = "Resource Files/Sprites/Mower_1.png";
+static const string filename_lawnmower05 = "Resource Files/Sprites/Mower_2.png";
+static const string filename_hedgecutter01 = "Resource Files/Sprites/Hedgecutter.png";
+
 InGameBackground::InGameBackground() {
 	setTextures();
-	inGameHud->setTexture(*texture_inGameHud);
+	sprite_inGameHud->setTexture(*texture_inGameHud);
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf")) {
 		cout << "Error loading arial.ttf" << endl;
 	}
-	sprite_medal->setPosition(594, 26);
-	sprite_momentum->setPosition(775, 95);
+
 	texture_momentum4_04->loadFromFile(momentum4_04);
 	sprite_momentum->setTexture(*texture_momentum4_04);
+
+	imageArrow->loadFromFile(filename_arrow);
+	imageArrow->createMaskFromColor(sf::Color::White);
+	texture_arrow->loadFromImage(*imageArrow);
+	sprite_downArrow->setTexture(*texture_arrow);
+
+	texture_woodHedgecutter->loadFromFile(filename_woodHedgecutter);
+	texture_woodLawnmower->loadFromFile(filename_woodLawnmower);
+	texture_woodMedal->loadFromFile(filename_woodMedal);
+	texture_woodMenu->loadFromFile(filename_woodMenu);
+	texture_woodMomentum->loadFromFile(filename_woodMomentum);
+	texture_momentumText->loadFromFile(filename_momentumText);
+	texture_menuText->loadFromFile(filename_menuText);
+	texture_lawnmower01->loadFromFile(filename_lawnmower01);
+	texture_hedgecutter01->loadFromFile(filename_hedgecutter01);
+
+	sprite_woodHedgecutter->setTexture(*texture_woodHedgecutter);
+	sprite_woodLawnmower->setTexture(*texture_woodLawnmower);
+	sprite_woodMedal->setTexture(*texture_woodMedal);
+	sprite_woodMenu->setTexture(*texture_woodMenu);
+	sprite_woodMomentum->setTexture(*texture_woodMomentum);
+	sprite_momentumText->setTexture(*texture_momentumText);
+	sprite_menuText->setTexture(*texture_menuText);
+	sprite_lawnmower->setTexture(*texture_lawnmower01);
+	sprite_hedgecutter->setTexture(*texture_hedgecutter01);
+
+	sprite_woodMedal->setPosition(550, 15);
+	sprite_woodMomentum->setPosition(750, 8);
+	sprite_woodLawnmower->setPosition(1210, 35);
+	sprite_woodHedgecutter->setPosition(1425, 35);
+	sprite_woodMenu->setPosition(1630, 15);
+	sprite_momentumText->setPosition(775, 17);
+	sprite_menuText->setPosition(1642, 25);
+	sprite_lawnmower->setPosition(1210, 35);
+	sprite_hedgecutter->setPosition(1425, 35);
+
+	sprite_medal->setPosition(594, 26);
+	sprite_momentum->setPosition(775, 95);
+	sprite_downArrow->setPosition(750, 50);
 }
 InGameBackground::~InGameBackground() 
 {
@@ -69,9 +121,9 @@ InGameBackground::~InGameBackground()
 	delete texture_momentum4_04;
 
 	delete sprite_momentum;
-	delete backgroundTop;
-	delete backgroundBottom;
-	delete inGameHud;
+	delete sprite_backgroundTop;
+	delete sprite_backgroundBottom;
+	delete sprite_inGameHud;
 	delete sprite_medal;
 
 	delete mTurns;
@@ -80,37 +132,47 @@ InGameBackground::~InGameBackground()
 void InGameBackground::setMapname(string mapname) {
 	mMapName = mapname;
 	if (mMapName == "map01a01.txt") {
-		backgroundTop->setTexture(*texture01_backgroundTop);
-		backgroundBottom->setTexture(*texture01_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01_backgroundBottom);
 	}
 	else if (mMapName == "map01a02.txt") {
-		backgroundTop->setTexture(*texture02_backgroundTop);
-		backgroundBottom->setTexture(*texture02_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture02_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture02_backgroundBottom);
 	}
 	else if (mMapName == "map01a03.txt") {
-		backgroundTop->setTexture(*texture03_backgroundTop);
-		backgroundBottom->setTexture(*texture03_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture03_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture03_backgroundBottom);
 	}
 	else if (mMapName == "map01a04.txt") {
-		backgroundTop->setTexture(*texture04_backgroundTop);
-		backgroundBottom->setTexture(*texture04_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture04_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture04_backgroundBottom);
 	}
 	else if (mMapName == "map01a05.txt") {
-		backgroundTop->setTexture(*texture05_backgroundTop);
-		backgroundBottom->setTexture(*texture05_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture05_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture05_backgroundBottom);
 	}
 }
 void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
-		window.draw(*backgroundTop);
+		window.draw(*sprite_backgroundTop);
 	}
-	window.draw(*inGameHud);
-	window.draw(*sprite_medal);
+	window.draw(*sprite_inGameHud);
 	window.draw(*sprite_momentum);
+	window.draw(*sprite_downArrow);
+	window.draw(*sprite_woodMedal);
+	window.draw(*sprite_woodHedgecutter);
+	//window.draw(*sprite_woodLawnmower);
+	//window.draw(*sprite_woodMenu);
+	window.draw(*sprite_woodMomentum);
+	window.draw(*sprite_momentumText);
+	window.draw(*sprite_menuText);
+	window.draw(*sprite_hedgecutter);
+	window.draw(*sprite_lawnmower);
+	window.draw(*sprite_medal);
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
-		window.draw(*backgroundBottom);
+		window.draw(*sprite_backgroundBottom);
 	}
 	window.draw(*mTurns);
 	window.draw(*mProgress);
@@ -234,9 +296,9 @@ void InGameBackground::scale(sf::RenderWindow &window) {
 	float scaleX = (float)window.getSize().x / 1920;
 	float scaleY = (float)window.getSize().y / 1080;
 
-	backgroundBottom->setScale(scaleX, scaleY);
-	backgroundTop->setScale(scaleX, scaleY);
-	inGameHud->setScale(scaleX, scaleY);
+	sprite_backgroundBottom->setScale(scaleX, scaleY);
+	sprite_backgroundTop->setScale(scaleX, scaleY);
+	sprite_inGameHud->setScale(scaleX, scaleY);
 	sprite_medal->setScale(scaleX, scaleY);
 	mTurns->setScale(scaleX, scaleY);
 	mProgress->setScale(scaleX, scaleY);

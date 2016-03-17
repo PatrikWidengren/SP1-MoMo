@@ -1065,6 +1065,54 @@
     <Image Include="Resource Files\Backgrounds\World03_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Sprites\downArrow.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Medal.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Menu.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Momentum.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Tools.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Tools_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MOMENTUM.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutter.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_4.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_5.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MENU.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MENU_Highlight.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf">

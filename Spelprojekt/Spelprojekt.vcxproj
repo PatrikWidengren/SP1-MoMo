@@ -364,12 +364,14 @@
     <Image Include="Resource Files\Sprites\Dandelion01_Uncut.png" />
     <Image Include="Resource Files\Sprites\deputy.png" />
     <Image Include="Resource Files\Sprites\dog.png" />
+    <Image Include="Resource Files\Sprites\downArrow.png" />
     <Image Include="Resource Files\Sprites\fence_01.png" />
     <Image Include="Resource Files\Sprites\grass.png" />
     <Image Include="Resource Files\Sprites\Grass01_Cut.png" />
     <Image Include="Resource Files\Sprites\Grass01_Uncut.png" />
     <Image Include="Resource Files\Sprites\Hedge01.png" />
     <Image Include="Resource Files\Sprites\Hedge01_Cut.png" />
+    <Image Include="Resource Files\Sprites\Hedgecutter.png" />
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png" />
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png" />
     <Image Include="Resource Files\Sprites\Knapp-on.png" />
@@ -378,6 +380,9 @@
     <Image Include="Resource Files\Sprites\Medal_Silver.png" />
     <Image Include="Resource Files\Sprites\meep.png" />
     <Image Include="Resource Files\Sprites\meep02.png" />
+    <Image Include="Resource Files\Sprites\MENU.png" />
+    <Image Include="Resource Files\Sprites\MENU_Highlight.png" />
+    <Image Include="Resource Files\Sprites\MOMENTUM.png" />
     <Image Include="Resource Files\Sprites\Momentum_Mower1_1.png" />
     <Image Include="Resource Files\Sprites\Momentum_Mower1_2.png" />
     <Image Include="Resource Files\Sprites\Momentum_Mower2_1.png" />
@@ -390,11 +395,22 @@
     <Image Include="Resource Files\Sprites\Mowers\mow0.png" />
     <Image Include="Resource Files\Sprites\Mowers\mow1.png" />
     <Image Include="Resource Files\Sprites\Mowers\mow2.png" />
+    <Image Include="Resource Files\Sprites\Mower_1.png" />
+    <Image Include="Resource Files\Sprites\Mower_2.png" />
+    <Image Include="Resource Files\Sprites\Mower_3.png" />
+    <Image Include="Resource Files\Sprites\Mower_4.png" />
+    <Image Include="Resource Files\Sprites\Mower_5.png" />
     <Image Include="Resource Files\Sprites\StandardTree1.png" />
     <Image Include="Resource Files\Sprites\stone.png" />
     <Image Include="Resource Files\Sprites\tree.png" />
     <Image Include="Resource Files\Sprites\TreeStump1.png" />
     <Image Include="Resource Files\Sprites\Tree_Oak.png" />
+    <Image Include="Resource Files\Sprites\Wood.png" />
+    <Image Include="Resource Files\Sprites\Wood_Medal.png" />
+    <Image Include="Resource Files\Sprites\Wood_Menu.png" />
+    <Image Include="Resource Files\Sprites\Wood_Momentum.png" />
+    <Image Include="Resource Files\Sprites\Wood_Tools.png" />
+    <Image Include="Resource Files\Sprites\Wood_Tools_1.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resource Files\Fonts\arial.ttf" />
