@@ -240,11 +240,11 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow02->setTexture(*textHighlightArrow01);
 			mClick = false;
 			reset = true;
-			if (selectedMow < 2)
+			if (selectedMow < 4)
 			{
 				selectedMow++;
 			}
-			spriteGrassMower->setTexture(textMowers[selectedMow]);
+			spriteGrassMower->setTexture(textMowers[selectedMow]);		
 		}
 		else
 			spriteArrow02->setTexture(*textArrow01);
@@ -397,7 +397,10 @@ void RegionMap::setTextures()
 		textMowers[1].loadFromFile("error.jpg");
 	if (!textMowers[2].loadFromFile("Resource Files/Menus/Shop_UI/Mower_3_Big.png"))
 		textMowers[2].loadFromFile("error.jpg");
-
+	if (!textMowers[3].loadFromFile("Resource Files/Menus/Shop_UI/Mower_4_Big.png"))
+		textMowers[3].loadFromFile("error.jpg");
+	if (!textMowers[4].loadFromFile("Resource Files/Menus/Shop_UI/Mower_5_Big.png"))
+		textMowers[4].loadFromFile("error.jpg");
 
 	if (!textHedgecutters[0].loadFromFile("Resource Files/Menus/Shop_UI/Hedgecutter_Small.png"))
 		textHedgecutters[0].loadFromFile("error.jpg");

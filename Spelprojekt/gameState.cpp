@@ -34,10 +34,10 @@ gameState::gameState(sf::RenderWindow &window)
 	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 10000));
-	mLawnMowers.push_back(new RoyceMower(new LawnMower(10, 10, 1, 1, 3000)));
-	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
 	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
+	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 3000));
+	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
@@ -226,11 +226,13 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
+	
 	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals()); 	
-	mInGameBackground->getMowerStats(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal());
+	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal());
 	mInGameBackground->selectMomentumSprite();
 	mInGameBackground->scale(window);
 	mInGameBackground->drawBackgroundTop(window);
+	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
 	mMap01->update(sound, window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
