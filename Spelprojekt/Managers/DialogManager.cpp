@@ -11,7 +11,7 @@ DialogManager::DialogManager(sf::RenderWindow &window)
 
 DialogManager::~DialogManager()
 {
-	delete textureMap01a01Dialogue;
+	delete textureMap01a01BeforeDialogue;
 
 	delete spriteDialogs;
 }
@@ -45,7 +45,7 @@ void DialogManager::playBeforeDialogue(std::string wichMap, sf::RenderWindow &wi
 		drawBeforeDialogue(window);
 
 	//std::cout << " Play Dialogue CHECK" << std::endl;	
-	std::cout << "whichMap?: " << wichMap << "   " << mCurrentBeforeMapDialogue << "   " << mTimer << std::endl;
+	//std::cout << "whichMap?: " << wichMap << "   " << mCurrentBeforeMapDialogue << "   " << mTimer << std::endl;
 
 }
 
@@ -54,15 +54,15 @@ void DialogManager::drawBeforeDialogue(sf::RenderWindow &window)
 
 	swapDialogueTexture(0);
 	window.draw(*spriteDialogs);
-	if (mTimer >= 4 * 60 && j > 0)
-	{
-		spriteDialogs->setColor(sf::Color(255, 255, 255, j));
-		j-=(255/35);
-	}
+	//if (mTimer >= 4 * 60 && j > 0)
+	//{
+	//	spriteDialogs->setColor(sf::Color(255, 255, 255, j));
+	//	j-=(255/35);
+	//}
 
-	//window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
-	//std::cout << "DrawDialog( &window) CHECK " << std::endl;
-
+	/*window.draw(*spriteDialogs[mCurrentMapDialogue][mCurrentDialogue]);
+	std::cout << "DrawDialog( &window) CHECK " << std::endl;
+*/
 }
 #pragma endregion
 
@@ -75,7 +75,7 @@ void DialogManager::swapDialogueTexture(int beforeOrAfter)
 	{
 		//spriteDialogs.setTexture(*textBeforeDialogs[mCurrentBeforeMapDialogue][mCurrentDialogue]);
 		//spriteDialogs.setTexture(*textBeforeDialogstest[mCurrentBeforeMapDialogue][mCurrentDialogue]);
-		spriteDialogs->setTexture(*textureMap01a01Dialogue);
+		spriteDialogs->setTexture(*textureMap01a01BeforeDialogue[mCurrentDialogue]);
 
 	}
 	else
@@ -90,7 +90,6 @@ void DialogManager::swapDialogueTexture(int beforeOrAfter)
 #pragma region Edit Dialogue conditions
 bool DialogManager::checkBeforeDialogue(std::string mapName)
 {
-	bool i = false;
 	if (mapName == "map01a01.txt" )
 	{
 		mCurrentBeforeMapDialogue = 0;
@@ -104,8 +103,24 @@ bool DialogManager::checkBeforeDialogue(std::string mapName)
 	//	i = true;
 
 	//}
-	if (mTimer >= 5 * 60)
+	//if (mTimer >= 5 * 60)
+	//	i = false;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+	{
+		mClick = false;
+
+		if (mCurrentDialogue <= 22)
+			mCurrentDialogue++;
+	
+	}
+	else if(mCurrentDialogue >= 22)
+	{
+		spriteDialogs->setColor(sf::Color(255, 255, 255, 0));
 		i = false;
+	}
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
+		mClick = true;
+	}
 
 	return i;
 }
@@ -127,7 +142,19 @@ void DialogManager::setTextures()
 {
 	//map01a01
 				//Beforetexture
-				textureMap01a01Dialogue->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
+	for (int i = 0; i < 23; i++)
+	{
+		textureMap01a01BeforeDialogue[i] = new sf::Texture();
+		//textureMap01a01BeforeDialogue[i] = new sf::Texture();
+		std::cout << "Loop: " << i;
+		textureMap01a01BeforeDialogue[i]->loadFromFile(writeDialogSearchName(i+1));
+
+		//textureMap01a01BeforeDialogue[i]->loadFromFile("Resource Files/Dialogue/" + writeDialogSearchName(i));
+	}
+
+	//textureMap01a01BeforeDialogue[0]->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
+
+						//	textureMap01a01Dialogue->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
 				//textBeforeDialogstest[0][0]->loadFromFile("Resource Files/Dialogue/Before01a01 0.png");
 				//textBeforeDialogs[0][1]->loadFromFile("Resource Files/Dialogue/Before01a01 1.png");
 				//textBeforeDialogs[0][2]->loadFromFile("Resource Files/Dialogue/Before01a01 2.png");
@@ -166,4 +193,12 @@ void DialogManager::setTextures()
 
 
 
+}
+
+std::string DialogManager::writeDialogSearchName(int d)
+{
+	//"Resource Files/Dialogue/TutorialDialogs/" 
+	std::ostringstream o;
+	o << "Resource Files/Dialogue/TutorialDialogs/" << d << ".png";
+	return o.str();
 }
