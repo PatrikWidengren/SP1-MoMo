@@ -13,6 +13,7 @@ public:
 	void drawBackgroundBottom(sf::RenderWindow &window);
 	void setTextures();
 	void setMapname(std::string mapname);
+	std::string getMedal();
 	std::string writeTurns(int turns);
 	std::string writeProgress(int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	int getTurns();
@@ -21,6 +22,7 @@ public:
 	void getMowerStats(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue);
 	void selectMomentumSprite();
 private:
+	std::string mMedal;
 	//int mIntTurns;
 	sf::Font font;
 	sf::Texture* texture01_backgroundTop = new sf::Texture();

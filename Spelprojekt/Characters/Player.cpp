@@ -22,6 +22,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	//mPlayerSprite.setTexture(texturePlayer);
 	mTextureIdleSheet->loadFromFile(meep_idle);
 	mSpriteIdleSheet->setTexture(*mTextureIdleSheet);
+	mdopies = 100;
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -66,7 +67,7 @@ Player::~Player(){
 
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
-	mMoveTime = 1.0f / movement.size();
+	mMoveTime = 0.1f / movement.size();
 	return movement;
 }
 
@@ -280,7 +281,4 @@ void Player::scale(sf::RenderWindow &window) {
 
 	mSpriteIdleSheet->setScale(sf::Vector2f(scaleX, scaleY));
 	mSpriteWalkSheet->setScale(sf::Vector2f(scaleX, scaleY));
-}
-Mower* Player::mower() {
-	return mLawnMower;
 }

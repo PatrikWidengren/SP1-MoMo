@@ -27,11 +27,15 @@ public:
 	sf::Texture* textHighlightCredits = new sf::Texture();
 	sf::Texture* textHighlightExit = new sf::Texture();
 
+	sf::Texture* textSpinbg = new sf::Texture();
+
 	sf::Sprite* spriteContinue = new sf::Sprite();
 	sf::Sprite* spriteNewgame = new sf::Sprite();
 	sf::Sprite* spriteOption = new sf::Sprite();
 	sf::Sprite* spriteCredits = new sf::Sprite();
 	sf::Sprite* spriteExit = new sf::Sprite();
+
+	sf::Sprite* spriteSpinbg = new sf::Sprite();
 
 
 	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background

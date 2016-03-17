@@ -132,14 +132,14 @@ float** Map1::createGrid(int width, int height) {
 		}
 	}
 
-	cout << "Height=" << mHeight << endl;
-	cout << "Width=" << mWidth << endl;
-	for (int i = 0; i < mHeight; i++) {
-		for (int j = 0; j < mWidth; j++) {
-			cout << array2d[i][j] << " ";
-	}
-		cout << endl;
-		}
+	//cout << "Height=" << mHeight << endl;
+	//cout << "Width=" << mWidth << endl;
+	//for (int i = 0; i < mHeight; i++) {
+	//	for (int j = 0; j < mWidth; j++) {
+	//		cout << array2d[i][j] << " ";
+	//}
+	//	cout << endl;
+	//	}
 
 
 	return array2d;
@@ -1551,7 +1551,4 @@ vector<int>* Map1::getGoals() {
 	getgoals->push_back(mSilverDandelion);
 	getgoals->push_back(mGoldDandelion);
 	return getgoals;
-}
-int Map1::getTurnsLeft() {
-	return mWinRounds - mTurnCount;
 }

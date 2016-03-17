@@ -169,6 +169,7 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 	window.draw(*sprite_hedgecutter);
 	window.draw(*sprite_lawnmower);
 	window.draw(*sprite_medal);
+	window.draw(*sprite_momentum);
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
@@ -237,13 +238,14 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	//Fått guld
 	if (cutgrass >= goals->at(2) && cuthedges >= goals->at(5) && cutdandelions >= goals->at(8)) {
 		sprite_medal->setTexture(*texture_goldMedal);
-		
+		mMedal = "Gold";
 		o << "All goals completed. ";
 	
 	}
 	//Fått silver
 	else if (cutgrass >= goals->at(1) && cuthedges >= goals->at(4) && cutdandelions >= goals->at(7)) {
 		sprite_medal->setTexture(*texture_silverMedal);
+		mMedal = "Silver";
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for gold medal: " << goals->at(2) << endl;
 		}
@@ -270,6 +272,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	//Påväg till brons
 	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
 		//sprite_medal->setTexture(*texture_bronzeMedal);
+		mMedal = "Bronze";
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
 		}

@@ -56,7 +56,7 @@ public:
 	void playPlayer();
 	sf::Sprite* getSpriteSheet();
 	void scale(sf::RenderWindow &window);
-	Mower* mower();
+	int mdopies; // . . . . . . . . . . . . Valuta
 
 private:
 	sf::Clock moveClock;

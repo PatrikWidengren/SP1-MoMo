@@ -103,7 +103,7 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 void inGameMenu::setTextures()
 {
 	
-	if (!textBg01->loadFromFile("Resource Files/Backgrounds/Background_ESC.png")) //try to load the texture. if its wrong, give error
+	if (!textBg01->loadFromFile("Resource Files/Backgrounds/InGame_ESC.png")) //try to load the texture. if its wrong, give error
 	textBg01->loadFromFile("error.jpg");
 
 	if (!highlighttextBg01->loadFromFile("temiu.png")) //try to load the texture. if its wrong, give error
@@ -130,7 +130,7 @@ void inGameMenu::setTextures()
 	spriteQuit->setTexture(*textQuit);
 
 	bg01->setTexture(*textBg01);
-	
+	bg01->setColor(sf::Color(255, 255, 255, 220));
 }
 
 void inGameMenu::setFonts()
@@ -169,7 +169,7 @@ void inGameMenu::scale(sf::RenderWindow &window) {
 	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 546 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 725 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 896 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
-
+	bg01->setPosition(470 * bg01->getScale().x, 480 * bg01->getScale().y);
 	spriteResume->setPosition(700 * bg01->getScale().x, 550 * bg01->getScale().y);
 	spriteOption->setPosition(700 * bg01->getScale().x, 730 * bg01->getScale().y);
 	spriteQuit->setPosition(700 * bg01->getScale().x, 900 * bg01->getScale().y);
