@@ -103,6 +103,9 @@
     <Filter Include="Resource Files\Dialogue">
       <UniqueIdentifier>{39d49156-5712-428b-a6c9-a0ed192393cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Dialogue\TutorialDialogs">
+      <UniqueIdentifier>{d8694c91-21b2-4c25-8411-8e7aa38d20e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -1112,6 +1115,75 @@
     </Image>
     <Image Include="Resource Files\Sprites\Wood.png">
       <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\1.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\2.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\3.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\4.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\5.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\6.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\7.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\8.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\9.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\10.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\11.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\12.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\13.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\14.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\15.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\16.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\17.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\18.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\19.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\20.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\21.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\22.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\23.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

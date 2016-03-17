@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <sstream>
+
 
 //#include "../GameStates/Map1.h" Used for "checkIfBeforeAfterDialogue" Maybe. //Fnatte
 class DialogManager
@@ -19,6 +21,7 @@ public:
 	bool checkAfterDialogue(std::string mapName);
 	int mCurrentDialogue;
 	void swapDialogueTexture(int beforeOrAfter);
+	std::string writeDialogSearchName(int d);
 
 	void setTextures();
 
@@ -27,11 +30,20 @@ private:
 	int mCurrentBeforeMapDialogue;
 	int mCurrentAfterMapDialogue;
 	int j = 255;
+	bool mClick = false;
+	bool i = false;
 
-	typedef std::vector<sf::Texture*> DialogueTextures;
+
+	//typedef std::vector<sf::Texture*> DialogueTextures;
+
+	//DialogueTextures textureMap01a01BeforeDialogue[23];
+
+	//std::vector<sf::Texture*> textureMap01a01BeforeDialogue;
+
+	sf::Texture* textureMap01a01BeforeDialogue[23];
 
 	//sf::Texture* **textBeforeDialogstest;
-	sf::Texture* textureMap01a01Dialogue = new sf::Texture();
+//	sf::Texture* textureMap01a01Dialogue = new sf::Texture();
 	sf::Sprite* spriteDialogs = new sf::Sprite();
 	//DialogueTextures *textBeforeDialogs;
 	//DialogueTextures *textAfterDialogs;
