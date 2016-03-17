@@ -19,10 +19,11 @@ public:
 	int getTurns();
 	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	void scale(sf::RenderWindow &window);
-	void getInfo(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue);
+	void getInfo(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue, bool checkmower);
 	void selectMomentumSprite();
 	void selectLawnmowerSprite(int number);
 	void selectHedgecutterSprite();
+	void resetInGameHud();
 private:
 	std::string mMedal;
 	//int mIntTurns;

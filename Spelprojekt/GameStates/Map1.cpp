@@ -1556,3 +1556,6 @@ vector<int>* Map1::getGoals() {
 int Map1::getTurnsLeft() {
 	return mWinRounds - mTurnCount;
 }
+int Map1::getMeepSpawnDirection() {
+	return meepSpawnDirection;
+}
