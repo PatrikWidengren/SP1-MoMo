@@ -18,8 +18,6 @@ public:
 	int getTurns();
 	void write(int turncount, int cutgrass, int cuthedges, int cutdandelions, std::vector<int>* goals);
 	void scale(sf::RenderWindow &window);
-	void getMowerStats(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue);
-	void selectMomentumSprite();
 private:
 	//int mIntTurns;
 	sf::Font font;
@@ -38,18 +36,6 @@ private:
 	sf::Texture* texture_silverMedal = new sf::Texture();
 	sf::Texture* texture_goldMedal = new sf::Texture();
 
-	sf::Texture* texture_momentum2_01 = new sf::Texture();
-	sf::Texture* texture_momentum2_02 = new sf::Texture();
-	sf::Texture* texture_momentum3_01 = new sf::Texture();
-	sf::Texture* texture_momentum3_02 = new sf::Texture();
-	sf::Texture* texture_momentum3_03 = new sf::Texture();
-	sf::Texture* texture_momentum4_01 = new sf::Texture();
-	sf::Texture* texture_momentum4_02 = new sf::Texture();
-	sf::Texture* texture_momentum4_03 = new sf::Texture();
-	sf::Texture* texture_momentum4_04 = new sf::Texture();
-
-
-	sf::Sprite* sprite_momentum = new sf::Sprite();
 	sf::Sprite* backgroundTop = new sf::Sprite();
 	sf::Sprite* backgroundBottom = new sf::Sprite();
 	sf::Sprite* inGameHud = new sf::Sprite();
@@ -58,12 +44,6 @@ private:
 	sf::Text* mTurns = new sf::Text; //(writeTurns(int turns), font, 20);
 	sf::Text* mProgress = new sf::Text;
 	std::vector<int>* mGoals;
-
-	int mMowerMaxMomentum;
-	int mMowerMinMomentum;
-	int mMowerFallValue;
-	int mMowerRiseValue;
-	int mMowerCurrentMomentum;
 };
 
 

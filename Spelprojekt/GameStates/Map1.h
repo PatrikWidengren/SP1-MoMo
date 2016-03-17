@@ -61,7 +61,6 @@ public:
 	float** createGrid(int width, int height);
 	//Added turn count
 	int getTurnCount();
-	int getTurnsLeft();
 	int getMaxTurns();
 	int getGrass();
 	int getHedges();
@@ -90,7 +89,7 @@ private:
 	float totalAmountOfGrass = 0;
 	float totalAmountOfHedges = 0;
 	float totalAmountOfDandelions = 0;
-	int turnsLeft = 50;
+	int turnsLeft = 200;
 	float cutGrass = 0;
 	float cutHedges = 0;
 	float cutDandelions = 0;

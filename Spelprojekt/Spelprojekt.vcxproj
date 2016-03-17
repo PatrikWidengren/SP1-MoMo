@@ -45,7 +45,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\SFML-2.3.2\include</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -61,7 +60,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\SFML-2.3.2\include</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -226,6 +224,9 @@
     <Image Include="Resource Files\Backgrounds\InGame_Options.png" />
     <Image Include="Resource Files\Backgrounds\InGame_OptionsMain.png" />
     <Image Include="Resource Files\Backgrounds\Loading_Screen.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Gold.png" />
+    <Image Include="Resource Files\Backgrounds\Medal_Silver.png" />
     <Image Include="Resource Files\Backgrounds\Options_Video.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_BG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane01_FG.png" />
@@ -237,26 +238,6 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane04_FG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane05_BG.png" />
     <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane01_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane01_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane02_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane02_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane03_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane03_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane04_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane04_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane05_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World02_Lane05_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane01_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane01_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane02_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane02_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane03_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane03_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane04_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane04_FG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane05_BG.png" />
-    <Image Include="Resource Files\Backgrounds\World03_Lane05_FG.png" />
     <Image Include="Resource Files\Backgrounds\worldMap_temp.jpg" />
     <Image Include="Resource Files\Backgrounds\World_Map.png" />
     <Image Include="Resource Files\Backgrounds\World_Map_pins.png" />
@@ -372,21 +353,8 @@
     <Image Include="Resource Files\Sprites\Hedge01_Cut.png" />
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt0.png" />
     <Image Include="Resource Files\Sprites\Hedgecutters\Hedgecutt1.png" />
-    <Image Include="Resource Files\Sprites\Knapp-on.png" />
-    <Image Include="Resource Files\Sprites\Medal_Bronze.png" />
-    <Image Include="Resource Files\Sprites\Medal_Gold.png" />
-    <Image Include="Resource Files\Sprites\Medal_Silver.png" />
     <Image Include="Resource Files\Sprites\meep.png" />
     <Image Include="Resource Files\Sprites\meep02.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower1_1.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower1_2.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_1.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_2.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_3.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_1.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_2.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_3.png" />
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_4.png" />
     <Image Include="Resource Files\Sprites\Mowers\mow0.png" />
     <Image Include="Resource Files\Sprites\Mowers\mow1.png" />
     <Image Include="Resource Files\Sprites\Mowers\mow2.png" />

@@ -918,9 +918,6 @@
     <Image Include="Resource Files\Backgrounds\World_Map.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Sprites\Knapp-on.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
     <Image Include="Resource Files\Backgrounds\World_Map_pins.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
@@ -948,6 +945,15 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Gold.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
     <Image Include="Resource Files\Sprites\control_numpad.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
@@ -968,102 +974,6 @@
     </Image>
     <Image Include="Resource Files\SpriteSheets\Fontän_3x3_Spritesheet_Nearest.png">
       <Filter>Resource Files\SpriteSheets</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Medal_Bronze.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Medal_Gold.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Medal_Silver.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower1_1.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower1_2.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_1.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_2.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower2_3.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_1.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_2.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_3.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Sprites\Momentum_Mower3_4.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane01_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane01_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane02_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane02_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane03_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane03_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane04_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane04_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane05_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World02_Lane05_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane01_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane01_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane02_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane02_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane03_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane03_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane04_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane04_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane05_BG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\World03_Lane05_FG.png">
-      <Filter>Resource Files\Backgrounds</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
