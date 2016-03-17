@@ -103,8 +103,9 @@ bool DialogManager::checkBeforeDialogue(std::string mapName)
 	//	i = true;
 
 	//}
-	//if (mTimer >= 5 * 60)
-	//	i = false;
+	if (mCurrentDialogue >= 22)
+		i = false;
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 	{
 		mClick = false;
