@@ -228,7 +228,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	
 	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals()); 	
-	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal());
+	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
 	mInGameBackground->selectMomentumSprite();
 	mInGameBackground->scale(window);
 	mInGameBackground->drawBackgroundTop(window);
@@ -476,7 +476,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 			if (mInGameBackground->getMedal() == "Bronze")
 				mWorldMap01->addDemDopies(40);
-
+			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
 
 			mState = 6;
@@ -798,6 +798,20 @@ void gameState::loadMap(sf::RenderWindow &window) {
 	std::string levelToLoad = mRegionMap01->loadLevel();
 
 	mMap01 = new Map1(levelToLoad, mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	int meepStartAnimation = mMap01->getMeepSpawnDirection();
+	
+	if (meepStartAnimation == 1) {
+		mPlayer->changeAnimation(4);
+	}
+	if (meepStartAnimation == 2) {
+		mPlayer->changeAnimation(6);
+	}
+	if (meepStartAnimation == 3) {
+		mPlayer->changeAnimation(8);
+	}
+	if (meepStartAnimation == 4) {
+		mPlayer->changeAnimation(2);
+	}
 
 	mMap01->spawnObjects();
 

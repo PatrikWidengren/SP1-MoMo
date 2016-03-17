@@ -29,8 +29,6 @@ RegionMap::RegionMap(float width, float height)
 	setFonts();
 	setTextures();
 
-
-
 	spriteShop->setPosition(582, 1080);
 	spriteArrow01->setPosition(950, 730);
 	spriteArrow01->setScale(-1, 1);
@@ -76,8 +74,6 @@ RegionMap::~RegionMap()
 	delete spriteShop;
 	delete spriteLevels;
 	delete bg01;
-
-
 }
 
 void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)

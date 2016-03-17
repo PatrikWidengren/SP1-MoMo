@@ -65,6 +65,7 @@ public:
 	int getGrass();
 	int getHedges();
 	int getDandelions();
+	int getMeepSpawnDirection();
 	std::vector<int> *getGoals();
 	int mTurnCount = 0;
 	int mLoseRounds = 50;

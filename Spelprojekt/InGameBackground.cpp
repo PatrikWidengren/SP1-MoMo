@@ -185,7 +185,6 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 	}
 	window.draw(*sprite_inGameHud);
 	window.draw(*sprite_momentum);
-	window.draw(*sprite_downArrow);
 	window.draw(*sprite_woodMedal);
 	window.draw(*sprite_woodHedgecutter);
 	//window.draw(*sprite_woodLawnmower);
@@ -197,6 +196,8 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 	window.draw(*sprite_lawnmower);
 	window.draw(*sprite_medal);
 	window.draw(*sprite_momentum);
+	window.draw(*sprite_downArrow);
+
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
@@ -293,6 +294,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	}
 	//Fått brons
 	else if (cutgrass >= goals->at(0) && cuthedges >= goals->at(3) && cutdandelions >= goals->at(6)) {
+		sprite_medal->setColor(sf::Color(255, 255, 255, 255));
 		sprite_medal->setTexture(*texture_bronzeMedal);
 		mMedal = "Bronze";
 		if (goals->at(0) != 0) {
@@ -343,19 +345,22 @@ void InGameBackground::scale(sf::RenderWindow &window) {
 	sprite_momentum->setScale(scaleX, scaleY);
 
 	sprite_medal->setPosition(594 * scaleX, 26 * scaleY);
-
 	sprite_momentum->setPosition(775 * scaleX, 95 * scaleY);
 	mTurns->setPosition(1700 * scaleX, 150 * scaleY);
 	mProgress->setPosition(50 * scaleX, 50 * scaleY);
 }
-void InGameBackground::getInfo(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue) {
+void InGameBackground::getInfo(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue, bool checkmower) {
 	mMowerMaxMomentum = maxmomentum;
 	mMowerMinMomentum = minmomentum;
 	mMowerCurrentMomentum = currentmomentum;
 	mMowerFallValue = fallvalue;
 	mMowerRiseValue = risevalue;
-	//mCurrentLawnmower = currentlawnmower;
-	//mCurrentHedgecutter = currentlawnmower;
+	if (checkmower) {
+		sprite_downArrow->setPosition(1275, 15);
+	}
+	else {
+		sprite_downArrow->setPosition(1490, 15);
+	}
 }
 void InGameBackground::selectMomentumSprite() {
 	if (mMowerMaxMomentum == 2) {
@@ -413,6 +418,10 @@ void InGameBackground::selectHedgecutterSprite() {
 	if (mCurrentLawnmower == 1) {
 		sprite_hedgecutter->setTexture(*texture_hedgecutter01);
 	}
+}
+void InGameBackground::resetInGameHud() {
+	sprite_medal->setColor(sf::Color(255, 255, 255, 0));
+	mMedal = "0";
 }
 string InGameBackground::getMedal() {
 	return mMedal;
