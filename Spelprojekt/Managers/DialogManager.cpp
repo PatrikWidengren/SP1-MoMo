@@ -6,7 +6,8 @@ DialogManager::DialogManager(sf::RenderWindow &window)
 	int mCurrentMapDialogue = 0;
 	int mCurrentDialogue = 0;
 	setTextures();
-	spriteDialogs->setPosition(0, window.getSize().y - 309);
+	spriteDialogs->setPosition(0,0);
+	spriteDialogs->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 }
 
 DialogManager::~DialogManager()
@@ -153,7 +154,7 @@ void DialogManager::setTextures()
 		//textureMap01a01BeforeDialogue[i] = new sf::Texture();
 		std::cout << "Loop: " << i;
 		textureMap01a01BeforeDialogue[i]->loadFromFile(writeDialogSearchName(i+1));
-
+		textureMap01a01BeforeDialogue[i]->setSmooth(true);
 		//textureMap01a01BeforeDialogue[i]->loadFromFile("Resource Files/Dialogue/" + writeDialogSearchName(i));
 	}
 
