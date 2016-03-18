@@ -384,6 +384,12 @@
     <Image Include="Resource Files\Sprites\cutgrass.png" />
     <Image Include="Resource Files\Sprites\Dandelion01_Uncut.png" />
     <Image Include="Resource Files\Sprites\deputy.png" />
+    <Image Include="Resource Files\Sprites\Description\hedgetrimmer_0.png" />
+    <Image Include="Resource Files\Sprites\Description\lawnmower_0.png" />
+    <Image Include="Resource Files\Sprites\Description\lawnmower_1.png" />
+    <Image Include="Resource Files\Sprites\Description\lawnmower_2.png" />
+    <Image Include="Resource Files\Sprites\Description\lawnmower_3.png" />
+    <Image Include="Resource Files\Sprites\Description\lawnmower_4.png" />
     <Image Include="Resource Files\Sprites\dog.png" />
     <Image Include="Resource Files\Sprites\downArrow.png" />
     <Image Include="Resource Files\Sprites\fence_01.png" />

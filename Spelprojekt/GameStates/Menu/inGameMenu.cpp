@@ -23,6 +23,8 @@ inGameMenu::inGameMenu(float width, float height)
 inGameMenu::~inGameMenu()
 {
 
+
+
 	delete highlighttextBg01;
 	delete textBg01;
 	delete textResume;
