@@ -6,7 +6,8 @@ DialogManager::DialogManager(sf::RenderWindow &window)
 	int mCurrentMapDialogue = 0;
 	int mCurrentDialogue = 0;
 	setTextures();
-	spriteDialogs->setPosition(0, window.getSize().y - 309);
+	spriteDialogs->setPosition(0,0);
+	spriteDialogs->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 }
 
 DialogManager::~DialogManager()

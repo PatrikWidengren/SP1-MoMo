@@ -39,7 +39,7 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteHedgecutter->setPosition(650 + 582, 700);
 	
-	spriteGrassMowerDescription->setPosition(160 + 682, 650);
+	spriteGrassMowerDescription->setPosition(400 + 682, 650);
 	spriteGrassMower->setPosition(160 + 582, 700);
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
@@ -95,7 +95,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow03->setPosition(950 * bg01->getScale().x, 1513 * bg01->getScale().y);
 		spriteArrow04->setPosition(1343 * bg01->getScale().x, 1513 * bg01->getScale().y);
 
-		spriteGrassMowerDescription->setPosition(1150 * bg01->getScale().x, 1140 * bg01->getScale().y);
+		spriteGrassMowerDescription->setPosition(1450 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		spriteGrassMower->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		spriteHedgecutter->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		
@@ -536,7 +536,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	
 	if (mInternalState == 1) {
 		spriteShop->setPosition(582 * bg01->getScale().x, 780 * bg01->getScale().y);
-		spriteGrassMowerDescription->setPosition(160 + 682 * bg01->getScale().x,650 * bg01->getScale().y);
+		spriteGrassMowerDescription->setPosition(400 + 682 * bg01->getScale().x,650 * bg01->getScale().y);
 		spriteGrassMower->setPosition(130 + 582 * bg01->getScale().x, 450 * bg01->getScale().y);
 		spriteArrow01->setPosition(950 * bg01->getScale().x, 500 * bg01->getScale().y);
 		spriteArrow02->setPosition(245 + 582 * bg01->getScale().x, 500 * bg01->getScale().y);
@@ -545,7 +545,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 	else {
 		spriteShop->setPosition(582 * bg01->getScale().x, 1080 * bg01->getScale().y);
-		spriteGrassMowerDescription->setPosition(160 + 682 * bg01->getScale().x, 1050 * bg01->getScale().y);
+		spriteGrassMowerDescription->setPosition(400 + 682 * bg01->getScale().x, 1050 * bg01->getScale().y);
 		spriteGrassMower->setPosition(130 + 582 * bg01->getScale().x, 800 * bg01->getScale().y);
 		spriteArrow01->setPosition(950 * bg01->getScale().x, 730 * bg01->getScale().y);
 		spriteArrow02->setPosition(245 + 582 * bg01->getScale().x, 800 * bg01->getScale().y);
