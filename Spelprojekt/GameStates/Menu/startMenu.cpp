@@ -14,6 +14,8 @@ startMenu::startMenu(float width, float height)
 	spriteCredits->setPosition(689, 875);
 	spriteExit->setPosition(1770, 45);
 
+	spriteSpinbg->setPosition(600, 0);
+
 	selectedIndex = 0;
 
 	mRects[3] = new sf::IntRect(sf::Vector2i(640, 510), sf::Vector2i(540, 100));

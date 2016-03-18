@@ -22,7 +22,14 @@ SoundMenu::SoundMenu(float width, float height)
 
 SoundMenu::~SoundMenu()
 {
+	delete highlighttextBg01;
+	delete textBg01;
+	delete textBack;
+	delete textHighlightBack;
 
+	delete spriteBack;
+	delete bg01;
+	delete highlightSprite01;
 }
 
 void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound, MusicManager &music)

@@ -20,8 +20,9 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	//Temporär lösning. Bör fixas snarast
 	mLast = 2.1f;
 	//mPlayerSprite.setTexture(texturePlayer);
-	mTextureIdleSheet.loadFromFile(meep_idle);
-	mSpriteIdleSheet.setTexture(mTextureIdleSheet);
+	mTextureIdleSheet->loadFromFile(meep_idle);
+	mSpriteIdleSheet->setTexture(*mTextureIdleSheet);
+	mdopies = 100;
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -31,11 +32,11 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 		}
 		std::ostringstream tempName;
 		tempName << "idle" << j + 1;
-		animatorMeep.addAnimation(tempName.str(), frame, sf::seconds(1.0f));
+		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(0.8f));
 	}
 
-	mTextureWalkSheet.loadFromFile(meep_walk);
-	mSpriteWalkSheet.setTexture(mTextureWalkSheet);
+	mTextureWalkSheet->loadFromFile(meep_walk);
+	mSpriteWalkSheet->setTexture(*mTextureWalkSheet);
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -45,10 +46,10 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 		}
 		std::ostringstream tempName;
 		tempName << "walk" << j + 1;
-		animatorMeep.addAnimation(tempName.str(), frame, sf::seconds(1.0f));
+		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(0.8f));
 	}
 
-	animatorMeep.playAnimation("idle3", true);
+	animatorMeep->playAnimation("idle3", true);
 }
 
 /*void Player::updPos(float x, float y){
@@ -62,11 +63,17 @@ Player::~Player(){
 	//delete mHedgeTool;
 	delete mAntiLeakHedgeTool;
 	delete mAntiLeakMower;
+
+	delete mTextureIdleSheet;
+	delete mTextureWalkSheet;
+
+	delete mSpriteIdleSheet;
+	delete mSpriteWalkSheet;
 }
 
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
-	mMoveTime = 1.0f / movement.size();
+	mMoveTime = 0.8f / movement.size();
 	return movement;
 }
 
@@ -184,73 +191,73 @@ void Player::changeAnimation(int nr) {
 	/*stringstream blubb;
 	if (walking) {
 		blubb << "walk" << nr;
-		animatorMeep.playAnimation(blubb.str(), true);
+		animatorMeep->playAnimation(blubb.str(), true);
 	}
 	else {
 		blubb << "idle" << nr;
-		animatorMeep.playAnimation(blubb.str(), true);
+		animatorMeep->playAnimation(blubb.str(), true);
 	}*/
 	if (!walking) {
 		if (nr == 1) {
-			animatorMeep.playAnimation("idle2", true);
+			animatorMeep->playAnimation("idle2", true);
 		}
 		if (nr == 2) {
-			animatorMeep.playAnimation("idle1", true);
+			animatorMeep->playAnimation("idle1", true);
 		}
 		if (nr == 3) {
-			animatorMeep.playAnimation("idle8", true);
+			animatorMeep->playAnimation("idle8", true);
 		}
 		if (nr == 4) {
-			animatorMeep.playAnimation("idle3", true);
+			animatorMeep->playAnimation("idle3", true);
 		}
 		if (nr == 6) {
-			animatorMeep.playAnimation("idle7", true);
+			animatorMeep->playAnimation("idle7", true);
 		}
 		if (nr == 7) {
-			animatorMeep.playAnimation("idle4", true);
+			animatorMeep->playAnimation("idle4", true);
 		}
 		if (nr == 8) {
-			animatorMeep.playAnimation("idle5", true);
+			animatorMeep->playAnimation("idle5", true);
 		}
 		if (nr == 9) {
-			animatorMeep.playAnimation("idle6", true);
+			animatorMeep->playAnimation("idle6", true);
 		}
 	}
 	else {
 		if (nr == 1) {
-			animatorMeep.playAnimation("walk2", true);
+			animatorMeep->playAnimation("walk2", true);
 		}
 		if (nr == 2) {
-			animatorMeep.playAnimation("walk1", true);
+			animatorMeep->playAnimation("walk1", true);
 		}
 		if (nr == 3) {
-			animatorMeep.playAnimation("walk8", true);
+			animatorMeep->playAnimation("walk8", true);
 		}
 		if (nr == 4) {
-			animatorMeep.playAnimation("walk3", true);
+			animatorMeep->playAnimation("walk3", true);
 		}
 		if (nr == 6) {
-			animatorMeep.playAnimation("walk7", true);
+			animatorMeep->playAnimation("walk7", true);
 		}
 		if (nr == 7) {
-			animatorMeep.playAnimation("walk4", true);
+			animatorMeep->playAnimation("walk4", true);
 		}
 		if (nr == 8) {
-			animatorMeep.playAnimation("walk5", true);
+			animatorMeep->playAnimation("walk5", true);
 		}
 		if (nr == 9) {
-			animatorMeep.playAnimation("walk6", true);
+			animatorMeep->playAnimation("walk6", true);
 		}
 	}
 }
 
 void Player::playPlayer() {
-	animatorMeep.update(clock.restart());
+	animatorMeep->update(clock.restart());
 	if (walking) {
-		animatorMeep.animate(mSpriteWalkSheet);
+		animatorMeep->animate(*mSpriteWalkSheet);
 	}
 	else {
-		animatorMeep.animate(mSpriteIdleSheet);
+		animatorMeep->animate(*mSpriteIdleSheet);
 	}
 }
 
@@ -268,9 +275,19 @@ float Player::getMoveTime() {
 
 sf::Sprite* Player::getSpriteSheet() {
 	if (walking) {
-		return &mSpriteWalkSheet;
+		return mSpriteWalkSheet;
 	}
 	else {
-		return &mSpriteIdleSheet;
+		return mSpriteIdleSheet;
 	}
+}
+void Player::scale(sf::RenderWindow &window) {
+	float scaleX = (float)window.getSize().x / 1920;
+	float scaleY = (float)window.getSize().y / 1080;
+
+	mSpriteIdleSheet->setScale(sf::Vector2f(scaleX, scaleY));
+	mSpriteWalkSheet->setScale(sf::Vector2f(scaleX, scaleY));
+}
+Mower* Player::mower() {
+	return mLawnMower;
 }

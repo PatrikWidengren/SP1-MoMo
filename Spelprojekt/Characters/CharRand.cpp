@@ -29,10 +29,10 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 	mLast = 2.0f;
 
 
-	mTextureSheet_catIdle.loadFromFile(cat_idle);
-	mCatIdleSheet.setTexture(mTextureSheet_catIdle);
-	mTextureSheet_catWalk.loadFromFile(cat_walk);
-	mCatWalkSheet.setTexture(mTextureSheet_catWalk);
+	mTextureSheet_catIdle->loadFromFile(cat_idle);
+	mCatIdleSheet->setTexture(*mTextureSheet_catIdle);
+	mTextureSheet_catWalk->loadFromFile(cat_walk);
+	mCatWalkSheet->setTexture(*mTextureSheet_catWalk);
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -42,7 +42,7 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 		}
 		std::ostringstream tempName;
 		tempName << "idle" << j + 1;
-		catAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+		catAnimator->addAnimation(tempName.str(), frame, sf::seconds(1.1f));
 	}
 
 	for (int j = 0; j < 8; j++) {
@@ -53,79 +53,86 @@ CharRand::CharRand(int arrX, int arrY, int moveLength, bool lockDir) :
 		}
 		std::ostringstream tempName;
 		tempName << "walk" << j + 1;
-		catAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+		catAnimator->addAnimation(tempName.str(), frame, sf::seconds(1.1f));
 	}
 	if (walking) {
-		catAnimator.playAnimation("walk7", true);
+		catAnimator->playAnimation("walk7", true);
 	}
 	else {
-		catAnimator.playAnimation("idle7", true);
+		catAnimator->playAnimation("idle7", true);
 	}
 }
 
-CharRand::~CharRand(){
+CharRand::~CharRand()
+{
+	delete mTextureSheet_catIdle;
+	delete mTextureSheet_catWalk;
+
+	delete mCatIdleSheet;
+	delete mCatWalkSheet;
+
 }
 void CharRand::changeAnimation(int nr) {
 	if (!walking) {
 		if (nr == 1) {
-			catAnimator.playAnimation("idle3", true);
+			catAnimator->playAnimation("idle3", true);
 		}
 		if (nr == 2) {
-			catAnimator.playAnimation("idle1", true);
+			catAnimator->playAnimation("idle1", true);
 		}
 		if (nr == 3) {
-			catAnimator.playAnimation("idle7", true);
+			catAnimator->playAnimation("idle7", true);
 		}
 		if (nr == 4) {
-			catAnimator.playAnimation("idle3", true);
+			catAnimator->playAnimation("idle3", true);
 		}
 		if (nr == 6) {
-			catAnimator.playAnimation("idle7", true);
+			catAnimator->playAnimation("idle7", true);
 		}
 		if (nr == 7) {
-			catAnimator.playAnimation("idle3", true);
+			catAnimator->playAnimation("idle3", true);
 		}
 		if (nr == 8) {
-			catAnimator.playAnimation("idle5", true);
+			catAnimator->playAnimation("idle5", true);
 		}
 		if (nr == 9) {
-			catAnimator.playAnimation("idle7", true);
+			catAnimator->playAnimation("idle7", true);
 		}
 	}
 	else {
 		if (nr == 1) {
-			catAnimator.playAnimation("walk2", true);
+			catAnimator->playAnimation("walk2", true);
 		}
 		if (nr == 2) {
-			catAnimator.playAnimation("walk1", true);
+			catAnimator->playAnimation("walk1", true);
 		}
 		if (nr == 3) {
-			catAnimator.playAnimation("walk8", true);
+			catAnimator->playAnimation("walk8", true);
 		}
 		if (nr == 4) {
-			catAnimator.playAnimation("walk3", true);
+			catAnimator->playAnimation("walk3", true);
 		}
 		if (nr == 6) {
-			catAnimator.playAnimation("walk7", true);
+			catAnimator->playAnimation("walk7", true);
 		}
 		if (nr == 7) {
-			catAnimator.playAnimation("walk4", true);
+			catAnimator->playAnimation("walk4", true);
 		}
 		if (nr == 8) {
-			catAnimator.playAnimation("walk5", true);
+			catAnimator->playAnimation("walk5", true);
 		}
 		if (nr == 9) {
-			catAnimator.playAnimation("walk6", true);
+			catAnimator->playAnimation("walk6", true);
 		}
 	}
 }
 void CharRand::playAnimation() {
-	catAnimator.update(clock.restart());
+	catAnimator->update(clock.restart());
 	if (!walking) {
-		catAnimator.animate(mCatIdleSheet);
+		catAnimator->animate(*mCatIdleSheet);
 	}
 	if (walking) {
-		catAnimator.animate(mCatWalkSheet);
+		catAnimator->animate(*mCatWalkSheet);
 	}
 }
 void CharRand::reset() {
@@ -221,10 +228,10 @@ bool CharRand::getCollide(){
 }
 sf::Sprite* CharRand::getSpriteSheet(){
 	if (!walking) {
-		return &mCatIdleSheet;
+		return mCatIdleSheet;
 	}
 	if (walking) {
-		return &mCatWalkSheet;
+		return mCatWalkSheet;
 	}
 }
 void CharRand::initialize(){
@@ -234,13 +241,19 @@ void CharRand::finalize(){
 	textureCat.~Texture();
 	imageCat.~Image();
 }
+void CharRand::scale(sf::RenderWindow &window) {
+	float scaleX = (float)window.getSize().x / 1920;
+	float scaleY = (float)window.getSize().y / 1080;
 
+	mCatIdleSheet->setScale(sf::Vector2f(scaleX, scaleY));
+	mCatWalkSheet->setScale(sf::Vector2f(scaleX, scaleY));
+}
 float CharRand::getMoveTime() {
 	return mMoveTime;
 }
 
 void CharRand::setWalking(bool walk) {
-	walking = !walking;
+	walking = walk;
 }
 
 bool CharRand::getWalking() {

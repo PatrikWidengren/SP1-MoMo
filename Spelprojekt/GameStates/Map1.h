@@ -35,7 +35,7 @@ public:
 	Map1(std::string savefile, Player *m /*, std::string patrolPath*/);
 	virtual ~Map1();
 	//gör mer eller mindra vad takeTurn brukade göra
-	void update(SoundManager &sound);
+	void update(SoundManager &sound, sf::RenderWindow &window);
 	void beginTurn(int dir);
 	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse);
 	//Spawnar alla objekten, enligt array
@@ -45,7 +45,7 @@ public:
 	//Returnerar spelaren, detta behövs till main
 	virtual Player* getPlayer();
 	int checkState();
-
+	int getTurnsLeft();
 	float** getGrid();
 	//Returnerar npcs, detta behövs till main
 	typedef std::map<coords, Character*> NpcMap;
@@ -65,6 +65,7 @@ public:
 	int getGrass();
 	int getHedges();
 	int getDandelions();
+	int getMeepSpawnDirection();
 	std::vector<int> *getGoals();
 	int mTurnCount = 0;
 	int mLoseRounds = 50;

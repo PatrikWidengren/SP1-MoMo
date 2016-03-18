@@ -103,6 +103,12 @@
     <Filter Include="Resource Files\Dialogue">
       <UniqueIdentifier>{39d49156-5712-428b-a6c9-a0ed192393cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Dialogue\TutorialDialogs">
+      <UniqueIdentifier>{d8694c91-21b2-4c25-8411-8e7aa38d20e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sprites\Descriptions">
+      <UniqueIdentifier>{dab1039e-3bde-4bc2-917c-92dc6a9266b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -948,15 +954,6 @@
     <Image Include="Resource Files\Backgrounds\World01_Lane05_FG.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Bronze.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Gold.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
-    <Image Include="Resource Files\Backgrounds\Medal_Silver.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Image>
     <Image Include="Resource Files\Sprites\control_numpad.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
@@ -977,6 +974,237 @@
     </Image>
     <Image Include="Resource Files\SpriteSheets\Fontän_3x3_Spritesheet_Nearest.png">
       <Filter>Resource Files\SpriteSheets</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Bronze.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Gold.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Medal_Silver.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower1_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower1_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower2_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Momentum_Mower3_4.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane01_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane01_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane02_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane02_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane03_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane03_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane04_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane04_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane05_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World02_Lane05_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane01_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane01_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane02_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane02_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane03_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane03_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane04_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane04_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane05_BG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Backgrounds\World03_Lane05_FG.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\downArrow.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Medal.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Menu.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Momentum.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Tools.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood_Tools_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MOMENTUM.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Hedgecutter.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_1.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_2.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_3.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_4.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Mower_5.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MENU.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\MENU_Highlight.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Wood.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\1.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\2.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\3.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\4.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\5.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\6.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\7.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\8.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\9.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\10.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\11.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\12.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\13.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\14.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\15.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\16.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\17.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\18.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\19.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\20.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\21.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\22.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Dialogue\TutorialDialogs\23.png">
+      <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\hedgetrimmer_0.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_0.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_1.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_2.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_3.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_4.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

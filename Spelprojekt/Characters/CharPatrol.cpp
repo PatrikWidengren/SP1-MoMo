@@ -43,11 +43,11 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 	//temporary fix. update asap.
 	mLast = 2.0f;
 
-	mTextureSheet_dogIdle.loadFromFile(dog_idle);
-	mDogIdleSheet.setTexture(mTextureSheet_dogIdle);
+	mTextureSheet_dogIdle->loadFromFile(dog_idle);
+	mDogIdleSheet->setTexture(*mTextureSheet_dogIdle);
 
-	mTextureSheet_dogWalk.loadFromFile(dog_walk);
-	mDogWalkSheet.setTexture(mTextureSheet_dogWalk);
+	mTextureSheet_dogWalk->loadFromFile(dog_walk);
+	mDogWalkSheet->setTexture(*mTextureSheet_dogWalk);
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -57,14 +57,20 @@ CharPatrol::CharPatrol(int arrX, int arrY, int **moves/*, int turnCount, int mov
 		}
 		std::ostringstream tempName;
 		tempName << "animation" << j + 1;
-		dogAnimator.addAnimation(tempName.str(), frame, sf::seconds(1.1f));
+		dogAnimator->addAnimation(tempName.str(), frame, sf::seconds(1.1f));
 	}
-	dogAnimator.playAnimation("animation7", true);
+	dogAnimator->playAnimation("animation7", true);
 }
 
 CharPatrol::~CharPatrol(){
 	delete[] path;
 	delete[] retryPath;
+
+	delete mDogIdleSheet;
+	delete mDogWalkSheet;
+
+	delete mTextureSheet_dogWalk;
+	delete mTextureSheet_dogIdle;
 }
 
 void CharPatrol::reset() {
@@ -186,46 +192,55 @@ bool CharPatrol::getCollide(){
 	return true;
 }
 void CharPatrol::playAnimation() {
-	dogAnimator.update(clock.restart());
+	dogAnimator->update(clock.restart());
 	if (!walking) {
-		dogAnimator.animate(mDogIdleSheet);
+		dogAnimator->animate(*mDogIdleSheet);
 	}
 	else {
-		dogAnimator.animate(mDogWalkSheet);
+		dogAnimator->animate(*mDogWalkSheet);
 	}
 }
 void CharPatrol::changeAnimation(int nr) {
 	if (nr == 1) {
-		dogAnimator.playAnimation("animation2", true);
+		dogAnimator->playAnimation("animation2", true);
 	}
 	if (nr == 2) {
-		dogAnimator.playAnimation("animation1", true);
+		dogAnimator->playAnimation("animation1", true);
 	}
 	if (nr == 3) {
-		dogAnimator.playAnimation("animation8", true);
+		dogAnimator->playAnimation("animation8", true);
 	}
 	if (nr == 4) {
-		dogAnimator.playAnimation("animation3", true);
+		dogAnimator->playAnimation("animation3", true);
 	}
 	if (nr == 6) {
-		dogAnimator.playAnimation("animation7", true);
+		dogAnimator->playAnimation("animation7", true);
 	}
 	if (nr == 7) {
-		dogAnimator.playAnimation("animation4", true);
+		dogAnimator->playAnimation("animation4", true);
 	}
 	if (nr == 8) {
-		dogAnimator.playAnimation("animation5", true);
+		dogAnimator->playAnimation("animation5", true);
 	}
 	if (nr == 9) {
-		dogAnimator.playAnimation("animation6", true);
+		dogAnimator->playAnimation("animation6", true);
 	}
+}
+void CharPatrol::scale(sf::RenderWindow &window) {
+	float scaleX = (float)window.getSize().x / 1920;
+	float scaleY = (float)window.getSize().y / 1080;
+
+	mDogIdleSheet->setScale(sf::Vector2f(scaleX, scaleY));
+	mDogWalkSheet->setScale(sf::Vector2f(scaleX, scaleY));
+	
+	
 }
 sf::Sprite* CharPatrol::getSpriteSheet() {
 	if (!walking) {
-		return &mDogIdleSheet;
+		return mDogIdleSheet;
 	}
 	else {
-		return &mDogWalkSheet;
+		return mDogWalkSheet;
 	}
 }
 
@@ -245,7 +260,7 @@ float CharPatrol::getMoveTime() {
 }
 
 void CharPatrol::setWalking(bool walk) {
-	walking = !walking;
+	walking = walk;
 }
 
 bool CharPatrol::getWalking() {

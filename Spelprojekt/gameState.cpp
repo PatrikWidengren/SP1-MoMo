@@ -34,10 +34,10 @@ gameState::gameState(sf::RenderWindow &window)
 	mDialogManager = new DialogManager(window);
 
 	mLawnMowers.push_back(new LawnMower(2, 1, 1, 1, 10000));
-	mLawnMowers.push_back(new RoyceMower(new LawnMower(10, 10, 1, 1, 3000)));
-	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mLawnMowers.push_back(new LawnMower(3, 1, 1, 2, 2000));
 	mLawnMowers.push_back(new LawnMower(4, 1, 1, 2, 3000));
+	mLawnMowers.push_back(new LawnMower(3, 2, 1, 1, 3000));
+	mLawnMowers.push_back(new LawnMower(4, 2, 2, 2, 3000));
 	mHedgeTools.push_back(new HedgeCutter(1, 1));
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
@@ -157,6 +157,8 @@ void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, 
 
 void gameState::drawWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw World Map
 {
+
+	mPlayer->mdopies = mWorldMap01->getDemDopies();
 	mWorldMap01->updateWorldMap(window, mouse);
 	window.clear();
 	mWorldMap01->displayMenu01(window); //Update mouse in update...
@@ -224,12 +226,17 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-	mInGameBackground->write(mMap01->getTurnCount(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+	
+	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals()); 	
+	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
+	mInGameBackground->selectMomentumSprite();
+	mInGameBackground->scale(window);
 	mInGameBackground->drawBackgroundTop(window);
-	mMap01->update(sound);
+	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+	mInGameBackground->selectHedgecutterSprite();
+	mMap01->update(sound, window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
-	mInGameBackground->scale(window);
 
 	switch (mDialogSwitch)
 	{
@@ -462,9 +469,19 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
+			if (mInGameBackground->getMedal() == "Gold")
+				mWorldMap01->addDemDopies(90);
 
-				mState = 6;
-				mStartState = true;
+			if (mInGameBackground->getMedal() == "Silver")
+				mWorldMap01->addDemDopies(60);
+
+			if (mInGameBackground->getMedal() == "Bronze")
+				mWorldMap01->addDemDopies(40);
+			mInGameBackground->resetInGameHud();
+			std::cout << mWorldMap01->getDemDopies() << std::endl;
+
+			mState = 6;
+			mStartState = true;
 
 
 			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
@@ -782,6 +799,20 @@ void gameState::loadMap(sf::RenderWindow &window) {
 	std::string levelToLoad = mRegionMap01->loadLevel();
 
 	mMap01 = new Map1(levelToLoad, mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	int meepStartAnimation = mMap01->getMeepSpawnDirection();
+	
+	if (meepStartAnimation == 1) {
+		mPlayer->changeAnimation(4);
+	}
+	if (meepStartAnimation == 2) {
+		mPlayer->changeAnimation(6);
+	}
+	if (meepStartAnimation == 3) {
+		mPlayer->changeAnimation(8);
+	}
+	if (meepStartAnimation == 4) {
+		mPlayer->changeAnimation(2);
+	}
 
 	mMap01->spawnObjects();
 

@@ -28,10 +28,14 @@ KeyboardOptionMenu::~KeyboardOptionMenu()
 	delete textBg01;
 	delete textBack;
 	delete textHighlightBack;
+	delete texture_control_numpad;
+	delete texture_control_wasd;
 
 	delete spriteBack;
 	delete bg01;
 	delete highlightSprite01;
+	delete sprite_numpad;
+	delete sprite_wasd;
 }
 
 void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse, SoundManager &sound, int &controlscheme)
