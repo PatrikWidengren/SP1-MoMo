@@ -106,6 +106,9 @@
     <Filter Include="Resource Files\Dialogue\TutorialDialogs">
       <UniqueIdentifier>{d8694c91-21b2-4c25-8411-8e7aa38d20e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sprites\Descriptions">
+      <UniqueIdentifier>{dab1039e-3bde-4bc2-917c-92dc6a9266b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -1184,6 +1187,24 @@
     </Image>
     <Image Include="Resource Files\Dialogue\TutorialDialogs\23.png">
       <Filter>Resource Files\Dialogue\TutorialDialogs</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\hedgetrimmer_0.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_0.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_1.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_2.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_3.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
+    </Image>
+    <Image Include="Resource Files\Sprites\Description\lawnmower_4.png">
+      <Filter>Resource Files\Sprites\Descriptions</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
