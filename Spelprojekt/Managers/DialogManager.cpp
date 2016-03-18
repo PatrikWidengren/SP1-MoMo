@@ -154,7 +154,7 @@ void DialogManager::setTextures()
 		//textureMap01a01BeforeDialogue[i] = new sf::Texture();
 		std::cout << "Loop: " << i;
 		textureMap01a01BeforeDialogue[i]->loadFromFile(writeDialogSearchName(i+1));
-
+		textureMap01a01BeforeDialogue[i]->setSmooth(true);
 		//textureMap01a01BeforeDialogue[i]->loadFromFile("Resource Files/Dialogue/" + writeDialogSearchName(i));
 	}
 
