@@ -42,7 +42,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("stormaptest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("map01a01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
@@ -204,7 +204,6 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	window.clear();
 
-	mInGameBackground->setMapname(mMap01->mSavefile);
 	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
 	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
@@ -799,6 +798,7 @@ void gameState::loadMap(sf::RenderWindow &window) {
 	std::string levelToLoad = mRegionMap01->loadLevel();
 
 	mMap01 = new Map1(levelToLoad, mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mInGameBackground->setMapname(levelToLoad);
 	int meepStartAnimation = mMap01->getMeepSpawnDirection();
 	
 	if (meepStartAnimation == 1) {

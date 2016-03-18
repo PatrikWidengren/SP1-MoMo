@@ -2,28 +2,6 @@
 
 using namespace std;
 
-static const string m01a01_backGroundTop = "Resource Files/Backgrounds/World01_Lane01_BG.png";
-static const string m01a01_backGroundBottom = "Resource Files/Backgrounds/World01_Lane01_FG.png";
-static const string m01a02_backGroundTop = "Resource Files/Backgrounds/World01_Lane02_BG.png";
-static const string m01a02_backGroundBottom = "Resource Files/Backgrounds/World01_Lane02_FG.png";
-static const string m01a03_backGroundTop = "Resource Files/Backgrounds/World01_Lane03_BG.png";
-static const string m01a03_backGroundBottom = "Resource Files/Backgrounds/World01_Lane03_FG.png";
-static const string m01a04_backGroundTop = "Resource Files/Backgrounds/World01_Lane04_BG.png";
-static const string m01a04_backGroundBottom = "Resource Files/Backgrounds/World01_Lane04_FG.png";
-static const string m01a05_backGroundTop = "Resource Files/Backgrounds/World01_Lane05_BG.png";
-static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World01_Lane05_FG.png";
-
-static const string m02a01_backGroundTop = "Resource Files/Backgrounds/World02_Lane01_BG.png";
-static const string m02a01_backGroundBottom = "Resource Files/Backgrounds/World02_Lane01_FG.png";
-static const string m02a02_backGroundTop = "Resource Files/Backgrounds/World02_Lane02_BG.png";
-static const string m02a02_backGroundBottom = "Resource Files/Backgrounds/World02_Lane02_FG.png";
-static const string m02a03_backGroundTop = "Resource Files/Backgrounds/World02_Lane03_BG.png";
-static const string m02a03_backGroundBottom = "Resource Files/Backgrounds/World02_Lane03_FG.png";
-static const string m02a04_backGroundTop = "Resource Files/Backgrounds/World02_Lane04_BG.png";
-static const string m02a04_backGroundBottom = "Resource Files/Backgrounds/World02_Lane04_FG.png";
-static const string m02a05_backGroundTop = "Resource Files/Backgrounds/World02_Lane05_BG.png";
-static const string m02a05_backGroundBottom = "Resource Files/Backgrounds/World02_Lane05_FG.png";
-
 static const string momentum2_01 = "Resource Files/Sprites/Momentum_Mower1_1.png";
 static const string momentum2_02 = "Resource Files/Sprites/Momentum_Mower1_2.png";
 static const string momentum3_01 = "Resource Files/Sprites/Momentum_Mower2_1.png";
@@ -55,11 +33,25 @@ static const string filename_lawnmower04 = "Resource Files/Sprites/Mower_1.png";
 static const string filename_lawnmower05 = "Resource Files/Sprites/Mower_2.png";
 static const string filename_hedgecutter01 = "Resource Files/Sprites/Hedgecutter.png";
 
+
 InGameBackground::InGameBackground() {
+	int nr = -1;
 	setTextures();
 	sprite_inGameHud->setTexture(*texture_inGameHud);
 	if (!font.loadFromFile("Resource Files/Fonts/arial.ttf")) {
 		cout << "Error loading arial.ttf" << endl;
+	}
+
+	for (int i = 0; i < numberOfLevels; i++) {
+		backgroundArrayTop[i] = new sf::Texture();
+		backgroundArrayBottom[i] = new sf::Texture();
+	}
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 5; j++) {
+			nr++;
+			backgroundArrayBottom[nr]->loadFromFile(getTextureFilenameBottom(i, j));
+			backgroundArrayTop[nr]->loadFromFile(getTextureFilenameTop(i, j));
+		}
 	}
 
 	imageArrow->loadFromFile(filename_arrow);
@@ -78,26 +70,7 @@ InGameBackground::InGameBackground() {
 }
 InGameBackground::~InGameBackground() 
 {
-	delete texture01a01_backgroundTop;
-	delete texture01a01_backgroundBottom;
-	delete texture01a02_backgroundTop;
-	delete texture01a02_backgroundBottom;
-	delete texture01a03_backgroundTop;
-	delete texture01a03_backgroundBottom;
-	delete texture01a04_backgroundTop;
-	delete texture01a04_backgroundBottom;
-	delete texture01a05_backgroundTop;
-	delete texture01a05_backgroundBottom;
-	delete texture02a01_backgroundTop;
-	delete texture02a01_backgroundBottom;
-	delete texture02a02_backgroundTop;
-	delete texture02a02_backgroundBottom;
-	delete texture02a03_backgroundTop;
-	delete texture02a03_backgroundBottom;
-	delete texture02a04_backgroundTop;
-	delete texture02a04_backgroundBottom;
-	delete texture02a05_backgroundTop;
-	delete texture02a05_backgroundBottom;
+
 	delete texture_inGameHud;
 	delete texture_bronzeMedal;
 	delete texture_silverMedal;
@@ -152,40 +125,23 @@ InGameBackground::~InGameBackground()
 }
 void InGameBackground::setMapname(string mapname) {
 	mMapName = mapname;
-	stringstream name, textureName;
-	name << mapname;
-	for (int i = 0; i < 3; i++) {
+	int nr = -1;
+	drawBackground = false;
+	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 5; j++) {
-			if (mapname == mMapName) {
-
+			nr++;
+			stringstream name;
+			name << "map0" << i + 1 << "a0" << j + 1 << ".txt";
+			if (name.str() == mapname) {
+				drawBackground = true;
+				sprite_backgroundTop->setTexture(*backgroundArrayTop[nr]);
+				sprite_backgroundBottom->setTexture(*backgroundArrayBottom[nr]);
 			}
 		}
-
 	}
-	if (mMapName == "map01a01.txt") {
-		sprite_backgroundTop->setTexture(*texture01a01_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01a01_backgroundBottom);
-	}
-	else if (mMapName == "map01a02.txt") {
-		sprite_backgroundTop->setTexture(*texture01a02_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01a02_backgroundBottom);
-	}
-	else if (mMapName == "map01a03.txt") {
-		sprite_backgroundTop->setTexture(*texture01a03_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01a03_backgroundBottom);
-	}
-	else if (mMapName == "map01a04.txt") {
-		sprite_backgroundTop->setTexture(*texture01a04_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01a04_backgroundBottom);
-	}
-	else if (mMapName == "map01a05.txt") {
-		sprite_backgroundTop->setTexture(*texture01a05_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01a05_backgroundBottom);
-	}
-	
 }
 void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
-	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
+	if (drawBackground) {
 		window.draw(*sprite_backgroundTop);
 	}
 	window.draw(*sprite_inGameHud);
@@ -205,33 +161,14 @@ void InGameBackground::drawBackgroundTop(sf::RenderWindow &window) {
 
 }
 void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
-	if (mMapName == "map01a01.txt" || mMapName == "map01a02.txt" || mMapName == "map01a03.txt" || mMapName == "map01a04.txt" || mMapName == "map01a05.txt") {
+	if (drawBackground) {
 		window.draw(*sprite_backgroundBottom);
 	}
 	window.draw(*mTurns);
 	window.draw(*mProgress);
 }
 void InGameBackground::setTextures() {
-	if (!texture01a01_backgroundTop->loadFromFile(m01a01_backGroundTop)) //try to load the texture. if its wrong, give error
-		cout << "backgroundTop gick ej." << endl;
-	if (!texture01a01_backgroundBottom->loadFromFile(m01a01_backGroundBottom)) //try to load the texture. if its wrong, give error
-		cout << "backgroundBottom gick ej." << endl;
-	if (!texture01a02_backgroundTop->loadFromFile(m01a02_backGroundTop)) //try to load the texture. if its wrong, give error
-		cout << "backgroundTop gick ej." << endl;
-	if (!texture01a02_backgroundBottom->loadFromFile(m01a02_backGroundBottom)) //try to load the texture. if its wrong, give error
-		cout << "backgroundBottom gick ej." << endl;
-	if (!texture01a03_backgroundTop->loadFromFile(m01a03_backGroundTop)) //try to load the texture. if its wrong, give error
-		cout << "backgroundTop gick ej." << endl;
-	if (!texture01a03_backgroundBottom->loadFromFile(m01a03_backGroundBottom)) //try to load the texture. if its wrong, give error
-		cout << "backgroundBottom gick ej." << endl;
-	if (!texture01a04_backgroundTop->loadFromFile(m01a04_backGroundTop)) //try to load the texture. if its wrong, give error
-		cout << "backgroundTop gick ej." << endl;
-	if (!texture01a04_backgroundBottom->loadFromFile(m01a04_backGroundBottom)) //try to load the texture. if its wrong, give error
-		cout << "backgroundBottom gick ej." << endl;
-	if (!texture01a05_backgroundTop->loadFromFile(m01a05_backGroundTop)) //try to load the texture. if its wrong, give error
-		cout << "backgroundTop gick ej." << endl;
-	if (!texture01a05_backgroundBottom->loadFromFile(m01a05_backGroundBottom)) //try to load the texture. if its wrong, give error
-		cout << "backgroundBottom gick ej." << endl;
+
 	if (!texture_inGameHud->loadFromFile(filename_inGameHud)) //try to load the texture. if its wrong, give error
 		cout << "ingamehud gick ej." << endl;
 	if (!texture_bronzeMedal->loadFromFile(bronze_medal)) //try to load the texture. if its wrong, give error
@@ -334,7 +271,7 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 	}
 	//Påväg till brons
 	else if (cutgrass <= goals->at(0) || cuthedges <= goals->at(3) || cutdandelions <= goals->at(6)) {
-		//sprite_medal->setTexture(*texture_bronzeMedal);
+
 		if (goals->at(0) != 0) {
 			o << "Grass (%): " << cutgrass << "\t Goal for bronze medal: " << goals->at(0) << endl;
 		}
@@ -392,7 +329,7 @@ void InGameBackground::scale(sf::RenderWindow &window) {
 	sprite_menuText->setPosition(1642 * scaleX, 25 * scaleY);
 	sprite_lawnmower->setPosition(1210 * scaleX, 35 * scaleY);
 	sprite_hedgecutter->setPosition(1425 * scaleX, 35 * scaleY);
-
+	
 	if (mCheckMower) {
 		sprite_downArrow->setPosition(1275 * scaleX, 15 * scaleY);
 	}
@@ -471,4 +408,16 @@ void InGameBackground::resetInGameHud() {
 }
 string InGameBackground::getMedal() {
 	return mMedal;
+}
+string InGameBackground::getTextureFilenameTop(int i, int j) {
+	stringstream o;
+	o << "Resource Files/Backgrounds/World0" << i + 1 << "_Lane0" << j + 1 << "_BG.png";
+	cout << o.str() << endl;
+	return o.str();
+}
+string InGameBackground::getTextureFilenameBottom(int i, int j) {
+	stringstream o;
+	o << "Resource Files/Backgrounds/World0" << i + 1 << "_Lane0" << j + 1 << "_FG.png";
+	cout << o.str() << endl;
+	return o.str();
 }

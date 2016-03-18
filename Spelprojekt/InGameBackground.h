@@ -24,31 +24,19 @@ public:
 	void selectLawnmowerSprite(int number);
 	void selectHedgecutterSprite();
 	void resetInGameHud();
+	std::string getTextureFilenameTop(int i, int j);
+	std::string getTextureFilenameBottom(int i, int j);
 private:
 	std::string mMedal;
+	static const int numberOfLevels = 20;
+	bool test = false;
+
 	//int mIntTurns;
 	sf::Font font;
-	sf::Texture* texture01a01_backgroundTop = new sf::Texture();
-	sf::Texture* texture01a01_backgroundBottom = new sf::Texture();
-	sf::Texture* texture01a02_backgroundTop = new sf::Texture();
-	sf::Texture* texture01a02_backgroundBottom = new sf::Texture();
-	sf::Texture* texture01a03_backgroundTop = new sf::Texture();
-	sf::Texture* texture01a03_backgroundBottom = new sf::Texture();
-	sf::Texture* texture01a04_backgroundTop = new sf::Texture();
-	sf::Texture* texture01a04_backgroundBottom = new sf::Texture();
-	sf::Texture* texture01a05_backgroundTop = new sf::Texture();
-	sf::Texture* texture01a05_backgroundBottom = new sf::Texture();
+	sf::Texture* backgroundArrayTop[numberOfLevels];
+	sf::Texture* backgroundArrayBottom[numberOfLevels];
 
-	sf::Texture* texture02a01_backgroundTop = new sf::Texture();
-	sf::Texture* texture02a01_backgroundBottom = new sf::Texture();
-	sf::Texture* texture02a02_backgroundTop = new sf::Texture();
-	sf::Texture* texture02a02_backgroundBottom = new sf::Texture();
-	sf::Texture* texture02a03_backgroundTop = new sf::Texture();
-	sf::Texture* texture02a03_backgroundBottom = new sf::Texture();
-	sf::Texture* texture02a04_backgroundTop = new sf::Texture();
-	sf::Texture* texture02a04_backgroundBottom = new sf::Texture();
-	sf::Texture* texture02a05_backgroundTop = new sf::Texture();
-	sf::Texture* texture02a05_backgroundBottom = new sf::Texture();
+	
 
 	sf::Texture* texture_inGameHud = new sf::Texture();
 	sf::Texture* texture_bronzeMedal = new sf::Texture();
@@ -113,6 +101,7 @@ private:
 	int mCurrentLawnmower;
 	int mCurrentHedgecutter = 1;
 	bool mCheckMower;
+	bool drawBackground;
 };
 
 
