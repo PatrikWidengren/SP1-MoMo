@@ -13,6 +13,17 @@ static const string m01a04_backGroundBottom = "Resource Files/Backgrounds/World0
 static const string m01a05_backGroundTop = "Resource Files/Backgrounds/World01_Lane05_BG.png";
 static const string m01a05_backGroundBottom = "Resource Files/Backgrounds/World01_Lane05_FG.png";
 
+static const string m02a01_backGroundTop = "Resource Files/Backgrounds/World02_Lane01_BG.png";
+static const string m02a01_backGroundBottom = "Resource Files/Backgrounds/World02_Lane01_FG.png";
+static const string m02a02_backGroundTop = "Resource Files/Backgrounds/World02_Lane02_BG.png";
+static const string m02a02_backGroundBottom = "Resource Files/Backgrounds/World02_Lane02_FG.png";
+static const string m02a03_backGroundTop = "Resource Files/Backgrounds/World02_Lane03_BG.png";
+static const string m02a03_backGroundBottom = "Resource Files/Backgrounds/World02_Lane03_FG.png";
+static const string m02a04_backGroundTop = "Resource Files/Backgrounds/World02_Lane04_BG.png";
+static const string m02a04_backGroundBottom = "Resource Files/Backgrounds/World02_Lane04_FG.png";
+static const string m02a05_backGroundTop = "Resource Files/Backgrounds/World02_Lane05_BG.png";
+static const string m02a05_backGroundBottom = "Resource Files/Backgrounds/World02_Lane05_FG.png";
+
 static const string momentum2_01 = "Resource Files/Sprites/Momentum_Mower1_1.png";
 static const string momentum2_02 = "Resource Files/Sprites/Momentum_Mower1_2.png";
 static const string momentum3_01 = "Resource Files/Sprites/Momentum_Mower2_1.png";
@@ -51,24 +62,11 @@ InGameBackground::InGameBackground() {
 		cout << "Error loading arial.ttf" << endl;
 	}
 
-	texture_momentum4_04->loadFromFile(momentum4_04);
-	sprite_momentum->setTexture(*texture_momentum4_04);
-
 	imageArrow->loadFromFile(filename_arrow);
 	imageArrow->createMaskFromColor(sf::Color::White);
 	texture_arrow->loadFromImage(*imageArrow);
+
 	sprite_downArrow->setTexture(*texture_arrow);
-
-	texture_woodHedgecutter->loadFromFile(filename_woodHedgecutter);
-	texture_woodLawnmower->loadFromFile(filename_woodLawnmower);
-	texture_woodMedal->loadFromFile(filename_woodMedal);
-	texture_woodMenu->loadFromFile(filename_woodMenu);
-	texture_woodMomentum->loadFromFile(filename_woodMomentum);
-	texture_momentumText->loadFromFile(filename_momentumText);
-	texture_menuText->loadFromFile(filename_menuText);
-	texture_lawnmower01->loadFromFile(filename_lawnmower01);
-	texture_hedgecutter01->loadFromFile(filename_hedgecutter01);
-
 	sprite_woodHedgecutter->setTexture(*texture_woodHedgecutter);
 	sprite_woodLawnmower->setTexture(*texture_woodLawnmower);
 	sprite_woodMedal->setTexture(*texture_woodMedal);
@@ -76,35 +74,30 @@ InGameBackground::InGameBackground() {
 	sprite_woodMomentum->setTexture(*texture_woodMomentum);
 	sprite_momentumText->setTexture(*texture_momentumText);
 	sprite_menuText->setTexture(*texture_menuText);
-	sprite_lawnmower->setTexture(*texture_lawnmower01);
-	sprite_hedgecutter->setTexture(*texture_hedgecutter01);
 
-	sprite_woodMedal->setPosition(550, 15);
-	sprite_woodMomentum->setPosition(750, 8);
-	sprite_woodLawnmower->setPosition(1210, 35);
-	sprite_woodHedgecutter->setPosition(1425, 35);
-	sprite_woodMenu->setPosition(1630, 15);
-	sprite_momentumText->setPosition(775, 17);
-	sprite_menuText->setPosition(1642, 25);
-	sprite_lawnmower->setPosition(1210, 35);
-	sprite_hedgecutter->setPosition(1425, 35);
-
-	sprite_medal->setPosition(594, 26);
-	sprite_momentum->setPosition(775, 95);
-	sprite_downArrow->setPosition(750, 50);
 }
 InGameBackground::~InGameBackground() 
 {
-	delete texture01_backgroundTop;
-	delete texture01_backgroundBottom;
-	delete texture02_backgroundTop;
-	delete texture02_backgroundBottom;
-	delete texture03_backgroundTop;
-	delete texture03_backgroundBottom;
-	delete texture04_backgroundTop;
-	delete texture04_backgroundBottom;
-	delete texture05_backgroundTop;
-	delete texture05_backgroundBottom;
+	delete texture01a01_backgroundTop;
+	delete texture01a01_backgroundBottom;
+	delete texture01a02_backgroundTop;
+	delete texture01a02_backgroundBottom;
+	delete texture01a03_backgroundTop;
+	delete texture01a03_backgroundBottom;
+	delete texture01a04_backgroundTop;
+	delete texture01a04_backgroundBottom;
+	delete texture01a05_backgroundTop;
+	delete texture01a05_backgroundBottom;
+	delete texture02a01_backgroundTop;
+	delete texture02a01_backgroundBottom;
+	delete texture02a02_backgroundTop;
+	delete texture02a02_backgroundBottom;
+	delete texture02a03_backgroundTop;
+	delete texture02a03_backgroundBottom;
+	delete texture02a04_backgroundTop;
+	delete texture02a04_backgroundBottom;
+	delete texture02a05_backgroundTop;
+	delete texture02a05_backgroundBottom;
 	delete texture_inGameHud;
 	delete texture_bronzeMedal;
 	delete texture_silverMedal;
@@ -159,25 +152,35 @@ InGameBackground::~InGameBackground()
 }
 void InGameBackground::setMapname(string mapname) {
 	mMapName = mapname;
+	stringstream name, textureName;
+	name << mapname;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (mapname == mMapName) {
+
+			}
+		}
+
+	}
 	if (mMapName == "map01a01.txt") {
-		sprite_backgroundTop->setTexture(*texture01_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture01_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01a01_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01a01_backgroundBottom);
 	}
 	else if (mMapName == "map01a02.txt") {
-		sprite_backgroundTop->setTexture(*texture02_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture02_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01a02_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01a02_backgroundBottom);
 	}
 	else if (mMapName == "map01a03.txt") {
-		sprite_backgroundTop->setTexture(*texture03_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture03_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01a03_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01a03_backgroundBottom);
 	}
 	else if (mMapName == "map01a04.txt") {
-		sprite_backgroundTop->setTexture(*texture04_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture04_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01a04_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01a04_backgroundBottom);
 	}
 	else if (mMapName == "map01a05.txt") {
-		sprite_backgroundTop->setTexture(*texture05_backgroundTop);
-		sprite_backgroundBottom->setTexture(*texture05_backgroundBottom);
+		sprite_backgroundTop->setTexture(*texture01a05_backgroundTop);
+		sprite_backgroundBottom->setTexture(*texture01a05_backgroundBottom);
 	}
 	
 }
@@ -209,25 +212,25 @@ void InGameBackground::drawBackgroundBottom(sf::RenderWindow &window) {
 	window.draw(*mProgress);
 }
 void InGameBackground::setTextures() {
-	if (!texture01_backgroundTop->loadFromFile(m01a01_backGroundTop)) //try to load the texture. if its wrong, give error
+	if (!texture01a01_backgroundTop->loadFromFile(m01a01_backGroundTop)) //try to load the texture. if its wrong, give error
 		cout << "backgroundTop gick ej." << endl;
-	if (!texture01_backgroundBottom->loadFromFile(m01a01_backGroundBottom)) //try to load the texture. if its wrong, give error
+	if (!texture01a01_backgroundBottom->loadFromFile(m01a01_backGroundBottom)) //try to load the texture. if its wrong, give error
 		cout << "backgroundBottom gick ej." << endl;
-	if (!texture02_backgroundTop->loadFromFile(m01a02_backGroundTop)) //try to load the texture. if its wrong, give error
+	if (!texture01a02_backgroundTop->loadFromFile(m01a02_backGroundTop)) //try to load the texture. if its wrong, give error
 		cout << "backgroundTop gick ej." << endl;
-	if (!texture02_backgroundBottom->loadFromFile(m01a02_backGroundBottom)) //try to load the texture. if its wrong, give error
+	if (!texture01a02_backgroundBottom->loadFromFile(m01a02_backGroundBottom)) //try to load the texture. if its wrong, give error
 		cout << "backgroundBottom gick ej." << endl;
-	if (!texture03_backgroundTop->loadFromFile(m01a03_backGroundTop)) //try to load the texture. if its wrong, give error
+	if (!texture01a03_backgroundTop->loadFromFile(m01a03_backGroundTop)) //try to load the texture. if its wrong, give error
 		cout << "backgroundTop gick ej." << endl;
-	if (!texture03_backgroundBottom->loadFromFile(m01a03_backGroundBottom)) //try to load the texture. if its wrong, give error
+	if (!texture01a03_backgroundBottom->loadFromFile(m01a03_backGroundBottom)) //try to load the texture. if its wrong, give error
 		cout << "backgroundBottom gick ej." << endl;
-	if (!texture04_backgroundTop->loadFromFile(m01a04_backGroundTop)) //try to load the texture. if its wrong, give error
+	if (!texture01a04_backgroundTop->loadFromFile(m01a04_backGroundTop)) //try to load the texture. if its wrong, give error
 		cout << "backgroundTop gick ej." << endl;
-	if (!texture04_backgroundBottom->loadFromFile(m01a04_backGroundBottom)) //try to load the texture. if its wrong, give error
+	if (!texture01a04_backgroundBottom->loadFromFile(m01a04_backGroundBottom)) //try to load the texture. if its wrong, give error
 		cout << "backgroundBottom gick ej." << endl;
-	if (!texture05_backgroundTop->loadFromFile(m01a05_backGroundTop)) //try to load the texture. if its wrong, give error
+	if (!texture01a05_backgroundTop->loadFromFile(m01a05_backGroundTop)) //try to load the texture. if its wrong, give error
 		cout << "backgroundTop gick ej." << endl;
-	if (!texture05_backgroundBottom->loadFromFile(m01a05_backGroundBottom)) //try to load the texture. if its wrong, give error
+	if (!texture01a05_backgroundBottom->loadFromFile(m01a05_backGroundBottom)) //try to load the texture. if its wrong, give error
 		cout << "backgroundBottom gick ej." << endl;
 	if (!texture_inGameHud->loadFromFile(filename_inGameHud)) //try to load the texture. if its wrong, give error
 		cout << "ingamehud gick ej." << endl;
@@ -256,6 +259,8 @@ void InGameBackground::setTextures() {
 	if (!texture_momentum4_04->loadFromFile(momentum4_04)) //try to load the texture. if its wrong, give error
 		texture_momentum4_04->loadFromFile("Resource Files/Backgrounds/error.jpg");
 	
+	if (!texture_lawnmower01->loadFromFile(filename_lawnmower01)) //try to load the texture. if its wrong, give error
+		texture_lawnmower01->loadFromFile("Resource Files/Backgrounds/error.jpg");
 	if (!texture_lawnmower02->loadFromFile(filename_lawnmower02)) //try to load the texture. if its wrong, give error
 		texture_lawnmower02->loadFromFile("Resource Files/Backgrounds/error.jpg");
 	if (!texture_lawnmower03->loadFromFile(filename_lawnmower03)) //try to load the texture. if its wrong, give error
@@ -264,6 +269,24 @@ void InGameBackground::setTextures() {
 		texture_lawnmower04->loadFromFile("Resource Files/Backgrounds/error.jpg");
 	if (!texture_lawnmower05->loadFromFile(filename_lawnmower05)) //try to load the texture. if its wrong, give error
 		texture_lawnmower05->loadFromFile("Resource Files/Backgrounds/error.jpg");
+
+	if (!texture_woodHedgecutter->loadFromFile(filename_woodHedgecutter)) //try to load the texture. if its wrong, give error
+		texture_woodHedgecutter->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_woodLawnmower->loadFromFile(filename_woodLawnmower)) //try to load the texture. if its wrong, give error
+		texture_woodLawnmower->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_woodMedal->loadFromFile(filename_woodMedal)) //try to load the texture. if its wrong, give error
+		texture_woodMedal->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_woodMenu->loadFromFile(filename_woodMenu)) //try to load the texture. if its wrong, give error
+		texture_woodMenu->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_woodMomentum->loadFromFile(filename_woodMomentum)) //try to load the texture. if its wrong, give error
+		texture_woodMomentum->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_momentumText->loadFromFile(filename_momentumText)) //try to load the texture. if its wrong, give error
+		texture_momentumText->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_menuText->loadFromFile(filename_menuText)) //try to load the texture. if its wrong, give error
+		texture_menuText->loadFromFile("Resource Files/Backgrounds/error.jpg");
+	if (!texture_hedgecutter01->loadFromFile(filename_hedgecutter01)) //try to load the texture. if its wrong, give error
+		texture_hedgecutter01->loadFromFile("Resource Files/Backgrounds/error.jpg");
+
 }
 string InGameBackground::writeTurns(int turnss) {
 	ostringstream o;
@@ -345,11 +368,37 @@ void InGameBackground::scale(sf::RenderWindow &window) {
 	mTurns->setScale(scaleX, scaleY);
 	mProgress->setScale(scaleX, scaleY);
 	sprite_momentum->setScale(scaleX, scaleY);
+	sprite_woodMedal->setScale(scaleX, scaleY);
+	sprite_woodMomentum->setScale(scaleX, scaleY);
+	sprite_woodLawnmower->setScale(scaleX, scaleY);
+	sprite_woodHedgecutter->setScale(scaleX, scaleY);
+	sprite_woodMenu->setScale(scaleX, scaleY);
+	sprite_momentumText->setScale(scaleX, scaleY);
+	sprite_menuText->setScale(scaleX, scaleY);
+	sprite_lawnmower->setScale(scaleX, scaleY);
+	sprite_hedgecutter->setScale(scaleX, scaleY);
+	sprite_downArrow->setScale(scaleX, scaleY);
 
 	sprite_medal->setPosition(594 * scaleX, 26 * scaleY);
 	sprite_momentum->setPosition(775 * scaleX, 95 * scaleY);
 	mTurns->setPosition(1700 * scaleX, 150 * scaleY);
 	mProgress->setPosition(50 * scaleX, 50 * scaleY);
+	sprite_woodMedal->setPosition(550 * scaleX, 15 * scaleY);
+	sprite_woodMomentum->setPosition(750 * scaleX, 8 * scaleY);
+	sprite_woodLawnmower->setPosition(1210 * scaleX, 35 * scaleY);
+	sprite_woodHedgecutter->setPosition(1425 * scaleX, 35 * scaleY);
+	sprite_woodMenu->setPosition(1630 * scaleX, 15 * scaleY);
+	sprite_momentumText->setPosition(775 * scaleX, 17 * scaleY);
+	sprite_menuText->setPosition(1642 * scaleX, 25 * scaleY);
+	sprite_lawnmower->setPosition(1210 * scaleX, 35 * scaleY);
+	sprite_hedgecutter->setPosition(1425 * scaleX, 35 * scaleY);
+
+	if (mCheckMower) {
+		sprite_downArrow->setPosition(1275 * scaleX, 15 * scaleY);
+	}
+	else {
+		sprite_downArrow->setPosition(1490 * scaleX, 15 * scaleY);
+	}
 }
 void InGameBackground::getInfo(int maxmomentum, int minmomentum, int currentmomentum, int fallvalue, int risevalue, bool checkmower) {
 	mMowerMaxMomentum = maxmomentum;
@@ -357,12 +406,7 @@ void InGameBackground::getInfo(int maxmomentum, int minmomentum, int currentmome
 	mMowerCurrentMomentum = currentmomentum;
 	mMowerFallValue = fallvalue;
 	mMowerRiseValue = risevalue;
-	if (checkmower) {
-		sprite_downArrow->setPosition(1275, 15);
-	}
-	else {
-		sprite_downArrow->setPosition(1490, 15);
-	}
+	mCheckMower = checkmower;
 }
 void InGameBackground::selectMomentumSprite() {
 	if (mMowerMaxMomentum == 2) {
@@ -417,7 +461,7 @@ void InGameBackground::selectLawnmowerSprite(int number) {
 	}
 }
 void InGameBackground::selectHedgecutterSprite() {
-	if (mCurrentLawnmower == 1) {
+	if (mCurrentHedgecutter == 1) {
 		sprite_hedgecutter->setTexture(*texture_hedgecutter01);
 	}
 }

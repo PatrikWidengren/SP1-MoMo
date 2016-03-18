@@ -28,16 +28,28 @@ private:
 	std::string mMedal;
 	//int mIntTurns;
 	sf::Font font;
-	sf::Texture* texture01_backgroundTop = new sf::Texture();
-	sf::Texture* texture01_backgroundBottom = new sf::Texture();
-	sf::Texture* texture02_backgroundTop = new sf::Texture();
-	sf::Texture* texture02_backgroundBottom = new sf::Texture();
-	sf::Texture* texture03_backgroundTop = new sf::Texture();
-	sf::Texture* texture03_backgroundBottom = new sf::Texture();
-	sf::Texture* texture04_backgroundTop = new sf::Texture();
-	sf::Texture* texture04_backgroundBottom = new sf::Texture();
-	sf::Texture* texture05_backgroundTop = new sf::Texture();
-	sf::Texture* texture05_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01a01_backgroundTop = new sf::Texture();
+	sf::Texture* texture01a01_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01a02_backgroundTop = new sf::Texture();
+	sf::Texture* texture01a02_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01a03_backgroundTop = new sf::Texture();
+	sf::Texture* texture01a03_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01a04_backgroundTop = new sf::Texture();
+	sf::Texture* texture01a04_backgroundBottom = new sf::Texture();
+	sf::Texture* texture01a05_backgroundTop = new sf::Texture();
+	sf::Texture* texture01a05_backgroundBottom = new sf::Texture();
+
+	sf::Texture* texture02a01_backgroundTop = new sf::Texture();
+	sf::Texture* texture02a01_backgroundBottom = new sf::Texture();
+	sf::Texture* texture02a02_backgroundTop = new sf::Texture();
+	sf::Texture* texture02a02_backgroundBottom = new sf::Texture();
+	sf::Texture* texture02a03_backgroundTop = new sf::Texture();
+	sf::Texture* texture02a03_backgroundBottom = new sf::Texture();
+	sf::Texture* texture02a04_backgroundTop = new sf::Texture();
+	sf::Texture* texture02a04_backgroundBottom = new sf::Texture();
+	sf::Texture* texture02a05_backgroundTop = new sf::Texture();
+	sf::Texture* texture02a05_backgroundBottom = new sf::Texture();
+
 	sf::Texture* texture_inGameHud = new sf::Texture();
 	sf::Texture* texture_bronzeMedal = new sf::Texture();
 	sf::Texture* texture_silverMedal = new sf::Texture();
@@ -99,7 +111,8 @@ private:
 	int mMowerRiseValue;
 	int mMowerCurrentMomentum;
 	int mCurrentLawnmower;
-	int mCurrentHedgecutter;
+	int mCurrentHedgecutter = 1;
+	bool mCheckMower;
 };
 
 
