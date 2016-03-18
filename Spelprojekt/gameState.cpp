@@ -598,8 +598,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		break;
 	}
 	case 7: { //State 7. World Map
-		mPlayer->setMower(mLawnMowers.at(mRegionMap01->getMower()));
-		mPlayer->setHedgeTool(mHedgeTools.at(mRegionMap01->getHedgeCutter()));
+		mPlayer->setMower(mLawnMowers.at(mRegionMap01->getMower()), mRegionMap01->getMower());
+		mPlayer->setHedgeTool(mHedgeTools.at(mRegionMap01->getHedgeCutter()), mRegionMap01->getHedgeCutter());
 
 		switch (mRegionState) {
 		case 0:

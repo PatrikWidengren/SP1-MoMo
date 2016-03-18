@@ -6,8 +6,22 @@ using namespace std;
 static int spriteWidth = 256;
 static int spriteHeight = 256;
 static const string filename = "Resource Files/Sprites/meep02.png";
-static const string meep_idle = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
-static const string meep_walk = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
+static const string meep_idle1 = "Resource Files/SpriteSheets/Meep_Idle_Pushmower1.png";
+static const string meep_walk1 = "Resource Files/SpriteSheets/Meep_Walk_Pushmower1.png";
+static const string meep_idle2 = "Resource Files/SpriteSheets/Meep_Idle_Pushmower2.png";
+static const string meep_walk2 = "Resource Files/SpriteSheets/Meep_Walk_Pushmower2.png";
+static const string meep_idle3 = "Resource Files/SpriteSheets/Meep_Idle_Pushmower3.png";
+static const string meep_walk3 = "Resource Files/SpriteSheets/Meep_Walk_Pushmower3.png";
+static const string meep_idle4 = "Resource Files/SpriteSheets/Meep_Idle_Mower1.png";
+static const string meep_walk4 = "Resource Files/SpriteSheets/Meep_Walk_Mower1.png"; 
+static const string meep_idle5 = "Resource Files/SpriteSheets/Meep_Idle_Mower2.png";
+static const string meep_walk5 = "Resource Files/SpriteSheets/Meep_Walk_Mower2.png";
+static const string meep_idle_cutter = "Resource Files/SpriteSheets/Meep_Idle_Hedgecutter.png";
+static const string meep_walk_cutter = "Resource Files/SpriteSheets/Meep_Walk_Hedgecutter.png";
+
+
+
+
 
 Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mLawnMower(m), mAntiLeakMower(m), mHedgeTool(c), 
@@ -19,9 +33,15 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 	mType = 5.1f;
 	//Temporär lösning. Bör fixas snarast
 	mLast = 2.1f;
-	//mPlayerSprite.setTexture(texturePlayer);
-	mTextureIdleSheet->loadFromFile(meep_idle);
-	mSpriteIdleSheet->setTexture(*mTextureIdleSheet);
+
+	mTextureIdleSheet1->loadFromFile(meep_idle1);
+	mTextureIdleSheet2->loadFromFile(meep_idle2);
+	mTextureIdleSheet3->loadFromFile(meep_idle3);
+	mTextureIdleSheet4->loadFromFile(meep_idle4);
+	mTextureIdleSheet5->loadFromFile(meep_idle5);
+	mTextureIdleSheetCutter1->loadFromFile(meep_idle_cutter);
+	
+	mSpriteIdleSheet->setTexture(*mTextureIdleSheet1);
 	mdopies = 100;
 
 	for (int j = 0; j < 8; j++) {
@@ -35,8 +55,14 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(0.8f));
 	}
 
-	mTextureWalkSheet->loadFromFile(meep_walk);
-	mSpriteWalkSheet->setTexture(*mTextureWalkSheet);
+	mTextureWalkSheet1->loadFromFile(meep_walk1);
+	mTextureWalkSheet2->loadFromFile(meep_walk2);
+	mTextureWalkSheet3->loadFromFile(meep_walk3);
+	mTextureWalkSheet4->loadFromFile(meep_walk4);
+	mTextureWalkSheet5->loadFromFile(meep_walk5);
+	mTextureWalkSheetCutter1->loadFromFile(meep_walk_cutter);
+
+	mSpriteWalkSheet->setTexture(*mTextureWalkSheet1);
 
 	for (int j = 0; j < 8; j++) {
 		thor::FrameAnimation frame;
@@ -64,8 +90,18 @@ Player::~Player(){
 	delete mAntiLeakHedgeTool;
 	delete mAntiLeakMower;
 
-	delete mTextureIdleSheet;
-	delete mTextureWalkSheet;
+	delete mTextureIdleSheet1;
+	delete mTextureWalkSheet1;
+	delete mTextureIdleSheet2;
+	delete mTextureWalkSheet2;
+	delete mTextureIdleSheet3;
+	delete mTextureWalkSheet3;
+	delete mTextureIdleSheet4;
+	delete mTextureWalkSheet4;
+	delete mTextureIdleSheet5;
+	delete mTextureWalkSheet5;
+	delete mTextureIdleSheetCutter1;
+	delete mTextureWalkSheetCutter1;
 
 	delete mSpriteIdleSheet;
 	delete mSpriteWalkSheet;
@@ -153,10 +189,40 @@ void Player::swapEquipped(){
 	}
 	mMowerEquipped = !mMowerEquipped;
 	cout << "Equipment changed to ";
-	if (mMowerEquipped){
+	if (mMowerEquipped) {
 		cout << "Lawnmower" << endl;
+		switch (intMower)
+		{
+		case 0: {
+			mSpriteWalkSheet->setTexture(*mTextureWalkSheet1);
+			mSpriteIdleSheet->setTexture(*mTextureIdleSheet1);
+			break;
+		}
+		case 1: {
+			mSpriteWalkSheet->setTexture(*mTextureWalkSheet2);
+			mSpriteIdleSheet->setTexture(*mTextureIdleSheet2);
+			break;
+		}
+		case 2: {
+			mSpriteWalkSheet->setTexture(*mTextureWalkSheet3);
+			mSpriteIdleSheet->setTexture(*mTextureIdleSheet3);
+			break;
+		}
+		case 3: {
+			mSpriteWalkSheet->setTexture(*mTextureWalkSheet4);
+			mSpriteIdleSheet->setTexture(*mTextureIdleSheet4);
+			break;
+		}
+		case 4: {
+			mSpriteWalkSheet->setTexture(*mTextureWalkSheet5);
+			mSpriteIdleSheet->setTexture(*mTextureIdleSheet5);
+			break;
+		}
+		}
 	}
 	else {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheetCutter1);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheetCutter1);
 		cout << "Hedge cutter" << endl;
 	}
 }
@@ -169,12 +235,42 @@ string Player::getShears(){
 	return mHedgeTool->getStats();
 }
 
-void Player::setMower(Mower *m){
+void Player::setMower(Mower *m, int i){
 	mLawnMower = m;
+	intMower = i;
+	switch (intMower)
+	{
+	case 0: {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheet1);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheet1);
+		break;
+	}
+	case 1: {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheet2);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheet2);
+		break;
+	}
+	case 2: {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheet3);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheet3);
+		break;
+	}
+	case 3: {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheet4);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheet4);
+		break;
+	}
+	case 4: {
+		mSpriteWalkSheet->setTexture(*mTextureWalkSheet5);
+		mSpriteIdleSheet->setTexture(*mTextureIdleSheet5);
+		break;
+	}
+	}
 }
 
-void Player::setHedgeTool(Shears *s){
+void Player::setHedgeTool(Shears *s, int i){
 	mHedgeTool = s;
+	intCutter = i;
 }
 
 cutVector Player::getCuts(){

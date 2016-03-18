@@ -49,8 +49,8 @@ public:
 	std::string getMower();
 	std::string getShears();
 	//Set which lawnmower or hedge cutter is being used
-	void setMower(Mower *m);
-	void setHedgeTool(Shears *s);
+	void setMower(Mower *m, int i);
+	void setHedgeTool(Shears *s, int i);
 	cutVector getCuts();
 	void changeAnimation(int nr);
 	void playPlayer();
@@ -63,8 +63,18 @@ private:
 	sf::Clock moveClock;
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string>* animatorMeep = new thor::Animator<sf::Sprite, std::string>;
-	sf::Texture* mTextureIdleSheet = new sf::Texture;
-	sf::Texture* mTextureWalkSheet = new sf::Texture;
+	sf::Texture* mTextureIdleSheet1 = new sf::Texture;
+	sf::Texture* mTextureWalkSheet1 = new sf::Texture;
+	sf::Texture* mTextureIdleSheet2 = new sf::Texture;
+	sf::Texture* mTextureWalkSheet2 = new sf::Texture;
+	sf::Texture* mTextureIdleSheet3 = new sf::Texture;
+	sf::Texture* mTextureWalkSheet3 = new sf::Texture;
+	sf::Texture* mTextureIdleSheet4 = new sf::Texture;
+	sf::Texture* mTextureWalkSheet4 = new sf::Texture;
+	sf::Texture* mTextureIdleSheet5 = new sf::Texture;
+	sf::Texture* mTextureWalkSheet5 = new sf::Texture;
+	sf::Texture* mTextureIdleSheetCutter1 = new sf::Texture;
+	sf::Texture* mTextureWalkSheetCutter1 = new sf::Texture;
 	sf::Sprite* mSpriteIdleSheet = new sf::Sprite;
 	sf::Sprite* mSpriteWalkSheet = new sf::Sprite;
 	sf::IntRect *mRect;
@@ -74,6 +84,8 @@ private:
 	//When hedge cutter is equipped, this value is false
 	bool mMowerEquipped = true;
 	bool walking = false;;
+	int intMower = 0;
+	int intCutter = 0;
 	/*x and y in the array*/
 	int mArrayX = 0, mArrayY = 0, mLastX = 0, mLastY = 0;
 	/*important values for the array*/
@@ -82,7 +94,7 @@ private:
 	/*x and y coordinates for sprite*/
 	//float mPosX, mPosY;
 	/*sprite*/
-	sf::Sprite mPlayerSprite;
+	//sf::Sprite mPlayerSprite;
 };
 
 #endif
