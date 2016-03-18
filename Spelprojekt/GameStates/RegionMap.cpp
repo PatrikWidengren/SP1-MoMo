@@ -39,6 +39,7 @@ RegionMap::RegionMap(float width, float height)
 
 	spriteHedgecutter->setPosition(650 + 582, 700);
 	
+	spriteGrassMowerDescription->setPosition(160 + 682, 650);
 	spriteGrassMower->setPosition(160 + 582, 700);
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360, 295), sf::Vector2i(410, 200));
@@ -64,6 +65,7 @@ RegionMap::~RegionMap()
 	delete textHighlightArrow01;
 
 	delete spriteGrassMower;
+	delete spriteGrassMowerDescription;
 	delete spriteHedgecutter;
 
 	delete spriteArrow01;
@@ -93,6 +95,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		spriteArrow03->setPosition(950 * bg01->getScale().x, 1513 * bg01->getScale().y);
 		spriteArrow04->setPosition(1343 * bg01->getScale().x, 1513 * bg01->getScale().y);
 
+		spriteGrassMowerDescription->setPosition(1150 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		spriteGrassMower->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		spriteHedgecutter->setPosition(960 * bg01->getScale().x, 1140 * bg01->getScale().y);
 		
@@ -113,6 +116,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow03->move(0 * bg01->getScale().x, 4 * bg01->getScale().y);
 			spriteArrow04->move(0 * bg01->getScale().x, 4 * bg01->getScale().y);
 
+			spriteGrassMowerDescription->move(0 * bg01->getScale().x, 4 * bg01->getScale().y);
 			spriteGrassMower->move(0 * bg01->getScale().x, 4 * bg01->getScale().y);
 			spriteHedgecutter->move(0 * bg01->getScale().x, 4 * bg01->getScale().y);
 
@@ -140,6 +144,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			spriteArrow03->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
 			spriteArrow04->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
 
+			spriteGrassMowerDescription->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
 			spriteGrassMower->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
 			spriteHedgecutter->move(0 * bg01->getScale().x, -4 * bg01->getScale().y);
 
@@ -223,7 +228,7 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 				selectedMow--;
 			}
 			spriteGrassMower->setTexture(textMowers[selectedMow]);
-
+			spriteGrassMowerDescription->setTexture(textMowerDescription[selectedMow]);
 		}
 		else
 			spriteArrow01->setTexture(*textArrow01);
@@ -240,7 +245,8 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			{
 				selectedMow++;
 			}
-			spriteGrassMower->setTexture(textMowers[selectedMow]);		
+			spriteGrassMower->setTexture(textMowers[selectedMow]);	
+			spriteGrassMowerDescription->setTexture(textMowerDescription[selectedMow]);
 		}
 		else
 			spriteArrow02->setTexture(*textArrow01);
@@ -351,6 +357,7 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(*spriteArrow04);
 	window.draw(*spriteHedgecutter);
 	window.draw(*spriteGrassMower);
+	window.draw(*spriteGrassMowerDescription);
 	if (mInternalState == 1) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		window.draw(spriteLevels[i]);
@@ -398,11 +405,23 @@ void RegionMap::setTextures()
 	if (!textMowers[4].loadFromFile("Resource Files/Menus/Shop_UI/Mower_5_Big.png"))
 		textMowers[4].loadFromFile("error.jpg");
 
+	if (!textMowerDescription[0].loadFromFile("Resource Files/Sprites/Descriptions/lawnmower_0.png"))
+		textMowerDescription[0].loadFromFile("error.jpg");
+	if (!textMowerDescription[1].loadFromFile("Resource Files/Sprites/Descriptions/lawnmower_1.png"))
+		textMowerDescription[1].loadFromFile("error.jpg");
+	if (!textMowerDescription[2].loadFromFile("Resource Files/Sprites/Descriptions/lawnmower_2.png"))
+		textMowerDescription[2].loadFromFile("error.jpg");
+	if (!textMowerDescription[3].loadFromFile("Resource Files/Sprites/Descriptions/lawnmower_3.png"))
+		textMowerDescription[3].loadFromFile("error.jpg");
+	if (!textMowerDescription[4].loadFromFile("Resource Files/Sprites/Descriptions/lawnmower_4.png"))
+		textMowerDescription[4].loadFromFile("error.jpg");
+
 	if (!textHedgecutters[0].loadFromFile("Resource Files/Menus/Shop_UI/Hedgecutter_Small.png"))
 		textHedgecutters[0].loadFromFile("error.jpg");
 	if (!textHedgecutters[1].loadFromFile("Resource Files/Menus/Shop_UI/Hedgecutter_Big.png"))
 		textHedgecutters[1].loadFromFile("error.jpg");
 
+	spriteGrassMowerDescription->setTexture(textMowerDescription[0]);
 	spriteGrassMower->setTexture(textMowers[0]);
 	spriteHedgecutter->setTexture(textHedgecutters[0]);
 
@@ -494,6 +513,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	*/
 
 	spriteShop->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteGrassMowerDescription->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteHedgecutter->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteGrassMower->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteArrow01->setScale(-(float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
@@ -516,6 +536,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	
 	if (mInternalState == 1) {
 		spriteShop->setPosition(582 * bg01->getScale().x, 780 * bg01->getScale().y);
+		spriteGrassMowerDescription->setPosition(160 + 682 * bg01->getScale().x,650 * bg01->getScale().y);
 		spriteGrassMower->setPosition(130 + 582 * bg01->getScale().x, 450 * bg01->getScale().y);
 		spriteArrow01->setPosition(950 * bg01->getScale().x, 500 * bg01->getScale().y);
 		spriteArrow02->setPosition(245 + 582 * bg01->getScale().x, 500 * bg01->getScale().y);
@@ -524,6 +545,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 	else {
 		spriteShop->setPosition(582 * bg01->getScale().x, 1080 * bg01->getScale().y);
+		spriteGrassMowerDescription->setPosition(160 + 682 * bg01->getScale().x, 1050 * bg01->getScale().y);
 		spriteGrassMower->setPosition(130 + 582 * bg01->getScale().x, 800 * bg01->getScale().y);
 		spriteArrow01->setPosition(950 * bg01->getScale().x, 730 * bg01->getScale().y);
 		spriteArrow02->setPosition(245 + 582 * bg01->getScale().x, 800 * bg01->getScale().y);

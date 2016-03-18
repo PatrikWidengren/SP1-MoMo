@@ -25,9 +25,11 @@ public:
 	sf::Texture* textArrow01 = new sf::Texture();
 	sf::Texture* textHighlightArrow01 = new sf::Texture();
 	sf::Texture textMowers[5];
+	sf::Texture textMowerDescription[5];
 	sf::Texture textHedgecutters[2];
 
 	sf::Sprite* spriteGrassMower = new sf::Sprite();
+	sf::Sprite* spriteGrassMowerDescription = new sf::Sprite();
 	sf::Sprite* spriteHedgecutter = new sf::Sprite();
 
 	sf::Sprite* spriteArrow01 = new sf::Sprite();

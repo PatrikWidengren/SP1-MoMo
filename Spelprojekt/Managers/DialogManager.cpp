@@ -11,7 +11,11 @@ DialogManager::DialogManager(sf::RenderWindow &window)
 
 DialogManager::~DialogManager()
 {
-	delete textureMap01a01BeforeDialogue;
+	for (int i = 0; i < 23; i++)
+	{
+		delete textureMap01a01BeforeDialogue[i];
+
+	}
 
 	delete spriteDialogs;
 }

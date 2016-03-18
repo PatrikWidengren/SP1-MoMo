@@ -109,20 +109,22 @@ InGameBackground::~InGameBackground()
 	delete texture_bronzeMedal;
 	delete texture_silverMedal;
 	delete texture_goldMedal;
-	delete texture_woodHedgecutter;
-	delete texture_woodLawnmower;
+	delete texture_arrow;
+
 	delete texture_woodMedal;
-	delete texture_woodMenu;
 	delete texture_woodMomentum;
-	delete texture_momentumText;
-	delete texture_menuText;
+	delete texture_woodMenu;
+	delete texture_woodLawnmower;
+	delete texture_woodHedgecutter;
+
 	delete texture_lawnmower01;
 	delete texture_lawnmower02;
 	delete texture_lawnmower03;
 	delete texture_lawnmower04;
 	delete texture_lawnmower05;
 	delete texture_hedgecutter01;
-	delete texture_arrow;
+	delete texture_momentumText;
+	delete texture_menuText;
 
 	delete texture_momentum2_01;
 	delete texture_momentum2_02;
@@ -144,8 +146,8 @@ InGameBackground::~InGameBackground()
 	delete sprite_downArrow;
 	delete sprite_menuText;
 
-	delete sprite_momentum;
 	delete sprite_momentumText;
+	delete sprite_momentum;
 	delete sprite_backgroundTop;
 	delete sprite_backgroundBottom;
 	delete sprite_inGameHud;

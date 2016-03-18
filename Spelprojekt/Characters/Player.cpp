@@ -63,6 +63,12 @@ Player::~Player(){
 	//delete mHedgeTool;
 	delete mAntiLeakHedgeTool;
 	delete mAntiLeakMower;
+
+	delete mTextureIdleSheet;
+	delete mTextureWalkSheet;
+
+	delete mSpriteIdleSheet;
+	delete mSpriteWalkSheet;
 }
 
 intVector Player::move(int dir){

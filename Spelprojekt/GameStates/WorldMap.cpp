@@ -40,6 +40,12 @@ WorldMap::~WorldMap()
 {
 	delete 	highlightTexture01;
 	delete texture01;
+	delete textGreenDot;
+
+	delete spriteGreenDot01;
+	delete spriteGreenDot02;
+	delete spriteGreenDot03;
+	delete spriteGreenDot04;
 
 	delete 	bg01;
 	delete highlightSprite01;
