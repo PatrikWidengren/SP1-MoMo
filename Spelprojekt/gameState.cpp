@@ -233,6 +233,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	mInGameBackground->scale(window);
 	mInGameBackground->drawBackgroundTop(window);
 	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+	mInGameBackground->selectHedgecutterSprite();
 	mMap01->update(sound, window);
 	mMap01->render(window, anime, mouse);
 	mInGameBackground->drawBackgroundBottom(window);

@@ -32,7 +32,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 		}
 		std::ostringstream tempName;
 		tempName << "idle" << j + 1;
-		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(1.0f));
+		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(0.8f));
 	}
 
 	mTextureWalkSheet->loadFromFile(meep_walk);
@@ -46,7 +46,7 @@ Player::Player(Mower *m, Shears *c/*, float posX, float posY*/) :
 		}
 		std::ostringstream tempName;
 		tempName << "walk" << j + 1;
-		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(1.0f));
+		animatorMeep->addAnimation(tempName.str(), frame, sf::seconds(0.8f));
 	}
 
 	animatorMeep->playAnimation("idle3", true);
@@ -67,7 +67,7 @@ Player::~Player(){
 
 intVector Player::move(int dir){
 	intVector movement = mLawnMower->getMove(dir);
-	mMoveTime = 0.1f / movement.size();
+	mMoveTime = 0.8f / movement.size();
 	return movement;
 }
 
