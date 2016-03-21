@@ -1484,7 +1484,7 @@ void Map1::getMapInfo(){
 }
 
 //Funktion för att returnera objekten
-vector<StaticObjects*> Map1::getObjects() {
+vector <StaticObjects*> Map1::getObjects() {
 	return mObjects;
 }
 

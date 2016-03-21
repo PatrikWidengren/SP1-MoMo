@@ -477,6 +477,7 @@ void RegionMap::setRegionState(int state) {
 	bg01->setTexture(textBackgrounds[mRegionState]);
 	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
 	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
 	}
@@ -524,6 +525,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		spriteLevels[i].setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	}
+	
 
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01->getScale().x, 295 * bg01->getScale().y), sf::Vector2i(410 * bg01->getScale().x, 200 * bg01->getScale().y));
