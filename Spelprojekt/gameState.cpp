@@ -74,7 +74,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 {
 	mInGameMenu01->updateInGameMenu(window, mouse, sound);
 	window.clear();
-	mMap01->render(window, anime, mouse);
+	mMap01->render(window, mouse);
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -234,7 +234,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
 	mInGameBackground->selectHedgecutterSprite();
 	mMap01->update(sound, window);
-	mMap01->render(window, anime, mouse);
+	mMap01->render(window, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
 
 	switch (mDialogSwitch)

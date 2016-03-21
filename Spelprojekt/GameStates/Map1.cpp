@@ -370,7 +370,7 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) {
+void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 	mState = 1;
 	float scaleX = (float)window.getSize().x / 1920;
 	float scaleY = (float)window.getSize().y / 1080;
@@ -1072,7 +1072,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 	if (mMeepMoving && mPlayerMoveTime.getElapsedTime().asSeconds() >= mPlayer->getMoveTime()) {
 		mPlayerMoveTime.restart();
-		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
+		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound, window);
 		if (!moved) {
 			mPlayer->collide(mCurrentMove, mPlaceInMove);
 			mPlayer->getSpriteSheet()->setPosition(((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY) * scaleY);
@@ -1111,14 +1111,14 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
-void Map1::takeTurn(int dir, SoundManager &sound) {
+void Map1::takeTurn(int dir, SoundManager &sound, sf::RenderWindow &window) {
 
 	//sound.playSound(10.4f);
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
 	for (intVector::size_type i = 0; i < meepMove.size(); i++) {
-		bool moved = movePlayer(meepMove.at(i), sound);
+		bool moved = movePlayer(meepMove.at(i), sound, window);
 		if (!moved) {
 			mPlayer->collide(meepMove, i);
 			break;
@@ -1201,7 +1201,7 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 	std::cout << endl;
 }
 
-bool Map1::movePlayer(int dir, SoundManager &sound) {
+bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
@@ -1314,6 +1314,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
 			sound.playSound((mGrid[tempY][tempX]));
+			screenshake(window);
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
 				sound.playSound(0.1f);
@@ -1463,20 +1464,53 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		return false;
 	}
 }
+void Map1::screenshake(sf::RenderWindow &window) {
+	int tempX, tempY;
+	clock.restart();
+	bool switchIf = false;
+	bool temp;
 
-/*void Map1::deleteContent()
-{
-	for (int j = 0; j < mHeight; j++) {
-		for (int i = 0; i < mWidth; i++) {
-			coords tempCoord = { i, j };
-			if (!mNpcs[tempCoord] != 0) {
-				delete mNpcs[tempCoord];
-				mNpcs.erase(tempCoord);
+	tempX = window.getPosition().x;
+	tempY = window.getPosition().y;
+
+
+
+	float tid = 0.02f;
+
+	for (int i = 0; i < 5; i++) {
+
+
+		int randomValueX = thor::random(-50, 50);
+		int randomValueY = thor::random(-50, 50);
+
+		switchIf = !switchIf;
+		temp = false;
+		if (switchIf) {
+			while (!temp) {
+				cout << clock.getElapsedTime().asSeconds() << endl;
+				if (clock.getElapsedTime().asSeconds() >= tid) {
+					temp = true;
+					window.setPosition(sf::Vector2i(tempX + randomValueX, tempY + randomValueY));
+					clock.restart();	
+				}
+			}
+		}
+		if (!switchIf) {
+			while (!temp) {
+				cout << clock.getElapsedTime().asSeconds() << endl;
+				if (clock.getElapsedTime().asSeconds() >= tid) {
+					temp = true;
+					window.setPosition(sf::Vector2i(tempX - randomValueX, tempY - randomValueY));
+					clock.restart();
+				}
 			}
 		}
 	}
-}*/
 
+
+
+	window.setPosition(sf::Vector2i(tempX, tempY));
+}
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;
 	ifstream file(saveFilePath);
