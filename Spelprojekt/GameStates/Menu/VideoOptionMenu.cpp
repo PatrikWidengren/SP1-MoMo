@@ -8,10 +8,7 @@ VideoOptionMenu::VideoOptionMenu(float width, float height)
 	setFonts();
 	setTextures();
 
-	spriteCheckbox01->setPosition(200, 600);
-	spriteCheckbox02->setPosition(200, 800);
 
-	spriteBg01->setPosition(0, 0);
 	spriteIngameOption->setPosition(0, 0);
 
 
@@ -179,16 +176,16 @@ void VideoOptionMenu::scale(sf::RenderWindow &window) {
 
 	spriteBg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(200 * bg01->getScale().x, 600 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(200 * bg01->getScale().x, 800 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
-	mRects[2] = new sf::IntRect(sf::Vector2i(1400 * bg01->getScale().x, 805 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
+	mRects[0] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 600 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(500 * bg01->getScale().x, 800 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
+	mRects[2] = new sf::IntRect(sf::Vector2i(1700 * bg01->getScale().x, 805 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
-	spriteBack->setPosition(1400 * bg01->getScale().x, 805 * bg01->getScale().y);
-	spriteIngameOption->setPosition(0 * bg01->getScale().x, 300 * bg01->getScale().y);
+	spriteBack->setPosition(1700 * bg01->getScale().x, 805 * bg01->getScale().y);
+	spriteIngameOption->setPosition(300 * bg01->getScale().x, 300 * bg01->getScale().y);
 
 
-	spriteCheckbox01->setPosition(200 * bg01->getScale().x, 600 * bg01->getScale().y);
-	spriteCheckbox02->setPosition(200 * bg01->getScale().x, 800 * bg01->getScale().y);
+	spriteCheckbox01->setPosition(1100 * bg01->getScale().x, 975 * bg01->getScale().y);
+	spriteCheckbox02->setPosition(1100 * bg01->getScale().x, 1100 * bg01->getScale().y);
 }
 
 bool VideoOptionMenu::getFullscreen()
