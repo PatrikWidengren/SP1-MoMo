@@ -74,7 +74,16 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 {
 	mInGameMenu01->updateInGameMenu(window, mouse, sound);
 	window.clear();
+	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
+	mInGameBackground->selectMomentumSprite();
+	mInGameBackground->scale(window);
+	mInGameBackground->drawBackgroundTop(window);
+	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+	mInGameBackground->selectHedgecutterSprite();
 	mMap01->render(window, mouse);
+	mInGameBackground->drawBackgroundBottom(window);
+	
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -485,7 +494,17 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawInGame(window, mouse, music, sound, anime);
 			window.display();
 			while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-				
+				window.clear();
+				mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+				mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
+				mInGameBackground->selectMomentumSprite();
+				mInGameBackground->scale(window);
+				mInGameBackground->drawBackgroundTop(window);
+				mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+				mInGameBackground->selectHedgecutterSprite();
+				mMap01->render(window, mouse);
+				mInGameBackground->drawBackgroundBottom(window);
+				window.display();
 			}
 			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;

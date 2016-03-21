@@ -385,6 +385,18 @@ void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 			for (int i = 0; i < mWidth; i++) {
 				if (mGrid[j][i] == 2.0f) {
 					mGrid[j][i] = 2.1f;
+				}else
+				if (mGrid[j][i] == 9.0f) {
+					mGrid[j][i] = 9.1f;
+				}else
+				if (mGrid[j][i] == 2.2f) {
+					mGrid[j][i] = 2.3f;
+				}else
+				if (mGrid[j][i] == 3.0f) {
+					mGrid[j][i] = 3.1f;
+				}else
+				if (mGrid[j][i] == 4.0f) {
+					mGrid[j][i] = 4.1f;
 				}
 			}
 		}
@@ -497,9 +509,19 @@ void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 				mObjects[2]->getSprite()->setPosition(((pushMapX + i * widthOnTile)) * scaleX, (pushMapY + (j * heightOnTile) - 15) * scaleY); //Sätter positionen enligt grid
 				window.draw(mObjects[2]->getDrawSprite());
 			}
+			else if (mGrid[j][i] == 3.1f) { //Sten
+				mObjects[1]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX) * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY) * scaleY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
+				mObjects[2]->getSprite()->setPosition(((pushMapX + i * widthOnTile)) * scaleX, (pushMapY + (j * heightOnTile) - 15) * scaleY); //Sätter positionen enligt grid
+				window.draw(mObjects[2]->getDrawSprite());
+			}
 			else if (mGrid[j][i] == 4.0f) { //Träd
 				mObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX) * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY) * scaleY); //Sätter positionen enligt grid
 				window.draw(mObjects[0]->getDrawSprite());
+			}
+			else if (mGrid[j][i] == 4.1f) { //Träd
+				mObjects[1]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX) * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY) * scaleY); //Sätter positionen enligt grid
+				window.draw(mObjects[1]->getDrawSprite());
 			}
 			else if (mGrid[j][i] == 5.0f) { //Spelare Gräs, temp innan animation
 				mObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) + pushGrassX) * scaleX, (pushMapY + (j * heightOnTile) + pushGrassY) * scaleY); //Sätter positionen enligt grid
@@ -627,6 +649,11 @@ void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 	for (int j = 0; j < mHeight; j++) {
 		for (int i = 0; i < mWidth; i++) {
 			if (mGrid[j][i] == 4.0f) { //Träd
+				mLongObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) - 31) * scaleX, pushMapY + ((j * heightOnTile) - 148) * scaleY); //Sätter positionen enligt grid
+				window.draw(mLongObjects[0]->getDrawSprite());
+			}
+			else
+			if (mGrid[j][i] == 4.1f) { //Träd
 				mLongObjects[0]->getSprite()->setPosition(((pushMapX + i * widthOnTile) - 31) * scaleX, pushMapY + ((j * heightOnTile) - 148) * scaleY); //Sätter positionen enligt grid
 				window.draw(mLongObjects[0]->getDrawSprite());
 			}

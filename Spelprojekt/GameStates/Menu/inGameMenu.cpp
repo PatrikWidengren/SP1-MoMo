@@ -95,11 +95,13 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 void inGameMenu::displayMenu01(sf::RenderWindow &window)
 {
+	sf::RectangleShape blackness(sf::Vector2f(window.getSize().x, window.getSize().y));
+	blackness.setFillColor(sf::Color(100, 100, 100, 100));
+	window.draw(blackness);
 	window.draw(*bg01);
 	window.draw(*spriteResume);
 	window.draw(*spriteOption);
 	window.draw(*spriteQuit);
-
 }
 
 void inGameMenu::setTextures()
