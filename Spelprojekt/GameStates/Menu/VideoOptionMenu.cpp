@@ -177,18 +177,27 @@ void VideoOptionMenu::scale(sf::RenderWindow &window) {
 	mState = 4;
 	mOptionMenuState = 4;
 
+	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteBg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
-	mRects[0] = new sf::IntRect(sf::Vector2i(760 * bg01->getScale().x, 665 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
-	mRects[1] = new sf::IntRect(sf::Vector2i(760 * bg01->getScale().x, 810 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
+	spriteBack->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteCheckbox01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteCheckbox02->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	spriteIngameOption->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+
+	mRects[0] = new sf::IntRect(sf::Vector2i(850 * bg01->getScale().x, 690 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
+	mRects[1] = new sf::IntRect(sf::Vector2i(850 * bg01->getScale().x, 800 * bg01->getScale().y), sf::Vector2i(128 * bg01->getScale().x, 128 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1400 * bg01->getScale().x, 515 * bg01->getScale().y), sf::Vector2i(113 * bg01->getScale().x, 91 * bg01->getScale().y));
 
 	spriteBack->setPosition(1400 * bg01->getScale().x, 515 * bg01->getScale().y);
 	spriteIngameOption->setPosition(0 * bg01->getScale().x, 0 * bg01->getScale().y);
 
 
-	spriteCheckbox01->setPosition(760 * bg01->getScale().x, 665 * bg01->getScale().y);
-	spriteCheckbox02->setPosition(760 * bg01->getScale().x, 810 * bg01->getScale().y);
+	spriteCheckbox01->setPosition(850 * bg01->getScale().x, 690 * bg01->getScale().y);
+	spriteCheckbox02->setPosition(850 * bg01->getScale().x, 800 * bg01->getScale().y);
+
+	//spriteCheckbox01->setPosition(760 * bg01->getScale().x, 665 * bg01->getScale().y);
+	//spriteCheckbox02->setPosition(760 * bg01->getScale().x, 810 * bg01->getScale().y);
 }
 
 bool VideoOptionMenu::getFullscreen()
