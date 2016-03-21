@@ -453,7 +453,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				music.setMusic(5);
 			}
 			else if (mRegionMusic == 4) {
-				music.setMusic(7);
+				music.setMusic(9);
 			}
 			else if (mRegionMusic == 5) {
 				music.setMusic(8);
@@ -468,17 +468,28 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-			if (mInGameBackground->getMedal() == "Gold")
+			if (mInGameBackground->getMedal() == "Gold") {
 				mWorldMap01->addDemDopies(90);
-
-			if (mInGameBackground->getMedal() == "Silver")
+				sound.playSound(10.9f);
+			}else
+			if (mInGameBackground->getMedal() == "Silver") {
 				mWorldMap01->addDemDopies(60);
-
-			if (mInGameBackground->getMedal() == "Bronze")
+				sound.playSound(10.8f);
+			}else
+			if (mInGameBackground->getMedal() == "Bronze") {
 				mWorldMap01->addDemDopies(40);
+				sound.playSound(10.7f);
+			}
+			//mMap01->getObjects().at(0)->setCut();
+			//mMap01->getObjects().at(9)->setCut();
+			drawInGame(window, mouse, music, sound, anime);
+			window.display();
+			while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+				
+			}
 			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
-
+			
 			mState = 6;
 			mStartState = true;
 
@@ -613,7 +624,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawWorldMap(window, mouse, music, sound);
 			break;
 		case 1:
-			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 1;
@@ -621,8 +631,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(1);
 			}
-			mRegionMap01->setRegionState(1);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 2:
@@ -633,8 +643,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(2);
 			}
-			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 3:
@@ -645,8 +655,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(3);
 			}
-			mRegionMap01->setRegionState(3);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 
@@ -658,8 +668,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(4);
 			}
-			mRegionMap01->setRegionState(4);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 
@@ -671,8 +681,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(5);
 			}
-			mRegionMap01->setRegionState(5);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 

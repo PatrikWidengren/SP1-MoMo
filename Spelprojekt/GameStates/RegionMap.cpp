@@ -126,7 +126,13 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mRects[6] = new sf::IntRect(sf::Vector2i(777 + 582 * bg01->getScale().x, 11200 * bg01->getScale().y), sf::Vector2i(116 * bg01->getScale().x, 180 * bg01->getScale().y));
 
 		}
-
+		//levelRectReplacer_01
+		if (mLevelRects != 0)
+			delete[] mLevelRects;
+		mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+			mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
+		}
 
 		//spriteShop->move(0 * bg01->getScale().x, 300 * bg01->getScale().y);
 		break;
@@ -160,6 +166,18 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		break;
 	}
 
+	if (mInternalState == 1) {
+		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+			if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+				std::cout << "It's inside " << i << "!" << std::endl;
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+					mClick = false;
+					mLevelToLoad = i + 1;
+					mState = 8;
+				}
+			}
+		}
+	}
 
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
@@ -181,6 +199,14 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 			mClick = false;
 			mInternalState = 1;
 			reset = true;
+
+			//levelRectReplacer_02 
+			if (mLevelRects != 0)
+				delete[] mLevelRects;
+			mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+			for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+				mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
+			}
 		}
 	}
 
@@ -202,18 +228,12 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 
 	}
 
-	if (mInternalState == 1) {
+	std::cout << "Mouse Coord: " << mMouse.x << " " << mMouse.y << std::endl;
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
-			std::cout << "It's inside " << i << "!" << std::endl;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-				mClick = false;
-				mLevelToLoad = i + 1;
-				mState = 8;
-			}
-		}
+		std::cout << "Height: " << mLevelRects[i].height << " Width: " << mLevelRects[i].width << std::endl;
+		std::cout << "Top: " << mLevelRects[i].top << " Left: " << mLevelRects[i].left << std::endl << std::endl;;
 	}
-	}
+
 
 #pragma region ArrowRects
 	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
@@ -359,9 +379,9 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(*spriteGrassMower);
 	window.draw(*spriteGrassMowerDescription);
 	if (mInternalState == 1) {
-	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-		window.draw(spriteLevels[i]);
-	}
+		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+			window.draw(spriteLevels[i]);
+		}
 	}
 
 	/*
@@ -467,16 +487,15 @@ int RegionMap::checkRegionState() {
 }
 
 void RegionMap::setRegionState(int state) {
-	if (mLevelRects != 0)
-	delete[] mLevelRects;
-
-	if (spriteLevels != 0)
-	delete[] spriteLevels;
 
 	mRegionState = state;
 	bg01->setTexture(textBackgrounds[mRegionState]);
+
+	if (spriteLevels != 0)
+	delete[] spriteLevels;
 	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
 	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
 	}
@@ -486,7 +505,13 @@ void RegionMap::setRegionState(int state) {
 		spriteLevels[i].setScale(bg01->getScale().x, bg01->getScale().y);
 		spriteLevels[i].setTexture(*textLevels);
 	}
-
+	//levelRectReplacer_03
+	if (mLevelRects != 0)
+		delete[] mLevelRects;
+	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
+	}
 }
 
 std::string RegionMap::loadLevel() {
@@ -526,6 +551,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	}
 
 
+
 	mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01->getScale().x, 295 * bg01->getScale().y), sf::Vector2i(410 * bg01->getScale().x, 200 * bg01->getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(925 * bg01->getScale().x, 300 * bg01->getScale().y), sf::Vector2i(395 * bg01->getScale().x, 200 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(1660 * bg01->getScale().x, 75 * bg01->getScale().y), sf::Vector2i(180 * bg01->getScale().x, 145 * bg01->getScale().y));
@@ -553,6 +579,22 @@ void RegionMap::scale(sf::RenderWindow &window) {
 		spriteArrow04->setPosition(555 + 582 * bg01->getScale().x, 800 * bg01->getScale().y);
 	}
 
+	//levelRectReplacer_04
+	if (mLevelRects != 0)
+		delete[] mLevelRects;
+	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
+	}
+
+	if (spriteLevels != 0)
+		delete[] spriteLevels;
+	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		spriteLevels[i].setPosition(0 * bg01->getScale().x, i * 100 * bg01->getScale().y);
+		spriteLevels[i].setScale(bg01->getScale().x, bg01->getScale().y);
+		spriteLevels[i].setTexture(*textLevels);
+	}
 }
 
 int RegionMap::getMower()

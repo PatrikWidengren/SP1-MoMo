@@ -3,7 +3,7 @@
 #include <math.h>
 #include <cstdlib>
 
-const int numberOfSounds = 107;
+const int numberOfSounds = 110;
 
 using namespace std;
 int asd;
@@ -114,7 +114,10 @@ static const string nameArray[numberOfSounds] = {
 	"Resource Files/Sound/Meny_Open.flac",			//103
 	"Resource Files/Sound/Lawnmower_Loop_lowVolume.flac",		//104
 	"Resource Files/Sound/Lawnmower_Start_lowVolume.flac",		//105
-	"Resource Files/Sound/Lawnmower_Stop_lowVolume.flac"		//106
+	"Resource Files/Sound/Lawnmower_Stop_lowVolume.flac",		//106
+	"Resource Files/Sound/Bronze.flac",		//107
+	"Resource Files/Sound/Silver.flac",		//108
+	"Resource Files/Sound/Gold.flac"		//109
 };
 
 SoundManager::SoundManager(){

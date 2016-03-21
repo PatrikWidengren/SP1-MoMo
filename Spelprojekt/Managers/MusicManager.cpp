@@ -3,10 +3,11 @@
 #include <string>
 
 using namespace std;
-const int numberOfSongs = 9;
+const int numberOfSongs = 10;
 static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Worldmap.ogg",
 "Resource Files/Music/GardenGeneric1.ogg", "Resource Files/Music/GardenGeneric2.ogg", "Resource Files/Music/GardenGeneric3.ogg",
-"Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg" };
+"Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg",
+ "Resource Files/Music/GardenAsian.ogg" };
 
 MusicManager::MusicManager(int id) {
 	mVolume = 50;
