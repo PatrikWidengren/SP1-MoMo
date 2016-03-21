@@ -613,7 +613,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			drawWorldMap(window, mouse, music, sound);
 			break;
 		case 1:
-			mRegionMap01->setRegionState(1);
 			if (mStartRegionState || mStartState) {
 				music.setMusic(1);
 				mRegionMusic = 1;
@@ -621,8 +620,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(1);
 			}
-			mRegionMap01->setRegionState(1);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 2:
@@ -633,8 +632,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(2);
 			}
-			mRegionMap01->setRegionState(2);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 		case 3:
@@ -645,8 +644,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(3);
 			}
-			mRegionMap01->setRegionState(3);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 
@@ -658,8 +657,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(4);
 			}
-			mRegionMap01->setRegionState(4);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 
@@ -671,8 +670,8 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mStartState = false;
 				mStartRegionState = false;
 				//Starta musik osv
+				mRegionMap01->setRegionState(5);
 			}
-			mRegionMap01->setRegionState(5);
 			drawRegionMap(window, mouse, music, sound);
 			break;
 
