@@ -460,7 +460,7 @@ int WorldMap::getDemDopies()
 std::string WorldMap::WriteDopies(int demDopies) 
 {
 	std::ostringstream o;
-	o << "You got: " << demDopies << " Dopies!";
+	o << "You got: " << demDopies << " Dupies!";
 	return o.str();
 }
 
@@ -472,7 +472,7 @@ std::string WorldMap::WriteRegionCost(int cost)
 	{
 		e = cost - getDemDopies();
 
-		o << "This Region Cost: " << cost << ". You Need " << e << " Dopies More!";
+		o << "This Region Cost: " << cost << ". You Need " << e << " Dupies More!";
 
 	}
 	else 
