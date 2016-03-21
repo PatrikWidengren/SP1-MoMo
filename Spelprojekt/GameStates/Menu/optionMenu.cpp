@@ -276,5 +276,5 @@ void optionMenu::scale(sf::RenderWindow &window) {
 	spriteAudio->setPosition(800 * bg01->getScale().x, 850 * bg01->getScale().y);
 	spriteBack->setPosition(1385 * bg01->getScale().x, 515 * bg01->getScale().y);
 
-
+	
 }
