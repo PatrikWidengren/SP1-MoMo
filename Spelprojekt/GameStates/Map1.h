@@ -26,7 +26,7 @@
 #include "../Static Objects/StaticObjects.h"
 #include "../Characters/Character.h"
 #include <map>
-
+#include "Thor\Math\Random.hpp"
 //Underklass till "Maps"
 //Level 1
 class Map1{
@@ -37,7 +37,8 @@ public:
 	//gör mer eller mindra vad takeTurn brukade göra
 	void update(SoundManager &sound, sf::RenderWindow &window);
 	void beginTurn(int dir);
-	void virtual render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse);
+	void virtual render(sf::RenderWindow &window, sf::Vector2i &mouse);
+	void screenshake(sf::RenderWindow &window);
 	//Spawnar alla objekten, enligt array
 	void virtual spawnObjects();
 	//Returnerar objekten, detta behövs till main
@@ -52,11 +53,10 @@ public:
 	virtual NpcMap getNpcs();
 	//Returnerar långa objekt, detta behövs till main
 	virtual std::vector<StaticObjects*> getLongObjects();
-	void deleteContent();
 	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
 	void virtual getMapInfo();
 	void resetGrid();
-	void takeTurn(int dir, SoundManager &sound);
+	void takeTurn(int dir, SoundManager &sound, sf::RenderWindow &window);
 	int** getPatrolPath(int &skipLines);
 	float** createGrid(int width, int height);
 	//Added turn count
@@ -76,8 +76,9 @@ private:
 	/*Added helper functions for moving player and NPC to make code look better*/
 	sf::IntRect *mRects[1];
 	bool mClick = true;
-
-	bool movePlayer(int dir, SoundManager &sound);
+	sf::Clock clock;
+	sf::Time time_screenshake = sf::seconds(0.05f);
+	bool movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window);
 	bool moveNpc(int dir, int atPos, SoundManager &sound);
 	bool mOngoingTurn = false;
 

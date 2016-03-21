@@ -203,16 +203,16 @@ void RegionMap::updateRegionMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 	}
 
 	if (mInternalState == 1) {
-		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-			if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
-				std::cout << "It's inside " << i << "!" << std::endl;
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
-					mClick = false;
-					mLevelToLoad = i + 1;
-					mState = 8;
-				}
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		if (mLevelRects[i].contains(sf::Vector2i(mMouse.x, mMouse.y))) {
+			std::cout << "It's inside " << i << "!" << std::endl;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick) {
+				mClick = false;
+				mLevelToLoad = i + 1;
+				mState = 8;
 			}
 		}
+	}
 	}
 
 	std::cout << "Mouse Coord: " << mMouse.x << " " << mMouse.y << std::endl;
@@ -366,9 +366,9 @@ void RegionMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(*spriteGrassMower);
 	window.draw(*spriteGrassMowerDescription);
 	if (mInternalState == 1) {
-		for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
-			window.draw(spriteLevels[i]);
-		}
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		window.draw(spriteLevels[i]);
+	}
 	}
 
 	/*
@@ -479,8 +479,14 @@ void RegionMap::setRegionState(int state) {
 	bg01->setTexture(textBackgrounds[mRegionState]);
 
 	if (spriteLevels != 0)
-		delete[] spriteLevels;
+	delete[] spriteLevels;
 	spriteLevels = new sf::Sprite[mRegions[mRegionState].levelCount];
+	mLevelRects = new sf::IntRect[mRegions[mRegionState].levelCount];
+	
+	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
+		mLevelRects[i] = sf::IntRect(sf::Vector2i(0 * bg01->getScale().x, i * 100 * bg01->getScale().y), sf::Vector2i(200 * bg01->getScale().x, 100 * bg01->getScale().y));
+	}
+
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		spriteLevels[i].setPosition(0 * bg01->getScale().x, i * 100 * bg01->getScale().y);
 		spriteLevels[i].setScale(bg01->getScale().x, bg01->getScale().y);
@@ -529,6 +535,7 @@ void RegionMap::scale(sf::RenderWindow &window) {
 	for (int i = 0; i < mRegions[mRegionState].levelCount; i++) {
 		spriteLevels[i].setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	}
+
 
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(360 * bg01->getScale().x, 295 * bg01->getScale().y), sf::Vector2i(410 * bg01->getScale().x, 200 * bg01->getScale().y));

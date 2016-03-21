@@ -74,7 +74,7 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 {
 	mInGameMenu01->updateInGameMenu(window, mouse, sound);
 	window.clear();
-	mMap01->render(window, anime, mouse);
+	mMap01->render(window, mouse);
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
@@ -234,7 +234,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
 	mInGameBackground->selectHedgecutterSprite();
 	mMap01->update(sound, window);
-	mMap01->render(window, anime, mouse);
+	mMap01->render(window, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
 
 	switch (mDialogSwitch)
@@ -453,7 +453,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				music.setMusic(5);
 			}
 			else if (mRegionMusic == 4) {
-				music.setMusic(7);
+				music.setMusic(9);
 			}
 			else if (mRegionMusic == 5) {
 				music.setMusic(8);
@@ -468,17 +468,28 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
-			if (mInGameBackground->getMedal() == "Gold")
+			if (mInGameBackground->getMedal() == "Gold") {
 				mWorldMap01->addDemDopies(90);
-
-			if (mInGameBackground->getMedal() == "Silver")
+				sound.playSound(10.9f);
+			}else
+			if (mInGameBackground->getMedal() == "Silver") {
 				mWorldMap01->addDemDopies(60);
-
-			if (mInGameBackground->getMedal() == "Bronze")
+				sound.playSound(10.8f);
+			}else
+			if (mInGameBackground->getMedal() == "Bronze") {
 				mWorldMap01->addDemDopies(40);
+				sound.playSound(10.7f);
+			}
+			//mMap01->getObjects().at(0)->setCut();
+			//mMap01->getObjects().at(9)->setCut();
+			drawInGame(window, mouse, music, sound, anime);
+			window.display();
+			while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+				
+			}
 			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
-
+			
 			mState = 6;
 			mStartState = true;
 
