@@ -868,24 +868,24 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 			mNpcsMoving = true;
 			mCurrentMove.clear();
 		}
-		else if (mNpcsMoving) {
-			if (mNpcNo < mNpcVector.size()-1){
-				mNpcVector[mNpcNo]->setWalking(false);
+		/*else if (mNpcsMoving) {
+			if (mNpcNo < mNpcVector.size() - 1) {
+				//mNpcVector[mNpcNo]->setWalking(false);
 				mNpcNo++;
 				mCurrentMove.clear();
 				mPlaceInMove = 0;
 			}
 			else {
 				mNpcsMoving = false;
-	}
-}
+			}
+		}*/
 	}
 
 	if (mNpcVector.empty()) {
 		mNpcsMoving = false;
 	}
 
-	if (mNpcsMoving) {
+	/*if (mNpcsMoving) {
 		float tempPosX = (pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX;
 		float tempPosY = (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY;
 		if (mCurrentMove.size()>mPlaceInMove){
@@ -924,11 +924,11 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				break;
 			}
 		}
-	}
+	}*/
 
 
 	if (!mMeepMoving && mNpcsMoving) {
-		if (mNpcNo < mNpcVector.size()) {
+		/*if (mNpcNo < mNpcVector.size()) {
 			mNpcVector[mNpcNo]->setWalking(true);
 
 			if (mCurrentMove.empty()) {
@@ -943,7 +943,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				//0 means end of movement. Needed for patrols. 
 				//Breakmove means that the entire movement for this character
 				//is over for the turn
-				if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
+				if (mCurrentMove.at(mPlaceInMove) == 0) {
 					mBreakMove = true;
 					mNpcVector[mNpcNo]->setWalking(false);
 					//mBreakMove = false;
@@ -995,8 +995,60 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				}
 				mPlaceInMove++;
 			}
+		}*/
+
+		//Following code block is mostly copypasted from takeTurn
+		for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+			//get their movement vector
+			intVector npcMove = mNpcVector[i]->move();
+			bool breakMove = false;
+			//For every int in the vector, do the following
+			for (intVector::size_type j = 0; j < npcMove.size(); j++) {
+				//0 means end of movement. Needed for patrols. 
+				//Breakmove means that the entire movement for this character
+				//is over for the turn
+				if (npcMove.at(j) == 0 || breakMove) {
+					breakMove = false;
+					//mNpcs[i]->swapDoneMoving();
+					break;
+				}
+				//the movement functions returns a bool. True if they moved, 
+				//false in case of collision
+				bool moved = moveNpc(npcMove.at(j), i, sound);
+				//if the NPC collided: do the following
+				if (!moved) {
+
+					//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+					//get a new series of moves to attempt
+					intVector tryMove;
+					tryMove = mNpcVector[i]->collide(npcMove, j);
+					//try out the new list of steps
+					for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+						//again, break if 0, breakMove is made true so that
+						//the entire turn will end for the current character
+						//if there is no movement after collision
+						if (tryMove.at(k) == 0) {
+							breakMove = true;
+							break;
+						}
+						//check every move. If one of them works, return to standard
+						//movement pattern
+						bool retryMoved = moveNpc(tryMove.at(k), i, sound);
+						if (retryMoved) {
+							break;
+						}
+					}
+
+					break;
+				}
+				else {
+					//cout << "Moved " << npcMove.at(j) << endl;
+				}
+			}
 		}
 	}
+
+	mNpcsMoving = false;
 
 	/*for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
 		mNpcVector[i]->setWalking(false);

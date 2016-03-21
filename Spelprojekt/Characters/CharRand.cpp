@@ -153,7 +153,8 @@ intVector CharRand::move(){
 	else {
 		for (int i = 0; i < mSpeed; i++){
 			int dir = rand() % 9 + 1;
-			changeAnimation(dir);
+			if (i == mSpeed-1)
+				changeAnimation(dir);
 			movement.push_back(dir);
 		}
 	}
