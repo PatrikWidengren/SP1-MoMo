@@ -380,6 +380,16 @@ void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 	mousepos.x = mouse.x;
 	mousepos.y = mouse.y;
 
+	if (mTurnCount == 50) {
+		for (int j = 0; j < mHeight; j++) {
+			for (int i = 0; i < mWidth; i++) {
+				if (mGrid[j][i] == 2.0f) {
+					mGrid[j][i] = 2.1f;
+				}
+			}
+		}
+	}
+
 	mObjects[0]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mObjects[1]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
 	mObjects[2]->getSprite()->setScale(sf::Vector2f(scaleX, scaleY));
