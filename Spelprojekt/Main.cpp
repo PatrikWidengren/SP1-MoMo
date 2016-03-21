@@ -22,8 +22,7 @@ int main(){
 	sf::RenderWindow window(sf::VideoMode
 		(sf::VideoMode::getDesktopMode().width, 
 			sf::VideoMode::getDesktopMode().height, 
-			sf::VideoMode::getDesktopMode().bitsPerPixel), 
-		"Mow Flow", sf::Style::Default);/*, sf::Style::Fullscreen*/
+			sf::VideoMode::getDesktopMode().bitsPerPixel), "Mow Flow", sf::Style::Default);/*, sf::Style::Fullscreen*/
 
 	titleScreen.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	

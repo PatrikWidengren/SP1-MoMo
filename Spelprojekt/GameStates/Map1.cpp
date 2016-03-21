@@ -370,7 +370,7 @@ void Map1::spawnObjects() {
 	}*/
 }
 
-void Map1::render(sf::RenderWindow &window, AnimeManager &anime, sf::Vector2i &mouse) {
+void Map1::render(sf::RenderWindow &window, sf::Vector2i &mouse) {
 	mState = 1;
 	float scaleX = (float)window.getSize().x / 1920;
 	float scaleY = (float)window.getSize().y / 1080;
@@ -868,24 +868,24 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 			mNpcsMoving = true;
 			mCurrentMove.clear();
 		}
-		else if (mNpcsMoving) {
-			if (mNpcNo < mNpcVector.size()-1){
-				mNpcVector[mNpcNo]->setWalking(false);
+		/*else if (mNpcsMoving) {
+			if (mNpcNo < mNpcVector.size() - 1) {
+				//mNpcVector[mNpcNo]->setWalking(false);
 				mNpcNo++;
 				mCurrentMove.clear();
 				mPlaceInMove = 0;
 			}
 			else {
 				mNpcsMoving = false;
-	}
-}
+			}
+		}*/
 	}
 
 	if (mNpcVector.empty()) {
 		mNpcsMoving = false;
 	}
 
-	if (mNpcsMoving) {
+	/*if (mNpcsMoving) {
 		float tempPosX = (pushMapX + (mNpcVector[mNpcNo]->getX() * widthOnTile) + pushNpcX) * scaleX;
 		float tempPosY = (pushMapY + (mNpcVector[mNpcNo]->getY() * heightOnTile) + pushNpcY) * scaleY;
 		if (mCurrentMove.size()>mPlaceInMove){
@@ -924,11 +924,11 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				break;
 			}
 		}
-	}
+	}*/
 
 
 	if (!mMeepMoving && mNpcsMoving) {
-		if (mNpcNo < mNpcVector.size()) {
+		/*if (mNpcNo < mNpcVector.size()) {
 			mNpcVector[mNpcNo]->setWalking(true);
 
 			if (mCurrentMove.empty()) {
@@ -943,7 +943,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				//0 means end of movement. Needed for patrols. 
 				//Breakmove means that the entire movement for this character
 				//is over for the turn
-				if (mCurrentMove.at(mPlaceInMove) == 0/* || mBreakMove*/) {
+				if (mCurrentMove.at(mPlaceInMove) == 0) {
 					mBreakMove = true;
 					mNpcVector[mNpcNo]->setWalking(false);
 					//mBreakMove = false;
@@ -995,8 +995,60 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 				}
 				mPlaceInMove++;
 			}
+		}*/
+
+		//Following code block is mostly copypasted from takeTurn
+		for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+			//get their movement vector
+			intVector npcMove = mNpcVector[i]->move();
+			bool breakMove = false;
+			//For every int in the vector, do the following
+			for (intVector::size_type j = 0; j < npcMove.size(); j++) {
+				//0 means end of movement. Needed for patrols. 
+				//Breakmove means that the entire movement for this character
+				//is over for the turn
+				if (npcMove.at(j) == 0 || breakMove) {
+					breakMove = false;
+					//mNpcs[i]->swapDoneMoving();
+					break;
+				}
+				//the movement functions returns a bool. True if they moved, 
+				//false in case of collision
+				bool moved = moveNpc(npcMove.at(j), i, sound);
+				//if the NPC collided: do the following
+				if (!moved) {
+
+					//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+					//get a new series of moves to attempt
+					intVector tryMove;
+					tryMove = mNpcVector[i]->collide(npcMove, j);
+					//try out the new list of steps
+					for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+						//again, break if 0, breakMove is made true so that
+						//the entire turn will end for the current character
+						//if there is no movement after collision
+						if (tryMove.at(k) == 0) {
+							breakMove = true;
+							break;
+						}
+						//check every move. If one of them works, return to standard
+						//movement pattern
+						bool retryMoved = moveNpc(tryMove.at(k), i, sound);
+						if (retryMoved) {
+							break;
+						}
+					}
+
+					break;
+				}
+				else {
+					//cout << "Moved " << npcMove.at(j) << endl;
+				}
+			}
 		}
 	}
+
+	mNpcsMoving = false;
 
 	/*for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
 		mNpcVector[i]->setWalking(false);
@@ -1072,7 +1124,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 	if (mMeepMoving && mPlayerMoveTime.getElapsedTime().asSeconds() >= mPlayer->getMoveTime()) {
 		mPlayerMoveTime.restart();
-		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound);
+		bool moved = movePlayer(mCurrentMove.at(mPlaceInMove), sound, window);
 		if (!moved) {
 			mPlayer->collide(mCurrentMove, mPlaceInMove);
 			mPlayer->getSpriteSheet()->setPosition(((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (mPlayer->getY() * heightOnTile) + pushMeepY) * scaleY);
@@ -1111,14 +1163,14 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 /*This code looks a ton better with helper functions movePlayer(int dir)
 and moveNpc(int dir, int atPos) for each individual step.*/
-void Map1::takeTurn(int dir, SoundManager &sound) {
+void Map1::takeTurn(int dir, SoundManager &sound, sf::RenderWindow &window) {
 
 	//sound.playSound(10.4f);
 	/*get the intVector that lists all of the individual 1-tile moves*/
 	intVector meepMove = mPlayer->move(dir);
 	/*go through the vector and move 1 step int*/
 	for (intVector::size_type i = 0; i < meepMove.size(); i++) {
-		bool moved = movePlayer(meepMove.at(i), sound);
+		bool moved = movePlayer(meepMove.at(i), sound, window);
 		if (!moved) {
 			mPlayer->collide(meepMove, i);
 			break;
@@ -1201,7 +1253,7 @@ void Map1::takeTurn(int dir, SoundManager &sound) {
 	std::cout << endl;
 }
 
-bool Map1::movePlayer(int dir, SoundManager &sound) {
+bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		/*need temporary values to alter to avoid certain issues*/
 		int tempX = mPlayer->getX();
 		int tempY = mPlayer->getY();
@@ -1314,6 +1366,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound) {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
 			sound.playSound((mGrid[tempY][tempX]));
+			screenshake(window);
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
 				sound.playSound(0.1f);
@@ -1463,20 +1516,53 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 		return false;
 	}
 }
+void Map1::screenshake(sf::RenderWindow &window) {
+	int tempX, tempY;
+	clock.restart();
+	bool switchIf = false;
+	bool temp;
 
-/*void Map1::deleteContent()
-{
-	for (int j = 0; j < mHeight; j++) {
-		for (int i = 0; i < mWidth; i++) {
-			coords tempCoord = { i, j };
-			if (!mNpcs[tempCoord] != 0) {
-				delete mNpcs[tempCoord];
-				mNpcs.erase(tempCoord);
+	tempX = window.getPosition().x;
+	tempY = window.getPosition().y;
+
+
+
+	float tid = 0.02f;
+
+	for (int i = 0; i < 5; i++) {
+
+
+		int randomValueX = thor::random(-50, 50);
+		int randomValueY = thor::random(-50, 50);
+
+		switchIf = !switchIf;
+		temp = false;
+		if (switchIf) {
+			while (!temp) {
+				cout << clock.getElapsedTime().asSeconds() << endl;
+				if (clock.getElapsedTime().asSeconds() >= tid) {
+					temp = true;
+					window.setPosition(sf::Vector2i(tempX + randomValueX, tempY + randomValueY));
+					clock.restart();	
+				}
+			}
+		}
+		if (!switchIf) {
+			while (!temp) {
+				cout << clock.getElapsedTime().asSeconds() << endl;
+				if (clock.getElapsedTime().asSeconds() >= tid) {
+					temp = true;
+					window.setPosition(sf::Vector2i(tempX - randomValueX, tempY - randomValueY));
+					clock.restart();
+				}
 			}
 		}
 	}
-}*/
 
+
+
+	window.setPosition(sf::Vector2i(tempX, tempY));
+}
 void Map1::getMapInfo(){
 	string saveFilePath = "Maps/"+mSavefile;
 	ifstream file(saveFilePath);
