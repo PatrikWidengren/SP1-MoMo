@@ -54,6 +54,9 @@ void GameOverMenu::updateGameOverMenu(sf::RenderWindow &window, sf::Vector2i &mo
 void GameOverMenu::displayMenu01(sf::RenderWindow &window)
 {
 
+	sf::RectangleShape blackness(sf::Vector2f(window.getSize().x, window.getSize().y));
+	blackness.setFillColor(sf::Color(0, 0, 0, 150));
+	window.draw(blackness);
 	window.draw(*bg01);
 	window.draw(gameOver);
 

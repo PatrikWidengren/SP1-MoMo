@@ -145,6 +145,15 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 {
 	mWinMenu01->updateWinMenu(window, mouse);
 	window.clear();
+	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
+	mInGameBackground->selectMomentumSprite();
+	mInGameBackground->scale(window);
+	mInGameBackground->drawBackgroundTop(window);
+	mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+	mInGameBackground->selectHedgecutterSprite();
+	mMap01->render(window, mouse);
+	mInGameBackground->drawBackgroundBottom(window);
 	mWinMenu01->displayMenu01(window);
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
@@ -473,7 +482,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mStartState = false;
 			//Startar musik osv
 		}
-		drawInGame(window, mouse, music, sound, anime);
+		
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
@@ -489,40 +498,29 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mWorldMap01->addDemDopies(40);
 				sound.playSound(10.7f);
 			}
-			//mMap01->getObjects().at(0)->setCut();
-			//mMap01->getObjects().at(9)->setCut();
-			drawInGame(window, mouse, music, sound, anime);
-			window.display();
-			while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-				window.clear();
-				mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
-				mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
-				mInGameBackground->selectMomentumSprite();
-				mInGameBackground->scale(window);
-				mInGameBackground->drawBackgroundTop(window);
-				mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
-				mInGameBackground->selectHedgecutterSprite();
-				mMap01->render(window, mouse);
-				mInGameBackground->drawBackgroundBottom(window);
-				window.display();
-			}
+			mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+			mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
+			mInGameBackground->selectMomentumSprite();
+			mInGameBackground->scale(window);
+			mInGameBackground->drawBackgroundTop(window);
+			mInGameBackground->selectLawnmowerSprite(mRegionMap01->getMower());
+			mInGameBackground->selectHedgecutterSprite();
+			mMap01->render(window, mouse);
+			mInGameBackground->drawBackgroundBottom(window);
+
 			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
-			
-			mState = 6;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+				mState = 6;
+				mStartState = true;
+			}	
+		}
+		/*else if(mMap01->mTurnCount >= mMap01->mLoseRounds) {
+			mState = 5;
 			mStartState = true;
-
-
-			//if (mMap01->mTurnCount >= mMap01->mLoseRounds) {
-			//	mState = 5;
-			//	mStartState = true;
-			//}
-
-			////For now, just testing phase of Winning screen. Need Winning condition for the map.
-			//if (mMap01->mTurnCount >= mMap01->mWinRounds) {
-			//	mState = 6;
-			//	mStartState = true;
-			//}
+		}*/
+		else{
+			drawInGame(window, mouse, music, sound, anime);
 		}
 		break;
 	}

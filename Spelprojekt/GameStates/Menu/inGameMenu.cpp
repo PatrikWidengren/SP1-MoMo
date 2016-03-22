@@ -96,7 +96,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 void inGameMenu::displayMenu01(sf::RenderWindow &window)
 {
 	sf::RectangleShape blackness(sf::Vector2f(window.getSize().x, window.getSize().y));
-	blackness.setFillColor(sf::Color(100, 100, 100, 100));
+	blackness.setFillColor(sf::Color(0, 0, 0, 150));
 	window.draw(blackness);
 	window.draw(*bg01);
 	window.draw(*spriteResume);
