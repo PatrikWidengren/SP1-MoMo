@@ -68,10 +68,14 @@ void WorldMap::updateWorldMap(sf::RenderWindow &window, sf::Vector2i &mouse)
 		mClick = true;
 	}*/
 	std::cout << mMouse.x << "  " << mMouse.y << std::endl;
-	if (mMouse.x > 1819 && mMouse.y > 1016)
+	if (mRects[6]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
 	{
-			mDemDupies+= 1000; std::cout << "DUPIES: " << mDemDupies << std::endl;
-
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			reset = true;
+			mDemDupies += 1000; std::cout << "DUPIES: " << mDemDupies << std::endl;
+		}
 	}
 
 	if (mRects[0]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
@@ -326,6 +330,9 @@ void WorldMap::displayMenu01(sf::RenderWindow &window)
 	window.draw(*spriteGreenDot03);
 	window.draw(*spriteGreenDot04);
 
+	window.draw(*cheat);
+	window.draw(*exit);
+
 	window.draw(mMapRegions[0].mapRegionText);
 	window.draw(mMapRegions[1].mapRegionText);
 	window.draw(mMapRegions[2].mapRegionText);
@@ -346,10 +353,19 @@ void WorldMap::setTextures()
 	if (!textGreenDot->loadFromFile("Resource Files/Sprites/Knapp-on.png")) //try to load the texture. if its wrong, give error
 		textGreenDot->loadFromFile("Resource Files/error.jpg");
 
+	if (!textureCheat->loadFromFile("Resource Files/Menus/Slider_Knapp_Highlight.png")) //try to load the texture. if its wrong, give error
+		textureCheat->loadFromFile("Resource Files/error.jpg");
+
+	if (!textureExit->loadFromFile("Resource Files/Menus/Decline.png")) //try to load the texture. if its wrong, give error
+		textureExit->loadFromFile("Resource Files/error.jpg");
+
 	spriteGreenDot01->setTexture(*textGreenDot);
 	spriteGreenDot02->setTexture(*textGreenDot);
 	spriteGreenDot03->setTexture(*textGreenDot);
 	spriteGreenDot04->setTexture(*textGreenDot);
+
+	cheat->setTexture(*textureCheat);
+	exit->setTexture(*textureExit);
 
 	bg01->setTexture(*texture01);
 	//highlightSprite01.setTexture(highlightTexture01);
@@ -399,19 +415,26 @@ void WorldMap::scale(sf::RenderWindow &window) {
 	spriteGreenDot03->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteGreenDot04->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
+	cheat->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
+	exit->setScale((float)window.getSize().x / 1920 - 0.5, (float)window.getSize().y / 1080 - 0.5);
+
 	mRects[0] = new sf::IntRect(sf::Vector2i(930 * bg01->getScale().x, 270	 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(980 * bg01->getScale().x, 380 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(18900 * bg01->getScale().x, 840 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 25 * bg01->getScale().y));
 	mRects[3] = new sf::IntRect(sf::Vector2i(1705 * bg01->getScale().x, 480 * bg01->getScale().y), sf::Vector2i(145 * bg01->getScale().x, 30 * bg01->getScale().y));
 	mRects[4] = new sf::IntRect(sf::Vector2i(1890 * bg01->getScale().x, 830 * bg01->getScale().y), sf::Vector2i(75 * bg01->getScale().x, 25 * bg01->getScale().y));
-	mRects[5] = new sf::IntRect(sf::Vector2i(1020 * bg01->getScale().x, 180 * bg01->getScale().y), sf::Vector2i(95 * bg01->getScale().x, 25 * bg01->getScale().y));
+	mRects[5] = new sf::IntRect(sf::Vector2i(1020 * bg01->getScale().x, 180 * bg01->getScale().y), sf::Vector2i(40 * bg01->getScale().x, 40 * bg01->getScale().y));
+	mRects[6] = new sf::IntRect(sf::Vector2i(1819 * bg01->getScale().x, 1016 * bg01->getScale().y), sf::Vector2i(50 * bg01->getScale().x, 50 * bg01->getScale().y));
 
 	mShowDemDupies.setPosition(1700 * bg01->getScale().x, 15 * bg01->getScale().y);
 
-	spriteGreenDot01->setPosition(933 * bg01->getScale().x, 273* bg01->getScale().y);
+	spriteGreenDot01->setPosition(933 * bg01->getScale().x, 273 * bg01->getScale().y);
 	spriteGreenDot02->setPosition(978 * bg01->getScale().x, 373 * bg01->getScale().y);
 	spriteGreenDot03->setPosition(1697 * bg01->getScale().x, 475 * bg01->getScale().y);
 	spriteGreenDot04->setPosition(1883 * bg01->getScale().x, 828 * bg01->getScale().y);
+
+	exit->setPosition(1020 * bg01->getScale().x, 180 * bg01->getScale().y);
+	cheat->setPosition(1819 * bg01->getScale().x, 1016 * bg01->getScale().y);
 
 	mMapRegions[0].mapRegionText.setPosition(933 * bg01->getScale().x, 223 * bg01->getScale().y);
 	mMapRegions[1].mapRegionText.setPosition(978 * bg01->getScale().x, 323 * bg01->getScale().y);

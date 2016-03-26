@@ -7,6 +7,7 @@ WinMenu::WinMenu(float width, float height)
 	setFonts();
 	setTextures();
 
+
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(500, 640), sf::Vector2i(550, 100));
@@ -79,9 +80,12 @@ void WinMenu::updateWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse)
 void WinMenu::displayMenu01(sf::RenderWindow &window)
 {
 
-	sf::RectangleShape blackness(sf::Vector2f(window.getSize().x, window.getSize().y));
+	blackness.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
+	pressEnter.setPosition(sf::Vector2f((window.getSize().x/2) - (pressEnter.getGlobalBounds().width/2), (window.getSize().y/2) - (pressEnter.getGlobalBounds().height)/2));
 	blackness.setFillColor(sf::Color(0, 0, 0, 150));
+	//pressEnter.setColor(sf::Color(0, 0, 0, 0));
 	window.draw(blackness);
+	window.draw(pressEnter);
 	//window.draw(*bg01);
 
 }
@@ -91,6 +95,8 @@ void WinMenu::setTextures()
 	
 	if (!textBg01->loadFromFile("Resource Files/Backgrounds/Background_Title.png")) //try to load the texture. if its wrong, give error
 	textBg01->loadFromFile("error.jpg");
+
+	pressEnter.setString("Press Enter to continue");
 
 	bg01->setTexture(*textBg01);
 }
@@ -102,6 +108,7 @@ void WinMenu::setFonts()
 	{
 		//handle error
 	}
+	pressEnter.setFont(font);
 }
 
 void WinMenu::moveUp()

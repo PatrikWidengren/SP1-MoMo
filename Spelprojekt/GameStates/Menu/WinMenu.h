@@ -8,7 +8,6 @@ class WinMenu :
 {
 public:
 	WinMenu(float width, float height);
-	WinMenu();
 	~WinMenu();
 	bool reset = false;
 	// Load a backgrounds to show for the menu
@@ -35,6 +34,8 @@ private:
 	int mTimer;
 	int selectedIndex;
 	sf::Font font;
+	sf::RectangleShape blackness;
+	sf::Text pressEnter;
 	sf::Text menu[mNumberOfSelections];
 	sf::Text mWinText;
 	virtual void setTextures(); //Set a texture to a sprite

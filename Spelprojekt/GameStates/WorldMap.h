@@ -28,7 +28,8 @@ public:
 	sf::Texture* highlightTexture01 = new sf::Texture(); //the highlightTexture for displaying.
 	sf::Texture* texture01 = new sf::Texture(); //hold the texture
 	sf::Texture* textGreenDot = new sf::Texture();
-
+	sf::Texture* textureCheat = new sf::Texture();
+	sf::Texture* textureExit = new sf::Texture();
 
 	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
@@ -38,7 +39,8 @@ public:
 	sf::Sprite* spriteGreenDot03 = new sf::Sprite();
 	sf::Sprite* spriteGreenDot04 = new sf::Sprite();
 
-
+	sf::Sprite* cheat = new sf::Sprite();
+	sf::Sprite* exit = new sf::Sprite();
 
 	virtual int checkState();
 	int getRegion();
@@ -55,7 +57,7 @@ public:
 	int g; int h; int j; int k;
 	void fadeText(std::string id);
 protected:
-	static int const mNumberOfSelections = 6;
+	static int const mNumberOfSelections = 7;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];

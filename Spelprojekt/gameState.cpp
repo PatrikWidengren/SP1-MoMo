@@ -155,6 +155,20 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 	mMap01->render(window, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
 	mWinMenu01->displayMenu01(window);
+	if (mInGameBackground->getMedal() == "Gold") {
+		mWorldMap01->addDemDopies(90);
+		sound.playSound(10.9f);
+	}
+	else
+	if (mInGameBackground->getMedal() == "Silver") {
+		mWorldMap01->addDemDopies(60);
+		sound.playSound(10.8f);
+	}
+	else
+	if (mInGameBackground->getMedal() == "Bronze") {
+		mWorldMap01->addDemDopies(40);
+		sound.playSound(10.7f);
+	}
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
 }
@@ -461,6 +475,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	{ //Game state 1. in game. 
 
 		if (mStartState) {
+			mInGameBackground->resetInGameHud();
 			if (mRegionMusic == 1) {
 				music.setMusic(3);
 			}
@@ -498,7 +513,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				mWorldMap01->addDemDopies(40);
 				sound.playSound(10.7f);
 			}
-			mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
+			/*mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 			mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
 			mInGameBackground->selectMomentumSprite();
 			mInGameBackground->scale(window);
@@ -508,12 +523,11 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mMap01->render(window, mouse);
 			mInGameBackground->drawBackgroundBottom(window);
 
-			mInGameBackground->resetInGameHud();
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){*/
 				mState = 6;
 				mStartState = true;
-			}	
+			//}	
 		}
 		/*else if(mMap01->mTurnCount >= mMap01->mLoseRounds) {
 			mState = 5;
