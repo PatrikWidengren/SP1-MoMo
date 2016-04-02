@@ -1100,57 +1100,57 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 		switch (mCurrentMove[mPlaceInMove]) {
 		case 8:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0,
-				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0*scaleX,
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(0,
 			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		case 9:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds()/mPlayer->getMoveTime()) * widthOnTile),
 			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		case 6:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY + 0 );
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY + 0 * scaleY);
 
 			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
 			//	0);	
 			break;
 		case 3:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
 			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		case 2:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0,
-				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0 * scaleX,
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(0,
 			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		case 1:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY + (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
 			//	((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
 			break;
 		case 4:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY + 0);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY + 0 * scaleY);
 
 			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
 			//	0 );
 			break;
 		case 7:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile),
-				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile);
+			mPlayer->getSpriteSheet()->setPosition(tempPosX - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime() * widthOnTile)*scaleX,
+				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * widthOnTile),
 			//	-((mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile));
