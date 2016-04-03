@@ -6,16 +6,19 @@
 
 class MusicManager{
 public:
+	AudioHandler* audio = AudioHandler::instance();
 	MusicManager(int id);
 	virtual ~MusicManager();
-	virtual sf::Music* getMusic();
+	virtual Audio* getMusic();
 	virtual void setMusic(int id);
 	int getVolume();
 	void setVolume(int volume);
 private:
 	//sf::Music mMusic;
-	typedef std::vector<sf::Music*> SongList;
+	typedef std::vector<Audio*> SongList;
 	SongList mSongList;
+	
+
 	int const mMaxVolume = 100; //=?
 	int saveID;
 	int mVolume;

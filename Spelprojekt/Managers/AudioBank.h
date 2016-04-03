@@ -9,6 +9,7 @@ class AudioBank
 {
 private:
 	FMOD::Studio::Bank* bank;
+	
 	FMOD::Studio::System* system;
 
 	FMOD_RESULT result;
