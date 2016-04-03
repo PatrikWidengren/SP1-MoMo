@@ -13,8 +13,8 @@
 #include "GameStates/Menu/KeyboardOptionMenu.h"
 #include "InGameBackground.h"
 #include "Managers\DialogManager.h"
-//#include "Managers/MusicManager.h"
-//#include "Managers/SoundManager.h"
+#include "Managers/MusicManager.h"
+#include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
 #include "GameStates/Map1.h"
 #include <iostream>

@@ -17,8 +17,8 @@
 #include "../Tools/Hedge Cutter/HedgeCutter.h"
 #include "../Characters/CharRand.h"
 #include "../Characters/CharPatrol.h"
-//#include "../Managers/SoundManager.h"
-//#include "../Managers/AnimeManager.h"
+#include "../Managers/SoundManager.h"
+#include "../Managers/AnimeManager.h"
 #include <fstream>
 #include <array>
 #include <iomanip>
