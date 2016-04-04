@@ -8,27 +8,15 @@ const int numberOfSongs = 10;
 
 //Name array = events instead, change this slask
 
-static const string nameArray[numberOfSongs] = {"event:/Music/Menu/Title","event:/Music/Menu/Miyoda", "event:/Music/Menu/WorldMap",
-"event:/Music/Menu/Levels/Generic1", "event:/Music/Menu/Levels/Generic2", "event:/Music/Menu/Levels/Generic3",
-"event:/Music/Menu/Levels/Ice", "event:/Music/Menu/Levels/Temple1-7", "event:/Music/Menu/Levels/Temple8",
- "event:/Music/Menu/Levels/Asian" };
+static const string nameArray[numberOfSongs] = { "Music/Menu/Title","Music/Menu/Miyoda", "Music/Menu/WorldMap",
+"Music/Levels/Generic1", "Music/Levels/Generic2", "Music/Levels/Generic3",
+"Music/Levels/Ice", "Music/Levels/Temple1-7", "Music/Levels/Temple8",
+ "Music/Levels/Asian" };
 
 //static const string bankArray[numberOfBanks] = {};
 
 MusicManager::MusicManager(int id)
 {
-/*[21:02:45] Zas: load the audio bank
-[21:03:32] Zas: then 
-[20:59] Slask: 
-
-<<<   mSongList.push_back(new sf::Music);
-  while (!mSongList[i]->openFromFile(nameArray[i])) {turns into
-[21:04:22] Zas: Audio *a=new Audio(nameArray[i]);
-[21:04:37] Zas: why is that a while loop though
-[21:04:43] Zas: but you'd first do a new audio
-[21:04:51] Zas: then check if it loaded and then push it back
-[21:04:55 | Redigerat 21:05:00] Zas: push_back(a );*/
-
 	mVolume = 50;
 
 	for (int i = 0; i < numberOfSongs; i++) 
@@ -41,7 +29,6 @@ MusicManager::MusicManager(int id)
 			std::cout << "Song: " << i << " failed to load!" << endl;
 		}
 		audio->setVolume(mSongList[i], mVolume);
-		//Fixa loop här Slask
 	}
 	audio->play(mSongList[id]);
 	saveID = id;

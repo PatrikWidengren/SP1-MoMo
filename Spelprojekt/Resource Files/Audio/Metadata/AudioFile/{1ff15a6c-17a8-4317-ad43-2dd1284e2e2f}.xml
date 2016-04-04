@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{1ff15a6c-17a8-4317-ad43-2dd1284e2e2f}">
+        <property name="assetPath">
+            <value>GardenGeneric2.ogg</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>74.666687499999995</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>
+        </relationship>
+    </object>
+</objects>
