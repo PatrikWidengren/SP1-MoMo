@@ -18,7 +18,11 @@ build/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
-!Resource Files/Audio/Build
+
+#These were added because of dlls + fmod build folder
+!Debug/*
+!Release/*
+!build/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
