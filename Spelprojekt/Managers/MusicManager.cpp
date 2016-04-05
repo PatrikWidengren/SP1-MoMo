@@ -4,22 +4,33 @@
 
 using namespace std;
 const int numberOfSongs = 10;
-static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Worldmap.ogg",
-"Resource Files/Music/GardenGeneric1.ogg", "Resource Files/Music/GardenGeneric2.ogg", "Resource Files/Music/GardenGeneric3.ogg",
-"Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg",
- "Resource Files/Music/GardenAsian.ogg" };
+//const int numberOfBanks = 10;
 
-MusicManager::MusicManager(int id) {
+//Name array = events instead, change this slask
+
+static const string nameArray[numberOfSongs] = { "Music/Menu/Title","Music/Menu/Miyoda", "Music/Menu/WorldMap",
+"Music/Levels/Generic1", "Music/Levels/Generic2", "Music/Levels/Generic3",
+"Music/Levels/Ice", "Music/Levels/Temple1-7", "Music/Levels/Temple8",
+ "Music/Levels/Asian" };
+
+//static const string bankArray[numberOfBanks] = {};
+
+MusicManager::MusicManager(int id)
+{
 	mVolume = 50;
-	for (int i = 0; i < numberOfSongs; i++) {
-		mSongList.push_back(new sf::Music);
-		while (!mSongList[i]->openFromFile(nameArray[i])) {
+
+	for (int i = 0; i < numberOfSongs; i++) 
+	{
+		Audio *a = new Audio(nameArray[i].c_str());
+		mSongList.push_back(a);
+
+		if (!a->getInstance())
+		{
 			std::cout << "Song: " << i << " failed to load!" << endl;
 		}
-		mSongList[i]->setVolume(mVolume);
-		mSongList[i]->setLoop(true);
+		audio->setVolume(mSongList[i], mVolume);
 	}
-	mSongList[id]->play();
+	audio->play(mSongList[id]);
 	saveID = id;
 }
 
@@ -33,15 +44,15 @@ MusicManager::~MusicManager(){
 	}*/
 }
 
-sf::Music* MusicManager::getMusic(){
+Audio* MusicManager::getMusic(){
 	return mSongList[saveID];
 }
 
 void MusicManager::setMusic(int id){
 	if (saveID != id) {
-		mSongList[saveID]->stop();
-		mSongList[id]->setVolume(mVolume);
-		mSongList[id]->play();
+		audio->stop(mSongList[saveID]);
+		audio->setVolume(mSongList[id], mVolume);
+		audio->play(mSongList[id]);
 		saveID = id;
 	}
 }
@@ -52,5 +63,5 @@ int MusicManager::getVolume() {
 
 void MusicManager::setVolume(int volume) {
 	mVolume = volume;
-	mSongList[saveID]->setVolume(mVolume);
+	audio->setVolume(mSongList[saveID], mVolume);;
 }

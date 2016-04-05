@@ -26,6 +26,13 @@ int main(){
 
 	titleScreen.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	
+	AudioHandler* audio = AudioHandler::instance();
+	audio->init(24);
+
+	AudioBank MasterBank("Resource Files/Audio/Build/Desktop/Master Bank.bank");
+	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
+	AudioBank MusicB("Resource Files/Audio/Build/Desktop/Music Bank.bank");
+
 	MusicManager mMusicManager(0);
 	window.draw(titleScreen);
 	window.display();
@@ -38,6 +45,7 @@ int main(){
 	while (window.isOpen()){
 		sf::Event event;
 		window.setFramerateLimit(60);
+		audio->run(); //idk where to put this.
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
 				mSoundManager.~SoundManager();
@@ -54,6 +62,7 @@ int main(){
 		window.clear();
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
 #pragma region Fullscreen or Windowed
+		
 		if (theGame.mVideoOptionMenu->getFullscreen() && !theGame.mVideoOptionMenu->getSwap())
 		{
 			window.clear();
