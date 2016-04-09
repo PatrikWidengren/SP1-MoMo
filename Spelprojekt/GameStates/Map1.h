@@ -99,6 +99,8 @@ private:
 	int specialFeature;
 	int pushMapX, pushMapY;
 	float** mGrid;
+	typedef std::vector<int> GetGoals;
+	GetGoals *mGetGoals;
 	typedef std::vector<StaticObjects*> ObjectsVector;
 	ObjectsVector mObjects;
 	ObjectsVector mLongObjects;
