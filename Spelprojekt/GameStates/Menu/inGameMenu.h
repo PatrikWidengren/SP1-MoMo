@@ -14,17 +14,21 @@ public:
 	sf::Texture* highlighttextBg01 = new sf::Texture(); //the highlightTexture for displaying.
 	sf::Texture* textBg01 = new sf::Texture(); //hold the texture
 
+	sf::Texture* textRestart = new sf::Texture();
 	sf::Texture* textResume = new sf::Texture();
 	sf::Texture* textOption = new sf::Texture();
 	sf::Texture* textQuit = new sf::Texture();
 
+	sf::Texture* textHighlightRestart = new sf::Texture();
 	sf::Texture* textHighlightResume = new sf::Texture();
 	sf::Texture* textHighlightOption = new sf::Texture();
 	sf::Texture* textHighlightQuit = new sf::Texture();
 
+	sf::Sprite* spriteRestart = new sf::Sprite();
 	sf::Sprite* spriteResume = new sf::Sprite();
 	sf::Sprite* spriteOption = new sf::Sprite();
 	sf::Sprite* spriteQuit = new sf::Sprite();
+
 
 	sf::Sprite* bg01 = new sf::Sprite(); //Drawable sprite wich gets a texture later. Bg stands for background
 	sf::Sprite* highlightSprite01 = new sf::Sprite(); //when you hover, or select. the alternative brightens upp.
@@ -38,7 +42,7 @@ public:
 	sf::Vector2i mMouse;
 
 protected:
-	static int const mNumberOfSelections = 3;
+	static int const mNumberOfSelections = 4;
 
 private:
 	sf::IntRect *mRects[mNumberOfSelections];
