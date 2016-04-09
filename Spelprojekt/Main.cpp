@@ -31,8 +31,7 @@ int main(){
 
 	AudioBank MasterBank("Resource Files/Audio/Build/Desktop/Master Bank.bank");
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
-	AudioBank MusicB("Resource Files/Audio/Build/Desktop/Music Bank.bank");
-
+	srand(time(NULL));
 	MusicManager mMusicManager(0);
 	window.draw(titleScreen);
 	window.display();
@@ -50,6 +49,10 @@ int main(){
 			if (event.type == sf::Event::Closed){
 				mSoundManager.~SoundManager();
 				mMusicManager.~MusicManager();
+				audio->~AudioHandler();
+				MasterBank.~AudioBank();
+				MSB.~AudioBank();
+				
 				theGame.~gameState();
 				window.close();
 			}

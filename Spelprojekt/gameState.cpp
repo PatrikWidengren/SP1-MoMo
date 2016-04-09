@@ -17,7 +17,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mStartState = true;
 	mStartOptionState = true;
 	mRegionState = 0;
-	
+
 	mKeyboardMenu01 = new KeyboardOptionMenu((float)window.getSize().x, (float)window.getSize().y);
 	mSoundmenu01 = new SoundMenu((float)window.getSize().x, (float)window.getSize().y);
 	mInGameMenu01 = new inGameMenu((float)window.getSize().x, (float)window.getSize().y);
@@ -43,7 +43,7 @@ gameState::gameState(sf::RenderWindow &window)
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
 	mMap01 = new Map1("map01a01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
-	
+
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);
 	//mObjects = mMap01->getObjects();
@@ -60,11 +60,11 @@ gameState::gameState(sf::RenderWindow &window)
 
 gameState::~gameState()
 {
-	while (!mLawnMowers.empty()){
+	while (!mLawnMowers.empty()) {
 		delete mLawnMowers.at(0);
 		mLawnMowers.erase(mLawnMowers.begin());
 	}
-	while (!mHedgeTools.empty()){
+	while (!mHedgeTools.empty()) {
 		delete mHedgeTools.at(0);
 		mHedgeTools.erase(mHedgeTools.begin());
 	}
@@ -83,11 +83,11 @@ void gameState::drawInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mu
 	mInGameBackground->selectHedgecutterSprite();
 	mMap01->render(window, mouse);
 	mInGameBackground->drawBackgroundBottom(window);
-	
+
 	mInGameMenu01->displayMenu01(window);
 	mStartState = checkStartState(mInGameMenu01->checkState());
 	mState = mInGameMenu01->checkState();
-	
+
 }
 
 void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Start Menu
@@ -97,7 +97,7 @@ void gameState::drawStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Mus
 	mStartMenu01->displayMenu01(window); //Update mouse in update...
 	mStartState = checkStartState(mStartMenu01->checkState());
 	mState = mStartMenu01->checkState();
-	
+
 }
 
 void gameState::drawSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Sound Menu
@@ -160,22 +160,24 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 		sound.playSound(10.9f);
 	}
 	else
-	if (mInGameBackground->getMedal() == "Silver") {
-		mWorldMap01->addDemDopies(60);
-		sound.playSound(10.8f);
-	}
-	else
-	if (mInGameBackground->getMedal() == "Bronze") {
-		mWorldMap01->addDemDopies(40);
-		sound.playSound(10.7f);
-	}
+		if (mInGameBackground->getMedal() == "Silver") {
+			mWorldMap01->addDemDopies(60);
+			sound.playSound(10.8f);
+		}
+		else
+			if (mInGameBackground->getMedal() == "Bronze") {
+				mWorldMap01->addDemDopies(40);
+				sound.playSound(10.7f);
+			}
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
 }
-int gameState::getControlScheme() {
+int gameState::getControlScheme()
+{
 	return mControlScheme;
 }
-void gameState::setControlScheme(int controlscheme) {
+void gameState::setControlScheme(int controlscheme)
+{
 	mControlScheme = controlscheme;
 }
 void gameState::drawKeyboardMenu(sf::RenderWindow &window, sf::Vector2i &mouse, MusicManager &music, SoundManager &sound) // Draw Keyboard Menu
@@ -257,8 +259,8 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 #pragma endregion
 
-	
-	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals()); 	
+
+	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
 	mInGameBackground->selectMomentumSprite();
 	mInGameBackground->scale(window);
@@ -271,196 +273,196 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	switch (mDialogSwitch)
 	{
-		case 0: //Before, Dialogue
-		{
-			mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
-			break;
-		}
-		case 1:
-		{
-			#pragma region Structure
-			if (mControlScheme == 0) {
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
-					flagSwap = false;
-					//flagKeyPressed = true;
-					mMap01->getPlayer()->swapEquipped();
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !flagSwap) {
-					flagSwap = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft /*&& !flagKeyPressed*/) {
-					flagDownLeft = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(1);
-
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && !flagDownLeft /*&& flagKeyPressed*/) {
-					flagDownLeft = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown /*&& !flagKeyPressed*/) {
-					flagDown = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(2);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown /*&& flagKeyPressed*/) {
-					flagDown = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight /*&& !flagKeyPressed*/) {
-					flagDownRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(3);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight /*&& flagKeyPressed*/) {
-					flagDownRight = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft /*&& !flagKeyPressed*/) {
-					flagLeft = false;
-//					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(4);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft /*&& flagKeyPressed*/) {
-					flagLeft = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight /*&& !flagKeyPressed*/) {
-					flagRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(6);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight /*&& flagKeyPressed*/) {
-					flagRight = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft /*&& !flagKeyPressed*/) {
-					flagUpLeft = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(7);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft /*&& flagKeyPressed*/) {
-					flagUpLeft = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp /*&& !flagKeyPressed*/) {
-					flagUp = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(8);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp /*&& flagKeyPressed*/) {
-					flagUp = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight /*&& !flagKeyPressed*/) {
-					flagUpRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(9);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight /*&& flagKeyPressed*/) {
-					flagUpRight = true;
-				}
-
-				}
-
-			if (mControlScheme == 1) {
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && flagSwap) {
-					flagSwap = false;
-					//flagKeyPressed = true;
+	case 0: //Before, Dialogue
+	{
+		mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+		break;
+	}
+	case 1:
+	{
+#pragma region Structure
+		if (mControlScheme == 0) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && flagSwap) {
+				flagSwap = false;
+				//flagKeyPressed = true;
 				mMap01->getPlayer()->swapEquipped();
 			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !flagSwap) {
-					flagSwap = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft /*&& !flagKeyPressed*/) {
-					flagDownLeft = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(1);
-			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft /*&& flagKeyPressed*/) {
-					flagDownLeft = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown /*&& !flagKeyPressed*/) {
-					flagDown = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(2);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown /*&& flagKeyPressed*/) {
-					flagDown = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight /*&& !flagKeyPressed*/) {
-					flagDownRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(3);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight /*&& flagKeyPressed*/) {
-					flagDownRight = true;
-				}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft /*&& !flagKeyPressed*/) {
-					flagLeft = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(4);
-			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
-					flagLeft = true;
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !flagSwap) {
+				flagSwap = true;
 			}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
-					flagRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(6);
-			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
-					flagRight = true;
-			}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
-					flagUpLeft = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(7);
-			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
-					flagUpLeft = true;
-			}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
-					flagUp = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(8);
-			}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
-					flagUp = true;
-			}
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
-					flagUpRight = false;
-					//flagKeyPressed = true;
-					mMap01->beginTurn(9);
-				}
-				if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
-					flagUpRight = true;
-			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && flagDownLeft /*&& !flagKeyPressed*/) {
+				flagDownLeft = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(1);
 
 			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad1) && !flagDownLeft /*&& flagKeyPressed*/) {
+				flagDownLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && flagDown /*&& !flagKeyPressed*/) {
+				flagDown = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(2);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2) && !flagDown /*&& flagKeyPressed*/) {
+				flagDown = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && flagDownRight /*&& !flagKeyPressed*/) {
+				flagDownRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(3);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad3) && !flagDownRight /*&& flagKeyPressed*/) {
+				flagDownRight = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && flagLeft /*&& !flagKeyPressed*/) {
+				flagLeft = false;
+				//					std::cout << "aaaaaaaaaaaaaaa" << std::endl;
+									//flagKeyPressed = true;
+				mMap01->beginTurn(4);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4) && !flagLeft /*&& flagKeyPressed*/) {
+				flagLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && flagRight /*&& !flagKeyPressed*/) {
+				flagRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(6);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad6) && !flagRight /*&& flagKeyPressed*/) {
+				flagRight = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && flagUpLeft /*&& !flagKeyPressed*/) {
+				flagUpLeft = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(7);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad7) && !flagUpLeft /*&& flagKeyPressed*/) {
+				flagUpLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && flagUp /*&& !flagKeyPressed*/) {
+				flagUp = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(8);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8) && !flagUp /*&& flagKeyPressed*/) {
+				flagUp = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && flagUpRight /*&& !flagKeyPressed*/) {
+				flagUpRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(9);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9) && !flagUpRight /*&& flagKeyPressed*/) {
+				flagUpRight = true;
+			}
+
+		}
+
+		if (mControlScheme == 1) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && flagSwap) {
+				flagSwap = false;
+				//flagKeyPressed = true;
+				mMap01->getPlayer()->swapEquipped();
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !flagSwap) {
+				flagSwap = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && flagDownLeft /*&& !flagKeyPressed*/) {
+				flagDownLeft = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(1);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !flagDownLeft /*&& flagKeyPressed*/) {
+				flagDownLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && flagDown /*&& !flagKeyPressed*/) {
+				flagDown = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(2);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !flagDown /*&& flagKeyPressed*/) {
+				flagDown = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && flagDownRight /*&& !flagKeyPressed*/) {
+				flagDownRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(3);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::X) && !flagDownRight /*&& flagKeyPressed*/) {
+				flagDownRight = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && flagLeft /*&& !flagKeyPressed*/) {
+				flagLeft = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(4);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !flagLeft /*&& flagKeyPressed*/) {
+				flagLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && flagRight /*&& !flagKeyPressed*/) {
+				flagRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(6);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !flagRight /*&& flagKeyPressed*/) {
+				flagRight = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && flagUpLeft /*&& !flagKeyPressed*/) {
+				flagUpLeft = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(7);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !flagUpLeft /*&& flagKeyPressed*/) {
+				flagUpLeft = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && flagUp /*&& !flagKeyPressed*/) {
+				flagUp = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(8);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !flagUp /*&& flagKeyPressed*/) {
+				flagUp = true;
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && flagUpRight /*&& !flagKeyPressed*/) {
+				flagUpRight = false;
+				//flagKeyPressed = true;
+				mMap01->beginTurn(9);
+			}
+			if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !flagUpRight /*&& flagKeyPressed*/) {
+				flagUpRight = true;
+			}
+
+		}
 
 
-			mStartState = checkStartState(mMap01->checkState());
-			mState = mMap01->checkState();
+		mStartState = checkStartState(mMap01->checkState());
+		mState = mMap01->checkState();
 #pragma endregion
 
-			break;
-		}
-		case 2: //After, Dialogue
-		{
-			mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
-			break;
-		}
+		break;
+	}
+	case 2: //After, Dialogue
+	{
+		mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
+		break;
+	}
 
 	}
 
@@ -476,43 +478,47 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		if (mStartState) {
 			mInGameBackground->resetInGameHud();
-			if (mRegionMusic == 1) {
-				music.setMusic(3);
+			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
+				int i = rand() % 3 + 1;
+				AudioBank bankGeneric = ("Resource Files/Audio/Build/Desktop/Generic.bank");
+
+				music.setMusic(i); //Generic1
 			}
-			else if (mRegionMusic == 2) {
-				music.setMusic(4);
+			else if (mRegionMusic == 4 || mRegionMusic == 5) {
+				AudioBank bankTemple = ("Resource Files/Audio/Build/Desktop/Temple.bank");
+
+				if (mRegionMusic == 4) {
+					music.setMusic(9); //Temple8
+				}
+				if (mRegionMusic == 5) {
+					music.setMusic(8); //Temple1-7
+				}
 			}
-			else if (mRegionMusic == 3) {
-				music.setMusic(5);
-			}
-			else if (mRegionMusic == 4) {
-				music.setMusic(9);
-			}
-			else if (mRegionMusic == 5) {
-				music.setMusic(8);
-			}
+
 			sound.playSound(10.5f);
 			sound.playSound(10.4f);
 			//mMap01->scale(window);
 			mStartState = false;
 			//Startar musik osv
 		}
-		
+
 		if (mMap01->getTurnCount() >= mMap01->getMaxTurns()) {
 			//Lägg till en maxvariabel för varje induviduell bana. Eventuellt lägga mappsen i en array så man
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 			if (mInGameBackground->getMedal() == "Gold") {
 				mWorldMap01->addDemDopies(90);
 				sound.playSound(10.9f);
-			}else
-			if (mInGameBackground->getMedal() == "Silver") {
-				mWorldMap01->addDemDopies(60);
-				sound.playSound(10.8f);
-			}else
-			if (mInGameBackground->getMedal() == "Bronze") {
-				mWorldMap01->addDemDopies(40);
-				sound.playSound(10.7f);
 			}
+			else
+				if (mInGameBackground->getMedal() == "Silver") {
+					mWorldMap01->addDemDopies(60);
+					sound.playSound(10.8f);
+				}
+				else
+					if (mInGameBackground->getMedal() == "Bronze") {
+						mWorldMap01->addDemDopies(40);
+						sound.playSound(10.7f);
+					}
 			/*mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 			mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
 			mInGameBackground->selectMomentumSprite();
@@ -525,15 +531,15 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 			std::cout << mWorldMap01->getDemDopies() << std::endl;
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){*/
-				mState = 6;
-				mStartState = true;
+			mState = 6;
+			mStartState = true;
 			//}	
 		}
 		/*else if(mMap01->mTurnCount >= mMap01->mLoseRounds) {
 			mState = 5;
 			mStartState = true;
 		}*/
-		else{
+		else {
 			drawInGame(window, mouse, music, sound, anime);
 		}
 		break;
@@ -735,32 +741,32 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		mState = 1;
 		break;
 	}
-		/*case 8:
-			mPlayer->setMower(mLawnMowers.at(mCurMower));
-			std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
-			mCurMower++;
-			mCurMower = mCurMower%mLawnMowers.size();
-			mState = 0;
-			break;
-
-		case 9:
-			mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
-			std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
-			mCurHedgeTool++;
-			mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
-			mState = 0;
-			break;
-
-		case 0: //The illustrious state 0. Swap out equipment
-			drawToolSelectMenu(window, mouse, music, sound);
-			break;*/
-
-			/*default:
-				std::cout << "default gamestate";
+			/*case 8:
+				mPlayer->setMower(mLawnMowers.at(mCurMower));
+				std::cout << mLawnMowers.at(mCurMower)->getStats() << std::endl;
+				mCurMower++;
+				mCurMower = mCurMower%mLawnMowers.size();
+				mState = 0;
 				break;
-			}*/
 
-			//Outside the gamestates, check if the user changes the gamestate.
+			case 9:
+				mPlayer->setHedgeTool(mHedgeTools.at(mCurHedgeTool));
+				std::cout << mHedgeTools.at(mCurHedgeTool)->getStats() << std::endl;
+				mCurHedgeTool++;
+				mCurHedgeTool = mCurHedgeTool%mHedgeTools.size();
+				mState = 0;
+				break;
+
+			case 0: //The illustrious state 0. Swap out equipment
+				drawToolSelectMenu(window, mouse, music, sound);
+				break;*/
+
+				/*default:
+					std::cout << "default gamestate";
+					break;
+				}*/
+
+				//Outside the gamestates, check if the user changes the gamestate.
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
 				mState = 1;
@@ -786,25 +792,26 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			}*/
 
 
-		//if (mStartMenu01->reset == true || mWinMenu01->reset == true)
-		//{
-		//	mWinMenu01->reset = false;
-		//	mStartMenu01->reset = false;
-		//	resetMap();
-		//}
+			//if (mStartMenu01->reset == true || mWinMenu01->reset == true)
+			//{
+			//	mWinMenu01->reset = false;
+			//	mStartMenu01->reset = false;
+			//	resetMap();
+			//}
 
 
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
-		{
-			mState = 0;
-		}*/
+			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+			{
+				mState = 0;
+			}*/
 
 
 	}
 }
 
 
-bool gameState::checkStartState(int lowerState){
+bool gameState::checkStartState(int lowerState)
+{
 	if (mState == lowerState) {
 		return false;
 	}
@@ -814,7 +821,8 @@ bool gameState::checkStartState(int lowerState){
 	}
 }
 
-bool gameState::checkStartOptionState(int lowerState) {
+bool gameState::checkStartOptionState(int lowerState)
+{
 	if (mOptionMenuState == lowerState) {
 		return false;
 	}
@@ -823,7 +831,8 @@ bool gameState::checkStartOptionState(int lowerState) {
 	}
 }
 
-bool gameState::checkStartRegionState(int lowerState) {
+bool gameState::checkStartRegionState(int lowerState)
+{
 	if (mRegionState == lowerState) {
 		return false;
 	}
@@ -832,16 +841,17 @@ bool gameState::checkStartRegionState(int lowerState) {
 	}
 }
 
-void gameState::loadMap(sf::RenderWindow &window) {
+void gameState::loadMap(sf::RenderWindow &window)
+{
 	//mMap01->~Map1();
 	delete mMap01;
-	
+
 	std::string levelToLoad = mRegionMap01->loadLevel();
 
 	mMap01 = new Map1(levelToLoad, mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	mInGameBackground->setMapname(levelToLoad);
 	int meepStartAnimation = mMap01->getMeepSpawnDirection();
-	
+
 	if (meepStartAnimation == 1) {
 		mPlayer->changeAnimation(4);
 	}
