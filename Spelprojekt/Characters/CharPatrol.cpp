@@ -80,7 +80,21 @@ void CharPatrol::reset() {
 	mLast = mOrigLast;
 }
 
-intVector CharPatrol::move(){
+int CharPatrol::getMove(int i) {
+	if (i < mMovement.size()) {
+		return mMovement[i];
+	}
+	mBreakMove = true;
+	return 0;
+}
+
+bool CharPatrol::getMoveBroke() {
+	return mBreakMove;
+}
+
+int CharPatrol::move(){
+	mMovement.clear();
+	mBreakMove = false;
 	intVector curMove;
 	//Step 1: Make sure no retries are waiting
 	//int test = 0;
@@ -128,15 +142,18 @@ intVector CharPatrol::move(){
 		//cout << "Retrying path: " << test << endl;
 	}
 	//return the intVector of steps
-	return curMove;
+	//return curMove;
+	mMovement = curMove;
+	return curMove.size();
+
 }
 
-intVector CharPatrol::collide(intVector moves, int atPos){
+intVector CharPatrol::collide(int atPos){
 	int j = 0;
 	//int test = 0;
-	for (intVector::size_type i = atPos; i < moves.size(); i++){
+	for (intVector::size_type i = atPos; i < mMovement.size(); i++){
 		//Fill up the retryPath array with all the remaining moves
-		retryPath[j] = moves.at(i);
+		retryPath[j] = mMovement.at(i);
 		//test += moves.at(i);
 		//test *= mMoveCount;
 		j++;
@@ -257,6 +274,14 @@ void CharPatrol::finalize(){
 
 float CharPatrol::getMoveTime() {
 	return mMoveTime;
+}
+
+sf::Clock CharPatrol::getMoveClock() {
+	return mMoveClock;
+}
+
+void CharPatrol::resetMoveClock() {
+	mMoveClock.restart();
 }
 
 void CharPatrol::setWalking(bool walk) {

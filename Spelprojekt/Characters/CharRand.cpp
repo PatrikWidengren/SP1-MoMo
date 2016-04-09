@@ -141,7 +141,22 @@ void CharRand::reset() {
 	mLast = mOrigLast;
 }
 
-intVector CharRand::move(){
+int CharRand::getMove(int i) {
+	if (i < mMovement.size()) {
+		return mMovement[i];
+	}
+	mBreakMove = true;
+	return 0;
+}
+
+bool CharRand::getMoveBroke() {
+	return mBreakMove;
+}
+
+
+int CharRand::move() {
+	mMovement.clear();
+	mBreakMove = false;
 	intVector movement;
 	if (mDirLock){
 		int dir = rand()%9+1;
@@ -159,7 +174,9 @@ intVector CharRand::move(){
 		}
 	}
 	mMoveTime = 1.0f / movement.size();
-	return movement;
+	//return movement;
+	mMovement = movement;
+	return movement.size();
 }
 
 /*This function is oddly constructed, though I didn't know a better way
@@ -169,18 +186,20 @@ go into a loop and try to move them according to the intVector that was
 returned. Once it has successfully taken a step, reaches the end of the
 vector, or reaches a 0, it will stop trying and end the movement
 for the turn for that NPC.*/
-intVector CharRand::collide(intVector moves, int atPos){
+intVector CharRand::collide(int atPos){
 	intVector movement;
-	int m = moves.at(atPos);
-	for (int i = 0; i < 7; i++){
-		m++;
-		if (m == 5){
+	if (atPos<mMovement.size()){
+		int m = mMovement.at(atPos);
+		for (int i = 0; i < 7; i++) {
 			m++;
+			if (m == 5) {
+				m++;
+			}
+			if (m >= 10) {
+				m = 1;
+			}
+			movement.push_back(m);
 		}
-		if (m>9){
-			m = (m % 9);
-		}
-		movement.push_back(m);
 	}
 	return movement;
 }
@@ -251,6 +270,14 @@ void CharRand::scale(sf::RenderWindow &window) {
 }
 float CharRand::getMoveTime() {
 	return mMoveTime;
+}
+
+sf::Clock CharRand::getMoveClock() {
+	return mMoveClock;
+}
+
+void CharRand::resetMoveClock() {
+	mMoveClock.restart();
 }
 
 void CharRand::setWalking(bool walk) {

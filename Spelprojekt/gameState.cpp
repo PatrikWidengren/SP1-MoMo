@@ -42,7 +42,7 @@ gameState::gameState(sf::RenderWindow &window)
 	mHedgeTools.push_back(new HedgeCutter(2, 1));
 
 	mPlayer = new Player(mLawnMowers.at(mCurMower), mHedgeTools.at(mCurHedgeTool));
-	mMap01 = new Map1("map01a01.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
+	mMap01 = new Map1("patroltest.txt", mPlayer/*, "Maps/patrols/Patrols_testing.txt"*/);
 	
 	mMap01->spawnObjects();
 	//mMap01->render(window, anime);

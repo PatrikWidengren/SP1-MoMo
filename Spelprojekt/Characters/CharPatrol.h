@@ -9,8 +9,9 @@ public:
 	virtual ~CharPatrol();//This is the X and Y position for the sprite
 	virtual void reset();
 
-	virtual intVector move();
-	virtual intVector collide(intVector moves, int atPos);
+	virtual int move();
+	virtual int getMove(int i);
+	virtual intVector collide(int atPos);
 	//This is the position in the array
 	virtual int getX();
 	virtual int getY();
@@ -19,6 +20,10 @@ public:
 
 	virtual void setWalking(bool walk);
 	virtual bool getWalking();
+	virtual bool getMoveBroke();
+	virtual sf::Clock getMoveClock();
+	virtual void resetMoveClock();
+
 
 	//Set X and Y in the array
 	virtual void setX(int x);
@@ -49,8 +54,11 @@ private:
 	//Single turn's worth of movement to retry in case of collision
 	int *retryPath;
 	int mTurnNo;
+	intVector mMovement;
 	bool walking = false;
+	bool mBreakMove = false;
 
+	sf::Clock mMoveClock;
 	sf::Clock clock;
 	thor::Animator<sf::Sprite, std::string>* dogAnimator = new thor::Animator<sf::Sprite, std::string>;
 	sf::Texture* mTextureSheet_dogWalk = new sf::Texture;

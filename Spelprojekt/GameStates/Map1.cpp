@@ -891,6 +891,9 @@ void Map1::beginTurn(int dir) {
 				}
 			}
 		}
+		for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+			mNpcVector[i]->move();
+		}
 	}
 }
 
@@ -977,7 +980,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 			if (mPlaceInMove < mCurrentMove.size() && mNpcMoveTimer.getElapsedTime().asSeconds()>=mNpcMoveTime) {
 				mNpcMoveTimer.restart();
-				//0 means end of movement. Needed for patrols. 
+				//0 means end of movement. Needed for patrols.
 				//Breakmove means that the entire movement for this character
 				//is over for the turn
 				if (mCurrentMove.at(mPlaceInMove) == 0) {
@@ -988,7 +991,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 					//mNpcs[i]->swapDoneMoving();
 				}
 
-				//the movement functions returns a bool. True if they moved, 
+				//the movement functions returns a bool. True if they moved,
 				//false in case of collision
 
 				if (!mBreakMove) {
@@ -1034,58 +1037,151 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 			}
 		}*/
 
-		//Following code block is mostly copypasted from takeTurn
+		mNpcsMoving = false;
+
 		for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+			int moveDir = 0;
 			//get their movement vector
-			intVector npcMove = mNpcVector[i]->move();
-			bool breakMove = false;
 			//For every int in the vector, do the following
-			for (intVector::size_type j = 0; j < npcMove.size(); j++) {
 				//0 means end of movement. Needed for patrols. 
 				//Breakmove means that the entire movement for this character
 				//is over for the turn
-				if (npcMove.at(j) == 0 || breakMove) {
-					breakMove = false;
-					//mNpcs[i]->swapDoneMoving();
-					break;
-				}
-				//the movement functions returns a bool. True if they moved, 
-				//false in case of collision
-				bool moved = moveNpc(npcMove.at(j), i, sound);
-				//if the NPC collided: do the following
-				if (!moved) {
 
-					//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
-					//get a new series of moves to attempt
-					intVector tryMove;
-					tryMove = mNpcVector[i]->collide(npcMove, j);
-					//try out the new list of steps
-					for (intVector::size_type k = 0; k < tryMove.size(); k++) {
-						//again, break if 0, breakMove is made true so that
-						//the entire turn will end for the current character
-						//if there is no movement after collision
-						if (tryMove.at(k) == 0) {
-							breakMove = true;
-							break;
-						}
-						//check every move. If one of them works, return to standard
-						//movement pattern
-						bool retryMoved = moveNpc(tryMove.at(k), i, sound);
-						if (retryMoved) {
-							break;
+			if (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() >= mNpcVector[i]->getMoveTime() || mPlaceInMove == 0) {
+				mNpcVector[i]->resetMoveClock();
+				if (!mNpcVector[i]->getMoveBroke())
+				{
+					int move = mNpcVector[i]->getMove(mPlaceInMove);
+					if (move != 0) {
+						mNpcsMoving = true;
+					}
+					//the movement functions returns a bool. True if they moved, 
+					//false in case of collision
+					bool moved = moveNpc(move, i, sound);
+					//if the NPC collided: do the following
+					moveDir = move;
+					mPlayer->getSpriteSheet()->setPosition(((pushMapX + mPlayer->getX() * widthOnTile) + pushMeepX) * scaleX, (pushMapY + (mNpcVector[i]->getLastY() * heightOnTile) + pushNpcY) * scaleY);
+					if (!moved) {
+						//get a new series of moves to attempt
+						intVector tryMove;
+						tryMove = mNpcVector[i]->collide(mPlaceInMove);
+						//try out the new list of steps
+						for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+							//again, break if 0, breakMove is made true so that
+							//the entire turn will end for the current character
+							//if there is no movement after collision
+							if (tryMove.at(k) == 0) {
+								break;
+							}
+							//check every move. If one of them works, return to standard
+							//movement pattern
+							bool retryMoved = moveNpc(tryMove.at(k), i, sound);
+							if (retryMoved) {
+								moveDir = tryMove[k];
+								break;
+							}
 						}
 					}
-
-					break;
-				}
-				else {
-					//cout << "Moved " << npcMove.at(j) << endl;
 				}
 			}
+			//NPCANIM
+			float tempPosX = (pushMapX + (mNpcVector[i]->getX() * widthOnTile) + pushNpcX) * scaleX;
+			float tempPosY = (pushMapY + (mNpcVector[i]->getY() * heightOnTile) + pushNpcY) * scaleY;
+
+			switch (moveDir) {
+			case 8:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX + 0 * scaleX,
+					tempPosY - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			case 9:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			case 6:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY + 0 * scaleY);
+				break;
+			case 3:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			case 2:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX + 0 * scaleX,
+					tempPosY + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			case 1:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY + (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			case 4:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY + 0 * scaleY);
+				break;
+			case 7:
+				mNpcVector[i]->getSpriteSheet()->setPosition(tempPosX - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime() * widthOnTile)*scaleX,
+					tempPosY - (mNpcVector[i]->getMoveClock().getElapsedTime().asSeconds() / mNpcVector[i]->getMoveTime()) * heightOnTile*scaleY);
+				break;
+			}
+			if (i == mNpcVector.size() - 1) {
+				mPlaceInMove++;
+			}
+		}
+
+
+		////Following code block is mostly copypasted from takeTurn
+		//for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
+		//	//get their movement vector
+		//	intVector npcMove = mNpcVector[i]->move();
+		//	bool breakMove = false;
+		//	//For every int in the vector, do the following
+		//	for (intVector::size_type j = 0; j < npcMove.size(); j++) {
+		//		//0 means end of movement. Needed for patrols. 
+		//		//Breakmove means that the entire movement for this character
+		//		//is over for the turn
+		//		if (npcMove.at(j) == 0 || breakMove) {
+		//			breakMove = false;
+		//			//mNpcs[i]->swapDoneMoving();
+		//			break;
+		//		}
+		//		//the movement functions returns a bool. True if they moved, 
+		//		//false in case of collision
+		//		bool moved = moveNpc(npcMove.at(j), i, sound);
+		//		//if the NPC collided: do the following
+		//		if (!moved) {
+
+		//			//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
+		//			//get a new series of moves to attempt
+		//			intVector tryMove;
+		//			tryMove = mNpcVector[i]->collide(npcMove, j);
+		//			//try out the new list of steps
+		//			for (intVector::size_type k = 0; k < tryMove.size(); k++) {
+		//				//again, break if 0, breakMove is made true so that
+		//				//the entire turn will end for the current character
+		//				//if there is no movement after collision
+		//				if (tryMove.at(k) == 0) {
+		//					breakMove = true;
+		//					break;
+		//				}
+		//				//check every move. If one of them works, return to standard
+		//				//movement pattern
+		//				bool retryMoved = moveNpc(tryMove.at(k), i, sound);
+		//				if (retryMoved) {
+		//					break;
+		//				}
+		//			}
+
+		//			break;
+		//		}
+		//		else {
+		//			//cout << "Moved " << npcMove.at(j) << endl;
+		//		}
+		//	}
+		//}
+
+		if (!mNpcsMoving) {
+			mPlaceInMove = 0;
 		}
 	}
-
-	mNpcsMoving = false;
 
 	/*for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
 		mNpcVector[i]->setWalking(false);
@@ -1100,7 +1196,7 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 
 		switch (mCurrentMove[mPlaceInMove]) {
 		case 8:
-			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0*scaleX,
+			mPlayer->getSpriteSheet()->setPosition(tempPosX + 0 * scaleX,
 				tempPosY - (mPlayerMoveTime.getElapsedTime().asSeconds() / mPlayer->getMoveTime()) * heightOnTile*scaleY);
 
 			//mPlayer->getSpriteSheet()->move(0,
@@ -1195,99 +1291,6 @@ void Map1::update(SoundManager &sound, sf::RenderWindow &window) {
 		std::cout << endl;
 		mOngoingTurn = false;
 	}
-
-}
-
-/*This code looks a ton better with helper functions movePlayer(int dir)
-and moveNpc(int dir, int atPos) for each individual step.*/
-void Map1::takeTurn(int dir, SoundManager &sound, sf::RenderWindow &window) {
-
-	//sound.playSound(10.4f);
-	/*get the intVector that lists all of the individual 1-tile moves*/
-	intVector meepMove = mPlayer->move(dir);
-	/*go through the vector and move 1 step int*/
-	for (intVector::size_type i = 0; i < meepMove.size(); i++) {
-		bool moved = movePlayer(meepMove.at(i), sound, window);
-		if (!moved) {
-			mPlayer->collide(meepMove, i);
-			break;
-		}
-	}
-
-	//Add all the npcs on the map to a vector for ease of looping
-	mNpcVector.clear();
-	mNpcCoords.clear();
-	for (int j = 0; j < mHeight; j++) {
-		for (int i = 0; i < mWidth; i++) {
-			if (mGrid[j][i] >= 6.0f && mGrid[j][i] < 8.0f) {
-				coords at = { i, j };
-				mNpcVector.push_back(mNpcs[at]);
-			}
-		}
-	}
-	//cout << "Size of vector " << mNpcVector.size() << endl;
-	/*Do this for every NPC in the vector*/
-	for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
-		//get their movement vector
-		intVector npcMove = mNpcVector[i]->move();
-		bool breakMove = false;
-		//For every int in the vector, do the following
-		for (intVector::size_type j = 0; j < npcMove.size(); j++) {
-			//0 means end of movement. Needed for patrols. 
-			//Breakmove means that the entire movement for this character
-			//is over for the turn
-			if (npcMove.at(j) == 0 || breakMove) {
-				breakMove = false;
-				//mNpcs[i]->swapDoneMoving();
-				break;
-			}
-			//the movement functions returns a bool. True if they moved, 
-			//false in case of collision
-			bool moved = moveNpc(npcMove.at(j), i, sound);
-			//if the NPC collided: do the following
-			if (!moved) {
-				
-				//cout << "failed with move " << npcMove.at(j) << ", place " << j << endl;
-				//get a new series of moves to attempt
-				intVector tryMove;
-				tryMove = mNpcVector[i]->collide(npcMove, j);
-				//try out the new list of steps
-				for (intVector::size_type k = 0; k < tryMove.size(); k++) {
-					//again, break if 0, breakMove is made true so that
-					//the entire turn will end for the current character
-					//if there is no movement after collision
-					if (tryMove.at(k) == 0) {
-						breakMove = true;
-						break;
-					}
-					//check every move. If one of them works, return to standard
-					//movement pattern
-					bool retryMoved = moveNpc(tryMove.at(k), i, sound);
-					if (retryMoved) {
-						break;
-					}
-				}
-
-				break;
-			}
-			else {
-				//cout << "Moved " << npcMove.at(j) << endl;
-			}
-		}
-	}
-
-/*	for (NpcVector::size_type i = 0; i < mNpcVector.size(); i++) {
-		coords c = { mNpcVector[i]->getX(), mNpcVector[i]->getY() };
-		mNpcs[c] = mNpcVector[i];
-		mGrid[mNpcVector[i]->getX()][mNpcVector[i]->getY()] = mNpcVector[i]->getType();
-		//mNpcs.erase(at);
-	}*/
-	mTurnCount++;
-	std::cout << "That was turn " << mTurnCount << "." << endl;
-	if (mTurnCount >= 50) {
-		std::cout << "GAME OVER" << endl;
-	}
-	std::cout << endl;
 }
 
 bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
@@ -1432,12 +1435,11 @@ bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		return false;
 	}
 }
-/*string Map1::getGrass() {
-	stringstream o;
-	o << "Cut grass: " << (cutGrass / totalAmountOfGrass) * 100;
-	return o.str();
-}*/
+
 bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
+	if (dir == 0 || dir == 5) {
+		return true;
+	}
 	int tempX = mNpcVector.at(atPos)->getX();
 	int tempY = mNpcVector.at(atPos)->getY();
 	//float tempPosX = 0;

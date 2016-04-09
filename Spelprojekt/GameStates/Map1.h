@@ -56,7 +56,6 @@ public:
 	//Funktion för att få storleken på arrayen, samt få alla värden för medaljerna, denna funktion anropas i konstruktorn till Map
 	void virtual getMapInfo();
 	void resetGrid();
-	void takeTurn(int dir, SoundManager &sound, sf::RenderWindow &window);
 	int** getPatrolPath(int &skipLines);
 	float** createGrid(int width, int height);
 	//Added turn count
@@ -110,6 +109,7 @@ private:
 	//Mower* lawnMower;
 
 	intVector mCurrentMove;
+	int mLongestMove;
 	int mPlaceInMove = 0, mNpcNo = 0;
 	bool mMeepMoving = false, mNpcsMoving = false, mBreakMove;
 	sf::Clock mTurnClock, mPlayerMoveTime, mNpcMoveTimer;

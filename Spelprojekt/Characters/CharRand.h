@@ -12,8 +12,9 @@ public:
 	virtual ~CharRand();
 	virtual void reset();
 
-	virtual intVector move();
-	virtual intVector collide(intVector moves, int atPos);
+	virtual int move();
+	virtual int getMove(int i);
+	virtual intVector collide(int atPos);
 	//This is the position in the array
 	virtual int getX();
 	virtual int getY();
@@ -22,6 +23,9 @@ public:
 
 	virtual void setWalking(bool walk);
 	virtual bool getWalking();
+	virtual bool getMoveBroke();
+	virtual sf::Clock getMoveClock();
+	virtual void resetMoveClock();
 
 	//Set X and Y in the array
 	virtual void setX(int x);
@@ -49,9 +53,12 @@ private:
 	const float mBaseType, mOrigLast;
 	float mType, mLast, mMoveTime;
 	bool mDirLock;
+	bool mBreakMove = false;
 	bool walking = false;
+	intVector mMovement;
 
 	sf::Clock clock;
+	sf::Clock mMoveClock;
 	thor::Animator<sf::Sprite, std::string>* catAnimator = new thor::Animator<sf::Sprite, std::string>;
 	sf::Texture* mTextureSheet_catIdle = new sf::Texture;
 	sf::Texture* mTextureSheet_catWalk = new sf::Texture;

@@ -14,8 +14,9 @@ public:
 	Character();
 	virtual ~Character();
 	virtual void reset()=0;
-	virtual intVector move() = 0;
-	virtual intVector collide(intVector moves, int atPos) = 0;
+	virtual int move()=0;
+	virtual int getMove(int i)=0;
+	virtual intVector collide(int atPos) = 0;
 	virtual int getX() = 0;
 	virtual int getY() = 0;
 	virtual int getLastX() = 0;
@@ -23,6 +24,9 @@ public:
 
 	virtual void setWalking(bool walk) = 0;
 	virtual bool getWalking() = 0;
+	virtual bool getMoveBroke() = 0;
+	virtual sf::Clock getMoveClock()=0;
+	virtual void resetMoveClock() = 0;
 
 	virtual void setX(int x) = 0;
 	virtual void setY(int Y) = 0;

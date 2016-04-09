@@ -1285,9 +1285,6 @@
     <Text Include="Maps\map02a05.txt">
       <Filter>Maps</Filter>
     </Text>
-    <Text Include="Maps\patrols\patrols_map04a02.txt">
-      <Filter>Maps</Filter>
-    </Text>
     <Text Include="Maps\map01a01.txt">
       <Filter>Maps</Filter>
     </Text>
@@ -1383,6 +1380,9 @@
     </Text>
     <Text Include="Maps\stormaptest.txt">
       <Filter>Maps</Filter>
+    </Text>
+    <Text Include="Maps\patrols\patrols_map04a02.txt">
+      <Filter>Maps\patrols</Filter>
     </Text>
   </ItemGroup>
 </Project>
