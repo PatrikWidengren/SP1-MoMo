@@ -473,6 +473,11 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 {
 	switch (mState) //switch that hold the states of the game
 	{
+	case 0:
+		loadMap(window);
+		mPlayer->reset();
+		mState = 1;
+		break;
 	case 1:
 	{ //Game state 1. in game. 
 
@@ -738,6 +743,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	case 8: {
 		mRegionState = 0;
 		loadMap(window);
+		mPlayer->reset();
 		mState = 1;
 		break;
 	}
