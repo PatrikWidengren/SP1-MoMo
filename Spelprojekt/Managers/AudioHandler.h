@@ -3,7 +3,7 @@
 #include "FMOD/fmod_studio.hpp"
 #include "Audio.h"
 #include "AudioBank.h"
-//#include "LogHandler.h"
+#include "LogHandler.h"
 
 
 

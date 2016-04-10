@@ -68,7 +68,7 @@ void VideoOptionMenu::updateVideoOptionMenu(sf::RenderWindow &window, sf::Vector
 		{
 			mFullscreen = true;
 			mClick = false;
-			sound.playSound(10.1);
+			//sound.playSound(10.1);
 		}
 	}
 
@@ -79,7 +79,7 @@ void VideoOptionMenu::updateVideoOptionMenu(sf::RenderWindow &window, sf::Vector
 		{
 			mFullscreen = false;
 			mClick = false;
-			sound.playSound(10.1);
+			//sound.playSound(10.1);
 		}
 	}
 
@@ -90,7 +90,7 @@ void VideoOptionMenu::updateVideoOptionMenu(sf::RenderWindow &window, sf::Vector
 		{
 			mClick = false;
 			mOptionMenuState = 1;
-			sound.playSound(10.1);
+			//sound.playSound(10.1);
 		}
 	}
 	else

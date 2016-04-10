@@ -69,7 +69,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 		{
 			mClick = false;
 			mState = 7;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -82,7 +82,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 		{
 			mClick = false;
 			mState = 4;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -94,7 +94,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			sound.playSound(10.1f);
+			//sound.playSound(10.1f);
 			window.close();
 		}
 	}
@@ -108,7 +108,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 		{
 			mClick = false;
 			mState = 1;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -121,7 +121,7 @@ void startMenu::updateStartMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 		{
 			mClick = false;
 			//mState = 1; Credits
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else

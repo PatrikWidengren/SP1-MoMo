@@ -3,35 +3,23 @@
 #include <string>
 
 using namespace std;
-const int numberOfSongs = 10;
-//const int numberOfBanks = 10;
+
 
 //Name array = events instead, change this slask
 
-static const string nameArray[numberOfSongs] = { "Music/Menu/Title","Music/Menu/Miyoda", "Music/Menu/WorldMap",
-"Music/Levels/Generic1", "Music/Levels/Generic2", "Music/Levels/Generic3",
-"Music/Levels/Ice", "Music/Levels/Temple1-7", "Music/Levels/Temple8",
- "Music/Levels/Asian" };
+
 
 //static const string bankArray[numberOfBanks] = {};
 
-MusicManager::MusicManager(int id)
+MusicManager::MusicManager(const char* songTitle)
 {
 	mVolume = 50;
 
-	for (int i = 0; i < numberOfSongs; i++) 
-	{
-		Audio *a = new Audio(nameArray[i].c_str());
-		mSongList.push_back(a);
-
-		if (!a->getInstance())
-		{
-			std::cout << "Song: " << i << " failed to load!" << endl;
-		}
-		audio->setVolume(mSongList[i], mVolume);
-	}
-	audio->play(mSongList[id]);
-	saveID = id;
+	mSong = new Audio(songTitle);
+	
+	audio->setVolume(mSong, mVolume);
+	audio->play(mSong);
+	mSaveSong = songTitle;
 }
 
 MusicManager::~MusicManager(){
@@ -45,15 +33,19 @@ MusicManager::~MusicManager(){
 }
 
 Audio* MusicManager::getMusic(){
-	return mSongList[saveID];
+	return mSong;
 }
 
-void MusicManager::setMusic(int id){
-	if (saveID != id) {
-		audio->stop(mSongList[saveID]);
-		audio->setVolume(mSongList[id], mVolume);
-		audio->play(mSongList[id]);
-		saveID = id;
+
+void MusicManager::setMusic(const char* songTitle)
+{
+	if (songTitle != mSaveSong) {
+		audio->stop(mSong);
+		delete mSong;
+		mSong = new Audio(songTitle);
+		audio->setVolume(mSong, mVolume);
+		audio->play(mSong);
+		mSaveSong = songTitle;
 	}
 }
 
@@ -63,5 +55,5 @@ int MusicManager::getVolume() {
 
 void MusicManager::setVolume(int volume) {
 	mVolume = volume;
-	audio->setVolume(mSongList[saveID], mVolume);;
+	audio->setVolume(mSong, mVolume);;
 }

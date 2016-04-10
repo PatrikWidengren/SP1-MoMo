@@ -27,7 +27,7 @@ Audio::Audio(const char* file)
 	{
 		std::string str = "Loading event instance: ";
 		str += FMOD_ErrorString(result);
-		//LogHandler::error("Audio", str.c_str());
+		LogHandler::error("Audio", str.c_str());
 		eventInstance = NULL;
 		return;
 	}
