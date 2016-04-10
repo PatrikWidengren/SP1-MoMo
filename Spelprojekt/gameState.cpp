@@ -520,8 +520,6 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				}
 			}
 
-			LogHandler::log("State", std::to_string(sound.getParamValue(1, "End")).c_str());
-
 			if (sound.getParamValue(1, "End") == 1)
 			{
 				sound.setParamValue(1, "End", 0);
