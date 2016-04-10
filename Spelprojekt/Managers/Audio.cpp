@@ -18,7 +18,7 @@ Audio::Audio(const char* file)
 	{
 		std::string str = "Loading event: ";
 		str += FMOD_ErrorString(result);
-		//LogHandler::error("Audio", str.c_str());
+		LogHandler::error("Audio", str.c_str());
 		return;
 	}
 
