@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{f0ad7bcb-9701-4997-9104-b120bcad42a8}">
+        <property name="assetPath">
+            <value>Ljud/Meny_Open.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.85572916666666665</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>
+        </relationship>
+    </object>
+</objects>

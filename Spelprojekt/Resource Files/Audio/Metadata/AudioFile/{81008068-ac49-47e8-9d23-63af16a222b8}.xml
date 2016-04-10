@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{81008068-ac49-47e8-9d23-63af16a222b8}">
+        <property name="assetPath">
+            <value>Ljud/Monk Throat Start.aif</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.65625</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>
+        </relationship>
+    </object>
+</objects>

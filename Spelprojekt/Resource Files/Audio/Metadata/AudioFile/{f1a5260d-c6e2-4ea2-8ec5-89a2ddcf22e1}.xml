@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{f1a5260d-c6e2-4ea2-8ec5-89a2ddcf22e1}">
+        <property name="assetPath">
+            <value>Ljud/Footstep_concrete_03.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.27289583333333334</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>
+        </relationship>
+    </object>
+</objects>
