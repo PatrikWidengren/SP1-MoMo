@@ -21,6 +21,7 @@ public:
 	void SoundManager::unload();
 	int getVolume();
 	void setParamValue(int id, const char* param, double value);
+	float getParamValue(int id, const char* param);
 
 private:
 	const static int numOfSounds = 20;

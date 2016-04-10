@@ -149,6 +149,15 @@ void AudioHandler::setParameterValue(Audio* audio, const char* param, double val
 	LogHandler::notify("Audio", "Attempting to set parameter value of an unloaded sound.");
 }
 
+float AudioHandler::getParameterValue(Audio* audio, const char* param)
+{
+	float paramval = 0;
+	if (audio->getInstance())
+		audio->getInstance()->getParameterValue(param, &paramval);
+
+	return paramval;
+}
+
 void AudioHandler::setPitch(Audio* audio, double pitch)
 {
 	audio->getInstance()->setPitch((float)pitch);

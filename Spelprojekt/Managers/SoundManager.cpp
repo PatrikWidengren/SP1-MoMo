@@ -72,6 +72,14 @@ void SoundManager::load(int number, int sounds[])
 	{
 		if (!mSound[sounds[j]]) //not already loaded
 			mSound[sounds[j]] = new Audio(sndFile[sounds[j]].c_str());
+
+		std::string str = "Loaded: ";
+		str += sndFile[sounds[j]].c_str();
+		str += " at index: ";
+		str += std::to_string(j);
+
+
+		LogHandler::log("Sound", str.c_str());
 	}
 }
 
@@ -79,8 +87,14 @@ void SoundManager::unload()
 {
 	for (int j = 0; j < numOfSounds; j++)
 	{
-		if (!mSound[j]) 
+		if (mSound[j]) 
 		{
+			std::string str = "Unloading sound at index: ";
+			str += std::to_string(j);
+
+
+			LogHandler::log("Sound", str.c_str());
+
 			delete mSound[j];
 			mSound[j] = NULL;
 		}
@@ -134,6 +148,12 @@ void SoundManager::setMowerVolume(int mowerVolume) {
 void SoundManager::setParamValue(int id, const char* param, double value)
 {
 	audio->setParameterValue(mSound[id], param, value);
+}
+
+float SoundManager::getParamValue(int id, const char* param)
+{
+	float params = audio->getParameterValue(mSound[id], param);
+	return params;
 }
 
 int SoundManager::getVolume() {

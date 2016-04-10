@@ -17,7 +17,7 @@ private:
 	int maxChannels;
 	void setMaxChannels(int channels);
 	void *extraDriverData;
-
+	float *paramval;
 
 	bool sampleasync; 
 	bool sampledecompress;
@@ -55,6 +55,10 @@ public:
 	void setParameterValue(Audio* audio, const char* param, double value);
 	void setPitch(Audio* audio, double pitch);
 	void setTimePosition(Audio* audio, int position);
+
+	float getParameterValue(Audio* audio, const char* param);
+
+
 
 	FMOD::Studio::System* getSystem();
 };
