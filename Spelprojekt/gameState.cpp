@@ -157,17 +157,17 @@ void gameState::drawWinMenu(sf::RenderWindow &window, sf::Vector2i &mouse, Music
 	mWinMenu01->displayMenu01(window);
 	if (mInGameBackground->getMedal() == "Gold") {
 		mWorldMap01->addDemDopies(90);
-		sound.playSound(10.9f);
+		//sound.playSound(10.9f);
 	}
 	else
 		if (mInGameBackground->getMedal() == "Silver") {
 			mWorldMap01->addDemDopies(60);
-			sound.playSound(10.8f);
+			//sound.playSound(10.8f);
 		}
 		else
 			if (mInGameBackground->getMedal() == "Bronze") {
 				mWorldMap01->addDemDopies(40);
-				sound.playSound(10.7f);
+				//sound.playSound(10.7f);
 			}
 	mStartState = checkStartState(mWinMenu01->checkState());
 	mState = mWinMenu01->checkState();
@@ -483,25 +483,45 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		if (mStartState) {
 			mInGameBackground->resetInGameHud();
-			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
-				int i = rand() % 3 + 1;
-				AudioBank bankGeneric = ("Resource Files/Audio/Build/Desktop/Generic.bank");
 
-				music.setMusic(i); //Generic1
+			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
+				mBankName = "Resource Files/Audio/Build/Desktop/Generic.bank";
 			}
 			else if (mRegionMusic == 4 || mRegionMusic == 5) {
-				AudioBank bankTemple = ("Resource Files/Audio/Build/Desktop/Temple.bank");
+				mBankName = "Resource Files/Audio/Build/Desktop/Temple.bank";
+			}
+
+
+			if (mBankName != mSaveBank || mSaveBank == NULL) {
+				delete mBank;
+				sound.unload();
+
+				mBank = new AudioBank(mBankName);
+				mSaveBank = mBankName;
+				std::cout << "loaded " << mSaveBank << std::endl;
+			}
+			else
+				std::cout << mSaveBank << "already loaded" << std::endl;
+
+			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
+				sound.loadSounds(1);
+				int i = rand() % 3 + 1;
+				std::string str = "Music/Levels/Generic" + std::to_string(i);
+				music.setMusic(str.c_str()); //Generic123
+			}
+			else if (mRegionMusic == 4 || mRegionMusic == 5) {
+				sound.loadSounds(2);
 
 				if (mRegionMusic == 4) {
-					music.setMusic(9); //Temple8
+					music.setMusic("Music/Levels/Temple8"); //Temple8
 				}
 				if (mRegionMusic == 5) {
-					music.setMusic(8); //Temple1-7
+					music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
 				}
 			}
 
-			sound.playSound(10.5f);
-			sound.playSound(10.4f);
+			sound.setParamValue(1, "End", 0);
+			sound.playSound(1);
 			//mMap01->scale(window);
 			mStartState = false;
 			//Startar musik osv
@@ -512,17 +532,17 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			//kan välja vilken banas maxvärde man ska anvädnda för att veta om det är gameover. Ex: Maps[i]->maxTurnCount
 			if (mInGameBackground->getMedal() == "Gold") {
 				mWorldMap01->addDemDopies(90);
-				sound.playSound(10.9f);
+				//sound.playSound(10.9f);
 			}
 			else
 				if (mInGameBackground->getMedal() == "Silver") {
 					mWorldMap01->addDemDopies(60);
-					sound.playSound(10.8f);
+					//sound.playSound(10.8f);
 				}
 				else
 					if (mInGameBackground->getMedal() == "Bronze") {
 						mWorldMap01->addDemDopies(40);
-						sound.playSound(10.7f);
+						//sound.playSound(10.7f);
 					}
 			/*mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 			mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
@@ -551,12 +571,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 2: { //Case 2, Draw ingame menu
 		if (mStartState) {
-			music.setMusic(6);
+			music.setMusic("Music/Levels/Ice");
 			mInGameMenu01->scale(window);
 			mStartState = false;
-			sound.stopSound(10.4f);
-			sound.stopSound(10.5f);
-			sound.playSound(10.6f);
+			sound.setParamValue(1, "End", 1);
 			//Starta musik osv
 		}
 		drawInGameMenu(window, mouse, music, sound, anime);
@@ -564,7 +582,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 3: { //State 3. Start menu.
 		if (mStartState) {
-			music.setMusic(0);
+			music.setMusic("Music/Menu/Title");
 			mStartMenu01->scale(window);
 			mStartState = false;
 			//Startar musik osv
@@ -578,7 +596,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 		case 1: { //state 1. Option.
 			if (mStartOptionState) {
-				music.setMusic(6);
+				music.setMusic("Music/Levels/Ice");
 				mOptionMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -589,7 +607,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 2: { //state 2. SoundMenu.
 			if (mStartOptionState) {
-				music.setMusic(6);
+				music.setMusic("Music/Levels/Ice");
 				mSoundmenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -600,7 +618,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		}
 		case 3: { //state 3. KeyboardSettings.
 			if (mStartOptionState) {
-				music.setMusic(6);
+				music.setMusic("Music/Levels/Ice");
 				mKeyboardMenu01->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -612,7 +630,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		case 4:
 		{ //state 3. VideoSettings.
 			if (mStartOptionState) {
-				music.setMusic(6);
+				music.setMusic("Music/Levels/Ice");
 				mVideoOptionMenu->scale(window);
 				mStartOptionState = false;
 				mStartState = false;
@@ -628,11 +646,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 5: { //state 5. GameOver.
 		if (mStartState) {
-			music.setMusic(8);
+			music.setMusic("Music/Levels/Asian");
 			mGameOverMenu01->scale(window);
 			mStartState = false;
-			sound.stopSound(10.4f);
-			sound.playSound(10.6f);
+			sound.setParamValue(1, "End", 1);
 			//Starta musik osv
 		}
 		drawGameOverMenu(window, mouse, music, sound);
@@ -640,11 +657,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 	}
 	case 6: { //state 6. WinMenu.
 		if (mStartState) {
-			music.setMusic(0);
+			music.setMusic("Music/Menu/Title");
 			mWinMenu01->scale(window);
 			mStartState = false;
-			sound.stopSound(10.4f);
-			sound.playSound(10.6f);
+			sound.setParamValue(1, "End", 1);
 			//Starta musik osv
 		}
 		drawWinMenu(window, mouse, music, sound);
@@ -657,7 +673,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 		switch (mRegionState) {
 		case 0:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(2);
+				music.setMusic("Music/Menu/WorldMap");
 				mWorldMap01->scale(window);
 				mStartState = false;
 				mStartRegionState = false;
@@ -667,7 +683,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 1:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				music.setMusic("Music/Menu/Miyoda");
 				mRegionMusic = 1;
 				mRegionMap01->scale(window);
 				mStartState = false;
@@ -679,7 +695,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 2:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				music.setMusic("Music/Menu/Miyoda");
 				mRegionMusic = 2;
 				mRegionMap01->scale(window);
 				mStartState = false;
@@ -691,7 +707,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			break;
 		case 3:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				music.setMusic("Music/Menu/Miyoda");
 				mRegionMusic = 3;
 				mRegionMap01->scale(window);
 				mStartState = false;
@@ -704,7 +720,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		case 4:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				music.setMusic("Music/Menu/Miyoda");
 				mRegionMusic = 4;
 				mRegionMap01->scale(window);
 				mStartState = false;
@@ -717,7 +733,7 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 		case 5:
 			if (mStartRegionState || mStartState) {
-				music.setMusic(1);
+				music.setMusic("Music/Menu/Miyoda");
 				mRegionMusic = 5;
 				mRegionMap01->scale(window);
 				mStartState = false;

@@ -6,6 +6,7 @@
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
+#include "Managers/LogHandler.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -13,6 +14,8 @@
 using namespace std;
 
 int main(){
+	LogHandler::setFile("log.txt");
+	LogHandler::log("Engine", "Start");
 
 	sf::Texture titleTexture;
 	sf::Sprite titleScreen;
@@ -32,7 +35,8 @@ int main(){
 	AudioBank MasterBank("Resource Files/Audio/Build/Desktop/Master Bank.bank");
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
 	srand(time(NULL));
-	MusicManager mMusicManager(0);
+	MusicManager mMusicManager("Music/Menu/Title");
+	audio->run(); //idk where to put this.
 	window.draw(titleScreen);
 	window.display();
 
@@ -40,6 +44,9 @@ int main(){
 	AnimeManager mAnimeManager;
 	SoundManager mSoundManager;
 	gameState theGame(window);
+
+	LogHandler::log("Engine", "Initialized");
+	LogHandler::log("-------------------------------------");
 
 	while (window.isOpen()){
 		sf::Event event;

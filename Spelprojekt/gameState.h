@@ -74,6 +74,10 @@ private:
 	DialogManager *mDialogManager;
 	InGameBackground *mInGameBackground;
 
+	AudioBank* mBank;
+	const char* mBankName;
+	const char* mSaveBank;
+
 	std::string meepHeightAnimation;
 	std::vector<Mower*> mLawnMowers;
 	std::vector<Shears*> mHedgeTools;

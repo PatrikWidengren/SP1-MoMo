@@ -5,7 +5,7 @@
             <value>Antartic</value>
         </property>
         <relationship name="folder">
-            <destination>{fa5456ae-e2af-43a5-aeb1-6f4ce696a3c9}</destination>
+            <destination>{659b97d3-7188-42ca-bd03-90661112fe73}</destination>
         </relationship>
     </object>
 </objects>

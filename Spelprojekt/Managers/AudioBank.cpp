@@ -12,7 +12,7 @@ AudioBank::AudioBank(const char* file)
 	{
 		std::string str = "Loading bank file: ";
 		str += FMOD_ErrorString(result);
-		//LogHandler::error("Audio", str.c_str());
+		LogHandler::error("AudioBank", str.c_str());
 		bank = NULL;
 		return;
 	}

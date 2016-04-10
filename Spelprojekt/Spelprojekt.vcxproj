@@ -100,6 +100,8 @@
     <ClCompile Include="Managers\AudioHandler.cpp" />
     <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Managers\File.cpp" />
+    <ClCompile Include="Managers\LogHandler.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
     <ClCompile Include="Static Objects\Dandelion.cpp" />
@@ -145,6 +147,8 @@
     <ClInclude Include="Managers\AudioBank.h" />
     <ClInclude Include="Managers\AudioHandler.h" />
     <ClInclude Include="Managers\DialogManager.h" />
+    <ClInclude Include="Managers\File.h" />
+    <ClInclude Include="Managers\LogHandler.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />

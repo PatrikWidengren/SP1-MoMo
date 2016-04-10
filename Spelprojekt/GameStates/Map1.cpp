@@ -1402,7 +1402,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		else {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
-			sound.playSound((mGrid[tempY][tempX]));
+			//sound.playSound((mGrid[tempY][tempX]));
 			screenshake(window);
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
@@ -1514,7 +1514,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	}
 	else {
 		if (mNpcVector.at(atPos)->getCollide()){
-			sound.playSound(mGrid[tempY][tempX]);
+			//sound.playSound(mGrid[tempY][tempX]);
 		}
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){

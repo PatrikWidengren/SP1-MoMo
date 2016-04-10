@@ -58,7 +58,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 1;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -71,7 +71,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 4;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -84,7 +84,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 3;
-			sound.playSound(10.2f);
+			//sound.playSound(10.2f);
 		}
 	}
 	else
