@@ -1638,7 +1638,7 @@ int Map1::getMaxTurns() {
 }
 int Map1::getGrass() {
 	if (totalAmountOfGrass > 0) {
-		return (cutGrass / totalAmountOfGrass) * 100;
+		return (int)((cutGrass / totalAmountOfGrass) * 100);
 	}
 	else {
 		return 9999;
@@ -1646,7 +1646,7 @@ int Map1::getGrass() {
 }
 int Map1::getHedges() {
 	if (totalAmountOfHedges > 0) {
-		return (cutHedges / totalAmountOfHedges) * 100;
+		return (int)((cutHedges / totalAmountOfHedges) * 100);
 	}
 	else {
 		return 9999;
@@ -1654,25 +1654,26 @@ int Map1::getHedges() {
 }
 int Map1::getDandelions() {
 	if (totalAmountOfDandelions > 0) {
-		return (cutDandelions / totalAmountOfDandelions) * 100;
+		return (int)((cutDandelions / totalAmountOfDandelions) * 100);
 	}
 	else {
 		return 9999;
 	}
 }
 vector<int>* Map1::getGoals() {
-	vector<int> *getgoals = new vector<int>;
+	delete mGetGoals;
+	mGetGoals = new vector<int>;
 	
-	getgoals->push_back(mBronzeGrass);
-	getgoals->push_back(mSilverGrass);
-	getgoals->push_back(mGoldGrass);
-	getgoals->push_back(mBronzeHedge);
-	getgoals->push_back(mSilverHedge);
-	getgoals->push_back(mGoldHedge);
-	getgoals->push_back(mBronzeDandelion);
-	getgoals->push_back(mSilverDandelion);
-	getgoals->push_back(mGoldDandelion);
-	return getgoals;
+	mGetGoals->push_back(mBronzeGrass);
+	mGetGoals->push_back(mSilverGrass);
+	mGetGoals->push_back(mGoldGrass);
+	mGetGoals->push_back(mBronzeHedge);
+	mGetGoals->push_back(mSilverHedge);
+	mGetGoals->push_back(mGoldHedge);
+	mGetGoals->push_back(mBronzeDandelion);
+	mGetGoals->push_back(mSilverDandelion);
+	mGetGoals->push_back(mGoldDandelion);
+	return mGetGoals;
 }
 int Map1::getTurnsLeft() {
 	return mWinRounds - mTurnCount;

@@ -288,8 +288,10 @@ string InGameBackground::writeProgress(int cutgrass, int cuthedges, int cutdande
 void InGameBackground::write(int turncount, int cutgrass, int cuthedges, int cutdandelions, vector<int>* goals) {
 	writeTurns(turncount);
 	sf::Text* turns = new sf::Text(writeTurns(turncount), font, 20);
+	delete mTurns;
 	mTurns = turns;
 	sf::Text* tempProgress = new sf::Text(writeProgress(cutgrass, cuthedges, cutdandelions, goals), font, 20);
+	delete mProgress;
 	mProgress = tempProgress;
 	mProgress->setPosition(50, 50);
 	mTurns->setPosition(1700, 150);

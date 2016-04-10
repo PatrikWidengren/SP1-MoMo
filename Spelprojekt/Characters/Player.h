@@ -59,6 +59,8 @@ public:
 	int mdopies; // . . . . . . . . . . . . Valuta
 	Mower* mower();
 
+	void reset();
+
 private:
 	sf::Clock moveClock;
 	sf::Clock clock;

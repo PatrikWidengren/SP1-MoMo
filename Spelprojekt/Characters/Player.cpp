@@ -387,3 +387,8 @@ void Player::scale(sf::RenderWindow &window) {
 Mower* Player::mower() {
 	return mLawnMower;
 }
+
+void Player::reset() {
+	mLawnMower->writeMove(0);
+	mLawnMower->writeMove(0);
+}
