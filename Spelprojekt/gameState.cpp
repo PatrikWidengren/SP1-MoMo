@@ -487,7 +487,10 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
 				mBankName = "Resource Files/Audio/Build/Desktop/Generic.bank";
 			}
-			else if (mRegionMusic == 4 || mRegionMusic == 5) {
+			else if (mRegionMusic == 4) {
+				mBankName = "Resource Files/Audio/Build/Desktop/Asia.bank";
+			}
+			else if (mRegionMusic == 5) {
 				mBankName = "Resource Files/Audio/Build/Desktop/Temple.bank";
 			}
 
@@ -498,10 +501,17 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 
 				mBank = new AudioBank(mBankName);
 				mSaveBank = mBankName;
-				std::cout << "loaded " << mSaveBank << std::endl;
+
+				std::string str = "Loaded: ";
+				str += mSaveBank;
+				LogHandler::log("State", str.c_str());
 			}
 			else
-				std::cout << mSaveBank << "already loaded" << std::endl;
+			{
+				std::string str = mSaveBank;
+				str += " already loaded";
+				LogHandler::log("State", str.c_str());
+			}
 
 			if (mRegionMusic == 1 || mRegionMusic == 2 || mRegionMusic == 3) {
 				sound.loadSounds(1);
@@ -515,21 +525,21 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				sound.loadSounds(3);
 				music.setMusic("Music/Levels/Asia"); //Temple8
 			}
+			else if (mRegionMusic == 5) {
+				sound.loadSounds(2);
+
+				//if (stuff) 
+				music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
+				//else
+				//music.setMusic("Music/Levels/Temple8"); //Temple8
+			}
 
 			if (sound.getParamValue(1, "End") == 1)
 			{
 				sound.setParamValue(1, "End", 0);
 			}
 
-			else if (mRegionMusic == 5) {
-				sound.loadSounds(2);
-			}
-			//if (stuff) 
-			music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
-			//else
-			//music.setMusic("Music/Levels/Temple8"); //Temple8
 
-		}
 			sound.playSound(1);
 			//mMap01->scale(window);
 			mStartState = false;
