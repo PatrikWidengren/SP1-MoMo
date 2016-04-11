@@ -509,21 +509,27 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 				std::string str = "Music/Levels/Generic" + std::to_string(i);
 				music.setMusic(str.c_str()); //Generic123
 			}
-			else if (mRegionMusic == 4 || mRegionMusic == 5) {
-				sound.loadSounds(2);
 
-				if (mRegionMusic == 4) {
-					music.setMusic("Music/Levels/Temple8"); //Temple8
-				}
-				if (mRegionMusic == 5) {
-					music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
-				}
+			else if (mRegionMusic == 4)
+			{
+				sound.loadSounds(3);
+				music.setMusic("Music/Levels/Asia"); //Temple8
 			}
 
 			if (sound.getParamValue(1, "End") == 1)
 			{
 				sound.setParamValue(1, "End", 0);
 			}
+
+			else if (mRegionMusic == 5) {
+				sound.loadSounds(2);
+			}
+			//if (stuff) 
+			music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
+			//else
+			//music.setMusic("Music/Levels/Temple8"); //Temple8
+
+		}
 			sound.playSound(1);
 			//mMap01->scale(window);
 			mStartState = false;
