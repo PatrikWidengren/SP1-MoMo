@@ -527,11 +527,12 @@ void gameState::gameStatesHandler(sf::RenderWindow &window, sf::Vector2i &mouse,
 			}
 			else if (mRegionMusic == 5) {
 				sound.loadSounds(2);
+				std::string str = mRegionMap01->loadLevel();
 
-				//if (stuff) 
+				if (str != "map05a08.txt")
 				music.setMusic("Music/Levels/Temple1-7"); //Temple1-7
-				//else
-				//music.setMusic("Music/Levels/Temple8"); //Temple8
+				else
+				music.setMusic("Music/Levels/Temple8"); //Temple8
 			}
 
 			if (sound.getParamValue(1, "End") == 1)
