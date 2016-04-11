@@ -1,23 +1,25 @@
 #ifndef INCLUDED_MUSICMANAGER
 #define INCLUDED_MUSICMANAGER
 
+#include "AudioHandler.h"
 #include <SFML\Audio.hpp>
 
 class MusicManager{
 public:
-	MusicManager(int id);
+	AudioHandler* audio = AudioHandler::instance();
+	MusicManager(const char* songTitle);
 	virtual ~MusicManager();
-	virtual sf::Music* getMusic();
-	virtual void setMusic(int id);
+	virtual Audio* getMusic();
+	virtual void setMusic(const char* songTitle);
 	int getVolume();
 	void setVolume(int volume);
 private:
 	//sf::Music mMusic;
-	typedef std::vector<sf::Music*> SongList;
-	SongList mSongList;
-	int const mMaxVolume = 100;
-	int saveID;
+	Audio* mSong;
+
+	int const mMaxVolume = 100; //=?
 	int mVolume;
+	const char* mSaveSong;
 };
 
 #endif

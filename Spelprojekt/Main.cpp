@@ -6,6 +6,7 @@
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
+#include "Managers/LogHandler.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -13,6 +14,8 @@
 using namespace std;
 
 int main(){
+	LogHandler::setFile("log.txt");
+	LogHandler::log("Engine", "Start");
 
 	sf::Texture titleTexture;
 	sf::Sprite titleScreen;
@@ -26,7 +29,14 @@ int main(){
 
 	titleScreen.setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	
-	MusicManager mMusicManager(0);
+	AudioHandler* audio = AudioHandler::instance();
+	audio->init(24);
+
+	AudioBank MasterBank("Resource Files/Audio/Build/Desktop/Master Bank.bank");
+	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
+	srand(time(NULL));
+	MusicManager mMusicManager("Music/Menu/Title");
+	audio->run(); //idk where to put this.
 	window.draw(titleScreen);
 	window.display();
 
@@ -35,13 +45,21 @@ int main(){
 	SoundManager mSoundManager;
 	gameState theGame(window);
 
+	LogHandler::log("Engine", "Initialized");
+	LogHandler::log("-------------------------------------");
+
 	while (window.isOpen()){
 		sf::Event event;
 		window.setFramerateLimit(60);
+		audio->run(); //idk where to put this.
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
 				mSoundManager.~SoundManager();
 				mMusicManager.~MusicManager();
+				audio->~AudioHandler();
+				MasterBank.~AudioBank();
+				MSB.~AudioBank();
+				
 				theGame.~gameState();
 				window.close();
 			}
@@ -54,6 +72,7 @@ int main(){
 		window.clear();
 		theGame.gameStatesHandler(window, mouse, mMusicManager, mSoundManager, mAnimeManager);
 #pragma region Fullscreen or Windowed
+		
 		if (theGame.mVideoOptionMenu->getFullscreen() && !theGame.mVideoOptionMenu->getSwap())
 		{
 			window.clear();

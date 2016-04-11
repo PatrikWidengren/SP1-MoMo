@@ -11,12 +11,14 @@ inGameMenu::inGameMenu(float width, float height)
 	spriteResume->setPosition(700, 550);
 	spriteOption->setPosition(700, 730);
 	spriteQuit->setPosition(700, 900);
+	spriteRestart->setPosition(700, 375);
 
 	selectedIndex = 0;
 
 	mRects[0] = new sf::IntRect(sf::Vector2i(643, 546), sf::Vector2i(550, 100));
 	mRects[1] = new sf::IntRect(sf::Vector2i(643, 725), sf::Vector2i(550, 100));
 	mRects[2] = new sf::IntRect(sf::Vector2i(643, 896), sf::Vector2i(550, 100));
+	mRects[3] = new sf::IntRect(sf::Vector2i(643, 370), sf::Vector2i(550, 100));
 
 }
 
@@ -28,12 +30,14 @@ inGameMenu::~inGameMenu()
 	delete highlighttextBg01;
 	delete textBg01;
 	delete textResume;
+	delete textRestart;
 	delete textOption;
 	delete textQuit;
 	delete textHighlightResume;
 	delete textHighlightOption;
 	delete textHighlightQuit;
 
+	delete spriteRestart;
 	delete spriteResume;
 	delete spriteOption;
 	delete spriteQuit;
@@ -54,7 +58,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 1;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -67,7 +71,7 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 4;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 		}
 	}
 	else
@@ -80,11 +84,25 @@ void inGameMenu::updateInGameMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mState = 3;
-			sound.playSound(10.2f);
+			//sound.playSound(10.2f);
 		}
 	}
 	else
 		spriteQuit->setTexture(*textQuit);
+
+	if (mRects[3]->contains(sf::Vector2i(mMouse.x, mMouse.y)))
+	{
+		spriteRestart->setTexture(*textHighlightRestart);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
+		{
+			mClick = false;
+			mState = 0;
+			sound.playSound(10.3f);
+		}
+	}
+	else
+		spriteRestart->setTexture(*textRestart);
+
 
 
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !mClick) {
@@ -99,6 +117,7 @@ void inGameMenu::displayMenu01(sf::RenderWindow &window)
 	blackness.setFillColor(sf::Color(0, 0, 0, 150));
 	window.draw(blackness);
 	window.draw(*bg01);
+	window.draw(*spriteRestart);
 	window.draw(*spriteResume);
 	window.draw(*spriteOption);
 	window.draw(*spriteQuit);
@@ -114,7 +133,8 @@ void inGameMenu::setTextures()
 	highlighttextBg01->loadFromFile("error.jpg");
 
 
-
+	if (!textRestart->loadFromFile("Resource Files/Menus/restart.png")) //try to load the texture. if its wrong, give error
+		textRestart->loadFromFile("error.jpg");
 	if (!textResume->loadFromFile("Resource Files/Menus/resume.png")) //try to load the texture. if its wrong, give error
 		textResume->loadFromFile("error.jpg");
 	if (!textOption->loadFromFile("Resource Files/Menus/options.png")) //try to load the texture. if its wrong, give error
@@ -122,6 +142,8 @@ void inGameMenu::setTextures()
 	if (!textQuit->loadFromFile("Resource Files/Menus/quit.png")) //try to load the texture. if its wrong, give error
 		textQuit->loadFromFile("error.jpg");
 
+	if (!textHighlightRestart->loadFromFile("Resource Files/Menus/Restart_Highlight.png")) //try to load the texture. if its wrong, give error
+		textHighlightRestart->loadFromFile("error.jpg");
 	if (!textHighlightResume->loadFromFile("Resource Files/Menus/Resume_Highlight.png")) //try to load the texture. if its wrong, give error
 		textHighlightResume->loadFromFile("error.jpg");
 	if (!textHighlightOption->loadFromFile("Resource Files/Menus/Options_Highlight.png")) //try to load the texture. if its wrong, give error
@@ -129,6 +151,7 @@ void inGameMenu::setTextures()
 	if (!textHighlightQuit->loadFromFile("Resource Files/Menus/Quit_Highlight.png")) //try to load the texture. if its wrong, give error
 		textHighlightQuit->loadFromFile("error.jpg");
 
+	spriteRestart->setTexture(*textRestart);
 	spriteResume->setTexture(*textResume);
 	spriteOption->setTexture(*textOption);
 	spriteQuit->setTexture(*textQuit);
@@ -166,6 +189,7 @@ void inGameMenu::scale(sf::RenderWindow &window) {
 
 	bg01->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 
+	spriteRestart->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteResume->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteOption->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
 	spriteQuit->setScale((float)window.getSize().x / 1920, (float)window.getSize().y / 1080);
@@ -173,7 +197,9 @@ void inGameMenu::scale(sf::RenderWindow &window) {
 	mRects[0] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 546 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 	mRects[1] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 725 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 	mRects[2] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 896 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
+	mRects[3] = new sf::IntRect(sf::Vector2i(643 * bg01->getScale().x, 370 * bg01->getScale().y), sf::Vector2i(550 * bg01->getScale().x, 100 * bg01->getScale().y));
 	bg01->setPosition(470 * bg01->getScale().x, 480 * bg01->getScale().y);
+	spriteRestart->setPosition(700 * bg01->getScale().x, 370 * bg01->getScale().y);
 	spriteResume->setPosition(700 * bg01->getScale().x, 550 * bg01->getScale().y);
 	spriteOption->setPosition(700 * bg01->getScale().x, 730 * bg01->getScale().y);
 	spriteQuit->setPosition(700 * bg01->getScale().x, 900 * bg01->getScale().y);

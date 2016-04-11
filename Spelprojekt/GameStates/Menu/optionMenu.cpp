@@ -66,7 +66,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mOptionMenuState = 3;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 			//Control Option
 		}
 	}
@@ -79,7 +79,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mClick)
 		{
 			mClick = false;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 			mOptionMenuState = 4;//Video Option
 		}
 	}
@@ -93,7 +93,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 		{
 			mClick = false;
 			mOptionMenuState = 2;
-			sound.playSound(10.3f);
+			//sound.playSound(10.3f);
 			//Audio Option
 		}
 	}
@@ -109,7 +109,7 @@ void optionMenu::updateoptionMenu(sf::RenderWindow &window, sf::Vector2i &mouse,
 			mClick = false;
 			mState = 3;
 			mOptionMenuState = 1;
-			sound.playSound(10.1f);
+			//sound.playSound(10.1f);
 		}
 	}
 	else

@@ -1402,7 +1402,7 @@ bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		else {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
-			sound.playSound((mGrid[tempY][tempX]));
+			//sound.playSound((mGrid[tempY][tempX]));
 			screenshake(window);
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt
@@ -1514,7 +1514,7 @@ bool Map1::moveNpc(int dir, int atPos, SoundManager &sound) {
 	}
 	else {
 		if (mNpcVector.at(atPos)->getCollide()){
-			sound.playSound(mGrid[tempY][tempX]);
+			//sound.playSound(mGrid[tempY][tempX]);
 		}
 /*		//Recognizes what it collides with. Sorta.
 		if (mGrid[tempY][tempX] == 5 && mNpcs.at(atPos)->getCollide()){
@@ -1638,7 +1638,7 @@ int Map1::getMaxTurns() {
 }
 int Map1::getGrass() {
 	if (totalAmountOfGrass > 0) {
-		return (cutGrass / totalAmountOfGrass) * 100;
+		return (int)((cutGrass / totalAmountOfGrass) * 100);
 	}
 	else {
 		return 9999;
@@ -1646,7 +1646,7 @@ int Map1::getGrass() {
 }
 int Map1::getHedges() {
 	if (totalAmountOfHedges > 0) {
-		return (cutHedges / totalAmountOfHedges) * 100;
+		return (int)((cutHedges / totalAmountOfHedges) * 100);
 	}
 	else {
 		return 9999;
@@ -1654,25 +1654,26 @@ int Map1::getHedges() {
 }
 int Map1::getDandelions() {
 	if (totalAmountOfDandelions > 0) {
-		return (cutDandelions / totalAmountOfDandelions) * 100;
+		return (int)((cutDandelions / totalAmountOfDandelions) * 100);
 	}
 	else {
 		return 9999;
 	}
 }
 vector<int>* Map1::getGoals() {
-	vector<int> *getgoals = new vector<int>;
+	delete mGetGoals;
+	mGetGoals = new vector<int>;
 	
-	getgoals->push_back(mBronzeGrass);
-	getgoals->push_back(mSilverGrass);
-	getgoals->push_back(mGoldGrass);
-	getgoals->push_back(mBronzeHedge);
-	getgoals->push_back(mSilverHedge);
-	getgoals->push_back(mGoldHedge);
-	getgoals->push_back(mBronzeDandelion);
-	getgoals->push_back(mSilverDandelion);
-	getgoals->push_back(mGoldDandelion);
-	return getgoals;
+	mGetGoals->push_back(mBronzeGrass);
+	mGetGoals->push_back(mSilverGrass);
+	mGetGoals->push_back(mGoldGrass);
+	mGetGoals->push_back(mBronzeHedge);
+	mGetGoals->push_back(mSilverHedge);
+	mGetGoals->push_back(mGoldHedge);
+	mGetGoals->push_back(mBronzeDandelion);
+	mGetGoals->push_back(mSilverDandelion);
+	mGetGoals->push_back(mGoldDandelion);
+	return mGetGoals;
 }
 int Map1::getTurnsLeft() {
 	return mWinRounds - mTurnCount;

@@ -47,7 +47,7 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 			//Back
 			mClick = false;
 			mOptionMenuState = 1;
-			sound.playSound(10.1);
+			//sound.playSound(10.1);
 		}
 	}
 	else

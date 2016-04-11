@@ -52,7 +52,7 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 		{
 			mClick = false;
 			controlscheme = 0;
-			sound.playSound(10.2f);
+			//sound.playSound(10.2f);
 			//Control Option
 		}
 	}
@@ -63,7 +63,7 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 		{
 			mClick = false;
 			controlscheme = 1;
-			sound.playSound(10.2f);
+			//sound.playSound(10.2f);
 			//Control Option
 		}
 	}
@@ -75,7 +75,7 @@ void KeyboardOptionMenu::updateKeyboardOptionMenu(sf::RenderWindow &window, sf::
 			mClick = false;
 			//Back
 			mOptionMenuState = 1;
-			sound.playSound(10.1f);
+			//sound.playSound(10.1f);
 		}
 	}
 	else

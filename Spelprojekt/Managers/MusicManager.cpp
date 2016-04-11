@@ -3,24 +3,23 @@
 #include <string>
 
 using namespace std;
-const int numberOfSongs = 10;
-static const string nameArray[numberOfSongs] = {"Resource Files/Music/Title.ogg", "Resource Files/Music/Miyoda.ogg", "Resource Files/Music/Worldmap.ogg",
-"Resource Files/Music/GardenGeneric1.ogg", "Resource Files/Music/GardenGeneric2.ogg", "Resource Files/Music/GardenGeneric3.ogg",
-"Resource Files/Music/Gardenice.ogg", "Resource Files/Music/GardenTemple1-7.ogg", "Resource Files/Music/GardenTemple8.ogg",
- "Resource Files/Music/GardenAsian.ogg" };
 
-MusicManager::MusicManager(int id) {
+
+//Name array = events instead, change this slask
+
+
+
+//static const string bankArray[numberOfBanks] = {};
+
+MusicManager::MusicManager(const char* songTitle)
+{
 	mVolume = 50;
-	for (int i = 0; i < numberOfSongs; i++) {
-		mSongList.push_back(new sf::Music);
-		while (!mSongList[i]->openFromFile(nameArray[i])) {
-			std::cout << "Song: " << i << " failed to load!" << endl;
-		}
-		mSongList[i]->setVolume(mVolume);
-		mSongList[i]->setLoop(true);
-	}
-	mSongList[id]->play();
-	saveID = id;
+
+	mSong = new Audio(songTitle);
+	
+	audio->setVolume(mSong, mVolume);
+	audio->play(mSong);
+	mSaveSong = songTitle;
 }
 
 MusicManager::~MusicManager(){
@@ -33,16 +32,20 @@ MusicManager::~MusicManager(){
 	}*/
 }
 
-sf::Music* MusicManager::getMusic(){
-	return mSongList[saveID];
+Audio* MusicManager::getMusic(){
+	return mSong;
 }
 
-void MusicManager::setMusic(int id){
-	if (saveID != id) {
-		mSongList[saveID]->stop();
-		mSongList[id]->setVolume(mVolume);
-		mSongList[id]->play();
-		saveID = id;
+
+void MusicManager::setMusic(const char* songTitle)
+{
+	if (songTitle != mSaveSong) {
+		audio->stop(mSong);
+		delete mSong;
+		mSong = new Audio(songTitle);
+		audio->setVolume(mSong, mVolume);
+		audio->play(mSong);
+		mSaveSong = songTitle;
 	}
 }
 
@@ -52,5 +55,5 @@ int MusicManager::getVolume() {
 
 void MusicManager::setVolume(int volume) {
 	mVolume = volume;
-	mSongList[saveID]->setVolume(mVolume);
+	audio->setVolume(mSong, mVolume);;
 }
