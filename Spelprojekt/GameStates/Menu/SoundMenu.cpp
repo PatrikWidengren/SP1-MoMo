@@ -56,8 +56,8 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !mDown)
 	{
 		mDown = true;
-		sound.setVolume(sound.getVolume() - 5);
-		music.setVolume(music.getVolume() - 5);
+		//sound.setVolume(sound.getVolume() - 5);
+		//music.setVolume(music.getVolume() - 5);
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && mDown)
 	{
@@ -67,8 +67,8 @@ void SoundMenu::updateSoundMenu(sf::RenderWindow &window, sf::Vector2i &mouse, S
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !mUp)
 	{
 		mUp = true;
-		sound.setVolume(sound.getVolume() + 5);
-		music.setVolume(music.getVolume() + 5);
+		//sound.setVolume(sound.getVolume() + 5);
+		//music.setVolume(music.getVolume() + 5);
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && mUp)
 	{

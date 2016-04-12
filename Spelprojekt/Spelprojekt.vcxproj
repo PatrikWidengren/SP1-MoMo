@@ -97,6 +97,7 @@
     <ClCompile Include="Managers\AnimeManager.cpp" />
     <ClCompile Include="Managers\Audio.cpp" />
     <ClCompile Include="Managers\AudioBank.cpp" />
+    <ClCompile Include="Managers\AudioBus.cpp" />
     <ClCompile Include="Managers\AudioHandler.cpp" />
     <ClCompile Include="Managers\DialogManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Managers\AnimeManager.h" />
     <ClInclude Include="Managers\Audio.h" />
     <ClInclude Include="Managers\AudioBank.h" />
+    <ClInclude Include="Managers\AudioBus.h" />
     <ClInclude Include="Managers\AudioHandler.h" />
     <ClInclude Include="Managers\DialogManager.h" />
     <ClInclude Include="Managers\File.h" />

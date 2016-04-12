@@ -15,7 +15,6 @@ public:
 	void playSound(int id);
 	void stopSound(int id);
 	void setVolume(int volume);
-	void setMowerVolume(int mowerVolume);
 	void loadSounds(int i);
 	void load(int number, int sounds[]);
 	void SoundManager::unload();
@@ -28,8 +27,6 @@ private:
 
 	Audio* mSound[numOfSounds];
 	std::string sndFile[numOfSounds];
-	int mVolume;
-	int mMowerVolume;
 };
 
 #endif

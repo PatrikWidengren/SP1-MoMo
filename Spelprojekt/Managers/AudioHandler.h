@@ -3,6 +3,7 @@
 #include "FMOD/fmod_studio.hpp"
 #include "Audio.h"
 #include "AudioBank.h"
+#include "AudioBus.h"
 #include "LogHandler.h"
 
 
@@ -55,6 +56,10 @@ public:
 	void setParameterValue(Audio* audio, const char* param, double value);
 	void setPitch(Audio* audio, double pitch);
 	void setTimePosition(Audio* audio, int position);
+
+	void setBusVolume(AudioBus* bus, double vol);
+	double getBusVolume(AudioBus* bus);
+
 
 	float getParameterValue(Audio* audio, const char* param);
 
