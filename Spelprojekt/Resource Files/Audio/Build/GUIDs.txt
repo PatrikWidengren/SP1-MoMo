@@ -1,0 +1,26 @@
+{d2a5b65c-58ec-40aa-9f3f-f36f2d729cbc} event:/Music/Levels/Asia
+{b22a21c4-64f4-4980-aba3-444883daf009} event:/Music/Levels/Generic1
+{eae8d3c3-4b10-42b6-94e4-13899f0d29ac} event:/Music/Levels/Generic2
+{84119944-b58d-4856-a508-7a2aba66a094} event:/Music/Levels/Generic3
+{f39d5216-8026-4a5b-a999-b1af6fc9d017} event:/Music/Levels/Ice
+{2d50e037-0844-4d22-b9f5-32ca32887fcc} event:/Music/Levels/Temple1-7
+{a7d089c4-a22b-4a62-a1bd-f8d5c3083f77} event:/Music/Levels/Temple8
+{5e073a6c-4859-4d0c-8bae-1597b86f6a06} event:/Music/Menu/Miyoda
+{78981d93-ee50-4ad4-ba91-56422c579820} event:/Music/Menu/Title
+{f8df9345-98f6-49b5-bac1-2c391fb0eb04} event:/Music/Menu/WorldMap
+{3e373709-3272-42e5-a7ce-9c7f13ed19e4} event:/Sound/Lawn Tools/HandHunter
+{d9afdb6b-3c4d-4007-958c-e50e847c7b22} event:/Sound/Lawn Tools/LawnMower1
+{8d37899b-0445-4fb9-9982-868f72a16b8d} bus:/
+{9c78e403-bfd4-4610-8aec-7994c07b14d7} bus:/Ambience
+{63ac7da8-986e-4e82-877a-24fcadb852e5} bus:/MenuSounds
+{bfde7389-5cf3-4397-b780-d4a73874bd77} bus:/AudioPause
+{2cb77c77-3e97-4543-bbf4-888a514a71f8} bus:/AudioPause/Music
+{131485b2-0eea-4773-abcc-632851f43e9b} bus:/AudioPause/Sound
+{2944e95e-88e6-4f34-bc6b-5c2bdc122b9a} bus:/AudioPause/Voices
+{f680b808-1e53-4b81-afc4-cbfd944e36aa} bus:/Reverb
+{059f1919-4d16-4d1a-bd1a-65d92101ce22} bank:/Music Bank
+{0f3eac09-1a7c-46bf-9df1-f343e3a75dd7} bank:/Master Bank
+{898e42f3-f46a-4920-9661-70df2ab39938} bank:/Antartic
+{1f538f42-19df-430d-b6ee-73d3b80f1499} bank:/Asia
+{b0009857-a531-47b2-9684-eceb6ea50fb0} bank:/Generic
+{e4f31eaa-046c-48c0-a7d6-9c3aa67152da} bank:/Temple

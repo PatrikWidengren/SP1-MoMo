@@ -15,6 +15,8 @@ AudioBus::AudioBus(const char* busName)
 	{
 		std::string str = "Finding bus: ";
 		str += FMOD_ErrorString(result);
+		str += " ";
+		str += s;
 		LogHandler::error("AudioBus", str.c_str());
 		bus = NULL;
 		return;
