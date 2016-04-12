@@ -35,6 +35,20 @@ int main(){
 	AudioBank MasterBank("Resource Files/Audio/Build/Desktop/Master Bank.bank");
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
 	srand(time(NULL));
+
+	//Setting the bus volumes here for testing:
+	AudioBus Music("Music");
+	AudioBus Sound("Sound");
+	AudioBus Ambience("Ambience");
+	AudioBus Master("");
+
+	audio->setBusVolume(&Music, 0.5f);
+	audio->setBusVolume(&Sound, 0.5f);
+	audio->setBusVolume(&Ambience, 0.5f);
+	audio->setBusVolume(&Master, 0.9f);
+	//Works, there's also getters for busvolumes
+
+
 	MusicManager mMusicManager("Music/Menu/Title");
 	audio->run(); //idk where to put this.
 	window.draw(titleScreen);

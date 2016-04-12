@@ -11,14 +11,10 @@ public:
 	virtual ~MusicManager();
 	virtual Audio* getMusic();
 	virtual void setMusic(const char* songTitle);
-	int getVolume();
 	void setVolume(int volume);
 private:
 	//sf::Music mMusic;
 	Audio* mSong;
-
-	int const mMaxVolume = 100; //=?
-	int mVolume;
 	const char* mSaveSong;
 };
 

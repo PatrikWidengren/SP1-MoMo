@@ -173,6 +173,22 @@ void AudioHandler::setTimePosition(Audio* audio, int position)
 	
 }
 
+void AudioHandler::setBusVolume(AudioBus* bus, double vol)
+{
+	if (bus->getBus())
+		bus->getBus()->setFaderLevel(vol);
+	else
+		LogHandler::notify("Audio", "Attempting to set volume of an unexisting bus.");
+}
+
+double getBusVolume(AudioBus* bus)
+{
+	float busvol = 0;
+	if (bus->getBus())
+		return bus->getBus()->getFaderLevel(&busvol);
+
+	return busvol;
+}
 
 AudioHandler::~AudioHandler()
 {
