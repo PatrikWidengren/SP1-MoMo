@@ -13,11 +13,7 @@ using namespace std;
 
 MusicManager::MusicManager(const char* songTitle)
 {
-	mVolume = 50;
-
 	mSong = new Audio(songTitle);
-	
-	audio->setVolume(mSong, mVolume);
 	audio->play(mSong);
 	mSaveSong = songTitle;
 }
@@ -43,17 +39,11 @@ void MusicManager::setMusic(const char* songTitle)
 		audio->stop(mSong);
 		delete mSong;
 		mSong = new Audio(songTitle);
-		audio->setVolume(mSong, mVolume);
 		audio->play(mSong);
 		mSaveSong = songTitle;
 	}
 }
 
-int MusicManager::getVolume() {
-	return mVolume;
-}
-
 void MusicManager::setVolume(int volume) {
-	mVolume = volume;
-	audio->setVolume(mSong, mVolume);;
+	audio->setVolume(mSong, volume);;
 }

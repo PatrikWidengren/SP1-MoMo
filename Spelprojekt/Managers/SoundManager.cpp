@@ -6,17 +6,10 @@
 using namespace std;
 
 SoundManager::SoundManager(){
-	mVolume = 35;
-	mMowerVolume = 70;
-
-
 	//0-9 Klippare
 	sndFile[0] = "Sound/Lawn Tools/HandHunter";
 	sndFile[1] = "Sound/Lawn Tools/LawnMower1";
-
 	//10-19 Häcksaxar
-	
-
 }
 
 void SoundManager::loadSounds(int i)
@@ -53,14 +46,6 @@ void SoundManager::loadSounds(int i)
 	case 4: //Is
 		break;
 	}
-
-
-	/*if (i >= 104 && i <= 106) {
-		audio->setVolume(mSound[0], mMowerVolume * (mVolume / 100));
-	}
-	else {
-		mSoundList[i]->setVolume(mVolume);
-	}*/
 }
 
 
@@ -129,20 +114,10 @@ void SoundManager::stopSound(int id) {
 }
 
 void SoundManager::setVolume(int volume){
-	mVolume = volume;
-	for (int i = 0; i < numOfSounds; i++){
-		if (i >= 0 && i <= 0) {
-			audio->setVolume(mSound[0], mMowerVolume * (mVolume / 100));
-		}
-		else {
-			audio->setVolume(mSound[i], mVolume);
-		}
-	}
-}
 
-void SoundManager::setMowerVolume(int mowerVolume) {
-	mMowerVolume = mowerVolume;
-	audio->setVolume(mSound[0], mMowerVolume * (mVolume / 100));
+	for (int i = 0; i < numOfSounds; i++){
+			audio->setVolume(mSound[i], volume);
+		}
 }
 
 void SoundManager::setParamValue(int id, const char* param, double value)
@@ -154,8 +129,4 @@ float SoundManager::getParamValue(int id, const char* param)
 {
 	float params = audio->getParameterValue(mSound[id], param);
 	return params;
-}
-
-int SoundManager::getVolume() {
-	return mVolume;
 }

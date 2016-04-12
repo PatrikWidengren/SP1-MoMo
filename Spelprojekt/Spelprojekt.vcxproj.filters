@@ -252,8 +252,8 @@
     <ClCompile Include="Managers\LogHandler.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="SaveVariables.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Managers\AudioBus.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -392,8 +392,8 @@
     <ClInclude Include="Managers\File.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="SaveVariables.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Managers\AudioBus.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
