@@ -104,6 +104,7 @@
     <ClCompile Include="Managers\LogHandler.cpp" />
     <ClCompile Include="Managers\MusicManager.cpp" />
     <ClCompile Include="Managers\SoundManager.cpp" />
+    <ClCompile Include="SaveVariables.cpp" />
     <ClCompile Include="Static Objects\Dandelion.cpp" />
     <ClCompile Include="Static Objects\Fence.cpp" />
     <ClCompile Include="Static Objects\Fountain.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Managers\LogHandler.h" />
     <ClInclude Include="Managers\MusicManager.h" />
     <ClInclude Include="Managers\SoundManager.h" />
+    <ClInclude Include="SaveVariables.h" />
     <ClInclude Include="Static Objects\Dandelion.h" />
     <ClInclude Include="Static Objects\Fence.h" />
     <ClInclude Include="Static Objects\Fountain.h" />
