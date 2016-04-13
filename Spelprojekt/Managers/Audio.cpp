@@ -1,7 +1,6 @@
 #include "Audio.h"
-#include "AudioHandler.h"
 #include <iostream>
-
+#include "AudioHandler.h"
 
 Audio::Audio(const char* file)
 {

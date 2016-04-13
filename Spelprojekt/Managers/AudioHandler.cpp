@@ -1,5 +1,5 @@
 #include "AudioHandler.h"
-#include <iostream>
+
 
 AudioHandler* AudioHandler::instance()
 {
@@ -181,13 +181,30 @@ void AudioHandler::setBusVolume(AudioBus* bus, double vol)
 		LogHandler::notify("Audio", "Attempting to set volume of an unexisting bus.");
 }
 
-double getBusVolume(AudioBus* bus)
+double AudioHandler::getBusVolume(AudioBus* bus)
 {
 	float busvol = 0;
 	if (bus->getBus())
-		return bus->getBus()->getFaderLevel(&busvol);
+		bus->getBus()->getFaderLevel(&busvol);
 
 	return busvol;
+}
+
+void AudioHandler::setBusPause(AudioBus* bus, bool pause)
+{
+	if (bus->getBus())
+		bus->getBus()->setPaused(pause);
+	else
+		LogHandler::notify("Audio", "Attempting to set pause of an unexisting bus.");
+}
+
+bool AudioHandler::getBusPause(AudioBus* bus)
+{
+	bool buspause = false;
+	if (bus->getBus())
+		bus->getBus()->getPaused(&buspause);
+
+	return buspause;
 }
 
 AudioHandler::~AudioHandler()
