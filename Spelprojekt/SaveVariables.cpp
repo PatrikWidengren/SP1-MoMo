@@ -4,6 +4,8 @@
 //Game Data/Save Data/MFS1 meep.dat
 //Game Data/Save Data/MFS2 meep.dat
 //osv...
+//Tomma Sparfiler är:
+//Game Data/Save Data/MFS3 @empty.dat
 
 SaveVariables::SaveVariables()
 {	
