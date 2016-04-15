@@ -74,16 +74,7 @@ int main(){
 	gameState theGame(window);
 
 	SaveVariables mSaveStuff;
-
-#pragma region SlaskTest2.0
-
-	//Testing Save File Stuff
-	mSaveStuff.checkSaves();
-	mSaveStuff.setCurrentSave(3);
-	mSaveStuff.newSave();
-	mSaveStuff.save();
-
-	//I'm Slask
+	mSaveStuff.checkSaves(); //Skapar 5 sparfiler.
 
 #pragma endregion
 

@@ -13,7 +13,7 @@ SaveVariables::SaveVariables()
 void SaveVariables::checkSaves()
 {
 	mFile.checkSaves(&dataList, 5, "Game Data/Save Data/", "MFS", "dat");
-	LogHandler::notify("Game", "Created Saves");
+	LogHandler::notify("File", "Created Saves");
 }
 
 void SaveVariables::setCurrentSave(int fileNumber)
