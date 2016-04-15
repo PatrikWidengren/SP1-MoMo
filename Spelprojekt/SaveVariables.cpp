@@ -12,7 +12,8 @@ SaveVariables::SaveVariables()
 
 void SaveVariables::checkSaves()
 {
-	mFile.checkSaves(&dataList, 5, "Game Data/Save Data/", "MFS", "dat");
+	mFile.searchFile(&fileList,  "Game Data/Save Data/", "*.dat");
+	mFile.checkSaves(&fileList, 5, "Game Data/Save Data/", "MFS", "dat");
 	LogHandler::notify("File", "Created Saves");
 }
 

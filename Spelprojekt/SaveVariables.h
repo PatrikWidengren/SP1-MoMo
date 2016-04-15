@@ -6,7 +6,7 @@ class SaveVariables
 private:
 
 	File mFile;
-	std::vector<std::string> dataList;
+	std::vector<std::string> fileList;
 
 
 	int sDupies;
