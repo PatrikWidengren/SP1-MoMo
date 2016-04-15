@@ -7,6 +7,7 @@
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
 #include "Managers/LogHandler.h"
+#include "SaveVariables.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -36,6 +37,9 @@ int main(){
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
 	srand(time(NULL));
 
+
+#pragma region SlaskTest
+
 	//Setting the bus volumes here for testing:
 	AudioBus Music("AudioPause/Music"); //All in game music probably
 	AudioBus Sound("AudioPause/Sound"); //All world sounds
@@ -45,9 +49,6 @@ int main(){
 	AudioBus Ambience("Ambience");  //Ambience, like mowers
 	AudioBus Master(""); //Overall volume
 
-	//AudioBus testfail("failpls");
-
-
 	audio->setBusVolume(&PauseSound, 1);
 	audio->setBusVolume(&Music, 0.5f);
 	audio->setBusVolume(&Sound, 0.5f);
@@ -56,8 +57,10 @@ int main(){
 	audio->setBusVolume(&Ambience, 0.5f);
 	audio->setBusVolume(&Master, 0.9f);
 
-	//audio->setBusVolume(&testfail, 1);
 	//Works, there's also getters for busvolumes
+
+
+#pragma endregion
 
 
 	MusicManager mMusicManager("Music/Menu/Title");
@@ -69,6 +72,20 @@ int main(){
 	AnimeManager mAnimeManager;
 	SoundManager mSoundManager;
 	gameState theGame(window);
+
+	SaveVariables mSaveStuff;
+
+#pragma region SlaskTest2.0
+
+	//Testing Save File Stuff
+	mSaveStuff.checkSaves();
+	mSaveStuff.setCurrentSave(3);
+	mSaveStuff.newSave();
+	mSaveStuff.save();
+
+	//I'm Slask
+
+#pragma endregion
 
 	LogHandler::log("Engine", "Initialized");
 	LogHandler::log("-------------------------------------");
