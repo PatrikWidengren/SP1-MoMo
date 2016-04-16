@@ -45,15 +45,16 @@ void SaveVariables::save()
 {
 	std::string file = "Game Data/Save Data/MFS" + std::to_string(curSave);
 	file += " meep.dat";
-
+	sHasMow1 = false;
 
 
 	//Basically do this:
+	sGameVersion = 1001;
+	mFile.add(sGameVersion);
+
 	sDupies = 69; //riktiga dupie variable värdet
 	mFile.add(sDupies);
 	//För allt som behöver sparas
-
-	mFile.save(file, true);
 
 }
 

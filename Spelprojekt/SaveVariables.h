@@ -8,7 +8,7 @@ private:
 	File mFile;
 	std::vector<std::string> fileList;
 
-
+	int sGameVersion;
 	int sDupies;
 
 	//need to check what mowers are unlocked

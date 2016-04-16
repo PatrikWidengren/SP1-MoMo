@@ -42,20 +42,22 @@ int main(){
 
 	//Setting the bus volumes here for testing:
 	AudioBus Music("AudioPause/Music"); //All in game music probably
-	AudioBus Sound("AudioPause/Sound"); //All world sounds
+	AudioBus Sound("AudioPause/MainSounds/Sound"); //All world sounds
 	AudioBus Voices("AudioPause/Voices"); //All dialogue
 	AudioBus PauseSound("AudioPause"); //Used for lowering music when paused etc
-	AudioBus MenuSound("MenuSounds"); //Digetic Menusounds
+	AudioBus MenuSound("AudioPause/MainSounds/MenuSounds"); //Digetic Menusounds
+	AudioBus SoundMaster("AudioPause/MainSounds");
 	AudioBus Ambience("Ambience");  //Ambience, like mowers
 	AudioBus Master(""); //Overall volume
 
 	audio->setBusVolume(&PauseSound, 1);
-	audio->setBusVolume(&Music, 0.5f);
-	audio->setBusVolume(&Sound, 0.5f);
-	audio->setBusVolume(&Voices, 0.5f);
-	audio->setBusVolume(&MenuSound, 0.5f);
-	audio->setBusVolume(&Ambience, 0.5f);
-	audio->setBusVolume(&Master, 0.9f);
+	audio->setBusVolume(&Music, 0.5);
+	audio->setBusVolume(&Sound, 0.5);
+	audio->setBusVolume(&Voices, 0.5);
+	audio->setBusVolume(&MenuSound, 0.5);
+	audio->setBusVolume(&Ambience, 0.5);
+	audio->setBusVolume(&Master, 0.9);
+	audio->setBusVolume(&SoundMaster, 1);
 
 	//Works, there's also getters for busvolumes
 
