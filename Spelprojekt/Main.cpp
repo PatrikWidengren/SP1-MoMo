@@ -135,6 +135,8 @@ int main(){
 		//(fullscreen ? Style::Fullscreen : Style::Resize | Style::Close)
 		window.display();
 	}
+	LogHandler::log("-------------------------------------");
+	LogHandler::log("Engine", "End");
 	return 0;
 }
 
