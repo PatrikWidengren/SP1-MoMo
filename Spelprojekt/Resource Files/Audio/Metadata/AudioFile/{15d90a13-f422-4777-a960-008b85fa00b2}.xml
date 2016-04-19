@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.08.00">
-    <object class="AudioFile" id="{35bdb612-1a75-45bd-b20b-76071063ba37}">
+    <object class="AudioFile" id="{15d90a13-f422-4777-a960-008b85fa00b2}">
         <property name="assetPath">
-            <value>Ljud/Kollision Meep and Monk 3.wav</value>
+            <value>Ljud/Lawnmower+Breaks+Down.flac</value>
         </property>
         <property name="frequencyInKHz">
             <value>48</value>
@@ -11,7 +11,7 @@
             <value>2</value>
         </property>
         <property name="length">
-            <value>1.3303333333333334</value>
+            <value>6.2770625000000004</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>

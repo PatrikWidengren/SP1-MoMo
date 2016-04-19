@@ -8,14 +8,31 @@
 {5e073a6c-4859-4d0c-8bae-1597b86f6a06} event:/Music/Menu/Miyoda
 {78981d93-ee50-4ad4-ba91-56422c579820} event:/Music/Menu/Title
 {f8df9345-98f6-49b5-bac1-2c391fb0eb04} event:/Music/Menu/WorldMap
+{957bcd7c-307e-4e82-a6fa-a0fb4df3f8cc} event:/Sound/Collisions/Cat
+{3c9d8f3d-38c7-41ee-9fc8-60c3a14884ca} event:/Sound/Collisions/Dog
+{063eb416-4094-4656-a3d3-d11b1b2e77f9} event:/Sound/Collisions/Fence
+{1f268ed5-8c39-4a4d-ba23-d90b22c404a5} event:/Sound/Collisions/Fountain
+{02a12542-8ae1-4368-85ee-d1462279a14c} event:/Sound/Collisions/Hedge
+{d44336db-afb7-4116-b77a-9cbd61066ec6} event:/Sound/Collisions/Monks
+{8bd08cd2-8ccd-4d5b-a6e5-5926acba9905} event:/Sound/Collisions/MowerCrash
+{35097dd3-3f53-41ab-9311-5d5e9e6e9339} event:/Sound/Collisions/Stone
+{377eb9ec-1d1e-46c9-86a1-c1723dcdb3b1} event:/Sound/Collisions/Tree
+{0aae3aa8-7eaf-4dd1-9131-75f1a69f50ba} event:/Sound/Collisions/Vase
 {3e373709-3272-42e5-a7ce-9c7f13ed19e4} event:/Sound/Lawn Tools/HandHunter
 {d9afdb6b-3c4d-4007-958c-e50e847c7b22} event:/Sound/Lawn Tools/LawnMower1
+{c573fc70-a11d-4907-83a6-7542e550d079} event:/Sound/Lawn Tools/Shears1
+{6ebc0c6f-75a4-441b-bf3c-23608bc69375} event:/Sound/Menu/Back
+{5be63814-b712-4ad0-9990-4fbcea4a2ce2} event:/Sound/Menu/Close
+{22ff238f-0aa5-4df8-8b11-b8e5a002896a} event:/Sound/Menu/Open
+{347cbba2-c460-4d0a-bb26-e4847d0a215a} event:/Sound/Menu/Scroll
+{90dd460f-3ba0-4068-bcbd-49d1cc49c7bf} event:/Sound/Menu/Selection
 {8d37899b-0445-4fb9-9982-868f72a16b8d} bus:/
 {9c78e403-bfd4-4610-8aec-7994c07b14d7} bus:/Ambience
-{63ac7da8-986e-4e82-877a-24fcadb852e5} bus:/MenuSounds
 {bfde7389-5cf3-4397-b780-d4a73874bd77} bus:/AudioPause
+{a8cf796d-f8c4-4c53-8ab5-fdd6bf598102} bus:/AudioPause/MainSounds
+{63ac7da8-986e-4e82-877a-24fcadb852e5} bus:/AudioPause/MainSounds/MenuSounds
+{131485b2-0eea-4773-abcc-632851f43e9b} bus:/AudioPause/MainSounds/Sound
 {2cb77c77-3e97-4543-bbf4-888a514a71f8} bus:/AudioPause/Music
-{131485b2-0eea-4773-abcc-632851f43e9b} bus:/AudioPause/Sound
 {2944e95e-88e6-4f34-bc6b-5c2bdc122b9a} bus:/AudioPause/Voices
 {f680b808-1e53-4b81-afc4-cbfd944e36aa} bus:/Reverb
 {059f1919-4d16-4d1a-bd1a-65d92101ce22} bank:/Music Bank

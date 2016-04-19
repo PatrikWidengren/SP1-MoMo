@@ -10,6 +10,19 @@ SoundManager::SoundManager(){
 	sndFile[0] = "Sound/Lawn Tools/HandHunter";
 	sndFile[1] = "Sound/Lawn Tools/LawnMower1";
 	//10-19 Häcksaxar
+
+	//20-123 COL
+	sndFile[20] = "Sound/Collisions/MowerCrash";
+	sndFile[21] = "Sound/Collisions/Cat";
+	sndFile[22] = "Sound/Collisions/Dog";
+	sndFile[23] = "Sound/Collisions/Fence";
+	sndFile[24] = "Sound/Collisions/Tree";
+	sndFile[25] = "Sound/Collisions/Vase";
+	sndFile[26] = "Sound/Collisions/Stone";
+	sndFile[27] = "Sound/Collisions/Monks";
+	sndFile[28] = "Sound/Collisions/Hedge";
+	sndFile[29] = "Sound/Collisions/Fountain";
+	
 }
 
 void SoundManager::loadSounds(int i)
@@ -27,20 +40,20 @@ void SoundManager::loadSounds(int i)
 	{
 	case 1: //Generic
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = { 0,1,20,23,24,26,28,29 };
+		load(size(toload), toload);
 	}
 		break;
 	case 2: //Tempel
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = { 0,1,20,23,24,26,27,28 };
+		load(size(toload), toload);
 	}
 		break;
 	case 3: //Asien
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = {0,1,20,21,23,24,26,28 };
+		load(size(toload), toload);
 	}
 		break;
 	case 4: //Is

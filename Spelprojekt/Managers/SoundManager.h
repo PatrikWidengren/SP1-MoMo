@@ -23,7 +23,7 @@ public:
 	float getParamValue(int id, const char* param);
 
 private:
-	const static int numOfSounds = 20;
+	const static int numOfSounds = 30;
 
 	Audio* mSound[numOfSounds];
 	std::string sndFile[numOfSounds];

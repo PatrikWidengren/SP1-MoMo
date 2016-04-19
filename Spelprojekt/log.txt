@@ -1,49 +1,52 @@
-04/16/2016 10:11:53 0000000106 [Engine] Start
-04/16/2016 10:11:54 0000001077 [Audio] Start
-04/16/2016 10:11:54 0000001645 [Audio] Initialized
-04/16/2016 10:12:29 0000036597 [File] Game Data/Save Data/MFS3 created
-04/16/2016-10:12:29-0000036612-[File] Created Saves
-04/16/2016 10:12:29 0000036620 [Engine] Initialized
-04/16/2016 10:12:29 0000036629 -------------------------------------
-04/16/2016 10:12:59 0000066126 [State] Loaded: Resource Files/Audio/Build/Desktop/Temple.bank
-04/16/2016 10:12:59 0000066169 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:12:59 0000066182 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016*10:13:04*0000071803*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:04-0000071820-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:08 0000074905 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:08 0000074926 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:08 0000074939 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:08-0000074955-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:10*0000077139*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:10-0000077154-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:11 0000078539 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:11 0000078551 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:11 0000078563 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:11-0000078579-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:13*0000080439*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:13-0000080455-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:15 0000082564 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:15 0000082578 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:15 0000082588 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:15-0000082600-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:17*0000084783*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:17-0000084797-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:19 0000086792 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:19 0000086805 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:19 0000086818 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:19-0000086835-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:21*0000088843*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:21-0000088859-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:27 0000094146 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:27 0000094159 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:27 0000094170 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:27-0000094186-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:29*0000096236*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:29-0000096249-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:31 0000098012 [State] Resource Files/Audio/Build/Desktop/Temple.bank already loaded
-04/16/2016 10:13:31 0000098024 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
-04/16/2016 10:13:31 0000098036 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
-04/16/2016-10:13:31-0000098049-[Audio] Attempting to stop unloaded sound.
-04/16/2016*10:13:32*0000099089*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found.
-04/16/2016-10:13:32-0000099105-[Audio] Attempting to play unloaded sound.
-04/16/2016 10:13:49 0000116814 [State] 
+04/16/2016 18:29:07 0000000077 [Engine] Start
+04/16/2016 18:29:07 0000000944 [Audio] Start
+04/16/2016 18:29:08 0000001220 [Audio] Initialized
+04/16/2016-18:29:40-0000033041-[File] Created Saves
+04/16/2016 18:29:40 0000033053 [Engine] Initialized
+04/16/2016 18:29:40 0000033059 -------------------------------------
+04/16/2016 18:29:47 0000040332 [State] Loaded: Resource Files/Audio/Build/Desktop/Generic.bank
+04/16/2016 18:29:47 0000040354 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
+04/16/2016 18:29:47 0000040393 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
+04/16/2016 18:29:47 0000040408 [Sound] Loaded: Sound/Collisions/MowerCrash at index: 2
+04/16/2016 18:29:47 0000040420 [Sound] Loaded: Sound/Collisions/Fence at index: 3
+04/16/2016 18:29:47 0000040432 [Sound] Loaded: Sound/Collisions/Tree at index: 4
+04/16/2016 18:29:47 0000040443 [Sound] Loaded: Sound/Collisions/Stone at index: 5
+04/16/2016 18:29:47 0000040454 [Sound] Loaded: Sound/Collisions/Hedge at index: 6
+04/16/2016 18:29:47 0000040469 [Sound] Loaded: Sound/Collisions/Fountain at index: 7
+04/16/2016*18:29:59*0000052644*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found. Music/Levels/Ice
+04/16/2016-18:29:59-0000052667-[Audio] Attempting to play unloaded sound.
+04/16/2016 18:30:02 0000055430 [State] Resource Files/Audio/Build/Desktop/Generic.bank already loaded
+04/16/2016 18:30:02 0000055449 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
+04/16/2016 18:30:02 0000055460 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
+04/16/2016 18:30:02 0000055477 [Sound] Loaded: Sound/Collisions/MowerCrash at index: 2
+04/16/2016 18:30:02 0000055491 [Sound] Loaded: Sound/Collisions/Fence at index: 3
+04/16/2016 18:30:02 0000055501 [Sound] Loaded: Sound/Collisions/Tree at index: 4
+04/16/2016 18:30:02 0000055511 [Sound] Loaded: Sound/Collisions/Stone at index: 5
+04/16/2016 18:30:02 0000055521 [Sound] Loaded: Sound/Collisions/Hedge at index: 6
+04/16/2016 18:30:02 0000055533 [Sound] Loaded: Sound/Collisions/Fountain at index: 7
+04/16/2016-18:30:02-0000055543-[Audio] Attempting to stop unloaded sound.
+04/16/2016*18:30:02*0000055937*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found. Music/Levels/Ice
+04/16/2016-18:30:03-0000055954-[Audio] Attempting to play unloaded sound.
+04/16/2016-18:30:03-0000056637-[Audio] Attempting to stop unloaded sound.
+04/16/2016 18:30:16 0000069945 [Sound] Unloading sound at index: 0
+04/16/2016 18:30:17 0000069954 [Sound] Unloading sound at index: 1
+04/16/2016 18:30:17 0000069964 [Sound] Unloading sound at index: 20
+04/16/2016 18:30:17 0000069974 [Sound] Unloading sound at index: 23
+04/16/2016 18:30:17 0000069982 [Sound] Unloading sound at index: 24
+04/16/2016 18:30:17 0000069996 [Sound] Unloading sound at index: 26
+04/16/2016 18:30:17 0000070005 [Sound] Unloading sound at index: 28
+04/16/2016 18:30:17 0000070014 [Sound] Unloading sound at index: 29
+04/16/2016 18:30:17 0000070055 [State] Loaded: Resource Files/Audio/Build/Desktop/Temple.bank
+04/16/2016 18:30:17 0000070068 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
+04/16/2016 18:30:17 0000070088 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
+04/16/2016 18:30:17 0000070103 [Sound] Loaded: Sound/Collisions/MowerCrash at index: 2
+04/16/2016 18:30:17 0000070120 [Sound] Loaded: Sound/Collisions/Fence at index: 3
+04/16/2016 18:30:17 0000070134 [Sound] Loaded: Sound/Collisions/Tree at index: 4
+04/16/2016 18:30:17 0000070145 [Sound] Loaded: Sound/Collisions/Stone at index: 5
+04/16/2016 18:30:17 0000070156 [Sound] Loaded: Sound/Collisions/Monks at index: 6
+04/16/2016 18:30:17 0000070168 [Sound] Loaded: Sound/Collisions/Hedge at index: 7
+04/16/2016*18:30:43*0000096802*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found. Music/Levels/Ice
+04/16/2016-18:30:43-0000096818-[Audio] Attempting to play unloaded sound.
+04/16/2016-18:30:44-0000097641-[Audio] Attempting to stop unloaded sound.
+04/16/2016 18:30:52 0000105234 [Sound] Unloading sound at index: 0
+04/16/2016 18:30:52 0000105242 

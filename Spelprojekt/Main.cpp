@@ -51,7 +51,7 @@ int main(){
 	AudioBus Master(""); //Overall volume
 
 	audio->setBusVolume(&PauseSound, 1);
-	audio->setBusVolume(&Music, 0.5);
+	audio->setBusVolume(&Music, 0);
 	audio->setBusVolume(&Sound, 0.5);
 	audio->setBusVolume(&Voices, 0.5);
 	audio->setBusVolume(&MenuSound, 0.5);
