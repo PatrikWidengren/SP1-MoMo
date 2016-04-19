@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{dc322ff9-3b26-4ca8-8f55-74859d84062a}">
+        <property name="assetPath">
+            <value>Ljud/Kollision+Castlegard+2.flac</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.3994791666666666</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0b7605f6-e326-4508-a056-1aaf8aec860b}</destination>
+        </relationship>
+    </object>
+</objects>
