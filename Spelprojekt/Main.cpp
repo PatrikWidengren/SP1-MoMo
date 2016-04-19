@@ -7,7 +7,6 @@
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
 #include "Managers/LogHandler.h"
-#include "SaveVariables.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -37,32 +36,17 @@ int main(){
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
 	srand(time(NULL));
 
-
-#pragma region SlaskTest
-
 	//Setting the bus volumes here for testing:
-	AudioBus Music("AudioPause/Music"); //All in game music probably
-	AudioBus Sound("AudioPause/MainSounds/Sound"); //All world sounds
-	AudioBus Voices("AudioPause/Voices"); //All dialogue
-	AudioBus PauseSound("AudioPause"); //Used for lowering music when paused etc
-	AudioBus MenuSound("AudioPause/MainSounds/MenuSounds"); //Digetic Menusounds
-	AudioBus SoundMaster("AudioPause/MainSounds");
-	AudioBus Ambience("Ambience");  //Ambience, like mowers
-	AudioBus Master(""); //Overall volume
+	AudioBus Music("Music");
+	AudioBus Sound("Sound");
+	AudioBus Ambience("Ambience");
+	AudioBus Master("");
 
-	audio->setBusVolume(&PauseSound, 1);
-	audio->setBusVolume(&Music, 0);
-	audio->setBusVolume(&Sound, 0.5);
-	audio->setBusVolume(&Voices, 0.5);
-	audio->setBusVolume(&MenuSound, 0.5);
-	audio->setBusVolume(&Ambience, 0.5);
-	audio->setBusVolume(&Master, 0.9);
-	audio->setBusVolume(&SoundMaster, 1);
-
+	audio->setBusVolume(&Music, 0.5f);
+	audio->setBusVolume(&Sound, 0.5f);
+	audio->setBusVolume(&Ambience, 0.5f);
+	audio->setBusVolume(&Master, 0.9f);
 	//Works, there's also getters for busvolumes
-
-
-#pragma endregion
 
 
 	MusicManager mMusicManager("Music/Menu/Title");
@@ -74,11 +58,6 @@ int main(){
 	AnimeManager mAnimeManager;
 	SoundManager mSoundManager;
 	gameState theGame(window);
-
-	SaveVariables mSaveStuff;
-	mSaveStuff.checkSaves(); //Skapar 5 sparfiler.
-
-#pragma endregion
 
 	LogHandler::log("Engine", "Initialized");
 	LogHandler::log("-------------------------------------");
@@ -135,8 +114,6 @@ int main(){
 		//(fullscreen ? Style::Fullscreen : Style::Resize | Style::Close)
 		window.display();
 	}
-	LogHandler::log("-------------------------------------");
-	LogHandler::log("Engine", "End");
 	return 0;
 }
 

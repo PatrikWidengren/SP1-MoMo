@@ -1,11 +1,12 @@
 #pragma once
-#include <FMOD/fmod_errors.h>
-#include <FMOD/fmod_studio.hpp>
-#include <iostream>
+#include "FMOD/fmod_errors.h"
+#include "FMOD/fmod_studio.hpp"
 #include "Audio.h"
 #include "AudioBank.h"
 #include "AudioBus.h"
 #include "LogHandler.h"
+
+
 
 class AudioHandler
 {
@@ -24,7 +25,7 @@ private:
 
 	FMOD_RESULT result;
 
-	AudioHandler() {};
+	AudioHandler() {}
 
 public:
 	static AudioHandler* instance();
@@ -58,9 +59,6 @@ public:
 
 	void setBusVolume(AudioBus* bus, double vol);
 	double getBusVolume(AudioBus* bus);
-
-	void setBusPause(AudioBus* bus, bool pause);
-	bool getBusPause(AudioBus* bus);
 
 
 	float getParameterValue(Audio* audio, const char* param);

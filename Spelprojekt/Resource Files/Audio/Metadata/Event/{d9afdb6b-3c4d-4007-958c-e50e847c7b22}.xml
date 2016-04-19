@@ -59,7 +59,7 @@
             <destination>{34d66441-954c-4747-b63f-e5c9a707304e}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{9c78e403-bfd4-4610-8aec-7994c07b14d7}</destination>
+            <destination>{3285e9e3-f367-4b2e-a6f2-51c23ebae699}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{54d3272d-7c35-46be-99ba-3c9f9b3f73a8}"/>
@@ -190,48 +190,48 @@
         <property name="length">
             <value>3.2124791666666668</value>
         </property>
-        <relationship name="triggerConditions">
-            <destination>{a03aa340-fe9e-4f50-ac0c-163e0ceb1c10}</destination>
-        </relationship>
-        <relationship name="destination">
-            <destination>{2fd81df3-6c2c-42e4-969f-4de4f43a9b11}</destination>
-        </relationship>
         <relationship name="timeline">
             <destination>{6e68be35-1821-4931-baa1-f2d47cd4acb0}</destination>
         </relationship>
         <relationship name="markerTrack">
             <destination>{a05c3213-2712-483a-a8fc-9db9664a78f1}</destination>
         </relationship>
+        <relationship name="triggerConditions">
+            <destination>{a03aa340-fe9e-4f50-ac0c-163e0ceb1c10}</destination>
+        </relationship>
+        <relationship name="destination">
+            <destination>{2fd81df3-6c2c-42e4-969f-4de4f43a9b11}</destination>
+        </relationship>
     </object>
     <object class="LoopRegion" id="{3ccbd81a-0af5-48f3-bc93-d66614334c18}">
-        <property name="triggerProbabilityEnabled">
-            <value>true</value>
-        </property>
         <property name="position">
             <value>2.2885208333333331</value>
         </property>
         <property name="length">
             <value>0.92395833333333321</value>
         </property>
-        <relationship name="triggerConditions">
-            <destination>{9f89a532-1671-4db6-89c5-c109523932df}</destination>
-        </relationship>
+        <property name="triggerProbabilityEnabled">
+            <value>true</value>
+        </property>
         <relationship name="timeline">
             <destination>{6e68be35-1821-4931-baa1-f2d47cd4acb0}</destination>
         </relationship>
         <relationship name="markerTrack">
             <destination>{f9fbb363-53f7-4abe-8581-4bddec3edbb7}</destination>
         </relationship>
+        <relationship name="triggerConditions">
+            <destination>{9f89a532-1671-4db6-89c5-c109523932df}</destination>
+        </relationship>
     </object>
     <object class="LoopRegion" id="{15866c31-86cd-4653-9bfd-14f6ddf5577c}">
-        <property name="triggerProbability">
-            <value>0</value>
-        </property>
         <property name="position">
             <value>2.2885208333333331</value>
         </property>
         <property name="length">
             <value>0.92395833333333321</value>
+        </property>
+        <property name="triggerProbability">
+            <value>0</value>
         </property>
         <relationship name="timeline">
             <destination>{6e68be35-1821-4931-baa1-f2d47cd4acb0}</destination>
