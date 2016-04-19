@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 #include "gameState.h"
+#include "SaveVariables.h"
 #include "Managers/MusicManager.h"
 #include "Managers/SoundManager.h"
 #include "Managers/AnimeManager.h"
