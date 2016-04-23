@@ -1,0 +1,26 @@
+04/23/2016 10:55:39 0000000116 [Engine] Start
+04/23/2016 10:55:40 0000000971 [Audio] Start
+04/23/2016 10:55:40 0000001297 [Audio] Initialized
+04/23/2016*10:55:40*0000001379*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/Music
+04/23/2016*10:55:40*0000001400*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds/Sound
+04/23/2016*10:55:40*0000001420*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/Voices
+04/23/2016*10:55:40*0000001450*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause
+04/23/2016*10:55:40*0000001476*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds/MenuSounds
+04/23/2016*10:55:40*0000001510*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds
+04/23/2016-10:55:40-0000001537-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:55:40-0000001560-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:55:40-0000001576-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:55:40-0000001589-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:55:40-0000001603-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:55:40-0000001626-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-10:56:12-0000033300-[File] Created Saves
+04/23/2016 10:56:12 0000033310 [Engine] Initialized
+04/23/2016 10:56:12 0000033318 -------------------------------------
+04/23/2016 10:56:21 0000042231 [State] Loaded: Resource Files/Audio/Build/Desktop/Generic.bank
+04/23/2016 10:56:21 0000042247 [Sound] Loaded: Sound/Lawn Tools/HandHunter at index: 0
+04/23/2016 10:56:21 0000042265 [Sound] Loaded: Sound/Lawn Tools/LawnMower1 at index: 1
+04/23/2016*10:56:25*0000046675*[Audio] ERROR: Loading event: The requested event, bus or vca could not be found. Music/Levels/Ice
+04/23/2016-10:56:25-0000046725-[Audio] Attempting to play unloaded sound.
+04/23/2016-10:56:27-0000048631-[Audio] Attempting to stop unloaded sound.
+04/23/2016 10:57:41 0000122179 -------------------------------------
+04/23/2016 10:57:41 0000122198 [Engine] End
