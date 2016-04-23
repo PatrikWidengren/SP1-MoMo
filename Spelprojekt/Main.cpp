@@ -37,7 +37,7 @@ int main(){
 	AudioBank MSB("Resource Files/Audio/Build/Desktop/Master Bank.strings.bank");
 	srand(time(NULL));
 
-#pragma region AudioBusInit
+#pragma region SlaskTest
 
 	//Setting the bus volumes here for testing:
 	AudioBus Music("AudioPause/Music"); //All in game music probably
