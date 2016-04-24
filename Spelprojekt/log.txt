@@ -1,0 +1,21 @@
+04/23/2016 21:36:38 0000000064 [Engine] Start
+04/23/2016 21:36:39 0000000943 [Audio] Start
+04/23/2016 21:36:39 0000001262 [Audio] Initialized
+04/23/2016*21:36:40*0000001347*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/Music
+04/23/2016*21:36:40*0000001378*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds/Sound
+04/23/2016*21:36:40*0000001410*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/Voices
+04/23/2016*21:36:40*0000001497*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause
+04/23/2016*21:36:40*0000001543*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds/MenuSounds
+04/23/2016*21:36:40*0000001566*[AudioBus] ERROR: Finding bus: The requested event, bus or vca could not be found. bus:/AudioPause/MainSounds
+04/23/2016-21:36:40-0000001584-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-21:36:40-0000001598-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-21:36:40-0000001614-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-21:36:40-0000001637-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-21:36:40-0000001650-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016-21:36:40-0000001665-[Audio] Attempting to set volume of an unexisting bus.
+04/23/2016 21:37:16 0000037392 [File] Game Data/Save Data/MFS3 created
+04/23/2016-21:37:16-0000037412-[File] Created Saves
+04/23/2016 21:37:16 0000037421 [Engine] Initialized
+04/23/2016 21:37:16 0000037435 -------------------------------------
+04/23/2016 21:37:16 0000037817 -------------------------------------
+04/23/2016 21:37:16 0000037857 [Engine] End
