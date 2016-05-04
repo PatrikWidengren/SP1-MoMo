@@ -1,7 +1,6 @@
 #include "Audio.h"
-#include "AudioHandler.h"
 #include <iostream>
-
+#include "AudioHandler.h"
 
 Audio::Audio(const char* file)
 {
@@ -18,6 +17,8 @@ Audio::Audio(const char* file)
 	{
 		std::string str = "Loading event: ";
 		str += FMOD_ErrorString(result);
+		str += " ";
+		str += file;
 		LogHandler::error("Audio", str.c_str());
 		return;
 	}

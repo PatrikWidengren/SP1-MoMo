@@ -1402,7 +1402,60 @@ bool Map1::movePlayer(int dir, SoundManager &sound, sf::RenderWindow &window) {
 		else {
 			//cout << endl << (int)floor(mGrid[tempY][tempX])-1 << endl;
 			//sound.setSound(7);
-			//sound.playSound((mGrid[tempY][tempX]));
+			
+			sound.playSound(20);
+			cout << endl << (int)mGrid[tempY][tempX];
+
+			int tempI;
+
+			if (mGrid[tempY][tempX] == 0.6f) {
+				tempI = 10;
+			}
+			else {
+				tempI = (int)mGrid[tempY][tempX];
+			}
+			
+			switch (tempI) {
+
+			case 0: { //Fence
+				sound.playSound(23);
+				break;
+			}
+
+			case 1: { //Fence
+				sound.playSound(23);
+					break;
+				}
+			case 3: { //Stone
+				sound.playSound(26);
+				break;
+			}
+			case 4: { //Trä
+				sound.playSound(24);
+				break;
+			}
+			case 6: { //Cat
+				sound.playSound(21);
+				break;
+			}
+			case 7: { //Munk
+				int i = rand() % 4;
+
+
+				sound.setParamValue(27, "Monks", i);
+				sound.playSound(27);
+				break;
+			}
+			case 9: { //Häck
+				sound.playSound(28);
+				break;
+			}
+			case 10: { //Fontän
+				sound.playSound(29);
+				break;
+			}
+			}
+			
 			screenshake(window);
 /*			if (mGrid[tempY][tempX] == 6){
 				//Krock med Katt

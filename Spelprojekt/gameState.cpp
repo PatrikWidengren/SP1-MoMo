@@ -238,8 +238,8 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 
 	window.clear();
 
-	mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
-	mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
+	//mBeforeDialogue = mDialogManager->checkBeforeDialogue(mMap01->mSavefile);
+	//mAfterDialogue = mDialogManager->checkAfterDialogue(mMap01->mSavefile);
 
 
 #pragma region Check if there is Dialogue
@@ -257,8 +257,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	{
 		mDialogSwitch = 1;
 	}
-#pragma endregion
-
+#pragma endregion*/
 
 	mInGameBackground->write(mMap01->getTurnsLeft(), mMap01->getGrass(), mMap01->getHedges(), mMap01->getDandelions(), mMap01->getGoals());
 	mInGameBackground->getInfo(mPlayer->mower()->getMaxMom(), mPlayer->mower()->getMinMom(), mPlayer->mower()->getCurMom(), mPlayer->mower()->getFallVal(), mPlayer->mower()->getRiseVal(), mPlayer->getMowerEquipped());
@@ -275,7 +274,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	{
 	case 0: //Before, Dialogue
 	{
-		mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
+		//mDialogManager->playBeforeDialogue(mMap01->mSavefile, window);
 		break;
 	}
 	case 1:
@@ -460,7 +459,7 @@ for (ObjectsVector::size_type i = 0; i < mLongObjects.size(); i++){
 	}
 	case 2: //After, Dialogue
 	{
-		mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
+		//mDialogManager->playAfterDialogue(mMap01->mSavefile, window);
 		break;
 	}
 

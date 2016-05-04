@@ -1,6 +1,6 @@
 #include "AudioBank.h"
-#include "AudioHandler.h"
 #include <iostream>
+#include "AudioHandler.h"
 
 
 AudioBank::AudioBank(const char* file)

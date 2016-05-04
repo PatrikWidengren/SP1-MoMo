@@ -5,11 +5,25 @@
 
 using namespace std;
 
-SoundManager::SoundManager(){
+SoundManager::SoundManager()
+{
 	//0-9 Klippare
 	sndFile[0] = "Sound/Lawn Tools/HandHunter";
 	sndFile[1] = "Sound/Lawn Tools/LawnMower1";
 	//10-19 Häcksaxar
+
+	//20-123 COL
+	sndFile[20] = "Sound/Collisions/MowerCrash";
+	sndFile[21] = "Sound/Collisions/Cat";
+	sndFile[22] = "Sound/Collisions/Dog";
+	sndFile[23] = "Sound/Collisions/Fence";
+	sndFile[24] = "Sound/Collisions/Tree";
+	sndFile[25] = "Sound/Collisions/Vase";
+	sndFile[26] = "Sound/Collisions/Stone";
+	sndFile[27] = "Sound/Collisions/Monks";
+	sndFile[28] = "Sound/Collisions/Hedge";
+	sndFile[29] = "Sound/Collisions/Fountain";
+
 }
 
 void SoundManager::loadSounds(int i)
@@ -23,26 +37,26 @@ void SoundManager::loadSounds(int i)
 
 
 
-	switch (i) 
+	switch (i)
 	{
 	case 1: //Generic
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = { 0,1,20,23,24,26,28,29 };
+		load(size(toload), toload);
 	}
-		break;
+	break;
 	case 2: //Tempel
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = { 0,1,20,23,24,26,27,28 };
+		load(size(toload), toload);
 	}
-		break;
+	break;
 	case 3: //Asien
 	{
-		int toload[] = { 0,1 };
-		load(2, toload);
+		int toload[] = { 0,1,20,21,23,24,26,28 };
+		load(size(toload), toload);
 	}
-		break;
+	break;
 	case 4: //Is
 		break;
 	}
@@ -72,7 +86,7 @@ void SoundManager::unload()
 {
 	for (int j = 0; j < numOfSounds; j++)
 	{
-		if (mSound[j]) 
+		if (mSound[j])
 		{
 			std::string str = "Unloading sound at index: ";
 			str += std::to_string(j);
@@ -86,38 +100,42 @@ void SoundManager::unload()
 	}
 }
 
-SoundManager::~SoundManager() {
+SoundManager::~SoundManager()
+{
 	/*int i = numberOfSounds-1;
 	while (!mSoundList.empty()) {
-		//mSoundList[i]->stop();
-		delete mSoundList[i];
-		mSoundList.pop_back();
-		i--;
+	//mSoundList[i]->stop();
+	delete mSoundList[i];
+	mSoundList.pop_back();
+	i--;
 	}
 	i = numberOfSounds-1;
 	while (!mSoundBufferList.empty()) {
-		delete mSoundBufferList[i];
-		mSoundBufferList.pop_back();
-		i--;
+	delete mSoundBufferList[i];
+	mSoundBufferList.pop_back();
+	i--;
 	}*/
 }
 
 
-void SoundManager::playSound(int id){
+void SoundManager::playSound(int id)
+{
 	if (id >= 0 && id <= numOfSounds) {
 		audio->play(mSound[id]);
 	}
 }
 
-void SoundManager::stopSound(int id) {
+void SoundManager::stopSound(int id)
+{
 	audio->stop(mSound[id]);
 }
 
-void SoundManager::setVolume(int volume){
+void SoundManager::setVolume(int volume)
+{
 
-	for (int i = 0; i < numOfSounds; i++){
-			audio->setVolume(mSound[i], volume);
-		}
+	for (int i = 0; i < numOfSounds; i++) {
+		audio->setVolume(mSound[i], volume);
+	}
 }
 
 void SoundManager::setParamValue(int id, const char* param, double value)

@@ -1,6 +1,6 @@
 #include "AudioBus.h"
-#include "AudioHandler.h"
 #include <iostream>
+#include "AudioHandler.h"
 
 
 AudioBus::AudioBus(const char* busName)
@@ -9,12 +9,14 @@ AudioBus::AudioBus(const char* busName)
 
 	std::string s = "bus:/";
 	s += busName;
-	
+
 	result = system->getBus(s.c_str(), &bus);
 	if (result != FMOD_OK)
 	{
 		std::string str = "Finding bus: ";
 		str += FMOD_ErrorString(result);
+		str += " ";
+		str += s;
 		LogHandler::error("AudioBus", str.c_str());
 		bus = NULL;
 		return;
